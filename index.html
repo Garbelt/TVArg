@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portal TV</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#111111">
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#000;
+    color:white;
+    font-family:Arial,sans-serif;
+    display:flex;
+    height:100vh;
+}
+
+#menu{
+    width:320px;
+    background:#111;
+    overflow-y:auto;
+    border-right:2px solid #222;
+}
+
+#titulo{
+    padding:20px;
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    background:#1a1a1a;
+}
+
+.canal{
+    padding:18px;
+    border-bottom:1px solid #222;
+    cursor:pointer;
+    font-size:20px;
+}
+
+.canal:hover,
+.canal:focus{
+    background:#0066cc;
+    outline:none;
+}
+
+#player{
+    flex:1;
+    position:relative;
+    background:black;
+}
+
+video{
+    width:100%;
+    height:100%;
+    background:black;
+}
+
+#nombreCanal{
+    position:absolute;
+    top:10px;
+    left:10px;
+    z-index:10;
+    background:rgba(0,0,0,.7);
+    padding:10px 15px;
+    border-radius:10px;
+}
+
+#mensaje{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:rgba(0,0,0,.8);
+    padding:20px;
+    border-radius:10px;
+    display:none;
+    font-size:22px;
+}
+
+</style>
+</head>
+<body>
+
+<div id="menu">
+    <div id="titulo">📺 PORTAL TV</div>
+</div>
+
+<div id="player">
+
+    <div id="nombreCanal">
+        Seleccione un canal
+    </div>
+
+    <div id="mensaje"></div>
+
+    <video
+        id="video"
+        controls
+        autoplay>
+    </video>
+
+</div>
+
+<script>
+
+const canales = [
+
+{
+    nombre:"DE TODO",
+    tipo:"web",
+    url:"https://www.chocopopflow.com/"
+},
+
+{
+    nombre:"📺 TN",
+    tipo:"hls",
+    url:"https://live-01-01-tn.vodgc.net/TN_DAI_Beta/index.m3u8"
+},
+
+{
+    nombre:"📺 LN+",
+    tipo:"youtube",
+    url:"https://www.youtube.com/watch?v=DVZ2rJQb_0g"
+},
+
+{
+    nombre:"📺 Canal 26",
+    tipo:"hls",
+    url:"https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8"
+},
+
+{
+    nombre:"📺 DW",
+    tipo:"hls",
+    url:"https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/master.m3u8"
+},
+
+{
+    nombre:"▶ C5N",
+    tipo:"youtube",
+    url:"https://www.youtube.com/watch?v=VWhQ6xspnSc"
+},
+
+{
+    nombre:"🌐 Telefe",
+    tipo:"web",
+    url:"https://mitelefe.com/vivo/telefe-en-vivo/"
+},
+
+{
+    nombre:"América",
+    tipo:"web",
+    url:"https://www.americatv.com.ar/vivo"
+},
+
+{
+    nombre:"Tv Pública",
+    tipo:"youtube",
+    url:"https://www.youtube.com/watch?v=eQLBmCEBp50/"
+},
+
+{
+    nombre:"Net Tv",
+    tipo:"hls",
+    url:"https://unlimited1-us.dps.live/nettv/nettv.smil/playlist.m3u8"
+},
+
+{
+    nombre:"A24",
+    tipo:"youtube",
+    url:"https://www.youtube.com/c/A24com/live"
+}
+
+];
+
+const menu =
+document.getElementById("menu");
+
+const video =
+document.getElementById("video");
+
+const nombreCanal =
+document.getElementById("nombreCanal");
+
+const mensaje =
+document.getElementById("mensaje");
+
+let hls;
+
+function mostrarMensaje(texto){
+
+    mensaje.textContent = texto;
+    mensaje.style.display = "block";
+
+    setTimeout(()=>{
+        mensaje.style.display = "none";
+    },3000);
+
+}
+
+function cargarCanal(canal){
+
+    nombreCanal.textContent = canal.nombre;
+
+    video.pause();
+
+    if(hls){
+        hls.destroy();
+    }
+
+    if(canal.tipo==="youtube"){
+
+        window.location.href = canal.url;
+        return;
+
+    }
+
+    if(canal.tipo==="web"){
+
+        window.location.href = canal.url;
+        return;
+
+    }
+
+    if(canal.tipo==="hls"){
+
+        if(Hls.isSupported()){
+
+            hls = new Hls();
+
+            hls.loadSource(canal.url);
+
+            hls.attachMedia(video);
+
+            hls.on(Hls.Events.MANIFEST_PARSED,()=>{
+
+                video.play();
+
+            });
+
+            hls.on(Hls.Events.ERROR,(event,data)=>{
+
+                mostrarMensaje(
+                    "Canal no disponible"
+                );
+
+                console.log(data);
+
+            });
+
+            setTimeout(()=>{
+
+                if(video.readyState===0){
+
+                    mostrarMensaje(
+                        "No se pudo cargar el canal"
+                    );
+
+                }
+
+            },10000);
+
+        }
+        else{
+
+            video.src = canal.url;
+
+        }
+
+    }
+
+}
+
+canales.forEach(canal=>{
+
+    const div =
+    document.createElement("div");
+
+    div.className = "canal";
+
+    div.tabIndex = 0;
+
+    div.textContent = canal.nombre;
+
+    div.onclick = ()=>{
+
+        cargarCanal(canal);
+
+    };
+
+    menu.appendChild(div);
+
+});
+
+</script>
+
+<script>
+
+if("serviceWorker" in navigator){
+
+    navigator.serviceWorker
+    .register("service-worker.js")
+    .then(()=>{
+
+        console.log("Service Worker registrado");
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
