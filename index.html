@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TV Argentina</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#111111">
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: #000;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+}
+
+/* ===== SPLASH ===== */
+#inicioTVArg {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 9999;
+}
+
+#inicioTVArg button {
+    padding: 18px 28px;
+    font-size: 22px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+#enterBtn { background: #0066cc; color: white; }
+
+#installBtn {
+    background: #222;
+    color: white;
+    border: 1px solid #444;
+    display: none;
+}
+
+/* ===== LAYOUT ===== */
+
+#menu{
+    display:none;
+    width:100%;
+    height:100vh;
+    background:#000;
+    flex-direction:column;
+    align-items:center;
+}
+
+#menuOtros{
+    display:none;
+    width:100%;
+    height:100vh;
+    background:#000;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* ===== OTROS ===== */
+
+#listaOtros{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    justify-content:center;
+    padding:20px;
+}
+
+#titulo{
+    font-size:42px;
+    font-weight:bold;
+    padding:40px 0 30px 0;
+}
+
+#listaCanales{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    justify-content:center;
+    padding:20px;
+}
+
+.canal{
+    min-width:180px;
+    padding:20px;
+    text-align:center;
+    background:#111;
+    border-radius:12px;
+    border:1px solid #222;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.canal:hover{
+    transform:scale(1.05);
+    background:#0066cc;
+}
+
+#player {
+    display: none;
+    flex: 1;
+    position: relative;
+    background: black;
+    width: 100%;
+    height: 100%;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: black;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#mensaje {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(0,0,0,.8);
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+}
+
+#backBtn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 99999;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.55);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.35);
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all .25s ease;
+    pointer-events: none;
+}
+
+#backBtn.show {
+    opacity: 0.75;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+#backBtn:hover,
+#backBtn:focus {
+    opacity: 1;
+    transform: scale(1.15);
+    outline: none;
+    border-color: white;
+    box-shadow: 0 0 12px rgba(255,255,255,.5);
+}
+
+#backOtrosBtn{
+    position: fixed;
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 18px 28px;
+    font-size: 22px;
+    border-radius: 10px;
+    border: 1px solid #222;
+    background: #111;
+    color: white;
+
+    cursor: pointer;
+}
+
+/* ===== YOUTUBE OVERLAY ===== */
+
+#ytOverlay {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: none;
+    z-index: 9999;
+}
+
+#ytFrame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+#ytOverlay iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+#backOtrosBtn{
+    padding:18px 28px;
+    font-size:22px;
+    border-radius:10px;
+    border:1px solid #222;
+    background:#111;
+    color:white;
+    cursor:pointer;
+}
+
+#webOverlay {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: none;
+    z-index: 10000;
+}
+
+#webFrame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+#closeWebBtn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 10001;
+
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+
+    background: rgba(0,0,0,0.25);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.15);
+
+    cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SPLASH -->
+<div id="inicioTVArg">
+    <button id="enterBtn">▶ Ingresar a TVArg</button>
+    <button id="installBtn">📲 Instalar TVArg</button>
+</div>
+
+<!-- MENU -->
+<div id="menu">
+    <div id="titulo">
+        📺 TV ARG
+    </div>
+    <div id="listaCanales"></div>
+</div>
+
+<!-- MENU OTROS -->
+<div id="menuOtros" style="display:none;">
+    <div id="titulo">
+        📁 OTROS
+    </div>
+    <div id="listaOtros"></div>
+<button id="backOtrosBtn">↩ Volver</button>
+</div>
+
+<!-- PLAYER -->
+<div id="player">
+
+    <div id="mensaje"></div>
+
+    <video id="video" controls autoplay></video>
+
+</div>
+
+<!-- YOUTUBE OVERLAY -->
+<div id="ytOverlay">
+    <iframe id="ytFrame"></iframe>
+</div>
+
+<!-- WEB OVERLAY (OTROS) -->
+<div id="webOverlay">
+    <iframe id="webFrame"></iframe>
+</div>
+
+<button id="backBtn">↩</button>
+
+<script>
+
+const canales = [
+    { nombre:"América TV", tipo:"youtube", url:"https://www.youtube.com/embed/gL_6ETjb0zU?autoplay=1" },
+    { nombre:"TV Pública", tipo:"youtube", url:"https://www.youtube.com/embed/eQLBmCEBp50?autoplay=1" },
+    { nombre:"El Nueve", tipo:"youtube", url:"https://www.youtube.com/embed/C1DhpJ07ZuE?autoplay=1" },
+    { nombre: "Telefe", tipo: "hls", url: "http://201.217.246.42:44310/Live/3fcb6e26785fd8d415571b26dc3cf5d3/telefe.playlist.m3u8"},
+    { nombre: "El Trece", tipo: "hls", url: "https://live-01-02-eltrece.vodgc.net/eltrecetv/index.m3u8"},
+    { nombre:"TN", tipo:"hls", url:"https://live-01-01-tn.vodgc.net/TN_DAI_Beta/index.m3u8" },
+    { nombre:"C5N", tipo:"youtube", url:"https://www.youtube.com/embed/VWhQ6xspnSc?autoplay=1" },
+    { nombre:"Crónica", tipo:"youtube", url:"https://www.youtube.com/embed/JC7f3EUDaqw?autoplay=1" },
+    { nombre:"LN+", tipo:"youtube", url:"https://www.youtube.com/embed/DVZ2rJQb_0g?autoplay=1" },
+    { nombre:"A24", tipo:"youtube", url:"https://www.youtube.com/embed/ArKbAx1K-2U?autoplay=1" }, 
+    { nombre: "9 Litoral", tipo: "hls", url:"https://stream.arcast.live/canal9litoral/ngrp:canal9litoral_all/playlist.m3u8"},
+    { nombre:"Canal 26", tipo:"hls", url:"https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8" }
+];
+
+const otros = [
+    { nombre: "Mi Telefe", tipo: "embed", url: "https://www.mitelefe.com/mundial-x-telefe/transmision-en-vivo" },
+    { nombre: "ChocoPop", tipo: "embed", url: "https://www.chocopopflow.com" }
+];
+
+let hls;
+let estado = "splash";
+let inactivityTimer;
+
+const menu = document.getElementById("menu");
+const video = document.getElementById("video");
+const mensaje = document.getElementById("mensaje");
+const splash = document.getElementById("inicioTVArg");
+const enterBtn = document.getElementById("enterBtn");
+const installBtn = document.getElementById("installBtn");
+const backBtn = document.getElementById("backBtn");
+const player = document.getElementById("player");
+
+/* ===== SPLASH ===== */
+
+enterBtn.onclick = () => {
+    splash.style.display = "none";
+    menu.style.display = "flex";
+    estado = "menu";
+};
+
+if (window.matchMedia('(display-mode: standalone)').matches ||
+    window.navigator.standalone === true) {
+    splash.style.display = "none";
+    menu.style.display = "flex";
+    estado = "menu";
+}
+
+/* ===== YOUTUBE PARSER ===== */
+
+function getYouTubeEmbed(url) {
+
+    try {
+        const u = new URL(url);
+
+        let id = u.searchParams.get("v");
+
+        // soporte shorts
+        if (!id && u.pathname.includes("/shorts/")) {
+            id = u.pathname.split("/shorts/")[1];
+        }
+
+        if (!id) return null;
+
+        return `https://www.youtube.com/embed/${id}`;
+
+    } catch {
+        return null;
+    }
+}
+
+/* ===== PLAYER ===== */
+function mostrarMensaje(texto) {
+
+    mensaje.textContent = texto;
+    mensaje.style.display = "block";
+
+    setTimeout(() => {
+        mensaje.style.display = "none";
+    }, 3000);
+}
+
+function salirDelPlayer() {
+
+    if (hls) {
+        hls.destroy();
+        hls = null;
+    }
+
+    video.pause();
+    video.removeAttribute("src");
+    video.srcObject = null;
+    video.load();
+
+    document.getElementById("ytOverlay").style.display = "none";
+    document.getElementById("ytFrame").src = "";
+
+    backBtn.classList.remove("show");
+    backBtn.style.opacity = "0";
+
+    clearTimeout(inactivityTimer);
+    }
+
+function showOtrosMenu() {
+
+    menu.style.display = "none";
+
+    const menuOtros = document.getElementById("menuOtros");
+    const backOtrosBtn = document.getElementById("backOtrosBtn");
+
+    menuOtros.style.display = "flex";
+
+    backBtn.classList.remove("show");
+    backBtn.style.opacity = "0";
+
+    backOtrosBtn.style.display = "block";
+    backOtrosBtn.style.opacity = "1";
+    backOtrosBtn.style.pointerEvents = "auto";
+
+    estado = "otros";
+}
+
+
+function abrirWeb(url){
+
+    estadoAnterior = estado;
+
+    const overlay = document.getElementById("webOverlay");
+    const frame = document.getElementById("webFrame");
+
+    frame.src = url;
+    overlay.style.display = "block";
+
+    backBtn.classList.add("show");
+    mostrarBackBtn();
+
+    estado = "web";
+}
+
+
+function cargarCanal(canal) {
+
+    estado = "player";
+
+    menu.style.display = "none";
+    player.style.display = "flex";
+
+    // =========================
+    // 1. LIMPIEZA BASE (SIEMPRE)
+    // =========================
+    if (hls) {
+        hls.destroy();
+        hls = null;
+    }
+
+    video.pause();
+    video.removeAttribute("src");
+    video.srcObject = null;
+    video.load();
+
+    // ⚠️ IMPORTANTE: NO ocultar el video aquí
+    video.style.opacity = "0";
+    video.style.visibility = "hidden";
+    video.style.display = "block";
+
+    // limpiar youtube siempre
+    const overlay = document.getElementById("ytOverlay");
+    const iframe = document.getElementById("ytFrame");
+
+    iframe.src = "";
+    overlay.style.display = "none";
+
+    // =========================
+    // 2. YOUTUBE
+    // =========================
+    if (canal.tipo === "youtube") {
+
+        iframe.src = canal.url;
+
+        iframe.allow =
+            "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+
+        iframe.referrerPolicy =
+            "strict-origin-when-cross-origin";
+
+        iframe.allowFullscreen = true;
+
+        overlay.style.display = "block";
+
+        backBtn.classList.add("show");
+
+        return;
+    }
+
+    // =========================
+    // 3. HLS
+    // =========================
+    if (canal.tipo === "hls" && Hls.isSupported()) {
+
+        hls = new Hls();
+        hls.loadSource(canal.url);
+        hls.attachMedia(video);
+
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            video.play();
+            video.style.visibility = "visible";
+            video.style.opacity = "1";
+        });
+
+        hls.on(Hls.Events.ERROR, () => {
+            mostrarMensaje("Error cargando canal");
+        });
+    }
+
+    backBtn.classList.add("show");
+    mostrarBackBtn();
+}
+
+/* ===== MENU ===== */
+
+canales.forEach(canal => {
+    const div = document.createElement("div");
+    div.className = "canal";
+    div.textContent = canal.nombre;
+    div.onclick = () => cargarCanal(canal);
+    document.getElementById("listaCanales").appendChild(div);
+});
+
+// botón OTROS
+const otrosBtn = document.createElement("div");
+otrosBtn.className = "canal";
+otrosBtn.textContent = "➕ OTROS";
+
+otrosBtn.onclick = () => {
+    showOtrosMenu();
+};
+
+document.getElementById("listaCanales").appendChild(otrosBtn);
+
+
+/* ===== OTRO MENU ===== */
+
+otros.forEach(item => {
+
+    const div = document.createElement("div");
+    div.className = "canal";
+    div.textContent = item.nombre;
+
+    div.onclick = () => {
+        abrirWeb(item.url);
+    };
+
+    document.getElementById("listaOtros").appendChild(div);
+});
+
+
+/* ===== BACK ===== */
+
+backBtn.onclick = () => {
+
+if (estado === "web") {
+
+    document.getElementById("webOverlay").style.display = "none";
+    document.getElementById("webFrame").src = "";
+
+    backBtn.classList.remove("show");
+    backBtn.style.opacity = "0";
+
+    clearTimeout(inactivityTimer);
+
+    if (estadoAnterior === "otros") {
+
+        document.getElementById("menuOtros").style.display = "flex";
+        menu.style.display = "none";
+        estado = "otros";
+
+    } else {
+
+        menu.style.display = "flex";
+        document.getElementById("menuOtros").style.display = "none";
+        estado = "menu";
+    }
+
+    return;
+}
+
+    if (estado === "player") {
+
+        salirDelPlayer();
+
+        player.style.display = "none";
+
+        menu.style.display = "flex";
+
+        estado = "menu";
+
+        return;
+    }
+
+};
+
+/* =====      ===== */
+
+document.getElementById("backOtrosBtn").onclick = () => {
+
+    document.getElementById("menuOtros").style.display = "none";
+    menu.style.display = "flex";
+
+    // 🔥 NO TOCAR video / hls / yt acá
+    estado = "menu";
+};
+
+
+/* ===== BACK INTELIGENTE TV ===== */
+
+function mostrarBackBtn() {
+
+    if (!backBtn.classList.contains("show")) {
+        return;
+    }
+
+    backBtn.style.opacity = "0.75";
+
+    clearTimeout(inactivityTimer);
+
+    inactivityTimer = setTimeout(() => {
+
+        if (backBtn.classList.contains("show")) {
+            backBtn.style.opacity = "0.25";
+        }
+
+    }, 5000);
+}
+
+/* cualquier actividad vuelve a iluminarlo */
+
+document.addEventListener("keydown", () => {
+    mostrarBackBtn();
+});
+
+document.addEventListener("mousemove", () => {
+    mostrarBackBtn();
+});
+
+document.addEventListener("click", () => {
+    mostrarBackBtn();
+});
+
+/* botón ATRÁS del control remoto */
+
+document.addEventListener("keydown", e => {
+
+    const backKeys = [
+        "Backspace",
+        "Escape",
+        "GoBack",
+        "BrowserBack"
+    ];
+
+    if (
+        !backKeys.includes(e.key) &&
+        e.keyCode !== 27 &&
+        e.keyCode !== 461
+    ) {
+        return;
+    }
+
+    if (!backBtn.classList.contains("show")) {
+        return;
+    }
+
+    e.preventDefault();
+
+    mostrarBackBtn();
+
+    backBtn.focus();
+
+    setTimeout(() => {
+        backBtn.click();
+    }, 50);
+
+});
+
+
+</script>
+
+</body>
+</html>
