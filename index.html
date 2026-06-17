@@ -440,6 +440,10 @@ function showOtrosMenu() {
 
 function abrirWeb(url){
 
+    if (window.AndroidTVArg) {
+        AndroidTVArg.setMenuPrincipal(false);
+    }
+
     estadoAnterior = estado;
 
     const overlay = document.getElementById("webOverlay");
