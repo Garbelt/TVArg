@@ -440,7 +440,6 @@ function showOtrosMenu() {
 
 function abrirWeb(url){
     if (window.AndroidTVArg && window.AndroidTVArg.openUrl) {
-        AndroidTVArg.setMenuPrincipal(false);
         AndroidTVArg.openUrl(url);
         return;
     }
