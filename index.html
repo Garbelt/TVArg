@@ -440,18 +440,18 @@ function showOtrosMenu() {
 }
 
 function abrirWeb(url){
-
+    if (window.AndroidTVArg && window.AndroidTVArg.openUrl) {
+        AndroidTVArg.setMenuPrincipal(false);
+        AndroidTVArg.openUrl(url);
+        return;
+    }
     estadoAnterior = estado;
-
     const overlay = document.getElementById("webOverlay");
     const frame = document.getElementById("webFrame");
-
     frame.src = url;
     overlay.style.display = "block";
-
     backBtn.classList.add("show");
     mostrarBackBtn();
-
     estado = "web";
 }
 
