@@ -566,8 +566,14 @@ otros.forEach(item => {
     div.textContent = item.nombre;
 
     div.onclick = () => {
-        abrirWeb(item.url);
-    };
+    // si está marcado como externo → Android abre navegador real
+    if (item.modo === "external" && window.AndroidTVArg) {
+        AndroidTVArg.openUrl(item.url);
+        return;
+    }
+    // si no → sigue tu flujo normal
+    abrirWeb(item.url);
+};
 
     document.getElementById("listaOtros").appendChild(div);
 });
