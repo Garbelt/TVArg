@@ -438,9 +438,9 @@ function showOtrosMenu() {
     estado = "otros";
 }
 
-function abrirWeb(url){
-    if (window.AndroidTVArg && window.AndroidTVArg.openUrl) {
-        AndroidTVArg.openUrl(url);
+function abrirWeb(url, modo = "webview") {
+    if (modo === "external") {
+        abrirNavegadorExterno(url);
         return;
     }
     estadoAnterior = estado;
