@@ -502,31 +502,26 @@ function cargarCanal(canal) {
         return;
     }
 
-// =========================
-// 3. HLS → MEDIA3 (ANDROID)
-// =========================
-if (canal.tipo === "hls") {
+    // =========================
+    // 3. HLS → MEDIA3 (ANDROID)
+    // =========================
+    if (canal.tipo === "hls") {
 
-    estado = "player";
+        if (window.AndroidTVArg && typeof AndroidTVArg.playChannel === "function") {
+            AndroidTVArg.playChannel(canal.url);
+        } else {
+            console.warn("HLS solo soportado en Android TV App");
+        }
 
-    // ocultar UI HTML
-    menu.style.display = "none";
-    player.style.display = "none"; // clave: no usar video HTML
-
-    document.getElementById("ytOverlay").style.display = "none";
-    document.getElementById("webOverlay").style.display = "none";
-
-    // mostrar botón back
-    backBtn.classList.add("show");
-    mostrarBackBtn();
-
-    // llamada a Android
-    if (window.AndroidTVArg && typeof AndroidTVArg.playChannel === "function") {
-        AndroidTVArg.playChannel(canal.url);
+        backBtn.classList.add("show");
+        mostrarBackBtn();
+        return;
     }
 
-    return;
+    // fallback
+    console.warn("Tipo de canal no soportado:", canal.tipo);
 }
+
 /* ===== MENU ===== */
 
 canales.forEach(canal => {
@@ -606,25 +601,22 @@ backBtn.onclick = () => {
         return;
     }
 
-if (estado === "player") {
+    if (estado === "player") {
 
-    salirDelPlayer();
+        salirDelPlayer();
 
-    player.style.display = "none";
-    menu.style.display = "flex";
+        player.style.display = "none";
 
-    document.getElementById("ytOverlay").style.display = "none";
-    document.getElementById("webOverlay").style.display = "none";
+        menu.style.display = "flex";
 
-    backBtn.classList.remove("show");
+        if (window.AndroidTVArg) {
+            AndroidTVArg.setMenuPrincipal(true);
+        }
 
-    if (window.AndroidTVArg) {
-        AndroidTVArg.setMenuPrincipal(true);
+        estado = "menu";
+
+        return;
     }
-
-    estado = "menu";
-    return;
-}
 
 };
 
