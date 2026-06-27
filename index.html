@@ -506,25 +506,33 @@ function cargarCanal(canal) {
     // =========================
     // HLS (ANDROID MEDIA3)
     // =========================
-    if (canal.tipo === "hls") {
+    
+if (canal.tipo === "hls") {
 
-        estadoHLS = true;
+    estadoHLS = true;
 
-        if (window.AndroidTVArg?.playChannel) {
-            AndroidTVArg.playChannel(canal.url);
-        } else {
-            console.warn("HLS solo soportado en Android TV App");
-        }
-
-        // IMPORTANTE: NO UI HTML activa
-        player.style.display = "none";
-        ytOverlay.style.display = "none";
-        webOverlay.style.display = "none";
-
-        backBtn.classList.add("show");
-        mostrarBackBtn();
-        return;
+    if (window.AndroidTVArg?.playChannel) {
+        AndroidTVArg.playChannel(canal.url);
+    } else {
+        console.warn("HLS solo soportado en Android TV App");
     }
+
+    // 🔴 SOLO ocultar overlays conflictivos
+    ytOverlay.style.display = "none";
+    webOverlay.style.display = "none";
+
+    // ⚠️ NO ocultes player ni estructura base
+    player.style.display = "flex";
+
+    // 🔵 FORZAR botón visible
+    backBtn.classList.add("show");
+    backBtn.style.display = "flex";   // <-- CLAVE
+    backBtn.style.opacity = "0.75";
+    backBtn.style.pointerEvents = "auto";
+
+    mostrarBackBtn();
+
+    return;
 }
 
 /* ===== MENU ===== */
