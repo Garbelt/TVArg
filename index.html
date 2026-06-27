@@ -528,14 +528,6 @@ if (canal.tipo === "hls") {
     // ⚠️ NO ocultes player ni estructura base
     player.style.display = "flex";
 
-    // 🔵 FORZAR botón visible
-    backBtn.classList.add("show");
-    backBtn.style.display = "flex";   // <-- CLAVE
-    backBtn.style.opacity = "0.75";
-    backBtn.style.pointerEvents = "auto";
-
-    mostrarBackBtn();
-
     return;
 }
 }
