@@ -338,6 +338,7 @@ const otros = [
     { nombre: "Mi Telefe", tipo: "web", url: "https://www.mitelefe.com/telefe-en-vivo", modo: "external" }
 ];
 
+let estadoHLS = false;
 let estado = "splash";
 let estadoAnterior = "";
 let inactivityTimer;
@@ -505,21 +506,25 @@ function cargarCanal(canal) {
     // =========================
     // 3. HLS → MEDIA3 (ANDROID)
     // =========================
-    if (canal.tipo === "hls") {
+if (canal.tipo === "hls") {
 
-        if (window.AndroidTVArg && typeof AndroidTVArg.playChannel === "function") {
-            AndroidTVArg.playChannel(canal.url);
-        } else {
-            console.warn("HLS solo soportado en Android TV App");
-        }
+    estadoHLS = true;
 
-        backBtn.classList.add("show");
-        mostrarBackBtn();
-        return;
+    if (window.AndroidTVArg && typeof AndroidTVArg.playChannel === "function") {
+        AndroidTVArg.playChannel(canal.url);
+    } else {
+        console.warn("HLS solo soportado en Android TV App");
     }
 
-    // fallback
-    console.warn("Tipo de canal no soportado:", canal.tipo);
+    // 🔴 IMPORTANTE: NO mostrar UI HTML player
+    document.getElementById("player").style.display = "none";
+    document.getElementById("ytOverlay").style.display = "none";
+    document.getElementById("webOverlay").style.display = "none";
+
+    backBtn.classList.add("show");
+    mostrarBackBtn();
+
+    return;
 }
 
 /* ===== MENU ===== */
@@ -601,22 +606,34 @@ backBtn.onclick = () => {
         return;
     }
 
-    if (estado === "player") {
+if (estado === "player") {
 
-        salirDelPlayer();
-
-        player.style.display = "none";
-
-        menu.style.display = "flex";
+    // 🔴 si es HLS, no tocar DOM video
+    if (estadoHLS) {
+        estadoHLS = false;
 
         if (window.AndroidTVArg) {
             AndroidTVArg.setMenuPrincipal(true);
         }
 
-        estado = "menu";
+        menu.style.display = "flex";
+        player.style.display = "none";
 
+        estado = "menu";
         return;
     }
+
+    salirDelPlayer();
+    player.style.display = "none";
+    menu.style.display = "flex";
+
+    if (window.AndroidTVArg) {
+        AndroidTVArg.setMenuPrincipal(true);
+    }
+
+    estado = "menu";
+    return;
+}
 
 };
 
