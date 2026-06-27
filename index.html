@@ -606,34 +606,35 @@ backBtn.onclick = () => {
         return;
     }
 
-if (estado === "player") {
+    if (estado === "player") {
 
-    // 🔴 si es HLS, no tocar DOM video
-    if (estadoHLS) {
-        estadoHLS = false;
+        // 🔴 si es HLS, no tocar DOM video
+        if (estadoHLS) {
+            estadoHLS = false;
+
+            if (window.AndroidTVArg) {
+                AndroidTVArg.setMenuPrincipal(true);
+            }
+
+            menu.style.display = "flex";
+            player.style.display = "none";
+
+            estado = "menu";
+            return;
+        }
+
+        salirDelPlayer();
+        player.style.display = "none";
+        menu.style.display = "flex";
 
         if (window.AndroidTVArg) {
             AndroidTVArg.setMenuPrincipal(true);
         }
 
-        menu.style.display = "flex";
-        player.style.display = "none";
-
         estado = "menu";
         return;
     }
-
-    salirDelPlayer();
-    player.style.display = "none";
-    menu.style.display = "flex";
-
-    if (window.AndroidTVArg) {
-        AndroidTVArg.setMenuPrincipal(true);
-    }
-
-    estado = "menu";
-    return;
-}
+};
 
 /* =====      ===== */
 
