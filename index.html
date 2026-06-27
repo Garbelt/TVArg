@@ -353,11 +353,31 @@ const player = document.getElementById("player");
 
 /* ===== SPLASH ===== */
 
-enterBtn.onclick = () => {
-    splash.style.display = "none";
-    menu.style.display = "flex";
-    estado = "menu";
-};
+document.addEventListener("DOMContentLoaded", () => {
+
+    const enterBtn = document.getElementById("enterBtn");
+    const splash = document.getElementById("inicioTVArg");
+    const menu = document.getElementById("menu");
+
+    function entrar() {
+
+        splash.style.display = "none";
+
+        // fuerza reflow (evita bug Android WebView)
+        requestAnimationFrame(() => {
+            menu.style.display = "flex";
+            estado = "menu";
+        });
+    }
+
+    enterBtn.addEventListener("click", entrar);
+
+    // autoplay modo app instalada
+    if (window.matchMedia('(display-mode: standalone)').matches ||
+        window.navigator.standalone === true) {
+        entrar();
+    }
+});
 
 if (window.matchMedia('(display-mode: standalone)').matches ||
     window.navigator.standalone === true) {
