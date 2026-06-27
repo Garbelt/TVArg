@@ -632,6 +632,10 @@ backBtn.onclick = () => {
             menu.style.display = "flex";
             player.style.display = "none";
 
+            backBtn.classList.remove("show");
+            backBtn.style.opacity = "0";
+            clearTimeout(inactivityTimer);
+            
             estado = "menu";
             return;
         }
