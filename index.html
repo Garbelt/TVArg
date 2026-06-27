@@ -512,7 +512,11 @@ if (canal.tipo === "hls") {
     estadoHLS = true;
 
     if (window.AndroidTVArg?.playChannel) {
-        AndroidTVArg.playChannel(canal.url);
+        AndroidTVArg.playChannel(
+        canal.url,
+        canal.headers?.Referer || "",
+        canal.headers?.["User-Agent"] || ""
+    );
     } else {
         console.warn("HLS solo soportado en Android TV App");
     }
