@@ -454,6 +454,8 @@ function abrirWeb(url, modo = "webview") {
     mostrarBackBtn();
     estado = "web";
 }
+
+
 function cargarCanal(canal) {
 
     if (window.AndroidTVArg) {
@@ -462,9 +464,7 @@ function cargarCanal(canal) {
 
     estado = "player";
 
-    // =========================
-    // 1. LIMPIEZA BASE
-    // =========================
+    // limpiar UI base
     video.pause();
     video.removeAttribute("src");
     video.srcObject = null;
@@ -482,7 +482,7 @@ function cargarCanal(canal) {
     player.style.display = "flex";
 
     // =========================
-    // 2. YOUTUBE
+    // YOUTUBE
     // =========================
     if (canal.tipo === "youtube") {
 
@@ -504,27 +504,27 @@ function cargarCanal(canal) {
     }
 
     // =========================
-    // 3. HLS → MEDIA3 (ANDROID)
+    // HLS (ANDROID MEDIA3)
     // =========================
-if (canal.tipo === "hls") {
+    if (canal.tipo === "hls") {
 
-    estadoHLS = true;
+        estadoHLS = true;
 
-    if (window.AndroidTVArg && typeof AndroidTVArg.playChannel === "function") {
-        AndroidTVArg.playChannel(canal.url);
-    } else {
-        console.warn("HLS solo soportado en Android TV App");
+        if (window.AndroidTVArg?.playChannel) {
+            AndroidTVArg.playChannel(canal.url);
+        } else {
+            console.warn("HLS solo soportado en Android TV App");
+        }
+
+        // IMPORTANTE: NO UI HTML activa
+        player.style.display = "none";
+        ytOverlay.style.display = "none";
+        webOverlay.style.display = "none";
+
+        backBtn.classList.add("show");
+        mostrarBackBtn();
+        return;
     }
-
-    // 🔴 IMPORTANTE: NO mostrar UI HTML player
-    document.getElementById("player").style.display = "none";
-    document.getElementById("ytOverlay").style.display = "none";
-    document.getElementById("webOverlay").style.display = "none";
-
-    backBtn.classList.add("show");
-    mostrarBackBtn();
-
-    return;
 }
 
 /* ===== MENU ===== */
