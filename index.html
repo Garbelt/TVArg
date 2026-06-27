@@ -505,21 +505,24 @@ function cargarCanal(canal) {
     // =========================
     // 3. HLS → MEDIA3 (ANDROID)
     // =========================
-    if (canal.tipo === "hls") {
+if (estado === "player") {
 
-        if (window.AndroidTVArg && typeof AndroidTVArg.playChannel === "function") {
-            AndroidTVArg.playChannel(canal.url);
-        } else {
-            console.warn("HLS solo soportado en Android TV App");
-        }
+    salirDelPlayer();
 
-        backBtn.classList.add("show");
-        mostrarBackBtn();
-        return;
+    player.style.display = "none";
+    menu.style.display = "flex";
+
+    document.getElementById("ytOverlay").style.display = "none";
+    document.getElementById("webOverlay").style.display = "none";
+
+    backBtn.classList.remove("show");
+
+    if (window.AndroidTVArg) {
+        AndroidTVArg.setMenuPrincipal(true);
     }
 
-    // fallback
-    console.warn("Tipo de canal no soportado:", canal.tipo);
+    estado = "menu";
+    return;
 }
 
 /* ===== MENU ===== */
