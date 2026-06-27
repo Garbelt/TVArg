@@ -502,24 +502,25 @@ function cargarCanal(canal) {
         return;
     }
 
-    // =========================
-    // 3. HLS → MEDIA3 (ANDROID)
-    // =========================
+// =========================
+// 3. HLS → MEDIA3 (ANDROID)
+// =========================
 if (canal.tipo === "hls") {
 
     estado = "player";
 
-    // ocultar TODO lo HTML
+    // ocultar UI HTML
+    menu.style.display = "none";
+    player.style.display = "none"; // clave: no usar video HTML
+
     document.getElementById("ytOverlay").style.display = "none";
     document.getElementById("webOverlay").style.display = "none";
 
-    menu.style.display = "none";
-    player.style.display = "none"; // IMPORTANTE
-
-    // mostrar SOLO botón back
+    // mostrar botón back
     backBtn.classList.add("show");
     mostrarBackBtn();
 
+    // llamada a Android
     if (window.AndroidTVArg && typeof AndroidTVArg.playChannel === "function") {
         AndroidTVArg.playChannel(canal.url);
     }
