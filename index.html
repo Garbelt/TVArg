@@ -605,22 +605,25 @@ backBtn.onclick = () => {
         return;
     }
 
-    if (estado === "player") {
+if (estado === "player") {
 
-        salirDelPlayer();
+    salirDelPlayer();
 
-        player.style.display = "none";
+    player.style.display = "none";
+    menu.style.display = "flex";
 
-        menu.style.display = "flex";
+    document.getElementById("ytOverlay").style.display = "none";
+    document.getElementById("webOverlay").style.display = "none";
 
-        if (window.AndroidTVArg) {
-            AndroidTVArg.setMenuPrincipal(true);
-        }
+    backBtn.classList.remove("show");
 
-        estado = "menu";
-
-        return;
+    if (window.AndroidTVArg) {
+        AndroidTVArg.setMenuPrincipal(true);
     }
+
+    estado = "menu";
+    return;
+}
 
 };
 
