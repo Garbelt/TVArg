@@ -350,6 +350,7 @@ const splash = document.getElementById("inicioTVArg");
 const enterBtn = document.getElementById("enterBtn");
 const installBtn = document.getElementById("installBtn");
 const backBtn = document.getElementById("backBtn");
+const esAndroid = !!window.AndroidTVArg;
 const player = document.getElementById("player");
 
 /* ===== SPLASH ===== */
@@ -358,6 +359,9 @@ enterBtn.onclick = () => {
     splash.style.display = "none";
     menu.style.display = "flex";
     estado = "menu";
+    if (esAndroid) {
+        backBtn.style.display = "none";
+    }
 };
 
 if (window.matchMedia('(display-mode: standalone)').matches ||
@@ -365,6 +369,9 @@ if (window.matchMedia('(display-mode: standalone)').matches ||
     splash.style.display = "none";
     menu.style.display = "flex";
     estado = "menu";
+    if (esAndroid) {
+        backBtn.style.display = "none";
+    }
 }
 
 /* ===== YOUTUBE PARSER ===== */
@@ -450,8 +457,10 @@ function abrirWeb(url, modo = "webview") {
     const frame = document.getElementById("webFrame");
     frame.src = url;
     overlay.style.display = "block";
-    backBtn.classList.add("show");
-    mostrarBackBtn();
+    if (!esAndroid) {
+        backBtn.classList.add("show");
+        mostrarBackBtn();
+    }
     estado = "web";
 }
 
@@ -497,9 +506,10 @@ function cargarCanal(canal) {
         iframe.allowFullscreen = true;
 
         overlay.style.display = "block";
-
-        backBtn.classList.add("show");
-        mostrarBackBtn();
+        if (!esAndroid) {
+            backBtn.classList.add("show");
+            mostrarBackBtn();
+        }
         return;
     }
 
