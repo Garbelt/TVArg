@@ -462,32 +462,51 @@ function abrirWeb(url, modo = "webview") {
     estado = "web";
 }
 
-function cargarCanal(canal) {
 
-    if (window.AndroidTVArg) {
-        AndroidTVArg.setMenuPrincipal(false);
+function abrirElemento(item) {
+
+    if (item.tipo === "youtube") {
+        reproducirYoutube(item.url);
+        return;
     }
 
-    // =========================
-    // 0. EXTERNAL WEB (SALIDA DIRECTA)
-    // =========================
-    if (canal.tipo === "web" && canal.modo === "external") {
-        if (window.AndroidTVArg && typeof AndroidTVArg.openUrl === "function") {
-            AndroidTVArg.openUrl(canal.url);
-        } else {
-            window.open(canal.url, "_blank");
-        }
-        return; // 👈 IMPORTANTE: no entra al player
+    if (item.tipo === "hls") {
+        reproducirHls(item);
+        return;
     }
+
+    if (item.tipo === "web") {
+        abrirWeb(item.url, item.modo);
+        return;
+    }
+
+    console.warn("Tipo desconocido:", item);
+}
+
+function reproducirYoutube(url) {
 
     estado = "player";
 
     menu.style.display = "none";
     player.style.display = "flex";
 
-    // =========================
-    // 1. LIMPIEZA BASE
-    // =========================
+    const overlay = document.getElementById("ytOverlay");
+    const iframe = document.getElementById("ytFrame");
+
+    iframe.src = url;
+    overlay.style.display = "block";
+
+    backBtn.classList.add("show");
+    mostrarBackBtn();
+}
+
+function reproducirHls(canal) {
+
+    estado = "player";
+
+    menu.style.display = "none";
+    player.style.display = "flex";
+
     if (hls) {
         hls.destroy();
         hls = null;
@@ -495,78 +514,48 @@ function cargarCanal(canal) {
 
     video.pause();
     video.removeAttribute("src");
-    video.srcObject = null;
     video.load();
 
-    video.style.opacity = "0";
-    video.style.visibility = "hidden";
-    video.style.display = "block";
+    // 🔥 Android override (si existe)
+    if (canal.headers && window.AndroidTVArg?.playChannel) {
 
-    const overlay = document.getElementById("ytOverlay");
-    const iframe = document.getElementById("ytFrame");
-
-    iframe.src = "";
-    overlay.style.display = "none";
-
-    // =========================
-    // 2. YOUTUBE
-    // =========================
-    if (canal.tipo === "youtube") {
-
-        iframe.src = canal.url;
-
-        iframe.allow =
-            "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-
-        iframe.referrerPolicy =
-            "strict-origin-when-cross-origin";
-
-        iframe.allowFullscreen = true;
-
-        overlay.style.display = "block";
+        AndroidTVArg.playChannel(
+            canal.url,
+            canal.headers?.Referer || "",
+            canal.headers?.["User-Agent"] || ""
+        );
 
         backBtn.classList.add("show");
+        mostrarBackBtn();
         return;
     }
 
-// =========================
-// 3. HLS (ANDROID PRO o WEB)
-// =========================
+    // Web HLS normal
+    if (Hls.isSupported()) {
 
-// CASO 1: HLS con headers (modo Android TV / Media3)
-if (canal.tipo === "hls" && canal.headers && window.AndroidTVArg?.playChannel) {
+        hls = new Hls();
+        hls.loadSource(canal.url);
+        hls.attachMedia(video);
 
-    AndroidTVArg.playChannel(
-        canal.url,
-        canal.headers?.Referer || "",
-        canal.headers?.["User-Agent"] || ""
-    );
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            video.play();
+            video.style.visibility = "visible";
+            video.style.opacity = "1";
+        });
 
-    backBtn.classList.add("show");
-    mostrarBackBtn();
-    return;
-}
-
-// CASO 2: HLS normal (Hls.js web)
-if (canal.tipo === "hls" && Hls.isSupported()) {
-
-    hls = new Hls();
-    hls.loadSource(canal.url);
-    hls.attachMedia(video);
-
-    hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play();
-        video.style.visibility = "visible";
-        video.style.opacity = "1";
-    });
-
-    hls.on(Hls.Events.ERROR, () => {
-        mostrarMensaje("Error cargando canal");
-    });
+        hls.on(Hls.Events.ERROR, () => {
+            mostrarMensaje("Error cargando canal");
+        });
+    }
 
     backBtn.classList.add("show");
     mostrarBackBtn();
 }
+
+
+
+function cargarCanal(canal) {
+    abrirElemento(canal);
 }
 
 /* ===== MENU ===== */
