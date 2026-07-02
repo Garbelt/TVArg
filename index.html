@@ -529,28 +529,44 @@ function cargarCanal(canal) {
         return;
     }
 
-    // =========================
-    // 3. HLS
-    // =========================
-    if (canal.tipo === "hls" && Hls.isSupported()) {
+// =========================
+// 3. HLS (ANDROID PRO o WEB)
+// =========================
 
-        hls = new Hls();
-        hls.loadSource(canal.url);
-        hls.attachMedia(video);
+// CASO 1: HLS con headers (modo Android TV / Media3)
+if (canal.tipo === "hls" && canal.headers && window.AndroidTVArg?.playChannel) {
 
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            video.play();
-            video.style.visibility = "visible";
-            video.style.opacity = "1";
-        });
-
-        hls.on(Hls.Events.ERROR, () => {
-            mostrarMensaje("Error cargando canal");
-        });
-    }
+    AndroidTVArg.playChannel(
+        canal.url,
+        canal.headers?.Referer || "",
+        canal.headers?.["User-Agent"] || ""
+    );
 
     backBtn.classList.add("show");
     mostrarBackBtn();
+    return;
+}
+
+// CASO 2: HLS normal (Hls.js web)
+if (canal.tipo === "hls" && Hls.isSupported()) {
+
+    hls = new Hls();
+    hls.loadSource(canal.url);
+    hls.attachMedia(video);
+
+    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        video.play();
+        video.style.visibility = "visible";
+        video.style.opacity = "1";
+    });
+
+    hls.on(Hls.Events.ERROR, () => {
+        mostrarMensaje("Error cargando canal");
+    });
+
+    backBtn.classList.add("show");
+    mostrarBackBtn();
+}
 }
 
 /* ===== MENU ===== */
