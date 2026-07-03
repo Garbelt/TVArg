@@ -646,134 +646,83 @@ function dibujarMenu(nombreMenu) {
 
 dibujarMenu("principal");
 
-/* ===== cerrar ===== */
+/* =========================
+   CIERRE CENTRALIZADO
+========================= */
 
-function salirDePlayerCompletamente() {
-    // reset HLS
+function cerrarTodo() {
+
+    // 🔴 1. destruir HLS SIEMPRE
     if (hls) {
         hls.destroy();
         hls = null;
     }
+
+    // 🔴 2. limpiar video nativo SIEMPRE
     video.pause();
     video.removeAttribute("src");
     video.srcObject = null;
     video.load();
-    // reset YouTube SIEMPRE
+
+    // 🔴 3. FORZAR STOP YOUTUBE (esto es CLAVE)
     const ytFrame = document.getElementById("ytFrame");
     const ytOverlay = document.getElementById("ytOverlay");
-    ytFrame.src = "about:blank";   // 🔥 clave (evita pantalla negra)
+
     ytOverlay.style.display = "none";
-    // reset WEB SIEMPRE
+    ytFrame.src = "about:blank";   // NO ""
+
+    // 🔴 4. FORZAR STOP WEB
     const webFrame = document.getElementById("webFrame");
     const webOverlay = document.getElementById("webOverlay");
+
+    webOverlay.style.display = "none";
     webFrame.src = "about:blank";
-    webOverlay.style.display = "none";
-    // UI reset
-    player.style.display = "none";
-    backBtn.classList.remove("show");
-    backBtn.style.opacity = "0";
-    estado = menuActual;
-}
 
-function cerrarTodoPlayer() {
-    // HLS
-    if (hls) {
-        hls.destroy();
-        hls = null;
-    }
-    // Video
-    video.pause();
-    video.removeAttribute("src");
-    video.srcObject = null;
-    video.load();
-    // YouTube
-    const ytOverlay = document.getElementById("ytOverlay");
-    const ytFrame = document.getElementById("ytFrame");
-    ytFrame.src = "";
-    ytOverlay.style.display = "none";
-    // Web
-    const webOverlay = document.getElementById("webOverlay");
-    const webFrame = document.getElementById("webFrame");
-    webFrame.src = "";
-    webOverlay.style.display = "none";
-    // UI player
+    // 🔴 5. limpiar UI player
     player.style.display = "none";
-    // reset estados visuales
+
+    // 🔴 6. back UI
     backBtn.classList.remove("show");
     backBtn.style.opacity = "0";
+
     clearTimeout(inactivityTimer);
+
+    // 🔴 7. CRÍTICO: reset estado coherente
+    estado = menuActual || "menu";
+
+    // 🔴 8. CRÍTICO: restaurar UI menú si quedó colgado
+    menu.style.display = "flex";
+    document.getElementById("menuSecundario").style.display = "none";
 }
 
-/* ===== BACK ===== */
+/* =========================
+   BACK BUTTON (UI)
+========================= */
 
 backBtn.onclick = () => {
 
-    if (estado === "web") {
-
-        document.getElementById("webOverlay").style.display = "none";
-        document.getElementById("webFrame").src = "";
-
-        backBtn.classList.remove("show");
-        backBtn.style.opacity = "0";
-
-        clearTimeout(inactivityTimer);
-
-        if (menuOrigen === "otros") {
-
-            document.getElementById("menuSecundario").style.display = "flex";
-            menu.style.display = "none";
-
-            menuActual = "otros";
-            estado = "otros";
-
-        } else {
-
-            document.getElementById("menuSecundario").style.display = "none";
-            menu.style.display = "flex";
-
-            menuActual = "menu";
-
-            if (window.AndroidTVArg) {
-                AndroidTVArg.setMenuPrincipal(true);
-            }
-
-            estado = "menu";
-        }
-
+    if (estado === "web" || estado === "player") {
+        cerrarTodo();
         return;
     }
 
-    if (estado === "player") {
+    if (estado === "otros") {
+        document.getElementById("menuSecundario").style.display = "none";
+        menu.style.display = "flex";
+        estado = "menu";
+        menuActual = "menu";
 
-        salirDelPlayer();
-
-        player.style.display = "none";
-
-        if (menuOrigen === "otros") {
-
-            menu.style.display = "none";
-            document.getElementById("menuSecundario").style.display = "flex";
-
-            menuActual = "otros";
-            estado = "otros";
-
-        } else {
-
-            document.getElementById("menuSecundario").style.display = "none";
-            menu.style.display = "flex";
-
-            menuActual = "menu";
-
-            if (window.AndroidTVArg) {
-                AndroidTVArg.setMenuPrincipal(true);
-            }
-
-            estado = "menu";
+        if (window.AndroidTVArg) {
+            AndroidTVArg.setMenuPrincipal(true);
         }
-
         return;
     }
 
+    if (estado === "menu") {
+        if (window.AndroidTVArg) {
+            AndroidTVArg.closeApp();
+        }
+    }
 };
 
 /* =====      ===== */
@@ -838,24 +787,33 @@ document.addEventListener("keydown", e => {
 
 /* ===== BACK ENVIADO DESDE ANDROID ===== */
 
+/* =========================
+   BACK ANDROID (CRÍTICO)
+========================= */
+
 window.addEventListener("tvback", () => {
-    // SI ESTÁS EN CUALQUIER PLAYER → salir limpio SIEMPRE
+
+    // 1) cerrar cualquier reproducción
     if (estado === "player" || estado === "web") {
-        salirDePlayerCompletamente();
+        cerrarTodo();
         return;
     }
-    // MENÚ SECUNDARIO
+
+    // 2) volver de menú secundario
     if (estado === "otros") {
         document.getElementById("menuSecundario").style.display = "none";
         menu.style.display = "flex";
+
         estado = "menu";
         menuActual = "menu";
+
         if (window.AndroidTVArg) {
             AndroidTVArg.setMenuPrincipal(true);
         }
         return;
     }
-    // MENÚ PRINCIPAL → cerrar app
+
+    // 3) menú principal → cerrar app
     if (estado === "menu") {
         if (window.AndroidTVArg) {
             AndroidTVArg.closeApp();
@@ -864,5 +822,6 @@ window.addEventListener("tvback", () => {
 });
 
 </script>
+
 </body>
 </html>
