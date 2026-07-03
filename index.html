@@ -531,8 +531,11 @@ function reproducirYoutube(url) {
     player.style.display = "flex";
     const overlay = document.getElementById("ytOverlay");
     const iframe = document.getElementById("ytFrame");
-    iframe.src = url;
+    iframe.src = "";
     overlay.style.display = "block";
+    setTimeout(() => {
+        iframe.src = url;
+    }, 50);
     backBtn.classList.add("show");
     mostrarBackBtn();
 }
@@ -643,6 +646,45 @@ function dibujarMenu(nombreMenu) {
 }
 
 dibujarMenu("principal");
+
+/* ===== cerrar ===== */
+
+function cerrarTodoPlayer() {
+
+    // VIDEO HLS
+    if (hls) {
+        hls.destroy();
+        hls = null;
+    }
+
+    video.pause();
+    video.removeAttribute("src");
+    video.srcObject = null;
+    video.load();
+
+    // YOUTUBE
+    const ytOverlay = document.getElementById("ytOverlay");
+    const ytFrame = document.getElementById("ytFrame");
+
+    ytOverlay.style.display = "none";
+    ytFrame.src = "";
+
+    // WEB
+    const webOverlay = document.getElementById("webOverlay");
+    const webFrame = document.getElementById("webFrame");
+
+    webOverlay.style.display = "none";
+    webFrame.src = "";
+
+    // UI
+    player.style.display = "none";
+    backBtn.classList.remove("show");
+    backBtn.style.opacity = "0";
+
+    estado = menuActual; // volver al menú correcto
+}
+
+
 
 /* ===== BACK ===== */
 
@@ -780,31 +822,30 @@ document.addEventListener("keydown", e => {
 
 window.addEventListener("tvback", () => {
 
-    // 1. si está en overlays
-    if (document.getElementById("webOverlay").style.display === "block") {
-        document.getElementById("webOverlay").style.display = "none";
-        document.getElementById("webFrame").src = "";
+    // 1. SI ESTÁ EN PLAYER O OVERLAYS → cerrar todo primero
+    if (estado === "player" || estado === "web") {
+        cerrarTodoPlayer();
         return;
     }
 
-    if (document.getElementById("ytOverlay").style.display === "block") {
-        document.getElementById("ytOverlay").style.display = "none";
-        document.getElementById("ytFrame").src = "";
+    // 2. SI ESTÁS EN MENÚ SECUNDARIO
+    if (estado === "otros") {
+        document.getElementById("menuSecundario").style.display = "none";
+        menu.style.display = "flex";
+        estado = "menu";
+        menuActual = "menu";
+
+        if (window.AndroidTVArg) {
+            AndroidTVArg.setMenuPrincipal(true);
+        }
         return;
     }
 
-    // 2. si está en player
-    if (estado === "player") {
-        // ya manejás esto
-        return;
-    }
-
-    // 3. si estás en menú principal → cerrar app
+    // 3. SI ESTÁS EN MENÚ PRINCIPAL → cerrar app
     if (estado === "menu") {
         if (window.AndroidTVArg) {
             AndroidTVArg.closeApp();
         }
-        return;
     }
 
 });
