@@ -780,26 +780,35 @@ document.addEventListener("keydown", e => {
 
 window.addEventListener("tvback", () => {
 
-    // caso 1: overlays
-    if (backBtn.classList.contains("show")) {
-        backBtn.click();
+    // 1. si está en overlays
+    if (document.getElementById("webOverlay").style.display === "block") {
+        document.getElementById("webOverlay").style.display = "none";
+        document.getElementById("webFrame").src = "";
         return;
     }
 
-    if (estado === "otros") {
-        document.getElementById("backMenuBtn").click();
+    if (document.getElementById("ytOverlay").style.display === "block") {
+        document.getElementById("ytOverlay").style.display = "none";
+        document.getElementById("ytFrame").src = "";
         return;
     }
 
-    // caso 2: menú principal sin nada abierto → cerrar app
+    // 2. si está en player
+    if (estado === "player") {
+        // ya manejás esto
+        return;
+    }
+
+    // 3. si estás en menú principal → cerrar app
     if (estado === "menu") {
-
         if (window.AndroidTVArg) {
-            AndroidTVArg.closeApp(); // 🔥 nuevo
+            AndroidTVArg.closeApp();
         }
+        return;
     }
-});
 
+});
+    
 </script>
 
 </body>
