@@ -398,6 +398,7 @@ let hls;
 let estado = "splash";
 let estadoAnterior = "";
 let menuActual = "menu";
+let menuOrigen = "menu";
 let inactivityTimer;
 
 const menu = document.getElementById("menu");
@@ -508,7 +509,7 @@ function abrirWeb(url) {
 }
 
 function abrirElemento(item) {
-    estadoAnterior = menuActual;
+
     if (item.tipo === "youtube") {
         reproducirYoutube(item.url);
         return;
@@ -598,7 +599,12 @@ function dibujarMenu(nombreMenu) {
             const div = document.createElement("div");
             div.className = "canal";
             div.textContent = item.nombre;
-            div.onclick = () => abrirElemento(item);
+
+            div.onclick = () => {
+                menuOrigen = "menu";
+                abrirElemento(item);
+            };
+
             lista.appendChild(div);
         });
         // Botones de submenús
@@ -614,18 +620,26 @@ function dibujarMenu(nombreMenu) {
                 listaBotones.appendChild(div);
             });
         }
-    } else {
-        document.getElementById("tituloMenu").textContent = datos.titulo;
-        const lista = document.getElementById("listaMenu");
-        lista.innerHTML = "";
-        datos.items.forEach(item => {
-            const div = document.createElement("div");
-            div.className = "canal";
-            div.textContent = item.nombre;
-            div.onclick = () => abrirElemento(item);
-            lista.appendChild(div);
-        });
-    }
+        } else {
+            document.getElementById("tituloMenu").textContent = datos.titulo;
+            const lista = document.getElementById("listaMenu");
+            lista.innerHTML = "";
+
+            datos.items.forEach(item => {
+
+                const div = document.createElement("div");
+                div.className = "canal";
+                div.textContent = item.nombre;
+
+                div.onclick = () => {
+                    menuOrigen = "otros";
+                    abrirElemento(item);
+                };
+
+                lista.appendChild(div);
+
+            });
+        }
 }
 
 dibujarMenu("principal");
@@ -644,7 +658,7 @@ backBtn.onclick = () => {
 
         clearTimeout(inactivityTimer);
 
-        if (estadoAnterior === "otros") {
+        if (menuOrigen === "otros") {
 
             document.getElementById("menuSecundario").style.display = "flex";
             menu.style.display = "none";
@@ -675,7 +689,7 @@ backBtn.onclick = () => {
 
         player.style.display = "none";
 
-        if (estadoAnterior === "otros") {
+        if (menuOrigen === "otros") {
 
             menu.style.display = "none";
             document.getElementById("menuSecundario").style.display = "flex";
