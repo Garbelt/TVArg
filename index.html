@@ -529,15 +529,14 @@ function reproducirYoutube(url) {
     estado = "player";
     menu.style.display = "none";
     player.style.display = "flex";
-    const overlay = document.getElementById("ytOverlay");
     const iframe = document.getElementById("ytFrame");
-    iframe.src = "";
+    const overlay = document.getElementById("ytOverlay");
+    iframe.src = "about:blank"; // 🔥 limpia primero
     overlay.style.display = "block";
     setTimeout(() => {
         iframe.src = url;
-    }, 50);
+    }, 80);
     backBtn.classList.add("show");
-    mostrarBackBtn();
 }
 
 function reproducirHls(canal) {
@@ -649,42 +648,61 @@ dibujarMenu("principal");
 
 /* ===== cerrar ===== */
 
-function cerrarTodoPlayer() {
-
-    // VIDEO HLS
+function salirDePlayerCompletamente() {
+    // reset HLS
     if (hls) {
         hls.destroy();
         hls = null;
     }
-
     video.pause();
     video.removeAttribute("src");
     video.srcObject = null;
     video.load();
-
-    // YOUTUBE
-    const ytOverlay = document.getElementById("ytOverlay");
+    // reset YouTube SIEMPRE
     const ytFrame = document.getElementById("ytFrame");
-
+    const ytOverlay = document.getElementById("ytOverlay");
+    ytFrame.src = "about:blank";   // 🔥 clave (evita pantalla negra)
     ytOverlay.style.display = "none";
-    ytFrame.src = "";
-
-    // WEB
-    const webOverlay = document.getElementById("webOverlay");
+    // reset WEB SIEMPRE
     const webFrame = document.getElementById("webFrame");
-
+    const webOverlay = document.getElementById("webOverlay");
+    webFrame.src = "about:blank";
     webOverlay.style.display = "none";
-    webFrame.src = "";
-
-    // UI
+    // UI reset
     player.style.display = "none";
     backBtn.classList.remove("show");
     backBtn.style.opacity = "0";
-
-    estado = menuActual; // volver al menú correcto
+    estado = menuActual;
 }
 
-
+function cerrarTodoPlayer() {
+    // HLS
+    if (hls) {
+        hls.destroy();
+        hls = null;
+    }
+    // Video
+    video.pause();
+    video.removeAttribute("src");
+    video.srcObject = null;
+    video.load();
+    // YouTube
+    const ytOverlay = document.getElementById("ytOverlay");
+    const ytFrame = document.getElementById("ytFrame");
+    ytFrame.src = "";
+    ytOverlay.style.display = "none";
+    // Web
+    const webOverlay = document.getElementById("webOverlay");
+    const webFrame = document.getElementById("webFrame");
+    webFrame.src = "";
+    webOverlay.style.display = "none";
+    // UI player
+    player.style.display = "none";
+    // reset estados visuales
+    backBtn.classList.remove("show");
+    backBtn.style.opacity = "0";
+    clearTimeout(inactivityTimer);
+}
 
 /* ===== BACK ===== */
 
@@ -821,36 +839,30 @@ document.addEventListener("keydown", e => {
 /* ===== BACK ENVIADO DESDE ANDROID ===== */
 
 window.addEventListener("tvback", () => {
-
-    // 1. SI ESTÁ EN PLAYER O OVERLAYS → cerrar todo primero
+    // SI ESTÁS EN CUALQUIER PLAYER → salir limpio SIEMPRE
     if (estado === "player" || estado === "web") {
-        cerrarTodoPlayer();
+        salirDePlayerCompletamente();
         return;
     }
-
-    // 2. SI ESTÁS EN MENÚ SECUNDARIO
+    // MENÚ SECUNDARIO
     if (estado === "otros") {
         document.getElementById("menuSecundario").style.display = "none";
         menu.style.display = "flex";
         estado = "menu";
         menuActual = "menu";
-
         if (window.AndroidTVArg) {
             AndroidTVArg.setMenuPrincipal(true);
         }
         return;
     }
-
-    // 3. SI ESTÁS EN MENÚ PRINCIPAL → cerrar app
+    // MENÚ PRINCIPAL → cerrar app
     if (estado === "menu") {
         if (window.AndroidTVArg) {
             AndroidTVArg.closeApp();
         }
     }
-
 });
-    
-</script>
 
+</script>
 </body>
 </html>
