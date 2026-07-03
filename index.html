@@ -780,21 +780,24 @@ document.addEventListener("keydown", e => {
 
 window.addEventListener("tvback", () => {
 
-    // ejemplo: si cerrás overlay o menú
+    // caso 1: overlays
     if (backBtn.classList.contains("show")) {
         backBtn.click();
-
-        // 🔥 importante: avisar a Android
-        AndroidTVArg.backHandled();
         return;
     }
 
     if (estado === "otros") {
         document.getElementById("backMenuBtn").click();
-        AndroidTVArg.backHandled();
         return;
     }
 
+    // caso 2: menú principal sin nada abierto → cerrar app
+    if (estado === "menu") {
+
+        if (window.AndroidTVArg) {
+            AndroidTVArg.closeApp(); // 🔥 nuevo
+        }
+    }
 });
 
 </script>
