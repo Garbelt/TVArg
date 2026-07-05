@@ -777,25 +777,20 @@ backBtn.onclick = () => {
     // 🔴 NUEVO: SALIDA DE RADIO
     if (estado === "radio") {
 
-        if (radio) {
-            radio.pause();
-            radio.src = "";
-        }
+        radio.pause();
+        radio.src = "";
 
-        const radioScreen = document.getElementById("radioScreen");
-        radioScreen.style.display = "none";
-
-        // 🔴 limpiar título (esto te estaba quedando pegado)
+        document.getElementById("radioScreen").style.display = "none";
         document.getElementById("radioTitle").textContent = "";
 
-        // 🔴 volver a menú principal limpio
-        menu.style.display = "flex";
-        document.getElementById("menuSecundario").style.display = "none";
+        // volver al submenú desde donde salió
+        document.getElementById("menuSecundario").style.display = "flex";
+        menu.style.display = "none";
+
+        estado = "otros";
 
         backBtn.classList.remove("show");
         backBtn.style.opacity = "0";
-
-        estado = "menu";
 
         return;
     }
