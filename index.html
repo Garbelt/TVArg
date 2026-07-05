@@ -573,7 +573,33 @@ function reproducirRadio(url, nombre) {
     // 🔴 mostrar pantalla radio
     const radioScreen = document.getElementById("radioScreen");
     const title = document.getElementById("radioTitle");
+    
+if (nombre && nombre.includes("/")) {
+    const partes = nombre.split("/");
+title.innerHTML = `
+    <div style="
+        font-size:64px;
+        font-weight:900;
+        line-height:1;
+        letter-spacing:1px;
+    ">
+        ${partes[0].trim()}
+    </div>
+
+    <div style="
+        font-size:30px;
+        font-weight:400;
+        color:#8ec6e6;
+        margin-top:2px;
+        line-height:1;
+    ">
+        ${partes[1].trim()}
+    </div>
+`;
+} else {
     title.textContent = nombre || "RADIO";
+}
+
     radioScreen.style.display = "flex";
     // 🔴 arrancar audio
     radio.src = url;
@@ -783,7 +809,7 @@ backBtn.onclick = () => {
         radio.src = "";
 
         document.getElementById("radioScreen").style.display = "none";
-        document.getElementById("radioTitle").textContent = "";
+        document.getElementById("radioTitle").innerHTML = "";
 
         // volver al submenú desde donde salió
         document.getElementById("menuSecundario").style.display = "flex";
