@@ -890,14 +890,36 @@ document.addEventListener("keydown", e => {
 
 window.addEventListener("tvback", () => {
 
-    // 1) cerrar cualquier reproducción
+    // SALIDA DE RADIO
+    if (estado === "radio") {
+
+        radio.pause();
+        radio.src = "";
+
+        document.getElementById("radioScreen").style.display = "none";
+        document.getElementById("radioTitle").textContent = "";
+
+        // volver al menú de radios
+        document.getElementById("menuSecundario").style.display = "flex";
+        menu.style.display = "none";
+
+        estado = "otros";
+
+        backBtn.classList.remove("show");
+        backBtn.style.opacity = "0";
+
+        return;
+    }
+
+    // cerrar player/web
     if (estado === "player" || estado === "web") {
         cerrarTodo();
         return;
     }
 
-    // 2) volver de menú secundario
+    // volver del menú secundario
     if (estado === "otros") {
+
         document.getElementById("menuSecundario").style.display = "none";
         menu.style.display = "flex";
 
@@ -910,12 +932,13 @@ window.addEventListener("tvback", () => {
         return;
     }
 
-    // 3) menú principal → cerrar app
+    // salir de la app
     if (estado === "menu") {
         if (window.AndroidTVArg) {
             AndroidTVArg.closeApp();
         }
     }
+
 });
 
 </script>
