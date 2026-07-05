@@ -367,18 +367,17 @@ const menus = {
         titulo: "📺 TV ARG",
         items: canales,
         botones: [
-            { nombre:"➕ OTROS", destino:"otros" },
+            { nombre:"📻 RADIOS", destino:"radios" },
             { nombre:"👦 KIDS", destino:"kids" },
             { nombre:"📰 NOTICIAS", destino:"noticias" },
             { nombre:"⚽ DEPORTES", destino:"deportes" }
         ]
     },
 
-    otros: {
-        titulo:"➕ OTROS",
+    radios: {
+        titulo:"📻 RADIOS",
         items: [
-            { nombre: "América", tipo: "web", url: "https://www.americatv.com.ar", modo: "external" },
-            { nombre: "Mi Telefe", tipo: "web", url: "https://www.mitelefe.com/telefe-en-vivo", modo: "external" }
+            { nombre: "📻 Aspen 102.3", tipo: "radio", destino: "radio", url: "https://playerservices.streamtheworld.com/api/livestream-redirect/ASPEN_SC" }
         ]
     },
 
@@ -411,6 +410,7 @@ let estadoAnterior = "";
 let menuActual = "menu";
 let menuOrigen = "menu";
 let inactivityTimer;
+let radioPlayer = null;
 
 const menu = document.getElementById("menu");
 const video = document.getElementById("video");
@@ -533,7 +533,23 @@ function abrirElemento(item) {
         abrirWeb(item.url, item.modo);
         return;
     }
+    if (item.tipo === "radio") {
+        reproducirRadio(item.url);
+        return;
+    }
+
     console.warn("Tipo desconocido:", item);
+}
+
+function reproducirRadio(url) {
+    if (radioPlayer) {
+        radioPlayer.pause();
+        radioPlayer.src = "";
+    }
+    radioPlayer = new Audio(url);
+    radioPlayer.play().catch(err => {
+        console.warn("Error reproduciendo radio:", err);
+    });
 }
 
 function reproducirYoutube(url) {
