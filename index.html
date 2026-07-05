@@ -581,8 +581,9 @@ title.innerHTML = `
     <div style="
         font-size:52px;
         font-weight:300;
-        color:#cfe6ff;
+        color:#e6e6e6; /* gris muy clarito (FM) */
         line-height:1;
+        letter-spacing:1px;
     ">
         ${banda}
         <span style="
@@ -590,7 +591,7 @@ title.innerHTML = `
             font-weight:900;
             margin-left:10px;
             letter-spacing:1px;
-            color:#cfe6ff;
+            color:#8fbfff; /* azul claro moderado (nombre) */
         ">
             ${nombre}
         </span>
@@ -598,10 +599,11 @@ title.innerHTML = `
 
     <div style="
         font-size:30px;
-        color:#d7ecff;
+        color:#bfe3ff; /* azul más claro (frecuencia) */
         margin-top:2px;
         line-height:1;
-        opacity:0.75;
+        opacity:0.85;
+        letter-spacing:0.5px;
     ">
         ${frecuencia ? frecuencia : ""}
     </div>
