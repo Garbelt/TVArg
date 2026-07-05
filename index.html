@@ -411,6 +411,8 @@ let estadoAnterior = "";
 let menuActual = "menu";
 let menuOrigen = "menu";
 let inactivityTimer;
+let botonesActuales = [];
+let focusIndex = 0;
 
 const menu = document.getElementById("menu");
 const video = document.getElementById("video");
@@ -420,6 +422,7 @@ const enterBtn = document.getElementById("enterBtn");
 const installBtn = document.getElementById("installBtn");
 const backBtn = document.getElementById("backBtn");
 const player = document.getElementById("player");
+const splashButtons = [enterBtn, installBtn];
 
 /* ===== SPLASH ===== */
 
@@ -427,6 +430,9 @@ enterBtn.onclick = () => {
     splash.style.display = "none";
     menu.style.display = "flex";
     estado = "menu";
+    setTimeout(() => {
+        dibujarMenu("principal");
+    }, 50);
 };
 
 if (window.matchMedia('(display-mode: standalone)').matches ||
@@ -434,6 +440,28 @@ if (window.matchMedia('(display-mode: standalone)').matches ||
     splash.style.display = "none";
     menu.style.display = "flex";
     estado = "menu";
+}
+
+/* ===== FOCUS ===== */
+
+function initSplashFocus() {
+    botonesActuales = splashButtons;
+    focusIndex = 0;
+    actualizarFocus();
+}
+
+function actualizarFocus() {
+    botonesActuales.forEach((btn, i) => {
+        if (!btn) return;
+
+        if (i === focusIndex) {
+            btn.style.outline = "2px solid #00aaff";
+            btn.style.transform = "scale(1.08)";
+        } else {
+            btn.style.outline = "none";
+            btn.style.transform = "scale(1)";
+        }
+    });
 }
 
 /* ===== YOUTUBE PARSER ===== */
@@ -833,7 +861,12 @@ window.addEventListener("tvback", () => {
     }
 });
 
-</script>
+window.addEventListener("load", () => {
+    botonesActuales = splashButtons;
+    focusIndex = 0;
+    actualizarFocus();
+});
 
+</script>
 </body>
 </html>
