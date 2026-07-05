@@ -576,33 +576,35 @@ function reproducirRadio(url, banda, nombre, frecuencia) {
     const radioScreen = document.getElementById("radioScreen");
     const title = document.getElementById("radioTitle");
 
-    title.innerHTML = `
-        <div style="
-            font-size:52px;
-            font-weight:300;
+title.innerHTML = `
+    <div style="
+        font-size:52px;
+        font-weight:300;
+        color:#cfe6ff;
+        line-height:1;
+    ">
+        ${banda}
+        <span style="
+            font-size:64px;
+            font-weight:900;
+            margin-left:10px;
+            letter-spacing:1px;
             color:#cfe6ff;
-            line-height:1;
         ">
-            ${banda}
-            <span style="
-                font-size:64px;
-                font-weight:900;
-                margin-left:10px;
-                letter-spacing:1px;
-            ">
-                ${nombre}
-            </span>
-        </div>
+            ${nombre}
+        </span>
+    </div>
 
-        <div style="
-            font-size:30px;
-            color:#8ec6e6;
-            margin-top:2px;
-            line-height:1;
-        ">
-            ${frecuencia ? frecuencia : ""}
-        </div>
-    `;
+    <div style="
+        font-size:30px;
+        color:#d7ecff;
+        margin-top:2px;
+        line-height:1;
+        opacity:0.75;
+    ">
+        ${frecuencia ? frecuencia : ""}
+    </div>
+`;
 
     radioScreen.style.display = "flex";
 
