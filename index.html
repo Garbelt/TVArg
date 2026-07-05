@@ -1,3 +1,8 @@
+Te digo lo que pasa con el código que tengo... la radio abre bien pero:
+Nunca se oculta el menú secundario y el botón back... me devuelve al menú principal... además de que el nombre de la radio no se borra y el audio no se apaga.
+
+este es el código actual:
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -548,14 +553,20 @@ function abrirElemento(item) {
 function reproducirRadio(url, nombre) {
     cerrarTodoMedia(); // limpia video/youtube/web
     estado = "radio";
+    // 🔴 ocultar todo lo demás SI o SI
     menu.style.display = "none";
+    document.getElementById("menuSecundario").style.display = "none";
     player.style.display = "none";
+    // 🔴 mostrar pantalla radio
     const radioScreen = document.getElementById("radioScreen");
     const title = document.getElementById("radioTitle");
     title.textContent = nombre || "RADIO";
     radioScreen.style.display = "flex";
+    // 🔴 arrancar audio
     radio.src = url;
     radio.play().catch(() => {});
+    // 🔴 back visible
+    backBtn.classList.add("show");
 }
 
 function reproducirYoutube(url) {
@@ -761,9 +772,18 @@ backBtn.onclick = () => {
         }
 
         const radioScreen = document.getElementById("radioScreen");
-        if (radioScreen) radioScreen.style.display = "none";
+        radioScreen.style.display = "none";
 
+        // 🔴 limpiar título (esto te estaba quedando pegado)
+        document.getElementById("radioTitle").textContent = "";
+
+        // 🔴 volver a menú principal limpio
         menu.style.display = "flex";
+        document.getElementById("menuSecundario").style.display = "none";
+
+        backBtn.classList.remove("show");
+        backBtn.style.opacity = "0";
+
         estado = "menu";
 
         return;
@@ -891,6 +911,5 @@ window.addEventListener("tvback", () => {
 });
 
 </script>
-
 </body>
 </html>
