@@ -421,8 +421,6 @@ const menus = {
     deportes: {
         titulo: "⚽ DEPORTES",
         items: [
-            { nombre: "ESPN", tipo: "hls", url: "https://181.119.83.235:8000/play/C052/index.m3u8" },
-            { nombre: "WIN Sports", tipo: "hls", url: "http://181.78.67.171:8000/play/a0wy/index.m3u8" },
             { nombre: "DSports+", tipo: "hls", url: "http://190.108.83.69:8000/play/a05w/index.m3u8" }
         ]
     }
@@ -668,9 +666,15 @@ function reproducirHls(canal) {
             video.style.visibility = "visible";
             video.style.opacity = "1";
         });
-        hls.on(Hls.Events.ERROR, () => {
-            mostrarMensaje("Error cargando canal");
-        });
+hls.on(Hls.Events.ERROR, function (event, data) {
+
+    console.log("HLS ERROR:", data);
+
+    mostrarMensaje(
+        data.type + " - " + data.details
+    );
+
+});
     }
 
     backBtn.classList.add("show");
