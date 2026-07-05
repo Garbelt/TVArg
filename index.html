@@ -563,47 +563,53 @@ function abrirElemento(item) {
     console.warn("Tipo desconocido:", item);
 }
 
-function reproducirRadio(url, nombre) {
+function reproducirRadio(url, banda, nombre, frecuencia) {
     cerrarTodoMedia(); // limpia video/youtube/web
     estado = "radio";
+
     // 🔴 ocultar todo lo demás SI o SI
     menu.style.display = "none";
     document.getElementById("menuSecundario").style.display = "none";
     player.style.display = "none";
+
     // 🔴 mostrar pantalla radio
     const radioScreen = document.getElementById("radioScreen");
     const title = document.getElementById("radioTitle");
-    
-if (nombre && nombre.includes("/")) {
-    const partes = nombre.split("/");
-title.innerHTML = `
-    <div style="
-        font-size:64px;
-        font-weight:900;
-        line-height:1;
-        letter-spacing:1px;
-    ">
-        ${partes[0].trim()}
-    </div>
 
-    <div style="
-        font-size:30px;
-        font-weight:400;
-        color:#8ec6e6;
-        margin-top:2px;
-        line-height:1;
-    ">
-        ${partes[1].trim()}
-    </div>
-`;
-} else {
-    title.textContent = nombre || "RADIO";
-}
+    title.innerHTML = `
+        <div style="
+            font-size:52px;
+            font-weight:300;
+            color:#cfe6ff;
+            line-height:1;
+        ">
+            ${banda}
+            <span style="
+                font-size:64px;
+                font-weight:900;
+                margin-left:10px;
+                letter-spacing:1px;
+            ">
+                ${nombre}
+            </span>
+        </div>
+
+        <div style="
+            font-size:30px;
+            color:#8ec6e6;
+            margin-top:2px;
+            line-height:1;
+        ">
+            ${frecuencia ? frecuencia : ""}
+        </div>
+    `;
 
     radioScreen.style.display = "flex";
+
     // 🔴 arrancar audio
     radio.src = url;
     radio.play().catch(() => {});
+
     // 🔴 back visible
     backBtn.classList.add("show");
 }
