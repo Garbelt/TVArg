@@ -316,11 +316,15 @@ video {
 
 <!-- PLAYER -->
 <div id="player">
-
     <div id="mensaje"></div>
-
     <video id="video" controls autoplay></video>
+</div>
 
+<!-- RADIO -->
+<div id="radioScreen" style="display:none; flex-direction:column; justify-content:center; align-items:center; height:100vh; background:black;">
+    <div id="radioTitle" style="font-size:32px; margin-bottom:30px;">
+        RADIO
+    </div>
 </div>
 
 <!-- YOUTUBE OVERLAY -->
@@ -410,7 +414,7 @@ let estadoAnterior = "";
 let menuActual = "menu";
 let menuOrigen = "menu";
 let inactivityTimer;
-let radioPlayer = null;
+let radio = new Audio();
 
 const menu = document.getElementById("menu");
 const video = document.getElementById("video");
@@ -534,22 +538,24 @@ function abrirElemento(item) {
         return;
     }
     if (item.tipo === "radio") {
-        reproducirRadio(item.url);
+        reproducirRadio(item.url, item.nombre);
         return;
     }
 
     console.warn("Tipo desconocido:", item);
 }
 
-function reproducirRadio(url) {
-    if (radioPlayer) {
-        radioPlayer.pause();
-        radioPlayer.src = "";
-    }
-    radioPlayer = new Audio(url);
-    radioPlayer.play().catch(err => {
-        console.warn("Error reproduciendo radio:", err);
-    });
+function reproducirRadio(url, nombre) {
+    cerrarTodoMedia(); // limpia video/youtube/web
+    estado = "radio";
+    menu.style.display = "none";
+    player.style.display = "none";
+    const radioScreen = document.getElementById("radioScreen");
+    const title = document.getElementById("radioTitle");
+    title.textContent = nombre || "RADIO";
+    radioScreen.style.display = "flex";
+    radio.src = url;
+    radio.play().catch(() => {});
 }
 
 function reproducirYoutube(url) {
@@ -678,7 +684,24 @@ dibujarMenu("principal");
    CIERRE CENTRALIZADO
 ========================= */
 
+function cerrarTodoMedia() {
+    if (hls) {
+        hls.destroy();
+        hls = null;
+    }
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+    document.getElementById("ytOverlay").style.display = "none";
+    document.getElementById("ytFrame").src = "about:blank";
+    document.getElementById("webOverlay").style.display = "none";
+    document.getElementById("webFrame").src = "about:blank";
+}
+
 function cerrarTodo() {
+
+    // 🔴 0. NUEVO: si hay radio activa, NO la maneja esta función
+    // (la radio se cierra solo desde backBtn cuando estado === "radio")
 
     // 🔴 1. destruir HLS SIEMPRE
     if (hls) {
@@ -697,7 +720,7 @@ function cerrarTodo() {
     const ytOverlay = document.getElementById("ytOverlay");
 
     ytOverlay.style.display = "none";
-    ytFrame.src = "about:blank";   // NO ""
+    ytFrame.src = "about:blank";
 
     // 🔴 4. FORZAR STOP WEB
     const webFrame = document.getElementById("webFrame");
@@ -716,9 +739,9 @@ function cerrarTodo() {
     clearTimeout(inactivityTimer);
 
     // 🔴 7. CRÍTICO: reset estado coherente
-    estado = menuActual || "menu";
+    estado = "menu";
 
-    // 🔴 8. CRÍTICO: restaurar UI menú si quedó colgado
+    // 🔴 8. restaurar UI menú
     menu.style.display = "flex";
     document.getElementById("menuSecundario").style.display = "none";
 }
@@ -729,6 +752,24 @@ function cerrarTodo() {
 
 backBtn.onclick = () => {
 
+    // 🔴 NUEVO: SALIDA DE RADIO
+    if (estado === "radio") {
+
+        if (radio) {
+            radio.pause();
+            radio.src = "";
+        }
+
+        const radioScreen = document.getElementById("radioScreen");
+        if (radioScreen) radioScreen.style.display = "none";
+
+        menu.style.display = "flex";
+        estado = "menu";
+
+        return;
+    }
+
+    // 🔴 EXISTENTE (NO TOCADO)
     if (estado === "web" || estado === "player") {
         cerrarTodo();
         return;
