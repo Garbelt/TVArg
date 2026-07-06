@@ -643,18 +643,21 @@ function reproducirHls(canal) {
     video.pause();
     video.removeAttribute("src");
     video.load();
-    // 🔥 Android override (si existe)
-    if (canal.headers && window.AndroidTVArg?.playChannel) {
-        player.style.display = "none";
-        AndroidTVArg.playChannel(
-            canal.url,
-            canal.headers?.Referer || "",
-            canal.headers?.["User-Agent"] || ""
-        );
-        backBtn.classList.add("show");
-        mostrarBackBtn();
-        return;
-    }
+// 🔥 En Android SIEMPRE usar ExoPlayer
+if (window.AndroidTVArg?.playChannel) {
+
+    player.style.display = "none";
+
+    AndroidTVArg.playChannel(
+        canal.url,
+        canal.headers?.Referer || "",
+        canal.headers?.["User-Agent"] || ""
+    );
+
+    backBtn.classList.add("show");
+    mostrarBackBtn();
+    return;
+}
 
     // Web HLS normal
     if (Hls.isSupported()) {
