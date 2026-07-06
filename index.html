@@ -810,12 +810,29 @@ function cerrarTodo() {
 
 
 
-    // 🔴 7. CRÍTICO: reset estado coherente
-    estado = "menu";
+if (menuOrigen === "otros") {
 
-    // 🔴 8. restaurar UI menú
+    menu.style.display = "none";
+    document.getElementById("menuSecundario").style.display = "flex";
+
+    estado = "otros";
+
+    if (window.AndroidTVArg) {
+        AndroidTVArg.setMenuPrincipal(false);
+    }
+
+} else {
+
     menu.style.display = "flex";
     document.getElementById("menuSecundario").style.display = "none";
+
+    estado = "menu";
+
+    if (window.AndroidTVArg) {
+        AndroidTVArg.setMenuPrincipal(true);
+    }
+
+}
 }
 
 /* =========================
