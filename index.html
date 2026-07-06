@@ -434,7 +434,6 @@ let menuActual = "menu";
 let menuOrigen = "menu";
 let inactivityTimer;
 let radio = new Audio();
-let nivelMenu = "principal"; // principal | secundario
 
 const menu = document.getElementById("menu");
 const video = document.getElementById("video");
@@ -530,7 +529,6 @@ function mostrarMenuSecundario() {
     backMenuBtn.style.pointerEvents = "auto";
     menuActual = "otros";
     estado = "otros";
-    nivelMenu = "secundario";
 }
 
 function abrirWeb(url) {
@@ -810,56 +808,45 @@ function cerrarTodo() {
 
 backBtn.onclick = () => {
 
-    /* =========================
-       1. RADIO
-    ========================= */
+    // 🔴 NUEVO: SALIDA DE RADIO
     if (estado === "radio") {
 
         radio.pause();
         radio.src = "";
 
         document.getElementById("radioScreen").style.display = "none";
-        document.getElementById("radioTitle").textContent = "";
+        document.getElementById("radioTitle").innerHTML = "";
 
-        backBtn.classList.remove("show");
-        backBtn.style.opacity = "0";
-
+        // volver al submenú desde donde salió
         document.getElementById("menuSecundario").style.display = "flex";
         menu.style.display = "none";
 
         estado = "otros";
+
+        backBtn.classList.remove("show");
+        backBtn.style.opacity = "0";
+
         return;
     }
 
-    /* =========================
-       2. PLAYER / WEB
-    ========================= */
+    // 🔴 EXISTENTE (NO TOCADO)
     if (estado === "web" || estado === "player") {
         cerrarTodo();
         return;
     }
 
-    /* =========================
-       3. SUBMENÚ → MENÚ PRINCIPAL
-    ========================= */
     if (estado === "otros") {
-
         document.getElementById("menuSecundario").style.display = "none";
         menu.style.display = "flex";
-
         estado = "menu";
         menuActual = "menu";
 
         if (window.AndroidTVArg) {
             AndroidTVArg.setMenuPrincipal(true);
         }
-
         return;
     }
 
-    /* =========================
-       4. MENÚ PRINCIPAL → SALIR
-    ========================= */
     if (estado === "menu") {
         if (window.AndroidTVArg) {
             AndroidTVArg.closeApp();
@@ -870,26 +857,13 @@ backBtn.onclick = () => {
 /* =====      ===== */
 
 document.getElementById("backMenuBtn").onclick = () => {
-
-    // salir del menú secundario
     document.getElementById("menuSecundario").style.display = "none";
     menu.style.display = "flex";
-
-    estado = "menu";
     menuActual = "menu";
-
     if (window.AndroidTVArg) {
         AndroidTVArg.setMenuPrincipal(true);
     }
-
-    // limpieza defensiva: evita estados colgados (radio/web/player)
-    if (estado === "radio") {
-        radio.pause();
-        radio.src = "";
-        document.getElementById("radioScreen").style.display = "none";
-    }
-
-    cerrarTodo(); // opcional pero recomendable para evitar overlays colgados
+    estado = "menu";
 };
 
 /* ===== BACK INTELIGENTE TV ===== */
@@ -948,9 +922,7 @@ document.addEventListener("keydown", e => {
 
 window.addEventListener("tvback", () => {
 
-    /* =========================
-       1. RADIO (cierre completo)
-    ========================= */
+    // SALIDA DE RADIO
     if (estado === "radio") {
 
         radio.pause();
@@ -959,28 +931,25 @@ window.addEventListener("tvback", () => {
         document.getElementById("radioScreen").style.display = "none";
         document.getElementById("radioTitle").textContent = "";
 
-        backBtn.classList.remove("show");
-        backBtn.style.opacity = "0";
-
-        // volver SIEMPRE al menú secundario (origen real de radio)
+        // volver al menú de radios
         document.getElementById("menuSecundario").style.display = "flex";
         menu.style.display = "none";
 
         estado = "otros";
+
+        backBtn.classList.remove("show");
+        backBtn.style.opacity = "0";
+
         return;
     }
 
-    /* =========================
-       2. PLAYER / WEB
-    ========================= */
+    // cerrar player/web
     if (estado === "player" || estado === "web") {
-        cerrarTodo(); // ya deja limpio todo
+        cerrarTodo();
         return;
     }
 
-    /* =========================
-       3. MENÚ SECUNDARIO → MENÚ PRINCIPAL
-    ========================= */
+    // volver del menú secundario
     if (estado === "otros") {
 
         document.getElementById("menuSecundario").style.display = "none";
@@ -992,18 +961,16 @@ window.addEventListener("tvback", () => {
         if (window.AndroidTVArg) {
             AndroidTVArg.setMenuPrincipal(true);
         }
-
         return;
     }
 
-    /* =========================
-       4. MENÚ PRINCIPAL → SALIR APP
-    ========================= */
+    // salir de la app
     if (estado === "menu") {
         if (window.AndroidTVArg) {
             AndroidTVArg.closeApp();
         }
     }
+
 });
 
 </script>      
