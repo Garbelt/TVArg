@@ -158,6 +158,10 @@ video {
     background: black;
     max-height: 100%;
     max-width: 100%;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .15s;
 }
 
 #mensaje {
@@ -641,9 +645,13 @@ function reproducirHls(canal) {
         hls.destroy();
         hls = null;
     }
+
     video.pause();
     video.removeAttribute("src");
     video.load();
+    video.style.visibility = "hidden";
+    video.style.opacity = "0";
+
     // 🔥 Android override (si existe)
     if (canal.headers && window.AndroidTVArg?.playChannel) {
         player.style.display = "none";
@@ -662,11 +670,15 @@ function reproducirHls(canal) {
         hls = new Hls();
         hls.loadSource(canal.url);
         hls.attachMedia(video);
+
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
             video.play();
+        });
+        video.addEventListener("loadeddata", () => {
             video.style.visibility = "visible";
             video.style.opacity = "1";
-        });
+        }, { once: true });
+
         hls.on(Hls.Events.ERROR, () => {
             mostrarMensaje("Error cargando canal");
         });
