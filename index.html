@@ -809,30 +809,13 @@ function cerrarTodo() {
     clearTimeout(inactivityTimer);
 
 
-    // Restaurar según el origen del canal
 
-if (menuOrigen === "otros") {
-
-    menu.style.display = "none";
-    document.getElementById("menuSecundario").style.display = "flex";
-
-    estado = "otros";
-
-    if (window.AndroidTVArg) {
-        AndroidTVArg.setMenuPrincipal(false);
-    }
-
-} else {
-
-    menu.style.display = "flex";
-    document.getElementById("menuSecundario").style.display = "none";
-
+    // 🔴 7. CRÍTICO: reset estado coherente
     estado = "menu";
 
-    if (window.AndroidTVArg) {
-        AndroidTVArg.setMenuPrincipal(true);
-    }
-
+    // 🔴 8. restaurar UI menú
+    menu.style.display = "flex";
+    document.getElementById("menuSecundario").style.display = "none";
 }
 
 /* =========================
