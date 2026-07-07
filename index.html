@@ -423,9 +423,9 @@ const menus = {
     deportes: {
         titulo: "⚽ DEPORTES",
         items: [
-            { nombre: "DSports", tipo: "web", url: "http://38.187.7.252:8000/play/a03d/index.m3u8" },
-            { nombre: "DSports2", tipo: "web", url: "http://181.64.27.65:8000/play/a0dq/index.m3u8" },
-            { nombre: "DSports+", tipo: "web", url: "http://190.108.83.69:8000/play/a05w/index.m3u8" }
+            { nombre: "DSports", tipo: "hls", url: "http://38.187.7.252:8000/play/a03d/index.m3u8" },
+            { nombre: "DSports2", tipo: "hls", url: "http://181.64.27.65:8000/play/a0dq/index.m3u8" },
+            { nombre: "DSports+", tipo: "hls", url: "http://190.108.83.69:8000/play/a05w/index.m3u8" }
         ]
     }
 };
@@ -644,44 +644,72 @@ function reproducirYoutube(url) {
 function reproducirHls(canal) {
     estado = "player";
     menu.style.display = "none";
-    player.style.display = "flex";
+    document.getElementById("menuSecundario").style.display = "none";
+    // Ocultamos el reproductor HTML5
+    player.style.display = "none";
+    // Limpiar HLS web si existiera
     if (hls) {
+
         hls.destroy();
         hls = null;
+
     }
     video.pause();
     video.removeAttribute("src");
     video.load();
-    // 🔥 Android override (si existe)
-    if (canal.headers && window.AndroidTVArg?.playChannel) {
-        player.style.display = "none";
+    // =====================================
+    // ANDROID → EXOPLAYER
+    // =====================================
+    if (window.AndroidTVArg?.playChannel) {
+        console.log("Enviando HLS a ExoPlayer:", canal.url);
+        let referer = "";
+        let userAgent = 
+            "Mozilla/5.0 (Linux; Android 13; TV) AppleWebKit/537.36 Chrome/120 Mobile Safari/537.36";
+        if (canal.headers) {
+            referer = canal.headers.Referer || "";
+            userAgent =
+                canal.headers["User-Agent"] ||
+                userAgent;
+        }
         AndroidTVArg.playChannel(
             canal.url,
-            canal.headers?.Referer || "",
-            canal.headers?.["User-Agent"] || ""
+            referer,
+            userAgent
         );
         backBtn.classList.add("show");
         mostrarBackBtn();
         return;
     }
-
-    // Web HLS normal
+    // =====================================
+    // NAVEGADOR NORMAL (PWA)
+    // =====================================
     if (Hls.isSupported()) {
+        player.style.display = "flex";
         hls = new Hls();
         hls.loadSource(canal.url);
         hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            video.play();
-            video.style.visibility = "visible";
-            video.style.opacity = "1";
-        });
-        hls.on(Hls.Events.ERROR, () => {
-            mostrarMensaje("Error cargando canal");
-        });
+        hls.on(
+            Hls.Events.MANIFEST_PARSED,
+            () => {
+                video.play();
+                video.style.visibility = "visible";
+                video.style.opacity = "1";
+            }
+        );
+        hls.on(
+            Hls.Events.ERROR,
+            () => {
+                mostrarMensaje(
+                    "Error cargando canal"
+                );
+            }
+        );
     }
+
 
     backBtn.classList.add("show");
     mostrarBackBtn();
+
 }
 
 function cargarCanal(canal) {
