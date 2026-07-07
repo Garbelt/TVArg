@@ -556,6 +556,10 @@ function abrirElemento(item) {
         reproducirHls(item);
         return;
     }
+    if (item.tipo === "hls1") {
+        reproducirHls1(item);
+        return;
+    }
     if (item.tipo === "web") {
         abrirWeb(item.url, item.modo);
         return;
@@ -648,8 +652,8 @@ function reproducirHls(canal) {
     video.pause();
     video.removeAttribute("src");
     video.load();
-    // 🔥 Android override (si existe)
-    if (canal.headers && window.AndroidTVArg?.playChannel) {
+    // 🔥 Sólo algunos HLS usan ExoPlayer en Android
+    if (canal.usarExo && window.AndroidTVArg?.playChannel) {
         player.style.display = "none";
         AndroidTVArg.playChannel(
             canal.url,
@@ -660,8 +664,7 @@ function reproducirHls(canal) {
         mostrarBackBtn();
         return;
     }
-
-    // Web HLS normal
+    // Web (y Android cuando no usa ExoPlayer)
     if (Hls.isSupported()) {
         hls = new Hls();
         hls.loadSource(canal.url);
@@ -675,12 +678,14 @@ function reproducirHls(canal) {
             mostrarMensaje("Error cargando canal");
         });
     }
-
     backBtn.classList.add("show");
     mostrarBackBtn();
 }
 
-
+    function reproducirHls1(canal){
+        canal.usarExo = true;
+        reproducirHls(canal);
+    }
 
 function cargarCanal(canal) {
     abrirElemento(canal);
