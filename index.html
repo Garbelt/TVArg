@@ -421,8 +421,8 @@ const menus = {
     deportes: {
         titulo: "⚽ DEPORTES",
         items: [
-            { nombre: "DSports", tipo: "hls", url: "http://38.187.7.252:8000/play/a03d/index.m3u8" },
-            { nombre: "DSports+", tipo: "hls", url: "http://190.108.83.69:8000/play/a05w/index.m3u8" }
+            { nombre: "DSports", tipo: "web", url: "http://38.187.7.252:8000/play/a03d/index.m3u8" },
+            { nombre: "DSports+", tipo: "web", url: "http://190.108.83.69:8000/play/a05w/index.m3u8" }
         ]
     }
 };
@@ -663,17 +663,7 @@ function reproducirHls(canal) {
 
     // Web HLS normal
     if (Hls.isSupported()) {
-
-    hls = new Hls({
-        maxBufferLength: 10,
-        maxMaxBufferLength: 20,
-        backBufferLength: 30,
-        liveSyncDurationCount: 3,
-        liveMaxLatencyDurationCount: 5,
-        enableWorker: true,
-        lowLatencyMode: true
-    });
-        
+        hls = new Hls();
         hls.loadSource(canal.url);
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
@@ -809,8 +799,10 @@ function cerrarTodo() {
     clearTimeout(inactivityTimer);
 
     // 7. CRÍTICO: SOLO estado de reproducción, NO navegación
-    if (ubicacion === "principal") { estado = "menu";
-        } else { estado = "otros"; }
+    estado = "menu"; // o lo podés dejar como "idle" si querés ser más fino
+
+    // ❌ IMPORTANTE: NO tocar ubicacion acá
+    // ubicacion se mantiene intacta
 
     // 8. restaurar UI según ubicacion
     if (ubicacion === "principal") {
