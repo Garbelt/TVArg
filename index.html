@@ -628,16 +628,20 @@ title.innerHTML = `
 
 function reproducirYoutube(url) {
     estado = "player";
+    // ocultar menú
     menu.style.display = "none";
-    player.style.display = "flex";
+    // YouTube usa su propio overlay
+    player.style.display = "none";
     const iframe = document.getElementById("ytFrame");
     const overlay = document.getElementById("ytOverlay");
-    iframe.src = "about:blank"; // 🔥 limpia primero
+    // limpiar reproducción anterior
+    iframe.src = "about:blank";
     overlay.style.display = "block";
     setTimeout(() => {
         iframe.src = url;
     }, 80);
     backBtn.classList.add("show");
+    mostrarBackBtn();
 }
 
 function reproducirHls(canal) {
