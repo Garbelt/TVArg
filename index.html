@@ -345,7 +345,11 @@ video {
 
 <!-- YOUTUBE OVERLAY -->
 <div id="ytOverlay">
-    <iframe id="ytFrame"></iframe>
+       <iframe 
+       id="ytFrame"
+       allow="autoplay; encrypted-media"
+       allowfullscreen>
+    </iframe>
 </div>
 
 <!-- WEB OVERLAY (OTROS) -->
@@ -573,72 +577,109 @@ function abrirElemento(item) {
 }
 
 function reproducirRadio(url, banda, nombre, frecuencia) {
-    cerrarTodoMedia(); // limpia video/youtube/web
+
+    // limpia video/youtube/web
+    cerrarTodoMedia();
+
     estado = "radio";
 
-    // 🔴 ocultar todo lo demás SI o SI
+
+    // ocultar todo lo demás
     menu.style.display = "none";
     document.getElementById("menuSecundario").style.display = "none";
     player.style.display = "none";
 
-    // 🔴 mostrar pantalla radio
+
+    // mostrar pantalla radio
     const radioScreen = document.getElementById("radioScreen");
     const title = document.getElementById("radioTitle");
 
-title.innerHTML = `
-    <div style="
-        font-size:52px;
-        font-weight:300;
-        color:#A8D9F0; /* gris muy clarito (FM) */
-        line-height:1;
-        letter-spacing:1px;
-    ">
-        ${banda}
-        <span style="
-            font-size:64px;
-            font-weight:900;
-            margin-left:10px;
-            letter-spacing:1px;
-            color:#7BC2E3; /* azul mas oscuro (nombre) */
-        ">
-            ${nombre}
-        </span>
-    </div>
 
-    <div style="
-        font-size:30px;
-        color:#A9D9CF; /* azul más claro (frecuencia) */
-        margin-top:2px;
-        line-height:1;
-        opacity:0.85;
-        letter-spacing:0.5px;
-    ">
-        ${frecuencia ? frecuencia : ""}
-    </div>
-`;
+    title.innerHTML = `
+        <div style="
+            font-size:52px;
+            font-weight:300;
+            color:#A8D9F0;
+            line-height:1;
+            letter-spacing:1px;
+        ">
+            ${banda}
+            <span style="
+                font-size:64px;
+                font-weight:900;
+                margin-left:10px;
+                letter-spacing:1px;
+                color:#7BC2E3;
+            ">
+                ${nombre}
+            </span>
+        </div>
+
+        <div style="
+            font-size:30px;
+            color:#A9D9CF;
+            margin-top:2px;
+            line-height:1;
+            opacity:0.85;
+            letter-spacing:0.5px;
+        ">
+            ${frecuencia ? frecuencia : ""}
+        </div>
+    `;
+
 
     radioScreen.style.display = "flex";
 
-    // 🔴 arrancar audio
-    radio.src = url;
-    radio.play().catch(() => {});
 
-    // 🔴 back visible
+    // ===============================
+    // AUDIO RADIO
+    // ===============================
+
+    radio.pause();
+
+    radio.src = url;
+
+    radio.load();
+
+
+    radio.play()
+        .then(() => {
+            console.log("Radio reproduciendo:", nombre);
+        })
+        .catch(error => {
+            console.log("Error radio:", error);
+        });
+
+
+    // back visible
     backBtn.classList.add("show");
+    mostrarBackBtn();
 }
 
 function reproducirYoutube(url) {
+    // limpiar cualquier reproducción anterior
+    cerrarTodoMedia();
     estado = "player";
     menu.style.display = "none";
-    player.style.display = "flex";
+    document.getElementById("menuSecundario").style.display = "none";
     const iframe = document.getElementById("ytFrame");
     const overlay = document.getElementById("ytOverlay");
-    iframe.src = "about:blank"; // 🔥 limpia primero
+    // limpiar iframe anterior
+    iframe.src = "about:blank";
     overlay.style.display = "block";
     setTimeout(() => {
+        // asegurar autoplay
+        if (!url.includes("autoplay=1")) {
+            if (url.includes("?")) {
+                url += "&autoplay=1";
+            } else {
+                url += "?autoplay=1";
+            }
+        }
         iframe.src = url;
-    }, 80);
+    }, 200);
     backBtn.classList.add("show");
+    mostrarBackBtn();
 }
 
 function reproducirHls(canal) {
