@@ -799,10 +799,11 @@ function cerrarTodo() {
     clearTimeout(inactivityTimer);
 
     // 7. CRÍTICO: SOLO estado de reproducción, NO navegación
-    estado = "menu"; // o lo podés dejar como "idle" si querés ser más fino
-
-    // ❌ IMPORTANTE: NO tocar ubicacion acá
-    // ubicacion se mantiene intacta
+    if (ubicacion === "principal") {
+        estado = "menu";
+    } else {
+        estado = "otros";
+    }
 
     // 8. restaurar UI según ubicacion
     if (ubicacion === "principal") {
