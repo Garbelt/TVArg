@@ -540,13 +540,14 @@ function mostrarMenuSecundario() {
 
 function abrirWeb(url) {
     estadoAnterior = estado;
-    const overlay = document.getElementById("webOverlay");
-    const frame = document.getElementById("webFrame");
-    frame.src = url;
-    overlay.style.display = "block";
+    estado = "web";
+    if (window.AndroidTVArg) {
+        AndroidTVArg.openUrl(url);
+    } else {
+        window.open(url);
+    }
     backBtn.classList.add("show");
     mostrarBackBtn();
-    estado = "web";
 }
 
 function abrirElemento(item) {
