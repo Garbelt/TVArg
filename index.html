@@ -663,7 +663,17 @@ function reproducirHls(canal) {
 
     // Web HLS normal
     if (Hls.isSupported()) {
-        hls = new Hls();
+
+    hls = new Hls({
+        maxBufferLength: 10,
+        maxMaxBufferLength: 20,
+        backBufferLength: 30,
+        liveSyncDurationCount: 3,
+        liveMaxLatencyDurationCount: 5,
+        enableWorker: true,
+        lowLatencyMode: true
+    });
+        
         hls.loadSource(canal.url);
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
