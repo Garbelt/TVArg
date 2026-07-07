@@ -421,7 +421,7 @@ const menus = {
     deportes: {
         titulo: "⚽ DEPORTES",
         items: [
-            { nombre: "DSports", tipo: "hls1", url: "http://38.187.7.252:8000/play/a03d/index.m3u8" },
+            { nombre: "DSports", tipo: "hls1", usarExo:true, url: "http://38.187.7.252:8000/play/a03d/index.m3u8" },
             { nombre: "DSports+", tipo: "hls1", url: "http://190.108.83.69:8000/play/a05w/index.m3u8" }
         ]
     }
@@ -648,8 +648,8 @@ function reproducirHls(canal) {
     video.pause();
     video.removeAttribute("src");
     video.load();
-    // 🔥 Android override (si existe)
-    if (canal.headers && window.AndroidTVArg?.playChannel) {
+    // Sólo estos canales usan ExoPlayer
+    if (canal.usarExo && window.AndroidTVArg?.playChannel) {
         player.style.display = "none";
         AndroidTVArg.playChannel(
             canal.url,
@@ -661,16 +661,20 @@ function reproducirHls(canal) {
         return;
     }
 
-    // Web HLS normal
+    // Todos los demás usan Hls.js
     if (Hls.isSupported()) {
+
         hls = new Hls();
+
         hls.loadSource(canal.url);
         hls.attachMedia(video);
+
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
             video.play();
             video.style.visibility = "visible";
             video.style.opacity = "1";
         });
+
         hls.on(Hls.Events.ERROR, () => {
             mostrarMensaje("Error cargando canal");
         });
