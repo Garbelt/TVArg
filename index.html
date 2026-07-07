@@ -421,8 +421,8 @@ const menus = {
     deportes: {
         titulo: "⚽ DEPORTES",
         items: [
-            { nombre: "DSports", tipo: "hls1", url: "http://38.187.7.252:8000/play/a03d/index.m3u8" },
-            { nombre: "DSports+", tipo: "hls1", url: "http://190.108.83.69:8000/play/a05w/index.m3u8" }
+            { nombre: "DSports", tipo: "web", url: "http://38.187.7.252:8000/play/a03d/index.m3u8", modo: "external" },
+            { nombre: "DSports+", tipo: "web", url: "http://190.108.83.69:8000/play/a05w/index.m3u8", modo: "external" }
         ]
     }
 };
@@ -434,7 +434,6 @@ let menuActual = "menu";
 let menuOrigen = "menu";
 let inactivityTimer;
 let radio = new Audio();
-let ubicacion = "principal";
 
 const menu = document.getElementById("menu");
 const video = document.getElementById("video");
@@ -451,7 +450,6 @@ enterBtn.onclick = () => {
     splash.style.display = "none";
     menu.style.display = "flex";
     estado = "menu";
-    ubicacion = "principal";
 };
 
 if (window.matchMedia('(display-mode: standalone)').matches ||
@@ -459,7 +457,6 @@ if (window.matchMedia('(display-mode: standalone)').matches ||
     splash.style.display = "none";
     menu.style.display = "flex";
     estado = "menu";
-    ubicacion = "principal";
 }
 
 /* ===== YOUTUBE PARSER ===== */
@@ -532,7 +529,6 @@ function mostrarMenuSecundario() {
     backMenuBtn.style.pointerEvents = "auto";
     menuActual = "otros";
     estado = "otros";
-    ubicacion = "secundario";
 }
 
 function abrirWeb(url) {
@@ -554,10 +550,6 @@ function abrirElemento(item) {
     }
     if (item.tipo === "hls") {
         reproducirHls(item);
-        return;
-    }
-    if (item.tipo === "hls1") {
-        reproducirHls1(item);
         return;
     }
     if (item.tipo === "web") {
@@ -652,8 +644,8 @@ function reproducirHls(canal) {
     video.pause();
     video.removeAttribute("src");
     video.load();
-    // 🔥 Sólo algunos HLS usan ExoPlayer en Android
-    if (canal.usarExo && window.AndroidTVArg?.playChannel) {
+    // 🔥 Android override (si existe)
+    if (canal.headers && window.AndroidTVArg?.playChannel) {
         player.style.display = "none";
         AndroidTVArg.playChannel(
             canal.url,
@@ -664,7 +656,8 @@ function reproducirHls(canal) {
         mostrarBackBtn();
         return;
     }
-    // Web (y Android cuando no usa ExoPlayer)
+
+    // Web HLS normal
     if (Hls.isSupported()) {
         hls = new Hls();
         hls.loadSource(canal.url);
@@ -678,14 +671,12 @@ function reproducirHls(canal) {
             mostrarMensaje("Error cargando canal");
         });
     }
+
     backBtn.classList.add("show");
     mostrarBackBtn();
 }
 
-    function reproducirHls1(canal){
-        canal.usarExo = true;
-        reproducirHls(canal);
-    }
+
 
 function cargarCanal(canal) {
     abrirElemento(canal);
@@ -770,58 +761,50 @@ function cerrarTodoMedia() {
 
 function cerrarTodo() {
 
-    // 1. destruir HLS SIEMPRE
+    // 🔴 0. NUEVO: si hay radio activa, NO la maneja esta función
+    // (la radio se cierra solo desde backBtn cuando estado === "radio")
+
+    // 🔴 1. destruir HLS SIEMPRE
     if (hls) {
         hls.destroy();
         hls = null;
     }
 
-    // 2. limpiar video nativo SIEMPRE
+    // 🔴 2. limpiar video nativo SIEMPRE
     video.pause();
     video.removeAttribute("src");
     video.srcObject = null;
     video.load();
 
-    // 3. FORZAR STOP YOUTUBE
+    // 🔴 3. FORZAR STOP YOUTUBE (esto es CLAVE)
     const ytFrame = document.getElementById("ytFrame");
     const ytOverlay = document.getElementById("ytOverlay");
 
     ytOverlay.style.display = "none";
     ytFrame.src = "about:blank";
 
-    // 4. FORZAR STOP WEB
+    // 🔴 4. FORZAR STOP WEB
     const webFrame = document.getElementById("webFrame");
     const webOverlay = document.getElementById("webOverlay");
 
     webOverlay.style.display = "none";
     webFrame.src = "about:blank";
 
-    // 5. limpiar UI player
+    // 🔴 5. limpiar UI player
     player.style.display = "none";
 
-    // 6. back UI
+    // 🔴 6. back UI
     backBtn.classList.remove("show");
     backBtn.style.opacity = "0";
 
     clearTimeout(inactivityTimer);
 
-    // 7. CRÍTICO: SOLO estado de reproducción, NO navegación
-    estado = "menu"; // o lo podés dejar como "idle" si querés ser más fino
+    // 🔴 7. CRÍTICO: reset estado coherente
+    estado = "menu";
 
-    // ❌ IMPORTANTE: NO tocar ubicacion acá
-    // ubicacion se mantiene intacta
-
-    // 8. restaurar UI según ubicacion
-    if (ubicacion === "principal") {
-        menu.style.display = "flex";
-        document.getElementById("menuSecundario").style.display = "none";
-        menuActual = "menu";
-    } 
-    else {
-        menu.style.display = "none";
-        document.getElementById("menuSecundario").style.display = "flex";
-        menuActual = "otros";
-    }
+    // 🔴 8. restaurar UI menú
+    menu.style.display = "flex";
+    document.getElementById("menuSecundario").style.display = "none";
 }
 
 /* =========================
@@ -861,7 +844,6 @@ backBtn.onclick = () => {
         document.getElementById("menuSecundario").style.display = "none";
         menu.style.display = "flex";
         estado = "menu";
-        ubicacion = "principal";
         menuActual = "menu";
 
         if (window.AndroidTVArg) {
@@ -887,7 +869,6 @@ document.getElementById("backMenuBtn").onclick = () => {
         AndroidTVArg.setMenuPrincipal(true);
     }
     estado = "menu";
-    ubicacion = "principal";
 };
 
 /* ===== BACK INTELIGENTE TV ===== */
@@ -980,7 +961,6 @@ window.addEventListener("tvback", () => {
         menu.style.display = "flex";
 
         estado = "menu";
-        ubicacion = "principal";
         menuActual = "menu";
 
         if (window.AndroidTVArg) {
