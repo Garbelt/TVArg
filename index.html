@@ -642,7 +642,7 @@ title.innerHTML = `
     radio.play().catch(() => {});
 
     // 🔴 back visible
-    backBtn.classList.add("show");
+    mostrarBackBtn();
 }
 
 function reproducirYoutube(url) {
@@ -659,7 +659,6 @@ function reproducirYoutube(url) {
     setTimeout(() => {
         iframe.src = url;
     }, 80);
-    backBtn.classList.add("show");
     mostrarBackBtn();
 }
 
@@ -689,7 +688,6 @@ if (window.AndroidTVArg) {
             canal.headers?.["User-Agent"] || ""
         );
     }
-    backBtn.classList.add("show");
     mostrarBackBtn();
     return;
 }
@@ -709,7 +707,6 @@ if (window.AndroidTVArg) {
         });
     }
 
-    backBtn.classList.add("show");
     mostrarBackBtn();
 }
 
@@ -826,9 +823,7 @@ function cerrarTodo() {
     player.style.display = "none";
 
     // 6. back UI
-    backBtn.classList.remove("show");
-    backBtn.style.opacity = "0";
-
+    ocultarBackBtn();
     clearTimeout(inactivityTimer);
 
     // 7. CRÍTICO: SOLO estado de reproducción, NO navegación
@@ -923,17 +918,28 @@ document.getElementById("backMenuBtn").onclick = () => {
 /* ===== BACK INTELIGENTE TV ===== */
 
 function mostrarBackBtn() {
-    if (bloqueandoBack) return;
-    if (!backBtn.classList.contains("show")) {
+    if (estado !== "player" &&
+        estado !== "web" &&
+        estado !== "radio") {
         return;
     }
+    backBtn.classList.add("show");
     backBtn.style.opacity = "0.75";
+    backBtn.style.pointerEvents = "auto";
     clearTimeout(inactivityTimer);
     inactivityTimer = setTimeout(() => {
         if (backBtn.classList.contains("show")) {
-            backBtn.style.opacity = "0.25";
+            backBtn.style.opacity = "0";
+            backBtn.style.pointerEvents = "none";
         }
     }, 5000);
+}
+
+function ocultarBackBtn() {
+    clearTimeout(inactivityTimer);
+    backBtn.classList.remove("show");
+    backBtn.style.opacity = "0";
+    backBtn.style.pointerEvents = "none";
 }
     
 /* cualquier actividad vuelve a iluminarlo */
