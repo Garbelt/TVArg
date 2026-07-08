@@ -533,8 +533,7 @@ function salirDelPlayer() {
     document.getElementById("ytOverlay").style.display = "none";
     document.getElementById("ytFrame").src = "";
 
-    backBtn.classList.remove("show");
-    backBtn.style.opacity = "0";
+    ocultarBackBtn();
 
     clearTimeout(inactivityTimer);
     }
@@ -547,8 +546,7 @@ function mostrarMenuSecundario() {
     const menuSecundario = document.getElementById("menuSecundario");
     const backMenuBtn = document.getElementById("backMenuBtn");
     menuSecundario.style.display = "flex";
-    backBtn.classList.remove("show");
-    backBtn.style.opacity = "0";
+    ocultarBackBtn();
     backMenuBtn.style.display = "block";
     backMenuBtn.style.opacity = "1";
     backMenuBtn.style.pointerEvents = "auto";
@@ -870,8 +868,7 @@ backBtn.onclick = () => {
 
         estado = "otros";
 
-        backBtn.classList.remove("show");
-        backBtn.style.opacity = "0";
+        ocultarBackBtn();
 
         return;
     }
@@ -949,10 +946,6 @@ document.addEventListener("keydown", () => {
 });
 
 document.addEventListener("mousemove", () => {
-    mostrarBackBtn();
-});
-
-document.addEventListener("click", () => {
     mostrarBackBtn();
 });
 
