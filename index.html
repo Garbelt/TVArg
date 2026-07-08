@@ -533,7 +533,8 @@ function salirDelPlayer() {
     document.getElementById("ytOverlay").style.display = "none";
     document.getElementById("ytFrame").src = "";
 
-    ocultarBackBtn();
+    backBtn.classList.remove("show");
+    backBtn.style.opacity = "0";
 
     clearTimeout(inactivityTimer);
     }
@@ -546,7 +547,8 @@ function mostrarMenuSecundario() {
     const menuSecundario = document.getElementById("menuSecundario");
     const backMenuBtn = document.getElementById("backMenuBtn");
     menuSecundario.style.display = "flex";
-    ocultarBackBtn();
+    backBtn.classList.remove("show");
+    backBtn.style.opacity = "0";
     backMenuBtn.style.display = "block";
     backMenuBtn.style.opacity = "1";
     backMenuBtn.style.pointerEvents = "auto";
@@ -640,7 +642,7 @@ title.innerHTML = `
     radio.play().catch(() => {});
 
     // 🔴 back visible
-    mostrarBackBtn();
+    backBtn.classList.add("show");
 }
 
 function reproducirYoutube(url) {
@@ -657,6 +659,7 @@ function reproducirYoutube(url) {
     setTimeout(() => {
         iframe.src = url;
     }, 80);
+    backBtn.classList.add("show");
     mostrarBackBtn();
 }
 
@@ -686,6 +689,7 @@ if (window.AndroidTVArg) {
             canal.headers?.["User-Agent"] || ""
         );
     }
+    backBtn.classList.add("show");
     mostrarBackBtn();
     return;
 }
@@ -705,6 +709,7 @@ if (window.AndroidTVArg) {
         });
     }
 
+    backBtn.classList.add("show");
     mostrarBackBtn();
 }
 
@@ -821,7 +826,9 @@ function cerrarTodo() {
     player.style.display = "none";
 
     // 6. back UI
-    ocultarBackBtn();
+    backBtn.classList.remove("show");
+    backBtn.style.opacity = "0";
+
     clearTimeout(inactivityTimer);
 
     // 7. CRÍTICO: SOLO estado de reproducción, NO navegación
@@ -868,7 +875,8 @@ backBtn.onclick = () => {
 
         estado = "otros";
 
-        ocultarBackBtn();
+        backBtn.classList.remove("show");
+        backBtn.style.opacity = "0";
 
         return;
     }
@@ -915,28 +923,17 @@ document.getElementById("backMenuBtn").onclick = () => {
 /* ===== BACK INTELIGENTE TV ===== */
 
 function mostrarBackBtn() {
-    if (estado !== "player" &&
-        estado !== "web" &&
-        estado !== "radio") {
+    if (bloqueandoBack) return;
+    if (!backBtn.classList.contains("show")) {
         return;
     }
-    backBtn.classList.add("show");
     backBtn.style.opacity = "0.75";
-    backBtn.style.pointerEvents = "auto";
     clearTimeout(inactivityTimer);
     inactivityTimer = setTimeout(() => {
         if (backBtn.classList.contains("show")) {
-            backBtn.style.opacity = "0";
-            backBtn.style.pointerEvents = "none";
+            backBtn.style.opacity = "0.25";
         }
     }, 5000);
-}
-
-function ocultarBackBtn() {
-    clearTimeout(inactivityTimer);
-    backBtn.classList.remove("show");
-    backBtn.style.opacity = "0";
-    backBtn.style.pointerEvents = "none";
 }
     
 /* cualquier actividad vuelve a iluminarlo */
@@ -946,6 +943,10 @@ document.addEventListener("keydown", () => {
 });
 
 document.addEventListener("mousemove", () => {
+    mostrarBackBtn();
+});
+
+document.addEventListener("click", () => {
     mostrarBackBtn();
 });
 
