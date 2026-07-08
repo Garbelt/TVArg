@@ -456,6 +456,7 @@ let menuOrigen = "menu";
 let inactivityTimer;
 let radio = new Audio();
 let ubicacion = "principal";
+let bloqueandoBack = false;
 
 const menu = document.getElementById("menu");
 const video = document.getElementById("video");
@@ -919,24 +920,19 @@ document.getElementById("backMenuBtn").onclick = () => {
 /* ===== BACK INTELIGENTE TV ===== */
 
 function mostrarBackBtn() {
-
+    if (bloqueandoBack) return;
     if (!backBtn.classList.contains("show")) {
         return;
     }
-
     backBtn.style.opacity = "0.75";
-
     clearTimeout(inactivityTimer);
-
     inactivityTimer = setTimeout(() => {
-
         if (backBtn.classList.contains("show")) {
             backBtn.style.opacity = "0.25";
         }
-
     }, 5000);
 }
-
+    
 /* cualquier actividad vuelve a iluminarlo */
 
 document.addEventListener("keydown", () => {
