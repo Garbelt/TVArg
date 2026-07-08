@@ -418,7 +418,12 @@ const menus = {
     documentales: {
         titulo: "🌎 DOCUMENTALES",
         items: [
-            { nombre:"History", tipo: "hls", url: "http://181.224.200.5:2277/play/a02b/index.m3u8" },
+            { 
+    nombre:"History", 
+    tipo:"hls",
+    reproductor:"vlc",
+    url:"http://181.224.200.5:2277/play/a02b/index.m3u8"
+},
             { nombre:"History II", tipo: "hls", url: "http://181.224.200.5:2277/play/a01b/index.m3u8" },
             { nombre:"Animal Planet", tipo: "hls", url: "http://181.224.200.5:2277/play/a00r/index.m3u8" }
         ]
@@ -673,14 +678,21 @@ function reproducirHls(canal) {
     video.pause();
     video.removeAttribute("src");
     video.load();
-    // 🔥 Android override (si existe)
-if (window.AndroidTVArg?.playChannel) {
+
+// 🔥 Android override
+if (window.AndroidTVArg) {
     player.style.display = "none";
-    AndroidTVArg.playChannel(
-        canal.url,
-        canal.headers?.Referer || "",
-        canal.headers?.["User-Agent"] || ""
-    );
+    if (canal.reproductor === "vlc") {
+        AndroidTVArg.playChannelVLC(
+            canal.url
+        );
+    } else {
+        AndroidTVArg.playChannel(
+            canal.url,
+            canal.headers?.Referer || "",
+            canal.headers?.["User-Agent"] || ""
+        );
+    }
     backBtn.classList.add("show");
     mostrarBackBtn();
     return;
