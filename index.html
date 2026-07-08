@@ -390,6 +390,7 @@ const menus = {
         items: canales,
         botones: [
             { nombre:"📻 RADIOS", destino:"radios" },
+            { nombre:"🌎 DOCUMENTALES", destino:"documentales" },
             { nombre:"👦 KIDS", destino:"kids" },
             { nombre:"📰 NOTICIAS", destino:"noticias" },
             { nombre:"⚽ DEPORTES", destino:"deportes" }
@@ -406,10 +407,17 @@ const menus = {
         ]
     },
 
+    documentales: {
+        titulo: "🌎 DOCUMENTALES",
+        items: [
+            { nombre:"Disney Jr", tipo:"web", url:"http://181.224.200.5:2277/play/a00r/index.m3u8" }
+        ]
+    },
+    
     kids: {
         titulo: "👦 KIDS",
         items: [
-            { nombre:"Disney Jr", tipo:"hls", url:"http://181.224.200.5:2277/play/a0dm/index.m3u8" }
+            { nombre:"Disney Jr", tipo:"web", url:"http://181.224.200.5:2277/play/a0dm/index.m3u8" }
         ]
     },
 
