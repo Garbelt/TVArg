@@ -367,34 +367,37 @@ body.android-app #backBtn {
 <script>
 
 const canales = [
-    { nombre:"América TV", tipo:"hls", url:"https://prepublish.f.qaotic.net/a07/americahls-100056/playlist_720p.m3u8" },
-    { nombre:"TV Pública", tipo:"youtube", url:"https://www.youtube.com/embed/Sdur2ohd3vY?autoplay=1" },
-    { nombre:"El Nueve", tipo:"youtube", url:"https://www.youtube.com/embed/C1DhpJ07ZuE?autoplay=1" },
+    { nombre:"América TV", tipo:"hls",
+      fuentes: [ {url: "https://prepublish.f.qaotic.net/a07/americahls-100056/playlist_720p.m3u8" }]},
+    { nombre:"TV Pública", tipo:"youtube", url: "https://www.youtube.com/embed/Sdur2ohd3vY?autoplay=1" },
+    { nombre:"El Nueve", tipo:"youtube", url: "https://www.youtube.com/embed/C1DhpJ07ZuE?autoplay=1" },
 
-    { nombre:"Telefe", tipo:"hls", url:"http://190.7.19.197:232/play/a059/index.m3u8" },
+    { nombre:"Telefe", tipo:"hls",
+      fuentes: [ {url: "http://190.7.19.197:232/play/a059/index.m3u8" }]},
 
-    {
-    nombre: "El Trece",
-    tipo: "hls",
-    url: "https://livetrx01.vodgc.net/eltrecetv/index.m3u8",
-    headers: {
-        Referer: "https://vodgc.net",
-        "User-Agent": "Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Mobile Safari/537.36"
-    }
-},
+    { nombre: "El Trece", tipo: "hls",
+      fuentes: [ {url: "https://livetrx01.vodgc.net/eltrecetv/index.m3u8",
+        headers: {
+           Referer: "https://vodgc.net",
+           "User-Agent": "Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Mobile Safari/537.36" }}]}
     
-    { nombre:"TN", tipo:"hls", url:"https://live-01-01-tn.vodgc.net/TN_DAI_Beta/index.m3u8" },
-    { nombre:"C5N", tipo:"youtube", url:"https://www.youtube.com/embed/VWhQ6xspnSc?autoplay=1" },
-    { nombre:"Crónica", tipo:"youtube", url:"https://www.youtube.com/embed/hw4uHyct4vg?autoplay=1" },
-    { nombre:"LN+", tipo:"youtube", url:"https://www.youtube.com/embed/FEWZjXJ7M0c?autoplay=1" },
-    { nombre:"A24", tipo:"youtube", url:"https://www.youtube.com/embed/ArKbAx1K-2U?autoplay=1" }, 
-    { nombre: "9 Litoral", tipo: "hls", url:"https://stream.arcast.live/canal9litoral/ngrp:canal9litoral_all/playlist.m3u8" },
-    { nombre:"Canal 26", tipo:"hls", url:"https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8" }
-];
+    { nombre:"TN", tipo:"hls",
+      fuentes: [ {url: "https://live-01-01-tn.vodgc.net/TN_DAI_Beta/index.m3u8" }]},
+
+    { nombre:"C5N", tipo:"youtube", url: "https://www.youtube.com/embed/VWhQ6xspnSc?autoplay=1" },
+    { nombre:"Crónica", tipo:"youtube", url: "https://www.youtube.com/embed/hw4uHyct4vg?autoplay=1" },
+    { nombre:"LN+", tipo:"youtube", url: "https://www.youtube.com/embed/FEWZjXJ7M0c?autoplay=1" },
+    { nombre:"A24", tipo:"youtube", url: "https://www.youtube.com/embed/ArKbAx1K-2U?autoplay=1" }, 
+
+    { nombre: "9 Litoral", tipo: "hls",
+      fuentes: [ {url: "https://stream.arcast.live/canal9litoral/ngrp:canal9litoral_all/playlist.m3u8" }]},
+    { nombre:"Canal 26", tipo:"hls",
+      fuentes: [ {url: "https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8" }]}
+    ];
 
 
 const menus = {
-    principal: {
+        principal: {
         titulo: "📺 TV ARG",
         items: canales,
         botones: [
@@ -404,8 +407,7 @@ const menus = {
             { nombre:"🏠 HOGAR", destino:"hogar" },
             { nombre:"👦 KIDS", destino:"kids" },
             { nombre:"⚽ DEPORTES", destino:"deportes" }
-        ]
-    },
+        ]},
 
     radios: {
         titulo:"📻 RADIOS",
@@ -414,54 +416,64 @@ const menus = {
             { banda: "FM", nombre: "BLUE", frecuencia: "100.7", tipo: "radio", destino: "radio", url: "https://24253.live.streamtheworld.com/BLUE_FM_100_7.mp3" },
             { banda: "FM", nombre: "VIDA", frecuencia: "97.9", tipo: "radio", destino: "radio", url: "https://streaming450tb.locucionar.com/proxy/fmvida979?mp=/stream" },
             { banda: "FM", nombre: "TANGO", frecuencia: "92.7", tipo: "radio", destino: "radio", url: "https://media.radios.ar:9270/" }
-        ]
-    },
+        ]},
 
     noticias: {
         titulo: "📰 NOTICIAS",
         items: [
             { nombre: "Ar|12", tipo: "youtube", url: "https://www.youtube.com/embed/JrmCaXL5GZs?autoplay=1" }
-        ]
-    },
+        ]},
 
     documentales: {
         titulo: "🌎 DOCUMENTALES",
         items: [
-            { nombre:"A&E", tipo:"hls", reproductor:"vlc", url: "http://181.224.200.5:2277/play/a01e/index.m3u8" },
-            { nombre:"Nat Geo", tipo:"hls", reproductor:"vlc", url: "http://181.224.200.5:2277/play/a012/index.m3u8" },
-            { nombre:"History", tipo:"hls", reproductor:"vlc", url: "http://181.224.200.5:2277/play/a02b/index.m3u8" },
-            { nombre:"History 2", tipo:"hls", reproductor:"vlc", url: "http://181.224.200.5:2277/play/a01b/index.m3u8" },
-            { nombre:"Love Nature", tipo:"hls", reproductor:"vlc", url: "http://181.224.200.5:2277/play/a036/index.m3u8" },
-            { nombre:"Animal Planet", tipo:"hls", reproductor:"vlc", url: "http://181.224.200.5:2277/play/a00r/index.m3u8" }
-        ]
-    },
+            { nombre:"A&E", tipo:"hls",
+              fuentes: [ {url: "http://181.224.200.5:2277/play/a01e/index.m3u8", reproductor:"vlc" }]},
+            { nombre:"Nat Geo", tipo:"hls",
+              fuentes: [ {url: "http://181.224.200.5:2277/play/a012/index.m3u8", reproductor:"vlc" }]},
+            { nombre:"History", tipo:"hls",
+              fuentes: [ {url: "http://181.224.200.5:2277/play/a02b/index.m3u8", reproductor:"vlc" }]},
+            { nombre:"History 2", tipo:"hls",
+              fuentes: [ {url: "http://181.224.200.5:2277/play/a01b/index.m3u8", reproductor:"vlc" }]},
+            { nombre:"Love Nature", tipo:"hls",
+              fuentes: [ {url: "http://181.224.200.5:2277/play/a036/index.m3u8", reproductor:"vlc" }]},
+            { nombre:"Animal Planet", tipo:"hls",
+              fuentes: [ {url: "http://181.224.200.5:2277/play/a00r/index.m3u8", reproductor:"vlc" }]}
+               ]},
 
     hogar: {
         titulo: "🏠 HOGAR",
         items: [
-            { nombre:"Home & Health", tipo:"hls", reproductor:"vlc", url: "http://181.224.200.5:2277/play/a00p/index.m3u8" },
-            { nombre:"El Gourmet", tipo:"hls", reproductor:"vlc", url: "http://181.224.200.5:2277/play/a00n/index.m3u8" }
-        ]
-    },    
+            { nombre:"Home & Health", tipo:"hls",
+              fuentes: [ {url: "http://181.224.200.5:2277/play/a00p/index.m3u8", reproductor:"vlc" }]},
+            { nombre:"El Gourmet", tipo:"hls", 
+              fuentes: [ {url: "http://181.224.200.5:2277/play/a00n/index.m3u8", reproductor:"vlc" }]}
+               ]},
+  
     
     kids: {
         titulo: "👦 KIDS",
         items: [
-            { nombre:"Disney Jr", tipo:"hls", reproductor:"vlc", url: "http://181.224.200.5:2277/play/a0dm/index.m3u8" }
-        ]
-    },
+            { nombre:"Disney Jr", tipo:"hls",
+              fuentes: [ {url: "http://181.224.200.5:2277/play/a0dm/index.m3u8", reproductor: "vlc" }]},
+               ]},
 
     deportes: {
         titulo: "⚽ DEPORTES",
         items: [
-            { nombre: "TyC sports", tipo: "hls", reproductor:"vlc", url: "http://201.217.246.42:44310/Live/3fcb6e26785fd8d415571b26dc3cf5d3/local-90.playlist.m3u8" },
-            { nombre: "DSports", tipo: "hls", url: "http://38.187.7.252:8000/play/a03d/index.m3u8" },
-            { nombre: "DSports2", tipo: "hls", url: "http://181.64.27.65:8000/play/a0dq/index.m3u8" },
-            { nombre: "DSports+", tipo: "hls", url: "http://190.108.83.69:8000/play/a05w/index.m3u8" },
-            { nombre: "DSports", tipo: "hls", reproductor:"vlc", url: "http://8.243.126.131:8000/play/a05a/index.m3u8" }
-        ]
-    }
-};
+            { nombre: "TyC sports", tipo: "hls",
+              fuentes: [ {url: "http://201.217.246.42:44310/Live/3fcb6e26785fd8d415571b26dc3cf5d3/local-90.playlist.m3u8", reproductor: "vlc" }]},
+            { nombre: "DSports2", tipo: "hls",
+              fuentes: [ {url: "http://181.64.27.65:8000/play/a0dq/index.m3u8" }]},
+            { nombre: "DSports+", tipo: "hls",
+              fuentes: [ {url: "http://190.108.83.69:8000/play/a05w/index.m3u8" }]},
+            { nombre: "DSports", tipo: "hls",
+              fuentes: [
+             { url: "http://38.187.7.252:8000/play/a03d/index.m3u8" },
+             { url: "http://8.243.126.131:8000/play/a05a/index.m3u8" }]}
+               ]}
+
+
 
 let hls;
 let estado = "splash";
