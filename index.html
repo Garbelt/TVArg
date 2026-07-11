@@ -710,7 +710,15 @@ function reproducirHls(canal) {
     // ==================================
     // NUEVO SISTEMA DE FUENTES
     // ==================================
-    let fuente = canal.fuentes[0];
+    canalActual = canal;
+    if (!canalActual.fuentes) {
+        console.error("Canal sin fuentes");
+        return;
+    }
+    fuenteActual = 0;
+    intentosFuente = 0;
+    let fuente = canalActual.fuentes[fuenteActual];
+
     let url = fuente.url;
     let headers = fuente.headers || {};
     console.log(
