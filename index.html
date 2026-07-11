@@ -707,38 +707,64 @@ function reproducirHls(canal) {
     video.removeAttribute("src");
     video.load();
 
-// 🔥 Android override
-if (window.AndroidTVArg) {
-    player.style.display = "none";
-    if (canal.reproductor === "vlc") {
-        AndroidTVArg.playChannelVLC(
-            canal.url
-        );
-    } else {
-        AndroidTVArg.playChannel(
-            canal.url,
-            canal.headers?.Referer || "",
-            canal.headers?.["User-Agent"] || ""
-        );
-    }
-    backBtn.classList.add("show");
-    mostrarBackBtn();
-    return;
-}
+    // ==================================
+    // NUEVO SISTEMA DE FUENTES
+    // ==================================
+    let fuente = canal.fuentes[0];
+    let url = fuente.url;
+    let headers = fuente.headers || {};
+    console.log(
+        "Reproduciendo fuente:",
+        url
+    );
 
-    // Web HLS normal
+    // ==================================
+    // ANDROID APK
+    // ==================================
+
+    if (window.AndroidTVArg) {
+        player.style.display = "none";
+        if (fuente.reproductor === "vlc") {
+            AndroidTVArg.playChannelVLC(
+                url
+            );
+        } else {
+            AndroidTVArg.playChannel(
+                url,
+                headers.Referer || "",
+                headers["User-Agent"] || ""
+            );
+        }
+        backBtn.classList.add("show");
+        mostrarBackBtn();
+        return;
+    }
+
+    // ==================================
+    // WEB HLS NORMAL
+    // ==================================
+
     if (Hls.isSupported()) {
         hls = new Hls();
-        hls.loadSource(canal.url);
+        hls.loadSource(url);
         hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            video.play();
-            video.style.visibility = "visible";
-            video.style.opacity = "1";
-        });
-        hls.on(Hls.Events.ERROR, () => {
-            mostrarMensaje("Error cargando canal");
-        });
+        hls.on(
+            Hls.Events.MANIFEST_PARSED,
+            () => {
+                video.play();
+                video.style.visibility = "visible";
+                video.style.opacity = "1";
+            }
+        );
+
+        hls.on(
+            Hls.Events.ERROR,
+            () => {
+                mostrarMensaje(
+                    "Error cargando canal"
+                );
+            }
+        );
     }
 
     backBtn.classList.add("show");
