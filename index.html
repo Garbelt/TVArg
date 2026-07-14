@@ -325,10 +325,10 @@ body.android-app #backBtn {
 .selector-opcion{
 
     width:100%;
-    margin:8px 0;
-    padding:14px;
+    margin:5px 0;
+    padding:8px 14px;
 
-    font-size:18px;
+    font-size:16px;
 
     background:#0066cc;
     color:white;
@@ -339,6 +339,10 @@ body.android-app #backBtn {
     cursor:pointer;
 
     transition:.2s;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
 .selector-opcion:hover{
@@ -432,8 +436,8 @@ body.android-app #backBtn {
         background:#111;
         border:1px solid #333;
         border-radius:14px;
-        min-width:320px;
-        max-width:420px;
+        min-width:420px;
+        max-width:520px;
         padding:28px;
         text-align:center;
     ">
@@ -865,7 +869,7 @@ function mostrarSelectorFuentes(item) {
         grupos[tipo].forEach((fuente, indice) => {
             const boton = document.createElement("button");
             boton.className = "selector-opcion";
-            boton.textContent = "Fuente " + (indice + 1);
+            boton.innerHTML = `<span>Fuente ${indice + 1}</span><span></span>`;
             boton.onclick = () => {
                 selector.style.display = "none";
                 // Ocultar el menú inmediatamente
