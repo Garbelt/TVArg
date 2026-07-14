@@ -443,12 +443,21 @@ body.android-app #backBtn {
     ">
 
         <div style="
-            font-size:28px;
-            font-weight:bold;
-            margin-bottom:40px;
+            font-size:18px;
+            font-weight:600;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            color:#ddd;
+            margin-bottom:12px;
         ">
-            Elegir fuente
+            FUENTES DISPONIBLES
         </div>
+
+        <div style="
+            height:1px;
+            background:#333;
+            margin-bottom:20px;
+        "></div>
 
         <div id="selectorOpciones"></div>
 
@@ -845,8 +854,8 @@ function mostrarSelectorFuentes(item) {
     Object.keys(grupos).forEach(tipo => {
         // ---------- TÍTULO ----------
         const titulo = document.createElement("div");
-        titulo.style.marginTop = "20px";
-        titulo.style.marginBottom = "8px";
+        titulo.style.marginTop = "12px";
+        titulo.style.marginBottom = "4px";
         titulo.style.fontSize = "20px";
         titulo.style.fontWeight = "bold";
         titulo.style.textAlign = "left";
