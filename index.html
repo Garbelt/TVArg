@@ -512,7 +512,9 @@ const canales = [
     { nombre: "9 Litoral",
       fuentes: [ { tipo: "hls",url: "https://stream.arcast.live/canal9litoral/ngrp:canal9litoral_all/playlist.m3u8" }]},
     { nombre:"Canal 26",
-      fuentes: [ { tipo:"hls", url: "https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8" }]}
+      fuentes: [
+     { tipo:"hls", url: "https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8" }, 
+     { tipo:"hls", url: "http://181.233.180.4:8000/play/a01r/index.m3u8u?hls" }]}
     ];
 
 
@@ -548,10 +550,17 @@ const menus = {
     documentales: {
         titulo: "🌎 DOCUMENTALES",
         items: [
+            { nombre:"Encuentro",
+              fuentes: [
+            { tipo:"hls", url: "http://181.233.180.4:8000/play/a01m/index.m3u8u?hls", reproductor:"vlc" },
+            { tipo:"hls", url: "http://181.233.180.4:8000/play/a01m/index.m3u8u?hls" }]},
             { nombre:"Canal (á)",
               fuentes: [ { tipo:"hls", url: "http://181.233.180.4:8000/play/a09j/index.m3u8u?hls", reproductor:"vlc" }]},
             { nombre:"Film & Arts",
-              fuentes: [ { tipo:"hls", url: "http://181.233.180.4:8000/play/a030/index.m3u8u?hls", reproductor:"vlc" }]},
+              fuentes: [
+            { tipo:"hls", url: "http://181.119.215.61:8000/play/a0gs/index.m3u8?hls", reproductor:"vlc" },
+            { tipo:"hls", url: "http://181.119.215.61:8000/play/a0gs/index.m3u8?hls" },
+            { tipo:"hls", url: "http://181.233.180.4:8000/play/a030/index.m3u8u?hls", reproductor:"vlc" }]},
             { nombre:"A&E",
               fuentes: [
               { tipo:"hls", url: "http://181.224.200.5:2277/play/a01e/index.m3u8", reproductor:"vlc" },
@@ -581,8 +590,6 @@ const menus = {
     kids: {
         titulo: "👦 KIDS",
         items: [
-             { nombre:"Paka Paka",
-              fuentes: [ { tipo:"hls", url: "http://181.233.180.4:8000/play/a01n/index.m3u8u?hls", reproductor: "vlc" }]},           
             { nombre:"Disney Jr",
               fuentes: [ { tipo:"hls", url: "http://181.224.200.5:2277/play/a0dm/index.m3u8", reproductor: "vlc" }]},
             { nombre:"Disney Channel",
