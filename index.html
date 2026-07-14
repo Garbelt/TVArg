@@ -868,6 +868,12 @@ function mostrarSelectorFuentes(item) {
             boton.textContent = "Fuente " + (indice + 1);
             boton.onclick = () => {
                 selector.style.display = "none";
+                // Ocultar el menú inmediatamente
+                if (ubicacion === "principal") {
+                    menu.style.display = "none";
+                } else {
+                    document.getElementById("menuSecundario").style.display = "none";
+                }
                 switch (tipo) {
                     case "hls":
                         reproducirHls({
@@ -878,6 +884,7 @@ function mostrarSelectorFuentes(item) {
                     case "youtube":
                         reproducirYoutube(fuente.url);
                         break;
+
                     case "web":
                         abrirWeb(fuente.url);
                         break;
