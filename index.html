@@ -472,10 +472,15 @@ const canales = [
     { nombre:"América TV",
        fuentes: [
       { tipo:"hls", url: "https://prepublish.f.qaotic.net/a07/americahls-100056/playlist_720p.m3u8" },
-      { tipo:"hls", url: "http://181.233.180.4:8000/play/a055/index.m3u8u?hls" }]},
+      { tipo:"hls", url: "http://181.233.180.4:8000/play/a055/index.m3u8u?hls" },
+      { tipo:"hls", url: "http://181.233.180.4:8000/play/a055/index.m3u8u?hls, reproductor:"vlc" }]},
      
     { nombre:"TV Pública",
-      fuentes: [ { tipo:"youtube", url: "https://www.youtube.com/embed/L0_uGuMo9Yw?autoplay=1" }]},
+       fuentes: [
+      { tipo:"hls", url: "http://181.233.180.4:8000/play/a0dg/index.m3u8u?hls },
+      { tipo:"hls", url: "http://181.233.180.4:8000/play/a0dg/index.m3u8u?hls, reproductor:"vlc"  },
+      { tipo:"youtube", url: "https://www.youtube.com/embed/L0_uGuMo9Yw?autoplay=1" }]},
+
 
     { nombre:"El Nueve",
       fuentes: [ { tipo:"youtube", url: "https://www.youtube.com/embed/C1DhpJ07ZuE?autoplay=1" }]},
@@ -543,8 +548,14 @@ const menus = {
     documentales: {
         titulo: "🌎 DOCUMENTALES",
         items: [
+            { nombre:"Canal (á)",
+              fuentes: [ { tipo:"hls", url: "http://181.233.180.4:8000/play/a09j/index.m3u8u?hls", reproductor:"vlc" }]},
+            { nombre:"Film & Arts",
+              fuentes: [ { tipo:"hls", url: "http://181.233.180.4:8000/play/a030/index.m3u8u?hls", reproductor:"vlc" }]},
             { nombre:"A&E",
-              fuentes: [ { tipo:"hls", url: "http://181.224.200.5:2277/play/a01e/index.m3u8", reproductor:"vlc" }]},
+              fuentes: [
+              { tipo:"hls", url: "http://181.224.200.5:2277/play/a01e/index.m3u8", reproductor:"vlc" },
+              { tipo:"hls", url: "http://181.233.180.4:8000/play/a05i/index.m3u8u?hls", reproductor:"vlc" }]},
             { nombre:"Nat Geo",
               fuentes: [ { tipo:"hls", url: "http://181.224.200.5:2277/play/a012/index.m3u8", reproductor:"vlc" }]},
             { nombre:"History",
