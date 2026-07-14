@@ -773,55 +773,69 @@ function abrirElemento(item) {
     mostrarSelectorFuentes(item);
 }
 
-function mostrarSelectorFuentes(item){
-    const selector=document.getElementById("selectorFuente");
-    const opciones=document.getElementById("selectorOpciones");
-    opciones.innerHTML="";
-    const tipos=[...new Set(item.fuentes.map(f=>f.tipo))];
-    tipos.forEach(tipo=>{
-        const boton=document.createElement("button");
-        boton.className="selector-opcion";
-        switch(tipo){
+function mostrarSelectorFuentes(item) {
+    const selector = document.getElementById("selectorFuente");
+    const opciones = document.getElementById("selectorOpciones");
+    opciones.innerHTML = "";
+    // Agrupar por tipo
+    const grupos = {};
+    item.fuentes.forEach(fuente => {
+        if (!grupos[fuente.tipo]) {
+            grupos[fuente.tipo] = [];
+        }
+        grupos[fuente.tipo].push(fuente);
+    });
+    // Dibujar cada grupo
+    Object.keys(grupos).forEach(tipo => {
+        // ---------- TÍTULO ----------
+        const titulo = document.createElement("div");
+        titulo.style.marginTop = "20px";
+        titulo.style.marginBottom = "8px";
+        titulo.style.fontSize = "20px";
+        titulo.style.fontWeight = "bold";
+        titulo.style.textAlign = "left";
+        titulo.style.color = "#8fc8ff";
+        switch (tipo) {
             case "hls":
-                boton.textContent="📺 HLS";
+                titulo.textContent = "📺 HLS";
                 break;
             case "youtube":
-                boton.textContent="▶ YTB";
+                titulo.textContent = "▶ YOUTUBE";
                 break;
             case "web":
-                boton.textContent="🌐 WEB";
+                titulo.textContent = "🌐 WEB";
                 break;
             default:
-                boton.textContent=tipo;
+                titulo.textContent = tipo.toUpperCase();
         }
-        boton.onclick=()=>{
-            selector.style.display="none";
-            switch(tipo){
-                case "hls":
-                    reproducirHls({
-                        ...item,
-                        fuentes:item.fuentes.filter(f=>f.tipo==="hls")
-                    });
-                    break;
-
-                case "youtube":
-                    reproducirYoutube(
-                        item.fuentes.find(f=>f.tipo==="youtube").url
-                    );
-                    break;
-
-                case "web":
-                    abrirWeb(
-                        item.fuentes.find(f=>f.tipo==="web").url
-                    );
-                    break;
-            }
-        };
-        opciones.appendChild(boton);
+        opciones.appendChild(titulo);
+        // ---------- FUENTES ----------
+        grupos[tipo].forEach((fuente, indice) => {
+            const boton = document.createElement("button");
+            boton.className = "selector-opcion";
+            boton.textContent = "Fuente " + (indice + 1);
+            boton.onclick = () => {
+                selector.style.display = "none";
+                switch (tipo) {
+                    case "hls":
+                        reproducirHls({
+                            ...item,
+                            fuentes: [fuente]
+                        });
+                        break;
+                    case "youtube":
+                        reproducirYoutube(fuente.url);
+                        break;
+                    case "web":
+                        abrirWeb(fuente.url);
+                        break;
+                }
+            };
+            opciones.appendChild(boton);
+        });
     });
-    selector.style.display="flex";
+    selector.style.display = "flex";
 }
-
 
 function reproducirRadio(url, banda, nombre, frecuencia) {
     cerrarTodoMedia(); // limpia video/youtube/web
