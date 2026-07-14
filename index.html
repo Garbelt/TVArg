@@ -355,8 +355,7 @@ body.android-app #backBtn {
 
 <!-- SPLASH -->
 <div id="inicioTVArg">
-    <button id="enterSmartBtn">▶ Ingresar a TVArg<br><span>Modo Inteligente</span></button>
-    <button id="enterManualBtn">▶ Ingresar a TVArg<br><span>Modo Manual</span></button>
+    <button id="enterBtn">▶ Ingresar a TVArg</button>
 </div>
 
 <!-- MENU -->
@@ -601,14 +600,11 @@ let inactivityTimer;
 let radio = new Audio();
 let ubicacion = "principal";
 let bloqueandoBack = false;
-let modoReproduccion = "manual";
 
 const menu = document.getElementById("menu");
 const video = document.getElementById("video");
 const mensaje = document.getElementById("mensaje");
 const splash = document.getElementById("inicioTVArg");
-const enterSmartBtn = document.getElementById("enterSmartBtn");
-const enterManualBtn = document.getElementById("enterManualBtn");
 const installBtn = document.getElementById("installBtn");
 const backBtn = document.getElementById("backBtn");
 const player = document.getElementById("player");
@@ -620,14 +616,8 @@ if (window.AndroidTVArg) {
 
 /* ===== SPLASH ===== */
 
-enterSmartBtn.onclick = () => {
-    modoReproduccion = "inteligente";
-    splash.style.display = "none";
-    menu.style.display = "flex";
-    estado = "menu";
-    ubicacion = "principal";
-};
-enterManualBtn.onclick = () => {
+const enterBtn = document.getElementById("enterBtn");
+enterBtn.onclick = () => {
     modoReproduccion = "manual";
     splash.style.display = "none";
     menu.style.display = "flex";
@@ -637,7 +627,6 @@ enterManualBtn.onclick = () => {
 
 if (window.matchMedia('(display-mode: standalone)').matches ||
     window.navigator.standalone === true) {
-    modoReproduccion = "manual";
     splash.style.display = "none";
     menu.style.display = "flex";
     estado = "menu";
