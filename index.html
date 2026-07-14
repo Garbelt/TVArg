@@ -680,6 +680,7 @@ let itemSelectorActual = null;
 let origenReproduccion = null;
 let origenNavegacion = "principal";
 let submenuActual = null;
+let canalAnterior = null;
 
 
 const menu = document.getElementById("menu");
@@ -800,6 +801,7 @@ function abrirWeb(url) {
 
 function abrirElemento(item) {
     origenReproduccion = ubicacion;
+    canalAnterior = item;
 
 console.log(
     "ABRIENDO:",
@@ -1287,6 +1289,15 @@ function cerrarTodo() {
         origenReproduccion
     );
 
+    if (
+        canalAnterior &&
+        canalAnterior.fuentes &&
+        canalAnterior.fuentes.length > 1
+    ) {
+        setTimeout(() => {
+            mostrarSelectorFuentes(canalAnterior);
+        }, 300);
+    }
 
     if (origenReproduccion === "principal") {
 
