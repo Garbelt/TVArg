@@ -676,7 +676,7 @@ let inactivityTimer;
 let radio = new Audio();
 let ubicacion = "principal";
 let bloqueandoBack = false;
-let volverAlSelector = null;
+let itemSelectorActual = null;
 
 const menu = document.getElementById("menu");
 const video = document.getElementById("video");
@@ -847,7 +847,7 @@ function abrirElemento(item) {
 }
 
 function mostrarSelectorFuentes(item) {
-    volverAlSelector = item;
+    itemSelectorActual = item;
 
     const selector = document.getElementById("selectorFuente");
     const opciones = document.getElementById("selectorOpciones");
@@ -888,18 +888,19 @@ function mostrarSelectorFuentes(item) {
         grupos[tipo].forEach((fuente, indice) => {
             const boton = document.createElement("button");
             boton.className = "selector-opcion";
+
             const reproductor =
                 fuente.reproductor === "vlc"
                     ? "VLC"
                     : "EXO";
+
             boton.innerHTML = `
                 <span>Opción ${indice + 1}</span>
                 <span>${reproductor}</span>
             `;
+
             boton.onclick = () => {
                 selector.style.display = "none";
-                // Mantener una referencia estable del canal
-                const canalSeleccionado = volverAlSelector;
                 // Ocultar el menú inmediatamente
                 if (ubicacion === "principal") {
                     menu.style.display = "none";
@@ -909,13 +910,14 @@ function mostrarSelectorFuentes(item) {
                 switch (tipo) {
                     case "hls":
                         reproducirHls({
-                            ...canalSeleccionado,
+                            ...item,
                             fuentes: [fuente]
                         });
                         break;
                     case "youtube":
                         reproducirYoutube(fuente.url);
                         break;
+
                     case "web":
                         abrirWeb(fuente.url);
                         break;
@@ -1152,8 +1154,8 @@ dibujarMenu("principal");
 // =========================
 
 document.getElementById("selectorCancelar").onclick = () => {
-    volverAlSelector = null;
     document.getElementById("selectorFuente").style.display = "none";
+
 };
 
 /* =========================
@@ -1219,11 +1221,6 @@ function cerrarTodo() {
     }
 
     // 8. restaurar UI según ubicacion
-    if (volverAlSelector) {
-        mostrarSelectorFuentes(volverAlSelector);
-        return;
-    }
-
     if (ubicacion === "principal") {
         menu.style.display = "flex";
         document.getElementById("menuSecundario").style.display = "none";
