@@ -898,30 +898,12 @@ function mostrarSelectorFuentes(item) {
                 <span>Opción ${indice + 1}</span>
                 <span>${reproductor}</span>
             `;
-
             boton.onclick = () => {
                 selector.style.display = "none";
-                // Ocultar el menú inmediatamente
-                if (ubicacion === "principal") {
-                    menu.style.display = "none";
-                } else {
-                    document.getElementById("menuSecundario").style.display = "none";
-                }
-                switch (tipo) {
-                    case "hls":
-                        reproducirHls({
-                            ...item,
-                            fuentes: [fuente]
-                        });
-                        break;
-                    case "youtube":
-                        reproducirYoutube(fuente.url);
-                        break;
-
-                    case "web":
-                        abrirWeb(fuente.url);
-                        break;
-                }
+                reproducirFuenteSeleccionada(
+                    itemSelectorActual,
+                    fuente
+                );
             };
             opciones.appendChild(boton);
         });
