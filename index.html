@@ -730,12 +730,18 @@ function abrirWeb(url) {
 
 function abrirElemento(item) {
     // ==========================
-    // RADIOS (siguen igual)
+    // RADIOS
     // ==========================
     if (item.tipo === "radio") {
-        reproducirRadio(item.url, item.banda, item.nombre, item.frecuencia);
+        reproducirRadio(
+            item.url,
+            item.banda,
+            item.nombre,
+            item.frecuencia
+        );
         return;
     }
+
     // ==========================
     // CANAL SIN FUENTES
     // ==========================
@@ -743,14 +749,11 @@ function abrirElemento(item) {
         console.warn("Canal sin fuentes:", item);
         return;
     }
+
     // ==========================
-    // TIPOS DISPONIBLES
+    // UNA SOLA FUENTE
     // ==========================
-    const tipos = [...new Set(item.fuentes.map(f => f.tipo))];
-    // ==========================
-    // UN SOLO TIPO
-    // ==========================
-    if (tipos.length === 1) {
+    if (item.fuentes.length === 1) {
         const fuente = item.fuentes[0];
         switch (fuente.tipo) {
             case "hls":
@@ -763,12 +766,16 @@ function abrirElemento(item) {
                 abrirWeb(fuente.url);
                 return;
             default:
-                console.warn("Tipo desconocido:", fuente.tipo);
+                console.warn(
+                    "Tipo desconocido:",
+                    fuente.tipo
+                );
                 return;
         }
     }
+
     // ==========================
-    // VARIOS TIPOS
+    // VARIAS FUENTES
     // ==========================
     mostrarSelectorFuentes(item);
 }
