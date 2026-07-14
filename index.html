@@ -885,7 +885,17 @@ function mostrarSelectorFuentes(item) {
         grupos[tipo].forEach((fuente, indice) => {
             const boton = document.createElement("button");
             boton.className = "selector-opcion";
-            boton.innerHTML = `<span>Fuente ${indice + 1}</span><span></span>`;
+
+            const reproductor =
+                fuente.reproductor === "vlc"
+                    ? "VLC"
+                    : "EXO";
+
+            boton.innerHTML = `
+                <span>Opción ${indice + 1}</span>
+                <span>${reproductor}</span>
+            `;
+
             boton.onclick = () => {
                 selector.style.display = "none";
                 // Ocultar el menú inmediatamente
