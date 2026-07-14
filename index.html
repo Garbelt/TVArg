@@ -681,6 +681,7 @@ let origenReproduccion = null;
 let origenNavegacion = "principal";
 let submenuActual = null;
 let canalAnterior = null;
+let selectorAbierto = false;
 
 
 const menu = document.getElementById("menu");
@@ -946,6 +947,8 @@ function mostrarSelectorFuentes(item) {
             `;
             boton.onclick = () => {
                 selector.style.display = "none";
+                selectorAbierto = false;
+
                 reproducirFuenteSeleccionada(
                     itemSelectorActual,
                     fuente
@@ -955,6 +958,7 @@ function mostrarSelectorFuentes(item) {
         });
     });
     selector.style.display = "flex";
+    selectorAbierto = true;
 }
 
 function reproducirRadio(url, banda, nombre, frecuencia) {
@@ -1184,7 +1188,7 @@ dibujarMenu("principal");
 
 document.getElementById("selectorCancelar").onclick = () => {
     document.getElementById("selectorFuente").style.display = "none";
-
+    selectorAbierto = false;
 };
 
 /* =========================
@@ -1341,7 +1345,13 @@ function cerrarTodo() {
    BACK BUTTON (UI)
 ========================= */
 
-backBtn.onclick = () => {
+window.addEventListener("tvback", () => {
+
+    if (selectorAbierto) {
+        document.getElementById("selectorFuente").style.display = "none";
+        selectorAbierto = false;
+        return;
+    }
 
     // 🔴 NUEVO: SALIDA DE RADIO
     if (estado === "radio") {
@@ -1454,6 +1464,12 @@ document.addEventListener("keydown", e => {
 ========================= */
 
 window.addEventListener("tvback", () => {
+
+    if (selectorAbierto) {
+        document.getElementById("selectorFuente").style.display = "none";
+        selectorAbierto = false;
+        return;
+    }
 
     // SALIDA DE RADIO
     if (estado === "radio") {
