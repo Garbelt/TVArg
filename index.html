@@ -677,6 +677,7 @@ let radio = new Audio();
 let ubicacion = "principal";
 let bloqueandoBack = false;
 let itemSelectorActual = null;
+let origenReproduccion = null;
 
 const menu = document.getElementById("menu");
 const video = document.getElementById("video");
@@ -795,6 +796,8 @@ function abrirWeb(url) {
 }
 
 function abrirElemento(item) {
+    origenReproduccion = ubicacion;
+    
     // ==========================
     // RADIOS
     // ==========================
