@@ -846,6 +846,35 @@ function abrirElemento(item) {
     mostrarSelectorFuentes(item);
 }
 
+function reproducirFuenteSeleccionada(item, fuente) {
+    console.log(
+        "Fuente seleccionada:",
+        item.nombre,
+        fuente.tipo,
+        fuente.url
+    );
+    switch (fuente.tipo) {
+        case "hls":
+          reproducirHls({
+                ...item,
+                fuentes: [fuente]
+            });
+            break;
+        case "youtube":
+            reproducirYoutube(fuente.url);
+            break;
+        case "web":
+            abrirWeb(fuente.url);
+            break;
+        default:
+            console.warn(
+                "Tipo de fuente desconocido:",
+                fuente.tipo
+            );
+            break;
+    }
+}
+
 function mostrarSelectorFuentes(item) {
     itemSelectorActual = item;
 
