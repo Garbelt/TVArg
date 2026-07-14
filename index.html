@@ -678,6 +678,9 @@ let ubicacion = "principal";
 let bloqueandoBack = false;
 let itemSelectorActual = null;
 let origenReproduccion = null;
+let origenNavegacion = "principal";
+let submenuActual = null;
+
 
 const menu = document.getElementById("menu");
 const video = document.getElementById("video");
@@ -766,10 +769,10 @@ function salirDelPlayer() {
     clearTimeout(inactivityTimer);
     }
 
-function mostrarMenuSecundario() {
+function mostrarMenuSecundario(nombreMenu) {
+    submenuActual = nombreMenu;
     if (window.AndroidTVArg) {
-        AndroidTVArg.setMenuPrincipal(false);
-    }
+        AndroidTVArg.setMenuPrincipal(false); }
     menu.style.display = "none";
     const menuSecundario = document.getElementById("menuSecundario");
     const backMenuBtn = document.getElementById("backMenuBtn");
@@ -797,6 +800,15 @@ function abrirWeb(url) {
 
 function abrirElemento(item) {
     origenReproduccion = ubicacion;
+
+console.log(
+    "ABRIENDO:",
+    item.nombre,
+    "ubicacion:",
+    ubicacion,
+    "origen:",
+    origenReproduccion
+);
     
     // ==========================
     // RADIOS
@@ -1120,7 +1132,7 @@ function dibujarMenu(nombreMenu) {
             div.textContent = item.nombre;
 
             div.onclick = () => {
-                menuOrigen = "menu";
+                origenNavegacion = "principal";
                 abrirElemento(item);
             };
 
@@ -1132,10 +1144,11 @@ function dibujarMenu(nombreMenu) {
                 const div = document.createElement("div");
                 div.className = "canal canal-menu";
                 div.textContent = boton.nombre;
-                div.onclick = () => {
-                    dibujarMenu(boton.destino);
-                    mostrarMenuSecundario(boton.destino);
-                };
+        div.onclick = () => {
+            submenuActual = boton.destino;
+            dibujarMenu(boton.destino);
+            mostrarMenuSecundario(boton.destino);
+        };
                 listaBotones.appendChild(div);
             });
         }
@@ -1151,7 +1164,7 @@ function dibujarMenu(nombreMenu) {
                 div.textContent = item.nombre;
 
                 div.onclick = () => {
-                    menuOrigen = "otros";
+                    origenNavegacion = "secundario";
                     abrirElemento(item);
                 };
 
@@ -1191,60 +1204,123 @@ function cerrarTodoMedia() {
 }
 
 function cerrarTodo() {
+
+    console.log(
+        "CERRANDO TODO",
+        "estado=",
+        estado,
+        "ubicacion=",
+        ubicacion,
+        "origenReproduccion=",
+        origenReproduccion
+    );
+
     bloqueandoBack = true;
-    // 1. destruir HLS SIEMPRE
+
+
+    // ==========================
+    // 1. DESTRUIR HLS
+    // ==========================
+
     if (hls) {
         hls.destroy();
         hls = null;
     }
 
-    // 2. limpiar video nativo SIEMPRE
+
+    // ==========================
+    // 2. LIMPIAR VIDEO
+    // ==========================
+
     video.pause();
     video.removeAttribute("src");
     video.srcObject = null;
     video.load();
 
-    // 3. FORZAR STOP YOUTUBE
+
+    // ==========================
+    // 3. CERRAR YOUTUBE
+    // ==========================
+
     const ytFrame = document.getElementById("ytFrame");
     const ytOverlay = document.getElementById("ytOverlay");
 
     ytOverlay.style.display = "none";
     ytFrame.src = "about:blank";
 
-    // 4. FORZAR STOP WEB
+
+    // ==========================
+    // 4. CERRAR WEB
+    // ==========================
+
     const webFrame = document.getElementById("webFrame");
     const webOverlay = document.getElementById("webOverlay");
 
     webOverlay.style.display = "none";
     webFrame.src = "about:blank";
 
-    // 5. limpiar UI player
+
+    // ==========================
+    // 5. OCULTAR PLAYER
+    // ==========================
+
     player.style.display = "none";
 
-    // 6. back UI
+
+    // ==========================
+    // 6. OCULTAR BACK
+    // ==========================
+
     backBtn.classList.remove("show");
     backBtn.style.opacity = "0";
 
     clearTimeout(inactivityTimer);
 
-    // 7. CRÍTICO: SOLO estado de reproducción, NO navegación
-    if (ubicacion === "principal") {
-        estado = "menu";
-    } else {
-        estado = "otros";
-    }
 
-    // 8. restaurar UI según ubicacion
-    if (ubicacion === "principal") {
+
+    // ==========================
+    // 7. RESTAURAR NAVEGACIÓN
+    // ==========================
+
+    console.log(
+        "VOLVIENDO A:",
+        origenReproduccion
+    );
+
+
+    if (origenReproduccion === "principal") {
+
         menu.style.display = "flex";
         document.getElementById("menuSecundario").style.display = "none";
+
+        estado = "menu";
+        ubicacion = "principal";
         menuActual = "menu";
+
+
+        if (window.AndroidTVArg) {
+            AndroidTVArg.setMenuPrincipal(true);
+        }
+
     } 
     else {
+
         menu.style.display = "none";
         document.getElementById("menuSecundario").style.display = "flex";
+
+        estado = "otros";
+        ubicacion = "secundario";
         menuActual = "otros";
+
+
+        if (window.AndroidTVArg) {
+            AndroidTVArg.setMenuPrincipal(false);
+        }
+
     }
+
+
+
     setTimeout(() => {
         bloqueandoBack = false;
     }, 500);
@@ -1309,11 +1385,12 @@ document.getElementById("backMenuBtn").onclick = () => {
     document.getElementById("menuSecundario").style.display = "none";
     menu.style.display = "flex";
     menuActual = "menu";
+    submenuActual = null;
+    estado = "menu";
+    ubicacion = "principal";
     if (window.AndroidTVArg) {
         AndroidTVArg.setMenuPrincipal(true);
     }
-    estado = "menu";
-    ubicacion = "principal";
 };
 
 /* ===== BACK INTELIGENTE TV ===== */
