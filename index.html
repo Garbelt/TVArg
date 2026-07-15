@@ -1294,66 +1294,56 @@ function cerrarTodo() {
 
 
 
-// ==========================
-// 7. RESTAURAR NAVEGACIÓN
-// ==========================
+    // ==========================
+    // 7. RESTAURAR NAVEGACIÓN
+    // ==========================
 
-console.log(
-    "VOLVIENDO A:",
-    origenReproduccion
-);
+    console.log(
+        "VOLVIENDO A:",
+        origenReproduccion
+    );
 
-
-let tieneSelector = 
-    canalAnterior &&
-    canalAnterior.fuentes &&
-    canalAnterior.fuentes.length > 1;
-
-
-// Primero definimos el estado
-if (origenReproduccion === "principal") {
-
-    estado = "menu";
-    ubicacion = "principal";
-    menuActual = "menu";
-
-    menu.style.display = tieneSelector ? "none" : "flex";
-    document.getElementById("menuSecundario").style.display = "none";
-
-
-    if (window.AndroidTVArg) {
-        AndroidTVArg.setMenuPrincipal(true);
+    if (
+        canalAnterior &&
+        canalAnterior.fuentes &&
+        canalAnterior.fuentes.length > 1
+    ) {
+        setTimeout(() => {
+            mostrarSelectorFuentes(canalAnterior);
+        }, 300);
     }
 
-} 
-else {
+    if (origenReproduccion === "principal") {
 
-    estado = "otros";
-    ubicacion = "secundario";
-    menuActual = "otros";
+        menu.style.display = "flex";
+        document.getElementById("menuSecundario").style.display = "none";
 
-    menu.style.display = "none";
-    document.getElementById("menuSecundario").style.display =
-        tieneSelector ? "none" : "flex";
+        estado = "menu";
+        ubicacion = "principal";
+        menuActual = "menu";
 
 
-    if (window.AndroidTVArg) {
-        AndroidTVArg.setMenuPrincipal(false);
+        if (window.AndroidTVArg) {
+            AndroidTVArg.setMenuPrincipal(true);
+        }
+
+    } 
+    else {
+
+        menu.style.display = "none";
+        document.getElementById("menuSecundario").style.display = "flex";
+
+        estado = "otros";
+        ubicacion = "secundario";
+        menuActual = "otros";
+
+
+        if (window.AndroidTVArg) {
+            AndroidTVArg.setMenuPrincipal(false);
+        }
+
     }
 
-}
-
-
-// Abrir selector sin mostrar menú intermedio
-if (tieneSelector) {
-
-    setTimeout(() => {
-
-        mostrarSelectorFuentes(canalAnterior);
-
-    }, 50);
-
-}
 
 
     setTimeout(() => {
