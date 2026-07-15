@@ -935,16 +935,17 @@ function mostrarSelectorFuentes(item) {
         grupos[tipo].forEach((fuente, indice) => {
             const boton = document.createElement("button");
             boton.className = "selector-opcion";
-
-            const reproductor =
-                fuente.reproductor === "vlc"
-                    ? "VLC"
-                    : "EXO";
-
+            let reproductor = "";
+            if (fuente.tipo === "hls") {
+                reproductor =
+                    fuente.reproductor === "vlc"
+                        ? "VLC"
+                        : "EXO";
+            }
             boton.innerHTML = `
                 <span>Opción ${indice + 1}</span>
-                <span>${reproductor}</span>
-            `;
+                ${reproductor ? `<span>${reproductor}</span>` : ""}
+`            ;
 
 boton.onclick = () => {
     selector.style.display = "none";
