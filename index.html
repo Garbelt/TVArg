@@ -910,30 +910,35 @@ function mostrarSelectorFuentes(item) {
         }
         grupos[fuente.tipo].push(fuente);
     });
-    // Dibujar cada grupo
-    Object.keys(grupos).forEach(tipo => {
-        // ---------- TÍTULO ----------
-        const titulo = document.createElement("div");
-        titulo.style.marginTop = "12px";
-        titulo.style.marginBottom = "4px";
-        titulo.style.fontSize = "20px";
-        titulo.style.fontWeight = "bold";
-        titulo.style.textAlign = "left";
-        titulo.style.color = "#8fc8ff";
-        switch (tipo) {
-            case "hls":
-                titulo.textContent = "📺 HLS";
-                break;
-            case "youtube":
-                titulo.textContent = "▶ YOUTUBE";
-                break;
-            case "web":
-                titulo.textContent = "🌐 WEB";
-                break;
-            default:
-                titulo.textContent = tipo.toUpperCase();
-        }
-        opciones.appendChild(titulo);
+// Orden fijo de visualización
+const ordenTipos = ["hls", "youtube", "web"];
+
+// Dibujar cada grupo respetando orden
+ordenTipos.forEach(tipo => {
+    if (!grupos[tipo]) return;
+    // ---------- TÍTULO ----------
+    const titulo = document.createElement("div");
+    titulo.style.marginTop = "12px";
+    titulo.style.marginBottom = "4px";
+    titulo.style.fontSize = "20px";
+    titulo.style.fontWeight = "bold";
+    titulo.style.textAlign = "left";
+    titulo.style.color = "#8fc8ff";
+    switch (tipo) {
+        case "hls":
+            titulo.textContent = "📺 HLS";
+            break;
+        case "youtube":
+            titulo.textContent = "▶ YOUTUBE";
+            break;
+        case "web":
+            titulo.textContent = "🌐 WEB";
+            break;
+        default:
+            titulo.textContent = tipo.toUpperCase();
+    }
+
+    opciones.appendChild(titulo);
         // ---------- FUENTES ----------
         grupos[tipo].forEach((fuente, indice) => {
             const boton = document.createElement("button");
