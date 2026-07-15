@@ -1348,64 +1348,6 @@ function cerrarTodo() {
     }, 500);
 }
 
-/* =========================
-   BACK BUTTON (UI)
-========================= */
-
-window.addEventListener("tvback", () => {
-
-    if (selectorAbierto) {
-        document.getElementById("selectorFuente").style.display = "none";
-        selectorAbierto = false;
-        return;
-    }
-
-    // 🔴 NUEVO: SALIDA DE RADIO
-    if (estado === "radio") {
-
-        radio.pause();
-        radio.src = "";
-
-        document.getElementById("radioScreen").style.display = "none";
-        document.getElementById("radioTitle").innerHTML = "";
-
-        // volver al submenú desde donde salió
-        document.getElementById("menuSecundario").style.display = "flex";
-        menu.style.display = "none";
-
-        estado = "otros";
-
-        backBtn.classList.remove("show");
-        backBtn.style.opacity = "0";
-
-        return;
-    }
-
-    // 🔴 EXISTENTE (NO TOCADO)
-    if (estado === "web" || estado === "player") {
-        cerrarTodo();
-        return;
-    }
-
-    if (estado === "otros") {
-        document.getElementById("menuSecundario").style.display = "none";
-        menu.style.display = "flex";
-        estado = "menu";
-        ubicacion = "principal";
-        menuActual = "menu";
-
-        if (window.AndroidTVArg) {
-            AndroidTVArg.setMenuPrincipal(true);
-        }
-        return;
-    }
-
-    if (estado === "menu") {
-        if (window.AndroidTVArg) {
-            AndroidTVArg.closeApp();
-        }
-    }
-};
 
 /* =====      ===== */
 
