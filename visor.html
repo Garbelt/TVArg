@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 <meta charset="UTF-8">
 <title>TVArg - Visor del Evaluador</title>
@@ -50,13 +51,20 @@ th,td{
     font-weight:bold;
 }
 
+.estrellas{
+    font-size:20px;
+    white-space:nowrap;
+}
+
 #resumen{
     margin:15px 0;
     padding:10px;
     background:#333;
 }
 
+
 #backBtn{
+
     position:fixed;
     top:8px;
     right:8px;
@@ -79,143 +87,388 @@ th,td{
     align-items:center;
     justify-content:center;
 
-    transition:.2s;
 }
+
 
 #backBtn:hover{
+
     background:rgba(255,255,255,.15);
     transform:scale(1.1);
+
 }
 
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <h1>Evaluador TVArg</h1>
 
-<button onclick="cargar()">Actualizar</button>
-<button onclick="borrar()">Borrar historial</button>
+
+<button onclick="cargar()">
+Actualizar
+</button>
+
+
+<button onclick="borrar()">
+Borrar historial
+</button>
+
 
 <div id="resumen"></div>
 
+
+
 <table>
+
 
 <thead>
 
 <tr>
+
 <th>#</th>
+
 <th>Canal</th>
+
 <th>Fuente</th>
+
 <th>Tipo</th>
+
 <th>Inicio (ms)</th>
+
 <th>Estable (ms)</th>
+
 <th>1 minuto</th>
+
+<th>Estrellas</th>
+
 <th>Fecha</th>
+
 </tr>
+
 
 </thead>
 
+
+
 <tbody id="tabla"></tbody>
+
+
 
 </table>
 
-<button id="backBtn" title="Volver">↩</button>
+
+
+<button id="backBtn">
+↩
+</button>
+
+
+
 
 <script>
 
+
+function estrellas(valor){
+
+    let salida="";
+
+
+    for(let i=0;i<5;i++){
+
+        salida +=
+            i < valor
+            ? "⭐"
+            : "☆";
+
+    }
+
+
+    return salida;
+
+}
+
+
+
+
 function cargar(){
 
-    let datos;
+
+    let datos=[];
+
+
+    let resumen={};
+
 
     try{
 
-        datos = JSON.parse(
-            localStorage.getItem("tvarg_evaluaciones") || "[]"
+
+        datos =
+        JSON.parse(
+            localStorage.getItem(
+                "tvarg_evaluaciones"
+            ) || "[]"
         );
 
-    }catch(e){
+
+
+        resumen =
+        JSON.parse(
+            localStorage.getItem(
+                "tvarg_resumen_fuentes"
+            ) || "{}"
+        );
+
+
+    }
+    catch(e){
 
         datos=[];
 
+        resumen={};
+
     }
 
-    // Compatibilidad con formato viejo
+
+
     if(!Array.isArray(datos)){
-        datos = Object.values(datos);
+
+        datos =
+        Object.values(datos);
+
     }
 
-    const tabla=document.getElementById("tabla");
+
+
+    const tabla =
+    document.getElementById(
+        "tabla"
+    );
+
+
     tabla.innerHTML="";
 
+
+
     let sumaInicio=0;
+
     let completas=0;
+
+
 
     datos.forEach((d,i)=>{
 
-        sumaInicio += Number(d.tiempoInicio)||0;
+
+        sumaInicio +=
+            Number(d.tiempoInicio)||0;
+
+
 
         if(d.completo)
             completas++;
 
+
+
+        const fuente =
+        resumen[d.fuenteId] || {};
+
+
+
         tabla.innerHTML += `
+
+
 <tr>
-<td>${i+1}</td>
-<td>${d.canal ?? "-"}</td>
-<td>${d.fuenteId ?? "-"}</td>
-<td>${d.tipo ?? "-"}</td>
-<td>${d.tiempoInicio ?? "-"}</td>
-<td>${d.tiempoEstable ?? "-"}</td>
-<td class="${d.completo ? "ok" : "no"}">
-${d.completo ? "SI" : "NO"}
+
+
+<td>
+${i+1}
 </td>
-<td>${
-    d.fecha
-    ? new Date(d.fecha).toLocaleString()
-    : "-"
-}</td>
-</tr>`;
-    });
 
-    const promedio =
-        datos.length
-        ? Math.round(sumaInicio/datos.length)
-        : 0;
 
-    document.getElementById("resumen").innerHTML=`
 
-<b>Evaluaciones:</b> ${datos.length}
+<td>
+${d.canal ?? "-"}
+</td>
 
-&nbsp;&nbsp;&nbsp;
 
-<b>Inicio promedio:</b> ${promedio} ms
 
-&nbsp;&nbsp;&nbsp;
+<td>
+${d.fuenteId ?? "-"}
+</td>
 
-<b>Sesiones completas:</b> ${completas}
+
+
+<td>
+${d.tipo ?? "-"}
+</td>
+
+
+
+<td>
+${d.tiempoInicio ?? "-"}
+</td>
+
+
+
+<td>
+${d.tiempoEstable ?? "-"}
+</td>
+
+
+
+<td class="${d.completo ? "ok":"no"}">
+
+${d.completo ? "SI":"NO"}
+
+</td>
+
+
+
+<td class="estrellas">
+
+${estrellas(
+    fuente.estrellas || 0
+)}
+
+</td>
+
+
+
+<td>
+
+${
+d.fecha
+?
+new Date(
+d.fecha
+).toLocaleString()
+:
+"-"
+}
+
+</td>
+
+
+
+</tr>
+
 
 `;
 
+
+
+    });
+
+
+
+
+
+    const promedio =
+
+        datos.length
+
+        ?
+
+        Math.round(
+            sumaInicio /
+            datos.length
+        )
+
+        :
+
+        0;
+
+
+
+
+    document.getElementById(
+        "resumen"
+    ).innerHTML = `
+
+
+<b>Evaluaciones:</b>
+${datos.length}
+
+
+&nbsp;&nbsp;&nbsp;
+
+
+<b>Inicio promedio:</b>
+${promedio} ms
+
+
+&nbsp;&nbsp;&nbsp;
+
+
+<b>Sesiones completas:</b>
+${completas}
+
+
+
+`;
+
+
+
 }
+
+
+
+
+
 
 function borrar(){
 
-    if(!confirm("¿Borrar historial?"))
+
+    if(
+        !confirm(
+            "¿Borrar historial?"
+        )
+    )
         return;
 
-    localStorage.removeItem("tvarg_evaluaciones");
+
+
+    localStorage.removeItem(
+        "tvarg_evaluaciones"
+    );
+
+
+
+    localStorage.removeItem(
+        "tvarg_resumen_fuentes"
+    );
+
+
 
     cargar();
 
+
 }
+
+
+
+
+
 
 cargar();
 
-document.getElementById("backBtn").onclick = () => {
-    window.location.href = "index.html";
+
+
+
+
+document.getElementById(
+    "backBtn"
+).onclick = ()=>{
+
+
+    window.location.href =
+    "index.html";
+
 };
-
 </script>
-
 </body>
 </html>
