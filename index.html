@@ -929,11 +929,16 @@ function reproducirFuenteSeleccionada(item, fuente) {
         item.nombre + "_" +
         fuente.tipo + "_" +
         item.fuentes.indexOf(fuente);
-    EvaluadorTVArg.iniciar(
-        fuenteId,
-        item.nombre,
-        fuente.tipo
-    );
+
+
+/*
+EvaluadorTVArg.iniciar(
+    fuenteId,
+    item.nombre,
+    fuente.tipo
+);
+*/
+
 
     switch (fuente.tipo) {
         case "hls":
@@ -1114,7 +1119,23 @@ function reproducirYoutube(url) {
 function reproducirHls(canal) {
     estado = "player";
     menu.style.display = "none";
+    document.getElementById("menuSecundario").style.display = "none";
     player.style.display = "flex";
+
+    // ==============================
+    // INICIAR EVALUACIÓN HLS
+    // ==============================
+    const fuente = canal.fuentes[0];
+    const fuenteId =
+        canal.nombre + "_" +
+        fuente.tipo + "_" +
+        canal.fuentes.indexOf(fuente);
+    EvaluadorTVArg.iniciar(
+        fuenteId,
+        canal.nombre,
+        fuente.tipo
+    );
+
     if (hls) {
         hls.destroy();
         hls = null;
