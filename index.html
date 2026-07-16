@@ -1117,127 +1117,200 @@ function reproducirYoutube(url) {
 }
 
 function reproducirHls(canal) {
+
     estado = "player";
+
     menu.style.display = "none";
     document.getElementById("menuSecundario").style.display = "none";
     player.style.display = "flex";
 
-    // ==============================
+
+    // ==================================
+    // LIMPIAR REPRODUCCIÓN ANTERIOR
+    // ==================================
+
+    if (hls) {
+        hls.destroy();
+        hls = null;
+    }
+
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+
+
+    // ==================================
+    // NUEVO SISTEMA DE FUENTES
+    // ==================================
+
+    canalActual = canal;
+
+    if (!canalActual.fuentes) {
+        console.error("Canal sin fuentes");
+        return;
+    }
+
+
+    fuenteActual = 0;
+    intentosFuente = 0;
+
+    let fuente = canalActual.fuentes[fuenteActual];
+
+    let url = fuente.url;
+    let headers = fuente.headers || {};
+
+
+    console.log(
+        "Reproduciendo fuente:",
+        url
+    );
+
+
+    // ==================================
     // INICIAR EVALUACIÓN HLS
-    // ==============================
-    const fuenteEvaluacion = canal.fuentes[0];
+    // ==================================
+
     const fuenteId =
-    canal.nombre + "_" +
-    fuenteEvaluacion.tipo + "_" +
-    canal.fuentes.indexOf(fuenteEvaluacion);
+        canal.nombre + "_" +
+        fuente.tipo + "_" +
+        canal.fuentes.indexOf(fuente);
+
+
     EvaluadorTVArg.iniciar(
         fuenteId,
         canal.nombre,
         fuente.tipo
     );
 
-    if (hls) {
-        hls.destroy();
-        hls = null;
-    }
-    video.pause();
-    video.removeAttribute("src");
-    video.load();
-
-    // ==================================
-    // NUEVO SISTEMA DE FUENTES
-    // ==================================
-    canalActual = canal;
-    if (!canalActual.fuentes) {
-        console.error("Canal sin fuentes");
-        return;
-    }
-    fuenteActual = 0;
-    intentosFuente = 0;
-    let fuente = canalActual.fuentes[fuenteActual];
-
-    let url = fuente.url;
-    let headers = fuente.headers || {};
-    console.log(
-        "Reproduciendo fuente:",
-        url
-    );
 
     // ==================================
     // ANDROID APK
     // ==================================
 
     if (window.AndroidTVArg) {
+
         player.style.display = "none";
+
         if (fuente.reproductor === "vlc") {
+
             AndroidTVArg.playChannelVLC(
                 url
             );
+
         } else {
+
             AndroidTVArg.playChannel(
                 url,
                 headers.Referer || "",
                 headers["User-Agent"] || ""
             );
         }
+
+
         backBtn.classList.add("show");
         mostrarBackBtn();
+
         return;
     }
+
 
     // ==================================
     // WEB HLS NORMAL
     // ==================================
 
-if (Hls.isSupported()) {
-    hls = new Hls();
-    hls.loadSource(url);
-    hls.attachMedia(video);
-    // Cualquiera de estos eventos puede indicar
-    // que la reproducción comenzó correctamente.
-    video.addEventListener(
-        "loadeddata",
-        () => {
-            EvaluadorTVArg.inicioCorrecto();
-        },
-        { once: true }
-    );
-    video.addEventListener(
-        "canplay",
-        () => {
-            EvaluadorTVArg.inicioCorrecto();
-        },
-        { once: true }
-    );
-    video.addEventListener(
-        "playing",
-        () => {
-            EvaluadorTVArg.inicioCorrecto();
-        },
-        { once: true }
-    );
-    hls.on(
-        Hls.Events.MANIFEST_PARSED,
-        () => {
+    if (Hls.isSupported()) {
 
-            video.play();
-            video.style.visibility = "visible";
-            video.style.opacity = "1";
-        }
-    );
-    hls.on(
-        Hls.Events.ERROR,
-        () => {
-            EvaluadorTVArg.cancelar();
-            mostrarMensaje(
-                "Error cargando canal"
-            );
-        }
-    );
-}
+
+        hls = new Hls();
+
+
+        hls.loadSource(url);
+
+        hls.attachMedia(video);
+
+
+
+        // ===============================
+        // REPRODUCCIÓN CORRECTA
+        // ===============================
+
+        const confirmarInicio = () => {
+
+            EvaluadorTVArg.inicioCorrecto();
+
+        };
+
+
+        video.addEventListener(
+            "loadeddata",
+            confirmarInicio,
+            { once:true }
+        );
+
+
+        video.addEventListener(
+            "canplay",
+            confirmarInicio,
+            { once:true }
+        );
+
+
+        video.addEventListener(
+            "playing",
+            confirmarInicio,
+            { once:true }
+        );
+
+
+
+        hls.on(
+            Hls.Events.MANIFEST_PARSED,
+            () => {
+
+                video.play();
+
+                video.style.visibility = "visible";
+                video.style.opacity = "1";
+
+            }
+        );
+
+
+
+        // ===============================
+        // ERRORES HLS
+        // ===============================
+
+        hls.on(
+            Hls.Events.ERROR,
+            (event, data) => {
+
+                console.log(
+                    "HLS ERROR:",
+                    data
+                );
+
+
+                // Solo cancelar si es fatal
+                if (data.fatal) {
+
+                    EvaluadorTVArg.cancelar();
+
+                    mostrarMensaje(
+                        "Error cargando canal"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
 
     backBtn.classList.add("show");
     mostrarBackBtn();
+
 }
 
 function cargarCanal(canal) {
