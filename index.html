@@ -1125,11 +1125,11 @@ function reproducirHls(canal) {
     // ==============================
     // INICIAR EVALUACIÓN HLS
     // ==============================
-    const fuente = canal.fuentes[0];
+    const fuenteEvaluacion = canal.fuentes[0];
     const fuenteId =
-        canal.nombre + "_" +
-        fuente.tipo + "_" +
-        canal.fuentes.indexOf(fuente);
+    canal.nombre + "_" +
+    fuenteEvaluacion.tipo + "_" +
+    canal.fuentes.indexOf(fuenteEvaluacion);
     EvaluadorTVArg.iniciar(
         fuenteId,
         canal.nombre,
