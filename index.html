@@ -916,7 +916,7 @@ console.log(
                 reproducirHls(item);
                 return;
             case "youtube":
-                reproducirYoutube(fuente.url, item);
+                reproducirYoutube(fuente.url, item.nombre);
                 return;
             case "web":
                 abrirWeb(fuente.url);
@@ -1095,13 +1095,13 @@ title.innerHTML = `
     backBtn.classList.add("show");
 }
 
-function reproducirYoutube(url, canal) {
+function reproducirYoutube(url, nombre="YouTube") {
     estado = "player";
  // =============EVALUAR=============
 if (window.EvaluadorTVArg) {
    EvaluadorTVArg.iniciar({
        tipo: "youtube",
-       nombre: canal.nombre,
+       nombre: nombre,
        url: url
    });
 }
