@@ -742,6 +742,9 @@ const menus = {
 
 let hls;
 let estado = "splash";
+let ytPlayer = null;
+let ytReady = false;
+let ytPendiente = null;
 let estadoAnterior = "";
 let menuActual = "menu";
 let menuOrigen = "menu";
@@ -755,6 +758,7 @@ let origenNavegacion = "principal";
 let submenuActual = null;
 let canalAnterior = null;
 let selectorAbierto = false;
+
 
 
 const menu = document.getElementById("menu");
@@ -1096,29 +1100,90 @@ title.innerHTML = `
     backBtn.classList.add("show");
 }
 
+function onYouTubeIframeAPIReady() {
+    ytReady = true;
+    if (ytPendiente) {
+        reproducirYoutube(
+            ytPendiente.url,
+            ytPendiente.nombre
+        );
+        ytPendiente = null;
+    }
+}
+
 function reproducirYoutube(url, nombreCanal) {
     estado = "player";
- // =============EVALUAR=============
-if (window.EvaluadorTVArg) {
-    EvaluadorTVArg.iniciar({
-        tipo: "youtube",
-        nombre: nombreCanal,
-        url: url
-    });
-}
- // ==================================
+    // ============= EVALUADOR INICIO =============
+    if (window.EvaluadorTVArg) {
+        EvaluadorTVArg.iniciar({
+            tipo: "youtube",
+            nombre: nombreCanal,
+            url: url
+        });
+    }
+    // =============================================
     // ocultar menú
     menu.style.display = "none";
-    // YouTube usa su propio overlay
+    // YouTube usa overlay propio
     player.style.display = "none";
-    const iframe = document.getElementById("ytFrame");
     const overlay = document.getElementById("ytOverlay");
-    // limpiar reproducción anterior
-    iframe.src = "about:blank";
+    const iframe = document.getElementById("ytFrame");
+    // Mostrar overlay
     overlay.style.display = "block";
-    setTimeout(() => {
-        iframe.src = url;
-    }, 80);
+    // Obtener ID del video
+    const id = obtenerYoutubeID(url);
+    if (!id) {
+        console.error("No se pudo obtener ID YouTube");
+        if (window.EvaluadorTVArg) {
+            EvaluadorTVArg.cancelar();
+        }
+        return;
+    }
+    // Crear reproductor YouTube API
+    ytPlayer = new YT.Player(
+        "ytFrame",
+        {
+            videoId: id,
+            playerVars: {
+                autoplay: 1,
+                controls: 1,
+                rel: 0
+            },
+            events: {
+                // =============================
+                // YOUTUBE COMENZÓ A REPRODUCIR
+                // =============================
+                onStateChange: function(event) {
+                    if (
+                        event.data === YT.PlayerState.PLAYING
+                    ) {
+                        console.log(
+                            "YouTube inició reproducción"
+                        );
+                        // ============= EVALUADOR OK =============
+                        if (window.EvaluadorTVArg) {
+                            EvaluadorTVArg.inicioCorrecto();
+                        }
+                        // ========================================
+                    }
+                },
+                // =============================
+                // ERROR YOUTUBE
+                // =============================
+                onError: function(error) {
+                    console.error(
+                        "Error YouTube:",
+                        error
+                    );
+                    // ============= EVALUADOR ERROR =============
+                    if (window.EvaluadorTVArg) {
+                        EvaluadorTVArg.cancelar();
+                    }
+                    // ==========================================
+                }
+            }
+        }
+    );
     backBtn.classList.add("show");
     mostrarBackBtn();
 }
