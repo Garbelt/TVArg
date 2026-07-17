@@ -1147,13 +1147,13 @@ function reproducirHls(canal) {
     let fuente = canalActual.fuentes[fuenteActual];
 
  // =============EVALUAR=============
-if (window.EvaluadorTVArg) {
-    EvaluadorTVArg.iniciar({
-        tipo: "hls",
-        nombre: canal.nombre,
-        url: fuente.url
-    });
-}
+    if (window.EvaluadorTVArg) {
+        EvaluadorTVArg.iniciar({
+            tipo: "youtube",
+            nombre: nombreCanal || "YouTube",
+            url: url
+        });
+    }
  // =================================
     let url = fuente.url;
     let headers = fuente.headers || {};
