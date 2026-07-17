@@ -32,6 +32,8 @@ h1{
 
 
 
+/* BOTON VOLVER */
+
 #volver{
 
     position:fixed;
@@ -173,6 +175,7 @@ th,td{
 </button>
 
 
+
 <h1>
 📺 Evaluador TVArg
 </h1>
@@ -190,6 +193,7 @@ Actualizar
 Borrar historial
 </button>
 
+
 </div>
 
 
@@ -200,7 +204,6 @@ Borrar historial
 
 <table>
 
-
 <thead>
 
 <tr>
@@ -209,9 +212,9 @@ Borrar historial
 <th>Canal</th>
 <th>Tipo</th>
 <th>Resultado</th>
-<th>Arranque</th>
-<th>Inicio</th>
-<th>Fin Arranque</th>
+<th>Tiempo arranque</th>
+<th>Inicio evaluación</th>
+<th>Cierre evaluación</th>
 <th>Fecha</th>
 
 </tr>
@@ -243,7 +246,7 @@ let datos=[];
 
 try{
 
-datos=
+datos =
 JSON.parse(
 localStorage.getItem(KEY) || "[]"
 );
@@ -257,7 +260,7 @@ datos=[];
 
 
 
-const tabla=
+const tabla =
 document.getElementById("tabla");
 
 
@@ -265,27 +268,37 @@ tabla.innerHTML="";
 
 
 
-datos.reverse().forEach((e,i)=>{
+[...datos]
+.reverse()
+.forEach((e,i)=>{
 
 
 tabla.innerHTML += `
 
 <tr>
 
-<td>${i+1}</td>
+<td>
+${i+1}
+</td>
 
 
-<td>${e.canal || "-"}</td>
+<td>
+${e.canal || "-"}
+</td>
 
 
-<td>${e.tipo || "-"}</td>
+<td>
+${e.tipo || "-"}
+</td>
 
 
 
 <td class="${
 e.resultado==="INICIA"
-?"ok"
-:"error"
+?
+"ok"
+:
+"error"
 }">
 
 ${e.resultado || "-"}
@@ -297,11 +310,17 @@ ${e.resultado || "-"}
 <td>
 
 ${
-e.tiempoArranqueSegundos!==null
+(e.tiempoArranqueSegundos !== null &&
+ e.tiempoArranqueSegundos !== undefined)
+
 ?
+
 e.tiempoArranqueSegundos+" seg"
+
 :
+
 "-"
+
 }
 
 </td>
@@ -309,25 +328,37 @@ e.tiempoArranqueSegundos+" seg"
 
 
 <td>
+
 ${e.minutoInicio || "-"}
+
 </td>
 
 
 
 <td>
+
 ${e.minutoFin || "-"}
+
 </td>
 
 
 
 <td>
+
 ${
 e.inicio
+
 ?
-new Date(e.inicio).toLocaleString()
+
+new Date(e.inicio)
+.toLocaleString()
+
 :
+
 "-"
+
 }
+
 </td>
 
 
@@ -337,27 +368,47 @@ new Date(e.inicio).toLocaleString()
 `;
 
 
+
 });
 
 
 
-document.getElementById("resumen").innerHTML=
+document.getElementById("resumen").innerHTML = `
 
-`
 
 <b>Total:</b> ${datos.length}
 
 &nbsp;&nbsp;
 
+
 <b>Iniciaron:</b>
-${datos.filter(x=>x.resultado==="INICIA").length}
+
+${
+
+datos.filter(
+x=>x.resultado==="INICIA"
+).length
+
+}
+
 
 &nbsp;&nbsp;
 
+
 <b>No iniciaron:</b>
-${datos.filter(x=>x.resultado==="NO INICIA").length}
+
+${
+
+datos.filter(
+x=>x.resultado==="NO INICIA"
+).length
+
+}
+
 
 `;
+
+
 
 }
 
@@ -367,7 +418,9 @@ function borrar(){
 
 
 if(!confirm("¿Borrar mediciones?"))
+
 return;
+
 
 
 localStorage.removeItem(KEY);
@@ -380,6 +433,7 @@ cargar();
 
 
 
+
 function volver(){
 
 window.location.href="index.html";
@@ -389,6 +443,7 @@ window.location.href="index.html";
 
 
 cargar();
+
 
 
 </script>
