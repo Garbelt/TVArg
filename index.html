@@ -951,7 +951,7 @@ function reproducirFuenteSeleccionada(item, fuente) {
             });
             break;
         case "youtube":
-            reproducirYoutube(fuente.url);
+            reproducirYoutube(fuente.url, item.nombre);
             break;
         case "web":
             abrirWeb(fuente.url);
@@ -1095,13 +1095,13 @@ title.innerHTML = `
     backBtn.classList.add("show");
 }
 
-function reproducirYoutube(url) {
+function reproducirYoutube(url, nombreCanal) {
     estado = "player";
  // =============EVALUAR=============
 if (window.EvaluadorTVArg) {
     EvaluadorTVArg.iniciar({
         tipo: "youtube",
-        nombre: "YouTube",
+        nombre: nombreCanal,
         url: url
     });
 }
