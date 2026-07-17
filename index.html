@@ -1099,11 +1099,11 @@ function reproducirYoutube(url) {
     estado = "player";
  // =============EVALUAR=============
 if (window.EvaluadorTVArg) {
-    EvaluadorTVArg.iniciar({
-        tipo: "youtube",
-        nombre: "YouTube",
-        url: url
-    });
+   EvaluadorTVArg.iniciar({
+       tipo: "youtube",
+       nombre: canal.nombre,
+       url: url
+   });
 }
  // ==================================
     // ocultar menú
@@ -1150,7 +1150,7 @@ function reproducirHls(canal) {
     if (window.EvaluadorTVArg) {
         EvaluadorTVArg.iniciar({
             tipo: "youtube",
-            nombre: nombreCanal || "YouTube",
+            nombre: canal.nombre,
             url: url
         });
     }
