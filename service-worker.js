@@ -1,4 +1,4 @@
-const CACHE_NAME = "tvarg-cache-v1";
+const CACHE_NAME = "tvarg-cache-v2";
 
 // Archivos básicos a cachear (solo UI, NO streams)
 const STATIC_ASSETS = [
