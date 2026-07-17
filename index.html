@@ -916,7 +916,7 @@ console.log(
                 reproducirHls(item);
                 return;
             case "youtube":
-                reproducirYoutube(fuente.url, item.nombre);
+                reproducirYoutube(fuente.url);
                 return;
             case "web":
                 abrirWeb(fuente.url);
@@ -1095,15 +1095,15 @@ title.innerHTML = `
     backBtn.classList.add("show");
 }
 
-function reproducirYoutube(url, nombre="YouTube") {
+function reproducirYoutube(url) {
     estado = "player";
  // =============EVALUAR=============
 if (window.EvaluadorTVArg) {
-   EvaluadorTVArg.iniciar({
-       tipo: "youtube",
-       nombre: nombre,
-       url: url
-   });
+    EvaluadorTVArg.iniciar({
+        tipo: "youtube",
+        nombre: "YouTube",
+        url: url
+    });
 }
  // ==================================
     // ocultar menú
@@ -1147,13 +1147,13 @@ function reproducirHls(canal) {
     let fuente = canalActual.fuentes[fuenteActual];
 
  // =============EVALUAR=============
-    if (window.EvaluadorTVArg) {
-        EvaluadorTVArg.iniciar({
-            tipo: "youtube",
-            nombre: canal.nombre,
-            url: url
-        });
-    }
+if (window.EvaluadorTVArg) {
+    EvaluadorTVArg.iniciar({
+        tipo: "hls",
+        nombre: canal.nombre,
+        url: fuente.url
+    });
+}
  // =================================
     let url = fuente.url;
     let headers = fuente.headers || {};
