@@ -332,34 +332,37 @@ body.android-app #backBtn {
 ========================= */
 
 .selector-opcion{
-
     width:100%;
     margin:5px 0;
     padding:8px 14px;
-
     font-size:16px;
-
     background:#0066cc;
     color:white;
-
     border:none;
     border-radius:8px;
-
     cursor:pointer;
-
     transition:.2s;
-
     display:flex;
     align-items:center;
     justify-content:space-between;
 }
 
 .selector-opcion:hover{
-
     transform:scale(1.02);
-
     background:#0b78ef;
+}
 
+
+.opcionEvaluacion{
+    width:100%;
+    height:45px;
+    margin:6px 0;
+    border:none;
+    border-radius:8px;
+    background:#0066cc;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
 }
 </style>
 </head>
@@ -483,6 +486,63 @@ body.android-app #backBtn {
             ">
             Cancelar
         </button>
+
+    </div>
+
+</div>
+
+<!-- MODAL EVALUACION CANAL -->
+<div id="modalEvaluacion" style="
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    z-index:20000;
+    justify-content:center;
+    align-items:center;
+">
+
+    <div style="
+        background:#111;
+        padding:30px;
+        border-radius:15px;
+        width:420px;
+        text-align:center;
+        border:1px solid #333;
+    ">
+
+        <div style="
+            font-size:24px;
+            font-weight:bold;
+            margin-bottom:25px;
+        ">
+            ¿Cómo funciona este canal?
+        </div>
+
+
+        <button class="opcionEvaluacion" data-respuesta="funciona">
+            ✅ Funciona
+        </button>
+
+        <button class="opcionEvaluacion" data-respuesta="mal">
+            ⚠️ Funciona mal
+        </button>
+
+        <button class="opcionEvaluacion" data-respuesta="no">
+            ❌ No funciona
+        </button>
+
+        <button class="opcionEvaluacion" data-respuesta="ahora">
+            ⏸ Ahora no
+        </button>
+
+
+        <div id="contadorEvaluacion" style="
+            margin-top:20px;
+            color:#aaa;
+            font-size:18px;
+        ">
+        </div>
 
     </div>
 
@@ -717,6 +777,13 @@ let submenuActual = null;
 let canalAnterior = null;
 let selectorAbierto = false;
 
+let cronometrocanal = null;
+let cronometrogral = null;
+let segundosCanal = 0;
+let evaluacionPendiente = false;
+let tiempoProximaPregunta = null;
+
+
 
 const menu = document.getElementById("menu");
 const video = document.getElementById("video");
@@ -837,6 +904,7 @@ function abrirWeb(url) {
 function abrirElemento(item) {
     origenReproduccion = ubicacion;
     canalAnterior = item;
+    iniciarEvaluacionCanal(item);
 
 console.log(
     "ABRIENDO:",
@@ -1002,6 +1070,87 @@ boton.onclick = () => {
     selectorAbierto = true;
 }
 
+
+// ===========EVALUACION==============
+function iniciarEvaluacionCanal(canal){
+    if(cronometrogral){
+        console.log("Evaluación bloqueada por 1 hora");
+        return;
+    }
+    segundosCanal = 0;
+    clearInterval(cronometrocanal);
+    cronometrocanal = setInterval(()=>{
+        segundosCanal++;
+        // primera ventana:
+        // entre 20 y 80 segundos
+        if(
+            segundosCanal >=20 &&
+            segundosCanal <=80 &&
+            !evaluacionPendiente
+        ){
+            preguntarEvaluacion();
+        }
+        // evaluación tardía
+        if(
+            segundosCanal >=1800 &&
+            !evaluacionPendiente
+        ){
+            preguntarEvaluacion();
+        }
+    },1000);
+}
+
+function preguntarEvaluacion(){
+    evaluacionPendiente=true;
+    const modal = document.getElementById("modalEvaluacion");
+    const contador = document.getElementById("contadorEvaluacion");
+    modal.style.display="flex";
+    document.querySelectorAll(".opcionEvaluacion")
+    .forEach(btn=>{
+        btn.onclick=()=>{
+            const respuesta = btn.dataset.respuesta;
+            console.log(
+                "Respuesta evaluación:",
+                respuesta
+            );
+            modal.style.display="none";
+            // POR AHORA SOLO MOSTRAMOS
+            // luego conectamos la lógica
+            evaluacionPendiente=false;
+        };
+    });
+}
+
+function guardarEvaluacion(){
+    let datos={
+        fecha:new Date().toISOString(),
+        canal: canalAnterior?.nombre || "desconocido",
+        tiempo: segundosCanal
+    };
+    let historial =
+        JSON.parse(
+        localStorage.getItem("evaluacionesTVArg")
+        )
+        || [];
+    historial.push(datos);
+    localStorage.setItem(
+        "evaluacionesTVArg",
+        JSON.stringify(historial)
+    );
+    clearInterval(cronometrocanal);
+}
+
+function iniciarCronometroGeneral(){
+    clearTimeout(cronometrogral);
+    cronometrogral=setTimeout(()=>{
+        cronometrogral=null;
+        console.log(
+        "Evaluación nuevamente habilitada"
+        );
+    },60*60*1000);
+}
+
+
 function reproducirRadio(url, banda, nombre, frecuencia) {
     cerrarTodoMedia(); // limpia video/youtube/web
     estado = "radio";
@@ -1056,6 +1205,8 @@ title.innerHTML = `
     // 🔴 back visible
     backBtn.classList.add("show");
 }
+
+// ==================================
 
 function reproducirYoutube(url) {
     estado = "player";
