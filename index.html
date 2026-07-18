@@ -488,6 +488,28 @@ body.android-app #backBtn {
     font-size:22px;
 
 }
+
+#visorBtn{
+    position:fixed;
+    right:12px;
+    bottom:12px;
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    color:white;
+    font-size:14px;
+    cursor:pointer;
+    z-index:50000;
+    opacity:.45;
+    transition:.2s;
+}
+#visorBtn:hover{
+    opacity:1;
+    transform:scale(1.15);
+
+}
 </style>
 </head>
 
@@ -637,6 +659,8 @@ body.android-app #backBtn {
         </div>
     </div>
 </div>
+
+<button id="visorBtn" onclick="location.href='visor.html'">📊</button>
 
 <script>
 
@@ -1729,6 +1753,11 @@ if (estado === "player" || estado === "web") {
         }
     }
 
+});
+
+
+document.getElementById("visorBtn").addEventListener("click", () => {
+    location.href = "visor.html";
 });
 
 </script>
