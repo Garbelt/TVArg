@@ -14,359 +14,247 @@
 }
 
 body{
-
     margin:0;
     padding:20px;
-
     background:#000;
     color:white;
-
     font-family:Arial,sans-serif;
-
 }
-
 
 h1{
-
     text-align:center;
-    margin-bottom:30px;
-
+    margin-bottom:10px;
 }
-
 
 #resumen{
-
     text-align:center;
     margin-bottom:20px;
-
     font-size:18px;
-
+    color:#9fd2ff;
 }
 
-
-
-.tarjeta{
-
-    background:#111;
-
-    border:1px solid #333;
-
-    border-radius:12px;
-
-    padding:20px;
-
-    margin-bottom:15px;
-
+.tabla{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
 }
 
-
-.titulo{
-
-    font-size:24px;
-    font-weight:bold;
-
-    margin-bottom:10px;
-
-}
-
-
-.dato{
-
-    margin:6px 0;
-
-    color:#ddd;
-
-}
-
-
-.promedio{
-
-    font-size:28px;
-
-    font-weight:bold;
-
+.tabla th{
+    background:#1a1a1a;
     color:#7bc2e3;
-
+    border:1px solid #444;
+    padding:10px;
+    position:sticky;
+    top:0;
 }
 
-
-.estado{
-
+.tabla td{
+    border:1px solid #333;
     padding:8px;
-
-    border-radius:8px;
-
-    display:inline-block;
-
-    margin-top:10px;
-
+    vertical-align:top;
 }
 
-
-.libre{
-
-    background:#145a32;
-
+.tabla tr:nth-child(even){
+    background:#111;
 }
 
-
-.bloqueado{
-
-    background:#922b21;
-
-}
-
-
-button{
-
-    display:block;
-
-    margin:30px auto;
-
-    padding:15px 30px;
-
-    font-size:18px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#0066cc;
-
-    color:white;
-
-    cursor:pointer;
-
+.tabla tr:hover{
+    background:#1d1d1d;
 }
 
 .url{
-
-    font-size:12px;
-
+    max-width:420px;
     word-break:break-all;
+    font-size:11px;
+    color:#bbb;
+}
 
-    color:#aaa;
+.ok{
+    color:#66ff99;
+    font-weight:bold;
+}
+
+.no{
+    color:#ff6666;
+    font-weight:bold;
+}
+
+/* botón flotante */
+
+#volverBtn{
+
+    position:fixed;
+
+    right:15px;
+    bottom:15px;
+
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+    border:none;
+
+    background:#0066cc;
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    opacity:.75;
+
+    transition:.2s;
+
+    z-index:9999;
 
 }
 
+#volverBtn:hover{
+
+    opacity:1;
+    transform:scale(1.08);
+
+}
 
 </style>
 
 </head>
 
-
 <body>
 
-
-<h1>
-📺 Evaluaciones TVArg
-</h1>
-
+<h1>📺 Evaluaciones TVArg</h1>
 
 <div id="resumen"></div>
 
-
 <div id="lista"></div>
 
-
-<button onclick="volver()">
-↩ Volver a TVArg
+<button id="volverBtn" title="Volver">
+↩
 </button>
-
-
 
 <script>
 
-
 function cargarEvaluaciones(){
 
-
     const datos =
-
-    JSON.parse(
-        localStorage.getItem(
-            "evaluacionesTVArg"
-        )
-    )
-    ||
-    {};
-
-
+        JSON.parse(
+            localStorage.getItem("evaluacionesTVArg")
+        ) || {};
 
     const lista =
         document.getElementById("lista");
 
-
     const resumen =
         document.getElementById("resumen");
-
-
-
-    lista.innerHTML="";
-
-
 
     const claves =
         Object.keys(datos);
 
-
-
-    resumen.textContent =
-        "Fuentes evaluadas: "
-        +
-        claves.length;
-
-
+    resumen.innerHTML =
+        "<b>Fuentes evaluadas:</b> "
+        + claves.length;
 
     if(claves.length===0){
 
-        lista.innerHTML =
-        `
-        <div class="tarjeta">
-        No existen evaluaciones todavía.
-        </div>
-        `;
+        lista.innerHTML=
+        "<h2 style='text-align:center'>No existen evaluaciones.</h2>";
 
         return;
     }
 
+    let html=`
 
+<table class="tabla">
+
+<tr>
+
+<th>Canal</th>
+
+<th>Tipo</th>
+
+<th>Reprod.</th>
+
+<th>Eval.</th>
+
+<th>Prom.</th>
+
+<th>Última</th>
+
+<th>Estado</th>
+
+<th>URL</th>
+
+</tr>
+
+`;
 
     claves.forEach(id=>{
 
+        const item=datos[id];
 
-        const item =
-            datos[id];
-
-
-
-        const ahora =
-            Date.now();
-
-
-
-        let estado;
-
-
-        if(
+        const bloqueado =
             item.bloqueoHasta &&
-            ahora < item.bloqueoHasta
-        ){
+            Date.now()<item.bloqueoHasta;
 
-            estado =
-            `
-            <div class="estado bloqueado">
-            🔒 Bloqueado hasta:
-            ${new Date(item.bloqueoHasta).toLocaleString()}
-            </div>
-            `;
+        html+=`
 
-        }
+<tr>
 
-        else{
+<td>${item.canal||""}</td>
 
+<td>${item.tipo||""}</td>
 
-            estado =
-            `
-            <div class="estado libre">
-            ✅ Disponible para evaluar
-            </div>
-            `;
+<td>${item.reproductor||""}</td>
 
-        }
+<td style="text-align:center">
+${item.evaluaciones||0}
+</td>
 
+<td style="text-align:center">
+${item.promedio||0}
+</td>
 
+<td>
+${item.ultimaEvaluacion||""}
+</td>
 
+<td class="${
+bloqueado ? "no":"ok"
+}">
+${
+bloqueado
+?
+"🔒 BLOQUEADO"
+:
+"✅ LIBRE"
+}
+</td>
 
-        lista.innerHTML +=
+<td class="url">
+${item.fuente||""}
+</td>
 
-        `
+</tr>
 
-        <div class="tarjeta">
-
-
-            <div class="titulo">
-            ${item.canal}
-            </div>
-
-
-
-            <div class="dato">
-            📡 Tipo:
-            ${item.tipo}
-            </div>
-
-
-
-            <div class="dato">
-            ▶ Reproductor:
-            ${item.reproductor}
-            </div>
-
-
-
-            <div class="dato">
-            ⭐ Evaluaciones:
-            ${item.evaluaciones}
-            </div>
-
-
-
-            <div class="promedio">
-
-            ${item.promedio}
-            /100
-
-            </div>
-
-
-
-            <div class="dato">
-
-            🕒 Última:
-            ${item.ultimaEvaluacion}
-
-            </div>
-
-
-
-            <div class="url">
-
-            ${item.fuente}
-
-            </div>
-
-
-
-            ${estado}
-
-
-        </div>
-
-
-        `;
-
+`;
 
     });
 
+    html+="</table>";
+
+    lista.innerHTML=html;
 
 }
 
-
-
-function volver(){
+document.getElementById("volverBtn").onclick=()=>{
 
     location.href="index.html";
 
-}
-
+};
 
 cargarEvaluaciones();
 
-
-
 </script>
-
 
 </body>
 </html>
