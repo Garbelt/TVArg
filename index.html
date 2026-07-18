@@ -1517,13 +1517,16 @@ function cerrarTodo() {
     if (
         canalAnterior &&
         canalAnterior.fuentes &&
-        canalAnterior.fuentes.length > 1
+        canalAnterior.fuentes.length > 1 &&
+        !evaluacionPendiente
     ) {
         setTimeout(() => {
-            mostrarSelectorFuentes(canalAnterior);
+            if(!evaluacionPendiente){
+                mostrarSelectorFuentes(canalAnterior);
+            }
         }, 300);
     }
-
+    
     if (origenReproduccion === "principal") {
 
         menu.style.display = "flex";
