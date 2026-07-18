@@ -1103,11 +1103,17 @@ function iniciarEvaluacionCanal(canal){
 function preguntarEvaluacion(){
     if(evaluacionPendiente) return;
     evaluacionPendiente = true;
-    // detener temporalmente el disparador del canal
+    // detener cronómetro del canal
     clearInterval(cronometrocanal);
+    // cerrar cosas que puedan tapar la evaluación
+    document.getElementById("selectorFuente").style.display = "none";
+    selectorAbierto = false;
+    document.getElementById("ytOverlay").style.display = "none";
+    document.getElementById("webOverlay").style.display = "none";
+    // mostrar evaluación arriba de todo
     const modal = document.getElementById("modalEvaluacion");
-    const contador = document.getElementById("contadorEvaluacion");
     modal.style.display = "flex";
+    const contador = document.getElementById("contadorEvaluacion");
     let segundos = 40;
     contador.textContent = segundos;
     let cuenta = setInterval(()=>{
@@ -1117,7 +1123,6 @@ function preguntarEvaluacion(){
             clearInterval(cuenta);
             modal.style.display="none";
             evaluacionPendiente=false;
-            // vuelve a empezar desde 100 segundos
             segundosCanal = 100;
             iniciarEvaluacionCanal(canalAnterior);
         }
@@ -1133,14 +1138,8 @@ function preguntarEvaluacion(){
             );
             modal.style.display="none";
             evaluacionPendiente=false;
-            // POR AHORA SOLO PRUEBA
-            // después conectamos:
-            // funciona
-            // funciona mal
-            // no funciona
-            // ahora no
-            if(respuesta !== "ahora_no"){
-                clearInterval(cronometrocanal);
+            if(respuesta !== "ahora"){
+                guardarEvaluacion();
                 iniciarCronometroGeneral();
             }
             else{
