@@ -492,30 +492,33 @@ body.android-app #backBtn {
 </div>
 
 <!-- MODAL EVALUACION CANAL -->
-    <div id="modalEvaluacion" style="
-        display:none;
-        position:fixed;
-        top:12px;
-        right:12px;
-        z-index:20000;
-    ">
+<div id="modalEvaluacionFondo" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.55);
+backdrop-filter:blur(5px);
+z-index:19999;
+"></div>
 
-    <div style="
-        background:rgba(20,20,20,.92);
-        padding:12px;
-        border-radius:12px;
-        width:260px;
-        text-align:center;
-        border:1px solid #333;
-        box-shadow:0 5px 20px rgba(0,0,0,.6);
-    ">
+<div id="modalEvaluacion" style="
+display:none;
+position:fixed;
+width:320px;
+flex-direction:column;
+background:#111;
+padding:18px;
+border-radius:12px;
+border:1px solid #444;
+z-index:20000;
+">
 
-    <div style="
-        font-size:15px;
-        margin-bottom:10px;
-    ">
-            ¿Cómo funciona este canal?
-        </div>
+<div style="
+font-size:15px;
+margin-bottom:10px;
+">
+¿Cómo funciona este canal?
+</div>
 
 
         <button class="opcionEvaluacion" data-respuesta="funciona">
@@ -533,14 +536,6 @@ body.android-app #backBtn {
         <button class="opcionEvaluacion" data-respuesta="ahora">
             ⏸ Ahora no
         </button>
-
-
-        <div id="contadorEvaluacion" style="
-            margin-top:20px;
-            color:#aaa;
-            font-size:18px;
-        ">
-        </div>
 
     </div>
 
@@ -1101,46 +1096,51 @@ function iniciarEvaluacionCanal(canal){
 function preguntarEvaluacion(){
     if(evaluacionPendiente) return;
     evaluacionPendiente = true;
-    // detener cronómetro del canal
     clearInterval(cronometrocanal);
-    // cerrar cosas que puedan tapar la evaluación
-    document.getElementById("selectorFuente").style.display = "none";
-    selectorAbierto = false;
-    document.getElementById("ytOverlay").style.display = "none";
-    document.getElementById("webOverlay").style.display = "none";
-    // mostrar evaluación arriba de todo
-    const modal = document.getElementById("modalEvaluacion");
-    modal.style.display = "flex";
-    const contador = document.getElementById("contadorEvaluacion");
-    let segundos = 40;
-    contador.textContent = segundos;
-    let cuenta = setInterval(()=>{
-        segundos--;
-        contador.textContent = segundos;
-        if(segundos <= 0){
-            clearInterval(cuenta);
-            modal.style.display="none";
-            evaluacionPendiente=false;
-            segundosCanal = 100;
-            iniciarEvaluacionCanal(canalAnterior);
-        }
-    },1000);
+    document.getElementById("selectorFuente").style.display="none";
+    selectorAbierto=false;
+    document.getElementById("ytOverlay").style.display="none";
+    document.getElementById("webOverlay").style.display="none";
+    const modal=document.getElementById("modalEvaluacion");
+    const fondo=document.getElementById("modalEvaluacionFondo");
+    // ¿Es la evaluación inicial?
+    const evaluacionInicial = (segundosCanal < 1800);
+    if(evaluacionInicial){
+        fondo.style.display="block";
+        modal.style.top="50%";
+        modal.style.left="50%";
+        modal.style.right="auto";
+        modal.style.transform="translate(-50%,-50%) scale(1.12)";
+    }else{
+        fondo.style.display="none";
+        modal.style.top="12px";
+        modal.style.right="12px";
+        modal.style.left="auto";
+        modal.style.transform="none";
+    }
+    modal.style.display="flex";
+    // Se cierra sola luego de 40 segundos,
+    // pero sin mostrar contador.
+    const cierreAutomatico=setTimeout(()=>{
+        modal.style.display="none";
+        fondo.style.display="none";
+        evaluacionPendiente=false;
+        segundosCanal=100;
+        iniciarEvaluacionCanal(canalAnterior);
+    },40000);
     document.querySelectorAll(".opcionEvaluacion")
     .forEach(btn=>{
         btn.onclick=()=>{
-            clearInterval(cuenta);
-            const respuesta = btn.dataset.respuesta;
-            console.log(
-                "Respuesta evaluación:",
-                respuesta
-            );
+            clearTimeout(cierreAutomatico);
+            const respuesta=btn.dataset.respuesta;
+            console.log("Respuesta evaluación:",respuesta);
             modal.style.display="none";
+            fondo.style.display="none";
             evaluacionPendiente=false;
-            if(respuesta !== "ahora"){
+            if(respuesta!=="ahora"){
                 guardarEvaluacion();
                 iniciarCronometroGeneral();
-            }
-            else{
+            }else{
                 segundosCanal=100;
                 iniciarEvaluacionCanal(canalAnterior);
             }
