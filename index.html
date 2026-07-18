@@ -1769,21 +1769,8 @@ window.addEventListener("tvback", () => {
     }
 
 // cerrar player/web
-if (estado === "player" || estado === "web") {
-
-    // ==========================
-    // EVALUACION AL SALIR
-    // ==========================
-
-    if (typeof evaluarSalidaCanal === "function") {
-        const evaluado = evaluarSalidaCanal();
-
-        if (evaluado) {
-            return;
-        }
-    }
-
-    cerrarTodo();
+if (estado === "web" || estado === "player") {
+    manejarSalidaCanal();
     return;
 }
 
