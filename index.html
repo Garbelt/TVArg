@@ -1101,22 +1101,52 @@ function iniciarEvaluacionCanal(canal){
 }
 
 function preguntarEvaluacion(){
-    evaluacionPendiente=true;
+    if(evaluacionPendiente) return;
+    evaluacionPendiente = true;
+    // detener temporalmente el disparador del canal
+    clearInterval(cronometrocanal);
     const modal = document.getElementById("modalEvaluacion");
     const contador = document.getElementById("contadorEvaluacion");
-    modal.style.display="flex";
+    modal.style.display = "flex";
+    let segundos = 40;
+    contador.textContent = segundos;
+    let cuenta = setInterval(()=>{
+        segundos--;
+        contador.textContent = segundos;
+        if(segundos <= 0){
+            clearInterval(cuenta);
+            modal.style.display="none";
+            evaluacionPendiente=false;
+            // vuelve a empezar desde 100 segundos
+            segundosCanal = 100;
+            iniciarEvaluacionCanal(canalAnterior);
+        }
+    },1000);
     document.querySelectorAll(".opcionEvaluacion")
     .forEach(btn=>{
         btn.onclick=()=>{
+            clearInterval(cuenta);
             const respuesta = btn.dataset.respuesta;
             console.log(
                 "Respuesta evaluación:",
                 respuesta
             );
             modal.style.display="none";
-            // POR AHORA SOLO MOSTRAMOS
-            // luego conectamos la lógica
             evaluacionPendiente=false;
+            // POR AHORA SOLO PRUEBA
+            // después conectamos:
+            // funciona
+            // funciona mal
+            // no funciona
+            // ahora no
+            if(respuesta !== "ahora_no"){
+                clearInterval(cronometrocanal);
+                iniciarCronometroGeneral();
+            }
+            else{
+                segundosCanal=100;
+                iniciarEvaluacionCanal(canalAnterior);
+            }
         };
     });
 }
