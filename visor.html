@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Visor Evaluaciones TVArg</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+
+    margin:0;
+    padding:20px;
+
+    background:#000;
+    color:white;
+
+    font-family:Arial,sans-serif;
+
+}
+
+
+h1{
+
+    text-align:center;
+    margin-bottom:30px;
+
+}
+
+
+#resumen{
+
+    text-align:center;
+    margin-bottom:20px;
+
+    font-size:18px;
+
+}
+
+
+
+.tarjeta{
+
+    background:#111;
+
+    border:1px solid #333;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    margin-bottom:15px;
+
+}
+
+
+.titulo{
+
+    font-size:24px;
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+}
+
+
+.dato{
+
+    margin:6px 0;
+
+    color:#ddd;
+
+}
+
+
+.promedio{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#7bc2e3;
+
+}
+
+
+.estado{
+
+    padding:8px;
+
+    border-radius:8px;
+
+    display:inline-block;
+
+    margin-top:10px;
+
+}
+
+
+.libre{
+
+    background:#145a32;
+
+}
+
+
+.bloqueado{
+
+    background:#922b21;
+
+}
+
+
+button{
+
+    display:block;
+
+    margin:30px auto;
+
+    padding:15px 30px;
+
+    font-size:18px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#0066cc;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+.url{
+
+    font-size:12px;
+
+    word-break:break-all;
+
+    color:#aaa;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<h1>
+📺 Evaluaciones TVArg
+</h1>
+
+
+<div id="resumen"></div>
+
+
+<div id="lista"></div>
+
+
+<button onclick="volver()">
+↩ Volver a TVArg
+</button>
+
+
+
+<script>
+
+
+function cargarEvaluaciones(){
+
+
+    const datos =
+
+    JSON.parse(
+        localStorage.getItem(
+            "evaluacionesTVArg"
+        )
+    )
+    ||
+    {};
+
+
+
+    const lista =
+        document.getElementById("lista");
+
+
+    const resumen =
+        document.getElementById("resumen");
+
+
+
+    lista.innerHTML="";
+
+
+
+    const claves =
+        Object.keys(datos);
+
+
+
+    resumen.textContent =
+        "Fuentes evaluadas: "
+        +
+        claves.length;
+
+
+
+    if(claves.length===0){
+
+        lista.innerHTML =
+        `
+        <div class="tarjeta">
+        No existen evaluaciones todavía.
+        </div>
+        `;
+
+        return;
+    }
+
+
+
+    claves.forEach(id=>{
+
+
+        const item =
+            datos[id];
+
+
+
+        const ahora =
+            Date.now();
+
+
+
+        let estado;
+
+
+        if(
+            item.bloqueoHasta &&
+            ahora < item.bloqueoHasta
+        ){
+
+            estado =
+            `
+            <div class="estado bloqueado">
+            🔒 Bloqueado hasta:
+            ${new Date(item.bloqueoHasta).toLocaleString()}
+            </div>
+            `;
+
+        }
+
+        else{
+
+
+            estado =
+            `
+            <div class="estado libre">
+            ✅ Disponible para evaluar
+            </div>
+            `;
+
+        }
+
+
+
+
+        lista.innerHTML +=
+
+        `
+
+        <div class="tarjeta">
+
+
+            <div class="titulo">
+            ${item.canal}
+            </div>
+
+
+
+            <div class="dato">
+            📡 Tipo:
+            ${item.tipo}
+            </div>
+
+
+
+            <div class="dato">
+            ▶ Reproductor:
+            ${item.reproductor}
+            </div>
+
+
+
+            <div class="dato">
+            ⭐ Evaluaciones:
+            ${item.evaluaciones}
+            </div>
+
+
+
+            <div class="promedio">
+
+            ${item.promedio}
+            /100
+
+            </div>
+
+
+
+            <div class="dato">
+
+            🕒 Última:
+            ${item.ultimaEvaluacion}
+
+            </div>
+
+
+
+            <div class="url">
+
+            ${item.fuente}
+
+            </div>
+
+
+
+            ${estado}
+
+
+        </div>
+
+
+        `;
+
+
+    });
+
+
+}
+
+
+
+function volver(){
+
+    location.href="index.html";
+
+}
+
+
+cargarEvaluaciones();
+
+
+
+</script>
+
+
+</body>
+</html>
