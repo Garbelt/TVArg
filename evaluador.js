@@ -329,20 +329,24 @@ function mostrarEvaluacion(){
             </div>
             <div class="evaluacionBotones">
                <button onclick="responderEvaluacion(100)">
-                    👍
-                </button>
+                   👍
+               </button>
 
-                <button onclick="responderEvaluacion(30)">
-                    👎
-                </button>
+               <button onclick="responderEvaluacion(60)">
+                   😐
+               </button>
 
-                <button onclick="responderEvaluacion(0)">
-                    🚫
-                </button>
+               <button onclick="responderEvaluacion(30)">
+                   👎
+               </button>
 
-                <button onclick="cancelarEvaluacion()">
-                    🚪
-                </button>
+               <button onclick="responderEvaluacion(0)">
+                   🚫
+               </button>
+               
+               <button onclick="cancelarEvaluacion()">
+                   🚪
+               </button>
             </div>
         </div>
         `;
