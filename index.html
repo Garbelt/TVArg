@@ -1022,6 +1022,9 @@ console.log(
 if (item.fuentes.length === 1) {
     const fuente = item.fuentes[0];
     // SOLO EVALUABLES
+canalEvaluadoActual = item;
+fuenteEvaluadaActual = fuente;
+
 iniciarEvaluacionCanal(item, fuente);
 
     switch (fuente.tipo) {
