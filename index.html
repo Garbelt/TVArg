@@ -982,61 +982,41 @@ function abrirWeb(url) {
     estado = "web";
 }
 
-function abrirElemento(item) {
-    origenReproduccion = ubicacion;
-    canalAnterior = item;
-
-console.log(
-    "ABRIENDO:",
-    item.nombre,
-    "ubicacion:",
-    ubicacion,
-    "origen:",
-    origenReproduccion
-);
-    
+function reproducirFuenteSeleccionada(item, fuente) {
+    console.log(
+        "Fuente seleccionada:",
+        item.nombre,
+        fuente.tipo,
+        fuente.url
+    );
     // ==========================
-    // RADIOS
+    // GUARDAR CANAL/FUENTE ACTUAL
     // ==========================
-    if (item.tipo === "radio") {
-        reproducirRadio(
-            item.url,
-            item.banda,
-            item.nombre,
-            item.frecuencia
-        );
-        return;
-    }
-
+    canalEvaluadoActual = item;
+    fuenteEvaluadaActual = fuente;
     // ==========================
-    // CANAL SIN FUENTES
+    // INICIO EVALUACIÓN CANAL
     // ==========================
-    if (!item.fuentes || item.fuentes.length === 0) {
-        console.warn("Canal sin fuentes:", item);
-        return;
-    }
-
-    // ==========================
-    // UNA SOLA FUENTE
-    // ==========================
-if (item.fuentes.length === 1) {
-    const fuente = item.fuentes[0];
-    // SOLO EVALUABLES
-canalEvaluadoActual = item;
-fuenteEvaluadaActual = fuente;
-
-iniciarEvaluacionCanal(item, fuente);
-
+    iniciarEvaluacionCanal(item, fuente);
     switch (fuente.tipo) {
         case "hls":
-            reproducirHls(item);
-            return;
+            reproducirHls({
+                ...item,
+                fuentes: [fuente]
+            });
+            break;
         case "youtube":
             reproducirYoutube(fuente.url);
-            return;
+            break;
         case "web":
             abrirWeb(fuente.url);
-            return;
+            break;
+        default:
+            console.warn(
+                "Tipo de fuente desconocido:",
+                fuente.tipo
+            );
+            break;
     }
 }
 
