@@ -341,7 +341,7 @@ function mostrarEvaluacion(){
                 </button>
 
                 <button onclick="cancelarEvaluacion()">
-                    📲
+                    🚪
                 </button>
             </div>
         </div>
