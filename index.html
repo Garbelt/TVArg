@@ -1078,50 +1078,6 @@ function reproducirFuenteSeleccionada(item, fuente) {
     }
 }
 
-    mostrarSelectorFuentes(item);
-}
-
-    // ==========================
-    // VARIAS FUENTES
-    // ==========================
-
-function reproducirFuenteSeleccionada(item, fuente) {
-    console.log(
-        "Fuente seleccionada:",
-        item.nombre,
-        fuente.tipo,
-        fuente.url
-    );
-
-canalEvaluadoActual = item;
-fuenteEvaluadaActual = fuente;
-    // ==========================
-    // INICIO EVALUACIÓN CANAL
-    // ==========================
-iniciarEvaluacionCanal(item, fuente);
-
-    switch (fuente.tipo) {
-        case "hls":
-            reproducirHls({
-                ...item,
-                fuentes: [fuente]
-            });
-            break;
-        case "youtube":
-            reproducirYoutube(fuente.url);
-            break;
-        case "web":
-            abrirWeb(fuente.url);
-            break;
-        default:
-            console.warn(
-                "Tipo de fuente desconocido:",
-                fuente.tipo
-            );
-            break;
-    }
-}
-
     // ==========================
 
 function obtenerIndicadorEvaluacion(fuente){
