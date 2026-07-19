@@ -1207,16 +1207,16 @@ ${reproductor}
 <div style="
 width:120px;
 text-align:right;
-font-size:20px;
-letter-spacing:2px;
+font-size:${indicador === "Sin datos" ? "13px" : "20px"};
+letter-spacing:${indicador === "Sin datos" ? "0px" : "2px"};
 font-family:Arial,sans-serif;
+opacity:${indicador === "Sin datos" ? "0.6" : "1"};
 ">
 ${indicador}
 </div>
 
 </div>
 `;
-
 
 boton.onclick = () => {
     selector.style.display = "none";
