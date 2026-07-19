@@ -982,6 +982,66 @@ function abrirWeb(url) {
     estado = "web";
 }
 
+function abrirElemento(item) {
+    origenReproduccion = ubicacion;
+    canalAnterior = item;
+
+console.log(
+    "ABRIENDO:",
+    item.nombre,
+    "ubicacion:",
+    ubicacion,
+    "origen:",
+    origenReproduccion
+);
+    
+    // ==========================
+    // RADIOS
+    // ==========================
+    if (item.tipo === "radio") {
+        reproducirRadio(
+            item.url,
+            item.banda,
+            item.nombre,
+            item.frecuencia
+        );
+        return;
+    }
+
+    // ==========================
+    // CANAL SIN FUENTES
+    // ==========================
+    if (!item.fuentes || item.fuentes.length === 0) {
+        console.warn("Canal sin fuentes:", item);
+        return;
+    }
+
+    // ==========================
+    // UNA SOLA FUENTE
+    // ==========================
+if (item.fuentes.length === 1) {
+    const fuente = item.fuentes[0];
+    // SOLO EVALUABLES
+iniciarEvaluacionCanal(item, fuente);
+
+    switch (fuente.tipo) {
+        case "hls":
+            reproducirHls(item);
+            return;
+        case "youtube":
+            reproducirYoutube(fuente.url);
+            return;
+        case "web":
+            abrirWeb(fuente.url);
+            return;
+    }
+}
+
+    // ==========================
+    // VARIAS FUENTES
+    // ==========================
+
+
 function reproducirFuenteSeleccionada(item, fuente) {
     console.log(
         "Fuente seleccionada:",
