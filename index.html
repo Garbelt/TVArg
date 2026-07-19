@@ -862,6 +862,9 @@ let submenuActual = null;
 let canalAnterior = null;
 let selectorAbierto = false;
 
+let canalEvaluadoActual = null;
+let fuenteEvaluadaActual = null;
+
 
 const menu = document.getElementById("menu");
 const video = document.getElementById("video");
@@ -1048,6 +1051,9 @@ function reproducirFuenteSeleccionada(item, fuente) {
         fuente.tipo,
         fuente.url
     );
+
+canalEvaluadoActual = item;
+fuenteEvaluadaActual = fuente;
     // ==========================
     // INICIO EVALUACIÓN CANAL
     // ==========================
