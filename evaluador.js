@@ -527,7 +527,7 @@ console.log("fuenteEvaluadaActual =", fuenteEvaluadaActual);
 
     let bloqueo =
         ahora.getTime() +
-        (48 * 60 * 60 * 1000);
+        (6 * 60 * 60 * 1000);
 
 
     let datos =
