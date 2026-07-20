@@ -994,10 +994,7 @@ function abrirWeb(url) {
 }
 
 function abrirElemento(item) {
-    
-    origenReproduccion = ubicacion;
-    canalAnterior = item;
-    
+
 console.log(
     "CANAL SELECCIONADO:",
     item.nombre,
@@ -1005,6 +1002,10 @@ console.log(
     item.fuentes.length,
     item.fuentes
 );
+    
+    origenReproduccion = ubicacion;
+    canalAnterior = item;
+
 
 console.log(
     "ABRIENDO:",
