@@ -1856,6 +1856,15 @@ else if (ultimoSelector === "variantes" && canalPadreAnterior) {
     setTimeout(() => {
         bloqueandoBack = false;
     }, 500);
+    limpiarVariantes();
+}
+
+function limpiarVariantes() {
+    ultimoSelector = null;
+    canalPadreAnterior = null;
+    varianteAnterior = null;
+    itemVariantesActual = null;
+    variantesAbierto = false;
 }
 
 /* =========================
