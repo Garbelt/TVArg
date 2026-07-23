@@ -172,6 +172,11 @@ body {
     color:#111;
 }
 
+.canal-con-variantes{
+    border:3px double #4f84d8;
+    box-shadow:0 0 4px rgba(80,140,255,.35);
+}
+
 #player {
     display: none;
     flex: 1;
@@ -1575,9 +1580,10 @@ function dibujarMenu(nombreMenu) {
         datos.items.forEach(item => {
             const div = document.createElement("div");
             div.className = "canal canal-canal";
-            div.textContent = 
-              item.nombre +
-              (item.variantes ? " ◫" : "");
+            if (item.variantes) {
+                div.classList.add("canal-con-variantes");
+            }
+            div.textContent = item.nombre;
 
             div.onclick = () => {
                 origenNavegacion = "principal";
@@ -1606,12 +1612,13 @@ function dibujarMenu(nombreMenu) {
             lista.innerHTML = "";
 
             datos.items.forEach(item => {
-
                 const div = document.createElement("div");
-                div.className = "canal";
-                div.textContent = 
-                   item.nombre +
-                   (item.variantes ? " ◫" : "");
+
+            div.className = "canal";
+            if (item.variantes) {
+                div.classList.add("canal-con-variantes");
+            }
+            div.textContent = item.nombre;
 
                 div.onclick = () => {
                     origenNavegacion = "secundario";
@@ -1633,12 +1640,19 @@ dibujarMenu("principal");
 document.getElementById("selectorCancelar").onclick = () => {
     document.getElementById("selectorFuente").style.display = "none";
     selectorAbierto = false;
+    // Si llegamos aquí desde un selector de variantes,
+    // volver a mostrarlo.
+    if (canalPadreAnterior) {
+        mostrarSelectorVariantes(canalPadreAnterior);
+        return;
+    }
 };
 
 document.getElementById("cancelarVariantes").onclick = () => {
     document.getElementById("selectorVariantes").style.display = "none";
     variantesAbierto = false;
     itemVariantesActual = null;
+    canalPadreAnterior = null;
     varianteAnterior = null;
 };
 
@@ -1810,6 +1824,9 @@ backBtn.onclick = () => {
     if (selectorAbierto) {
         document.getElementById("selectorFuente").style.display = "none";
         selectorAbierto = false;
+        if (canalPadreAnterior) {
+            mostrarSelectorVariantes(canalPadreAnterior);
+        }
         return;
     }
 
@@ -1934,6 +1951,9 @@ window.addEventListener("tvback", () => {
     if (selectorAbierto) {
         document.getElementById("selectorFuente").style.display = "none";
         selectorAbierto = false;
+        if (canalPadreAnterior) {
+            mostrarSelectorVariantes(canalPadreAnterior);
+        }
         return;
     }
 
