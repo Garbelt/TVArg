@@ -1134,6 +1134,19 @@ function abrirElemento(item) {
     canalAnterior = item;
 
     // ==========================
+    // RADIOS
+    // ==========================
+    if (item.tipo === "radio") {
+        reproducirRadio(
+            item.url,
+            item.banda,
+            item.nombre,
+            item.frecuencia
+        );
+        return;
+    }
+
+    // ==========================
     // VARIANTES
     // ==========================
     if(tieneVariantes(item)){
@@ -1156,18 +1169,7 @@ console.log(
     origenReproduccion
 );
     
-    // ==========================
-    // RADIOS
-    // ==========================
-    if (item.tipo === "radio") {
-        reproducirRadio(
-            item.url,
-            item.banda,
-            item.nombre,
-            item.frecuencia
-        );
-        return;
-    }
+
 
     // ==========================
     // CANAL SIN FUENTES
