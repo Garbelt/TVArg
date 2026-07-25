@@ -1232,9 +1232,16 @@ console.log(
     // UNA SOLA FUENTE
     // ==========================
 if (item.fuentes.length === 1) {
+
+    // Este canal entra directo al reproductor.
+    // No hay ningún selector al que volver.
+    ultimoSelector = null;
+    selectorAbierto = false;
+    itemSelectorActual = null;
+
     const fuente = item.fuentes[0];
-    // SOLO EVALUABLES
-iniciarEvaluacionCanal(item, fuente);
+
+    iniciarEvaluacionCanal(item, fuente);
 
     switch (fuente.tipo) {
         case "hls":
@@ -1299,7 +1306,14 @@ function mostrarSelectorVariantes(item){
 
 function reproducirFuenteSeleccionada(item, fuente) {
 
-varianteAnterior = item;
+    // Si este canal/variante sólo tiene una fuente,
+    // no existe selector al que volver.
+    if (item.fuentes && item.fuentes.length === 1) {
+        ultimoSelector = null;
+        selectorAbierto = false;
+        itemSelectorActual = null;
+    }
+    varianteAnterior = item;
 
     console.log(
         "Fuente seleccionada:",
@@ -1308,11 +1322,7 @@ varianteAnterior = item;
         fuente.url
     );
 
-    // ==========================
-    // INICIO EVALUACIÓN CANAL
-    // ==========================
-iniciarEvaluacionCanal(item, fuente);
-
+    iniciarEvaluacionCanal(item, fuente);
     switch (fuente.tipo) {
         case "hls":
             reproducirHls({
@@ -1388,6 +1398,7 @@ function obtenerIndicadorEvaluacion(fuente){
 
 function mostrarSelectorFuentes(item) {
     ultimoSelector = "fuentes";
+    itemSelectorActual = item;
     itemSelectorActual = item;
 
     if(item.variantes){
@@ -1869,7 +1880,11 @@ function cerrarTodo() {
 
 if (ultimoSelector === "fuentes") {
     let regresar = varianteAnterior || canalAnterior;
-    if (regresar) {
+    if (
+        regresar &&
+        regresar.fuentes &&
+        regresar.fuentes.length > 1
+    ) {
         setTimeout(() => {
             mostrarSelectorFuentes(regresar);
         },300);
