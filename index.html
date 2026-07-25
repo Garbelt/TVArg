@@ -1,0 +1,2245 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TV Argentina</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#111111">
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    
+<style>
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: #000;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+}
+
+/* ===== SPLASH ===== */
+#inicioTVArg {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 9999;
+}
+
+#inicioTVArg button {
+    width: 340px;
+    height: 82px;
+    padding: 12px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.2;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#inicioTVArg button span {
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 4px;
+}
+#enterSmartBtn {
+    background: #0066cc;
+    color: white;
+}
+#enterManualBtn {
+    background: #444;
+    color: white;
+}
+
+#enterBtn { background: #0066cc; color: white; }
+
+#installBtn {
+    background: #222;
+    color: white;
+    border: 1px solid #444;
+    display: none;
+}
+
+/* ===== LAYOUT ===== */
+
+#menu{
+    display:none;
+    width:100%;
+    height:100vh;
+    background:#000;
+    flex-direction:column;
+    align-items:center;
+}
+
+#menuSecundario{
+    display:none;
+    width:100%;
+    height:100vh;
+    background:#000;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* ===== OTROS ===== */
+
+#titulo{
+    font-size:42px;
+    font-weight:bold;
+    padding:40px 0 30px 0;
+}
+
+#tituloMenu{
+    font-size:42px;
+    font-weight:bold;
+    padding:40px 0 30px 0;
+}
+
+#listaCanales,
+#listaMenu{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+    padding:10px;
+}
+
+#listaBotones{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    padding:10px;
+    margin-top:auto;
+    margin-bottom:45px;
+}
+
+.canal{
+    min-width: 120px;
+    padding: 10px 12px;
+    font-size: 14px;
+    text-align: center;
+    background: #111;
+    border-radius: 8px;
+    border: 1px solid #222;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.canal-canal{
+    min-width: 130px;
+    padding: 10px 12px;
+    font-size: 14px;
+    background: #111;
+    border: 1px solid #2a2a2a;
+}
+
+.canal-menu{
+    min-width:100px;
+    padding:8px 10px;
+    font-size:12px;
+    font-weight:bold;
+    background:#FFF29E;
+    color:#222;
+    border:1px solid #C69F2F;
+}
+
+.canal:hover{
+    transform:scale(1.05);
+}
+
+.canal-canal:hover{
+    background:#6F8795;
+    color:white;
+}
+.canal-menu:hover{
+    background:#E9C85A;
+    color:#111;
+}
+
+.canal-con-variantes{
+    border:3px double #4f84d8;
+    box-shadow:0 0 4px rgba(80,140,255,.35);
+    font-weight:900;
+    color:#f4f8ff;
+}
+
+/* =========================
+   SELECTOR DE VARIANTES
+========================= */
+
+#selectorVariantesCaja{
+    width:80vw;
+    height:80vh;
+    max-width:900px;
+    max-height:700px;
+    background:#111;
+    border:1px solid #333;
+    border-radius:14px;
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+}
+
+#selectorVariantesCaja h2{
+    margin:0 0 18px 0;
+    text-align:center;
+    font-size:20px;
+    font-weight:600;
+    color:#d8d8d8;
+    letter-spacing:0.5px;
+}
+
+#opcionesVariantes{
+    flex:1;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-content:flex-start;
+    gap:14px;
+    overflow-y:auto;
+    padding:10px;
+}
+
+#opcionesVariantes .canal{
+    width:150px;
+    min-height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:8px 10px;
+    font-size:16px;
+    font-weight:bold;
+    background:#3b4d67;
+    border:1px solid #7baee8;
+    border-radius:10px;
+    color:white;
+}
+
+#player {
+    display: none;
+    flex: 1;
+    position: relative;
+    background: black;
+    width: 100%;
+    height: 100%;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: black;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#mensaje {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(0,0,0,.8);
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+}
+
+#backBtn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 99999;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.55);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.35);
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all .25s ease;
+    pointer-events: none;
+}
+
+#backBtn.show {
+    opacity: 0.75;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+#backBtn:hover,
+#backBtn:focus {
+    opacity: 1;
+    transform: scale(1.15);
+    outline: none;
+    border-color: white;
+    box-shadow: 0 0 12px rgba(255,255,255,.5);
+}
+
+#backMenuBtn{
+    position: fixed;
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 18px 28px;
+    font-size: 22px;
+    border-radius: 10px;
+    border: 1px solid #222;
+    background: #111;
+    color: white;
+
+    cursor: pointer;
+}
+
+/* ===== YOUTUBE OVERLAY ===== */
+
+#ytOverlay {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: none;
+    z-index: 9999;
+}
+
+#ytFrame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+#ytOverlay iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+#backMenuBtn{
+    padding:18px 28px;
+    font-size:22px;
+    border-radius:10px;
+    border:1px solid #222;
+    background:#111;
+    color:white;
+    cursor:pointer;
+}
+
+#webOverlay {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: none;
+    z-index: 10000;
+}
+
+#webFrame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+#closeWebBtn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 10001;
+
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+
+    background: rgba(0,0,0,0.25);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.15);
+
+    cursor: pointer;
+}
+
+/* =========================
+   ANDROID APK
+   Ocultar botón flotante
+========================= */
+
+body.android-app #backBtn {
+    display: none !important;
+}
+
+/* =========================
+         SELECTOR
+========================= */
+
+.selector-opcion{
+
+    width:100%;
+    margin:5px 0;
+    padding:8px 14px;
+
+    font-size:16px;
+
+    background:#0066cc;
+    color:white;
+
+    border:none;
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.selector-opcion:hover{
+
+    transform:scale(1.02);
+
+    background:#0b78ef;
+
+}
+
+
+/* =========================
+   MODAL EVALUACION CANAL
+========================= */
+
+#modalEvaluacion {
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:30000;
+
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,0.35);
+
+}
+
+
+/* cuando se activa */
+
+#modalEvaluacion.mostrarEvaluacion {
+
+    display:flex;
+
+}
+
+
+.evaluacionCaja {
+
+    background:rgba(20,20,20,0.95);
+
+    color:white;
+
+    padding:20px 30px;
+
+    border-radius:15px;
+
+    font-size:22px;
+
+    text-align:center;
+
+    border:1px solid #444;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+}
+
+
+.evaluacionBotones {
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:25px;
+
+    margin-top:35px;
+
+}
+
+.evaluacionBotones button {
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    border:none;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    background:#222;
+
+    color:white;
+
+}
+
+
+/* ==========================
+   EVALUACION AUTOMATICA
+========================== */
+
+
+#modalEvaluacion.evaluacionAutomatica{
+
+    justify-content:flex-end;
+    align-items:flex-start;
+
+    padding-top:20px;
+    padding-right:20px;
+
+}
+
+
+#modalEvaluacion.evaluacionAutomatica 
+.evaluacionCaja{
+    width:260px;
+    padding:15px;
+    font-size:18px;
+}
+
+#modalEvaluacion.evaluacionAutomatica 
+.evaluacionBotones{
+    gap:12px;
+    margin-top:15px;
+}
+
+#modalEvaluacion.evaluacionAutomatica 
+.evaluacionBotones button{
+    width:45px;
+    height:45px;
+    font-size:22px;
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- SPLASH -->
+<div id="inicioTVArg">
+    <button id="enterBtn">▶ Ingresar a TVArg</button>
+</div>
+
+<!-- MENU -->
+<div id="menu">
+    <div id="titulo">
+        📺 TV ARG
+    </div>
+    <div id="listaCanales"></div>
+    <div id="listaBotones"></div>
+</div>
+
+<!-- MENU SECUNDARIO -->
+<div id="menuSecundario" style="display:none;">
+    <div id="tituloMenu"></div>
+    <div id="listaMenu"></div>
+<button id="backMenuBtn">↩ Volver</button>
+</div>
+
+<!-- PLAYER -->
+<div id="player">
+    <div id="mensaje"></div>
+    <video id="video" controls autoplay></video>
+</div>
+
+<!-- RADIO -->
+<div id="radioScreen"
+     style="
+        display:none;
+        position:fixed;
+        inset:0;
+        background:black;
+        z-index:9000;
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
+     ">
+
+    <div id="radioTitle"
+         style="
+            font-size:42px;
+            font-weight:bold;
+            text-align:center;
+         ">
+    </div>
+
+</div>
+
+<!-- YOUTUBE OVERLAY -->
+<div id="ytOverlay">
+    <iframe id="ytFrame"></iframe>
+</div>
+
+<!-- WEB OVERLAY (OTROS) -->
+<div id="webOverlay">
+    <iframe id="webFrame"></iframe>
+</div>
+
+<button id="backBtn">↩</button>
+
+
+<!-- SELECTOR DE FUENTE -->
+
+<div id="selectorFuente" style="
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.92);
+    z-index:15000;
+    justify-content:center;
+    align-items:center;
+">
+
+    <div id="selectorCaja" style="
+        background:#111;
+        border:1px solid #333;
+        border-radius:14px;
+        min-width:420px;
+        max-width:520px;
+        padding:28px;
+        text-align:center;
+    ">
+
+        <div style="
+            font-size:18px;
+            font-weight:600;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            color:#ddd;
+            margin-bottom:12px;
+        ">
+            FUENTES DISPONIBLES
+        </div>
+
+        <div style="
+            height:1px;
+            background:#333;
+            margin-bottom:20px;
+        "></div>
+
+        <div id="selectorOpciones"></div>
+
+        <button id="selectorCancelar"
+            style="
+                margin-top:25px;
+                width:100%;
+                height:40px;
+                border:none;
+                border-radius:8px;
+                background:#333;
+                color:white;
+                cursor:pointer;
+            ">
+            Cancelar
+        </button>
+
+    </div>
+
+</div>
+
+<!-- SELECTOR DE VARIANTES -->
+
+<div id="selectorVariantes" style="
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.92);
+    z-index:16000;
+    justify-content:center;
+    align-items:center;
+">
+
+    <div id="selectorVariantesCaja">
+
+        <div style="
+            font-size:18px;
+            font-weight:500;
+            margin-bottom:20px;
+            color:#cfcfcf;
+            letter-spacing:1px;
+        ">
+        <h2>VARIANTES DISPONIBLES</h2>
+        </div>
+
+        <div id="opcionesVariantes"></div>
+
+        <button id="cancelarVariantes"
+        style="
+            margin-top:20px;
+            width:100%;
+            height:44px;
+            border:none;
+            border-radius:8px;
+            background:#333;
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+        ">
+            Cancelar
+        </button>
+
+    </div>
+
+</div>
+
+<!-- MODAL EVALUACION -->
+<div id="modalEvaluacion">
+    <div class="evaluacionCaja">
+        <div class="textoEvaluacion">
+            ¿Qué te pareció este canal?
+        </div>
+        <div class="evaluacionBotones">
+<div class="evaluacionBotones">
+        <button onclick="responderEvaluacion(100)">
+               👍
+        </button>
+
+        <button onclick="responderEvaluacion(60)">
+               😐
+        </button>
+
+        <button onclick="responderEvaluacion(30)">
+               👎
+        </button>
+
+        <button onclick="responderEvaluacion(0)">
+               🚫
+        </button>
+   
+        <button onclick="cancelarEvaluacion()">
+               🚪
+        </button>
+</div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+const canales = [
+    { nombre:"América TV",
+       fuentes: [
+      { tipo:"hls", url: "https://prepublish.f.qaotic.net/a07/americahls-100056/playlist_720p.m3u8" },
+      { tipo:"hls", url: "http://190.7.19.197:232/play/a03b/index.m3u8" }]},
+     
+    { nombre:"TV Pública",
+       fuentes: [
+      { tipo:"youtube", url: "https://www.youtube.com/embed/7aSOx-G9CL4?autoplay=1" },
+      { tipo:"web", url: "https://videx.lol/embed.php?channel=chn_ddced4b0fd6e&key=videx.lol" }]},
+
+    { nombre:"El Nueve",
+      fuentes: [
+     { tipo:"hls", url: "http://190.7.19.197:232/play/a03k/index.m3u8" },
+     { tipo:"youtube", url: "https://www.youtube.com/embed/C1DhpJ07ZuE?autoplay=1" }]},
+
+    { nombre:"Telefe",
+                variantes: [
+                    { nombre:"Telefe Bs. As.",
+                    fuentes: [{ tipo:"hls", url: "http://138.59.227.20:8000/play/a08a/index.m3u8" },
+                              { tipo:"hls", url: "http://190.7.19.197:232/play/a059/index.m3u8" },
+                              { tipo:"hls", url: "http://45.134.141.161:2200/ARG/TELEFE_HD/index.m3u8" },
+                              { tipo:"web", url: "https://videx.lol/embed.php?channel=chn_e46857a6c4ab&key=videx.lol" }]},
+                    { nombre:"Telefe Interior",
+                    fuentes: [{ tipo:"hls", url: "http://200.91.32.158:8080/telefehdvalle/index.m3u8" }]}
+                           ]},
+
+    { nombre: "El Trece",
+      fuentes: [
+     { tipo: "hls", url: "https://live-01-02-eltrece.vodgc.net/eltrecetv/index.m3u8",
+        headers: {
+           Referer: "https://vodgc.net",
+           "User-Agent": "Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Mobile Safari/537.36" }},
+     { tipo: "hls", url: "https://livetrx01.vodgc.net/eltrecetv/index.m3u8",
+        headers: {
+           Referer: "https://vodgc.net",
+           "User-Agent": "Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Mobile Safari/537.36" }}]},
+    
+    { nombre:"Crónica",
+      fuentes: [
+    { tipo:"youtube", url: "https://www.youtube.com/embed/hw4uHyct4vg?autoplay=1" },
+    { tipo:"hls", url: "http://190.7.19.197:232/play/a041/index.m3u8" },
+    { tipo:"hls", url: "http://138.59.227.20:8000/play/a05w/index.m3u8" }]},
+
+    { nombre: "9 Litoral",
+      fuentes: [
+     { tipo: "hls", url: "https://stream.arcast.live/ahora/ahora/playlist.m3u8" },
+     { tipo: "hls", url: "https://stream.arcast.live/canal9litoral/ngrp:canal9litoral_all/playlist.m3u8" }]},
+    { nombre:"Canal 26",
+      fuentes: [
+     { tipo:"hls", url: "https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8" },
+     { tipo:"hls", url: "http://138.59.227.20:8000/play/a05x/index.m3u8" }, 
+     { tipo:"hls", url: "http://181.233.180.4:8000/play/a01r/index.m3u8u?hls" }]}
+    ];
+
+
+const menus = {
+        principal: {
+        titulo: "📺 TV ARG",
+        items: canales,
+        botones: [
+            { nombre:"📻 RADIOS", destino:"radios" },
+            { nombre:"📰 NOTICIAS", destino:"noticias" },
+            { nombre:"🎥 CINE", destino:"cine" },
+            { nombre:"🌎 DOCUMENTALES", destino:"documentales" },
+            { nombre:"🎵 MÚSICA", destino:"musica" },
+            { nombre:"🏠 HOGAR", destino:"hogar" },
+            { nombre:"♾️ CANALES 24/7", destino:"247" },
+            { nombre:"🏟️ EVENTOS", destino:"eventos" },
+            { nombre:"👦 KIDS", destino:"kids" },
+            { nombre:"⚽ DEPORTES", destino:"deportes" }
+        ]},
+
+    radios: {
+        titulo:"📻 RADIOS",
+        items: [
+            { banda: "FM", nombre: "Aspen", frecuencia: "102.3", tipo: "radio", destino: "radio", url: "https://playerservices.streamtheworld.com/api/livestream-redirect/ASPEN_SC" },
+            { banda: "FM", nombre: "Blue", frecuencia: "100.7", tipo: "radio", destino: "radio", url: "https://24253.live.streamtheworld.com/BLUE_FM_100_7.mp3" },
+            { banda: "FM", nombre: "Vida", frecuencia: "97.9", tipo: "radio", destino: "radio", url: "https://streaming450tb.locucionar.com/proxy/fmvida979?mp=/stream" },
+            { banda: "FM", nombre: "Tango", frecuencia: "92.7", tipo: "radio", destino: "radio", url: "https://media.radios.ar:9270/" }
+        ]},
+
+    noticias: {
+        titulo: "📰 NOTICIAS",
+        items: [
+            { nombre: "Ar|12",
+              fuentes: [ { tipo:"youtube", url: "https://www.youtube.com/embed/JrmCaXL5GZs?autoplay=1" }]},
+            { nombre:"TN",
+              fuentes: [
+             { tipo:"youtube", url: "https://www.youtube.com/embed/cb12KmMMDJA?autoplay=1" },
+             { tipo:"hls", url: "http://181.233.180.4:8000/play/a058/index.m3u8u?hls" }, 
+             { tipo:"hls", url: "https://live-01-01-tn.vodgc.net/TN_DAI_Beta/index.m3u8" }]},
+            { nombre:"C5N",
+              fuentes: [
+             { tipo:"hls", url: "http://181.233.180.4:8000/play/a01p/index.m3u8u?hls" },
+             { tipo:"hls", url: "http://138.59.227.20:8000/play/a05v/index.m3u8" },
+             { tipo:"hls", url: "http://190.7.19.197:232/play/a040/index.m3u8" },
+             { tipo:"youtube", url: "https://www.youtube.com/embed/KRezJC7_9Uw?autoplay=1" }]},
+            { nombre:"LN+",
+              fuentes: [
+             { tipo:"hls", url: "http://138.59.227.20:8000/play/a05y/index.m3u8" }, 
+             { tipo:"hls", url: "https://g5.vxral-slo.transport.edge-access.net/a12/ngrp:a24-100056_all/playlist.m3u8?sense=true", reproductor:"vlc" }, 
+             { tipo:"youtube", url: "https://www.youtube.com/embed/FEWZjXJ7M0c?autoplay=1" }]},
+            { nombre:"A24",
+              fuentes: [
+             { tipo:"hls", url: "http://181.233.180.4:8000/play/a01o/index.m3u8u?hls" }, 
+             { tipo:"youtube", url: "https://www.youtube.com/embed/ArKbAx1K-2U?autoplay=1" }]},
+        ]},
+
+    cine: {
+        titulo: "🎥 CINE",
+        items: [
+            { nombre: "Paramount+",
+                    fuentes: [ { tipo:"hls", url: "http://181.224.200.5:2277/play/a0df/index.m3u8" }]},
+            { nombre: "Cinecanal",
+                    fuentes: [ { tipo:"hls", url: "http://181.224.200.5:2277/play/a013/index.m3u8" }]},
+            { nombre:"HBO",
+                variantes: [
+                    { nombre:"HBO",
+                    fuentes: [{ tipo:"hls", url:"http://181.119.215.61:8000/play/a0l2/index.m3u8?hls" }]
+                    },
+                    { nombre:"HBO 2",
+                    fuentes: [{ tipo:"hls", url:"http://181.119.215.61:8000/play/a00c/index.m3u8?hls" },
+                              { tipo:"hls", url: "http://190.7.19.197:232/play/a09h/index.m3u8" }]
+                    },
+                    { nombre:"HBO +",
+                    fuentes: [{ tipo:"hls", url:"http://181.119.215.61:8000/play/a0l4/index.m3u8?hls" }]
+                    },
+                    { nombre:"HBO Family",
+                    fuentes: [{ tipo:"hls", url:"http://181.119.215.61:8000/play/a0l5/index.m3u8?hls" }]
+                    }]}]},
+
+    documentales: {
+        titulo: "🌎 DOCUMENTALES",
+        items: [
+            { nombre:"Encuentro",
+              fuentes: [
+            { tipo:"hls", url: "http://190.7.19.197:232/play/a013/index.m3u8" },
+            { tipo:"hls", url: "http://181.233.180.4:8000/play/a01m/index.m3u8u?hls" }]},
+            { nombre:"Canal (á)",
+              fuentes: [ { tipo:"hls", url: "http://181.233.180.4:8000/play/a09j/index.m3u8u?hls", reproductor:"vlc" }]},
+            { nombre:"Film & Arts",
+              fuentes: [
+            { tipo:"hls", url: "http://181.119.215.61:8000/play/a0gs/index.m3u8?hls", reproductor:"vlc" },
+            { tipo:"hls", url: "http://181.119.215.61:8000/play/a0gs/index.m3u8?hls" },
+            { tipo:"hls", url: "http://181.233.180.4:8000/play/a030/index.m3u8u?hls", reproductor:"vlc" }]},
+            { nombre:"A&E",
+              fuentes: [
+              { tipo:"hls", url: "http://181.233.180.4:8000/play/a05i/index.m3u8u?hls" },
+              { tipo:"hls", url: "http://181.224.200.5:2277/play/a01e/index.m3u8", reproductor:"vlc" }]},
+            { nombre:"Nat Geo",
+              fuentes: [ { tipo:"hls", url: "http://181.224.200.5:2277/play/a012/index.m3u8", reproductor:"vlc" }]},
+            { nombre:"History",
+              fuentes: [
+            { tipo:"hls", url: "http://181.119.215.61:8000/play/a05c/index.m3u8?hls" },
+            { tipo:"hls", url: "http://181.233.180.4:8000/play/a051/index.m3u8u?hls" },
+            { tipo:"hls", url: "http://181.224.200.5:2277/play/a02b/index.m3u8", reproductor:"vlc" }]},
+            { nombre:"History 2",
+              fuentes: [
+            { tipo:"hls", url: "http://138.59.227.20:8000/play/a06n/index.m3u8" },
+            { tipo:"hls", url: "http://181.224.200.5:2277/play/a01b/index.m3u8", reproductor:"vlc" }]},
+            { nombre:"Discovery World",
+              fuentes: [ { tipo:"hls", url: "http://181.119.215.61:8000/play/a0kp/index.m3u8?hls" }]},
+            { nombre:"Love Nature",
+              fuentes: [ { tipo:"hls", url: "http://181.224.200.5:2277/play/a036/index.m3u8", reproductor:"vlc" }]},
+            { nombre:"Animal Planet",
+              fuentes: [
+            { tipo:"hls", url: "http://190.108.83.69:8000/play/a043/index.m3u8", reproductor:"vlc" },    
+            { tipo:"hls", url: "http://181.224.200.5:2277/play/a00r/index.m3u8", reproductor:"vlc" }]}
+               ]},
+
+    musica: {
+        titulo: "🎵 MÚSICA",
+        items: [
+            { nombre:"El Folklórico TV",
+              fuentes: [
+            { tipo:"hls", url: "http://190.7.19.197:232/play/a024/index.m3u8" }]},
+            { nombre:"Allegro TV",
+              fuentes: [
+            { tipo:"hls", url: "http://190.7.19.197:232/play/a098/index.m3u8" }]},
+            { nombre:"MTV",
+              fuentes: [
+            { tipo:"hls", url: "http://138.59.227.20:8000/play/a06r/index.m3u8" }]},
+            { nombre:"CM",
+              fuentes: [
+            { tipo:"hls", url: "http://190.7.19.197:232/play/a094/index.m3u8" }]},
+            { nombre:"Quiero Música",
+              fuentes: [
+            { tipo:"hls", url: "http://138.59.227.20:8000/play/a06s/index.m3u8" },
+            { tipo:"youtube", url: "https://www.youtube.com/embed/vGNglKWqwcQ?autoplay=1" }]},
+            { nombre:"HTV",
+              fuentes: [
+            { tipo:"hls", url: "http://138.59.227.20:8000/play/a06t/index.m3u8" }]}    
+               ]},
+    
+    hogar: {
+        titulo: "🏠 HOGAR",
+        items: [
+            { nombre:"Home & Health",
+              fuentes: [
+             { tipo:"hls", url: "http://181.233.180.4:8000/play/a07h/index.m3u8u?hls" },
+             { tipo:"hls", url: "http://181.224.200.5:2277/play/a00p/index.m3u8", reproductor:"vlc" }]},
+            { nombre:"Home & Garden TV",
+              fuentes: [
+             { tipo:"hls", url: "http://190.108.83.69:8000/play/a0b4/index.m3u8" },
+             { tipo:"hls", url: "http://138.59.227.20:8000/play/a06o/index.m3u8" }]},
+            { nombre:"El Gourmet",
+              fuentes: [ { tipo:"hls", url: "http://181.224.200.5:2277/play/a00n/index.m3u8", reproductor:"vlc" }]}
+               ]},
+    247: {
+        titulo: "♾️ CANALES 24/7",
+        items: [
+            { nombre:"Mr Bean",
+              fuentes: [
+            { tipo:"hls", url: "https://fl1004.bozztv.com/ushba45/tracks-v1a1/mono.m3u8" }]},            
+            { nombre:"El Chavo del 8",
+              fuentes: [
+            { tipo:"hls", url: "https://live20.bozztv.com/giatvplayout7/giatv-211465/playlist.m3u8" }]}
+               ]},
+
+    eventos: {
+        titulo: "🏟️ EVENTOS",
+        items: [
+            { nombre:"Eventos",
+              fuentes: [
+            { tipo:"hls", url: "http://190.7.19.197:232/play/a022/index.m3u8" }]},            
+            { nombre:"Lumpen TV",
+               fuentes: [
+             { tipo:"hls", url: "https://livestream.lumpentv.com.ar/hls/lumpen.m3u8" }]}
+             ]},
+    
+    kids: {
+        titulo: "👦 KIDS",
+        items: [            
+            { nombre:"Disney Jr",
+              fuentes: [
+             { tipo: "hls", url: "http://177.234.249.178:8888/DISNEY-JR/index.m3u8" },
+             { tipo:"hls", url: "http://190.238.43.117:9000/play/a0ip/index.m3u8" },
+             { tipo:"hls", url: "http://190.108.83.69:8000/play/a025/index.m3u8" },
+             { tipo:"hls", url: "http://181.224.200.5:2277/play/a0dm/index.m3u8", reproductor: "vlc" }]},
+            { nombre:"Disney Channel",
+              fuentes: [ { tipo:"hls", url: "http://181.224.200.5:2277/play/a014/index.m3u8", reproductor: "vlc" }]}
+               ]},
+
+    deportes: {
+        titulo: "⚽ DEPORTES",
+        items: [
+            { nombre: "TyC sports",
+              fuentes: [
+             { tipo:"hls", url: "http://190.7.19.197:232/play/a04w/index.m3u8" },
+             { tipo:"hls", url: "http://138.59.227.20:8000/play/a06x/index.m3u8" },
+             { tipo:"hls", url: "http://45.181.87.106/TYCSPORTSHD/index.m3u8"},
+             { tipo:"web", url: "https://videx.lol/embed.php?channel=chn_cfcdeb0b8708&key=videx.lol" }]},
+
+            { nombre:"Fox Sports",
+                variantes: [
+                    { nombre:"Fox Sports",
+                    fuentes: [
+                         { tipo:"hls", url: "http://138.59.227.20:8000/play/a085/index.m3u8" }]},
+                    { nombre:"Fox Sports 2", 
+                    fuentes: [
+                         { tipo:"hls", url: "http://138.59.227.20:8000/play/a09b/index.m3u8" }]},
+                    { nombre:"Fox Sports 3", 
+                    fuentes: [
+                         { tipo:"hls", url: "http://138.59.227.20:8000/play/a06y/index.m3u8" }]},
+                ]},
+            
+            { nombre:"ESPN",
+                variantes: [
+                    { nombre:"ESPN",
+                    fuentes: [{ tipo:"hls", url: "http://190.238.43.117:9000/play/a0d6/index.m3u8" },
+                              { tipo:"hls", url: "http://138.59.227.20:8000/play/a099/index.m3u8" }]
+                    },
+                    { nombre:"ESPN Premium", 
+                    fuentes: [{ tipo:"hls", url: "http://190.7.19.197:232/play/a038/index.m3u8" },
+                              { tipo:"hls", url: "http://138.59.227.20:8000/play/a086/index.m3u8" },
+                              { tipo:"web", url: "https://videx.lol/embed.php?channel=chn_dfbf070638fc&key=videx.lol" }]}
+                ]},
+            { nombre: "TNT Sports Premium",
+               fuentes: [
+             { tipo:"hls", url: "http://190.7.19.197:232/play/a037/index.m3u8" },
+             { tipo:"hls", url: "http://138.59.227.20:8000/play/a06z/index.m3u8" },
+             { tipo:"web", url: "https://videx.lol/embed.php?channel=chn_b73dac05f6a6&key=videx.lol" }]},
+            { nombre: "DSports2",
+              fuentes: [
+            { tipo:"hls", url: "http://190.7.19.197:232/play/a09h/index.m3u8" },
+            { tipo:"hls", url: "http://181.233.180.4:8000/play/a0fc/index.m3u8u?hls" },
+            { tipo:"hls", url: "http://181.64.27.65:8000/play/a0dq/index.m3u8" }]},
+            { nombre: "DSports+",
+              fuentes: [
+            { tipo:"hls", url: "https://streamvidex.qzz.io/videx/dsportsplus/index.m3u8" },
+            { tipo:"hls", url: "http://190.108.83.69:8000/play/a05w/index.m3u8" }]},
+            { nombre: "DirecTV sport",
+              fuentes: [
+            { tipo:"hls", url: "http://190.117.20.37:8000/play/a08d/index.m3u" },
+            { tipo:"hls", url: "http://38.187.7.252:8000/play/a03d/index.m3u8" },            
+            { tipo:"hls", url: "http://8.243.126.131:8000/play/a05a/index.m3u8" }]},
+            { nombre: "DSports",
+              fuentes: [
+             { tipo:"hls", url: "http://190.7.19.197:232/play/a09i/index.m3u8" },
+             { tipo:"hls", url: "http://181.233.180.4:8000/play/a0fd/index.m3u8u?hls" },
+             { tipo:"hls", url: "https://streamvidex.qzz.io/videx/dsportsar/index.m3u8" }]},
+             { nombre: "Lumpen TV",
+               fuentes: [
+             { tipo:"hls", url: "https://livestream.lumpentv.com.ar/hls/lumpen.m3u8" }]},
+             ]}};  
+
+
+
+
+
+let hls;
+let estado = "splash";
+let estadoAnterior = "";
+let menuActual = "menu";
+let menuOrigen = "menu";
+let inactivityTimer;
+let radio = new Audio();
+let ubicacion = "principal";
+let bloqueandoBack = false;
+let itemSelectorActual = null;
+let origenReproduccion = null;
+let origenNavegacion = "principal";
+let submenuActual = null;
+let canalAnterior = null;
+let selectorAbierto = false;
+
+let variantesAbierto = false;
+let itemVariantesActual = null;
+let canalPadreAnterior = null;
+let varianteAnterior = null;
+let ultimoSelector = null;
+let regresoSelector = false;
+
+const menu = document.getElementById("menu");
+const video = document.getElementById("video");
+const mensaje = document.getElementById("mensaje");
+const splash = document.getElementById("inicioTVArg");
+const installBtn = document.getElementById("installBtn");
+const backBtn = document.getElementById("backBtn");
+const player = document.getElementById("player");
+
+// Detectar si corre dentro del APK Android
+if (window.AndroidTVArg) {
+    document.body.classList.add("android-app");
+}
+
+/* ===== SPLASH ===== */
+
+const enterBtn = document.getElementById("enterBtn");
+enterBtn.onclick = () => {
+    modoReproduccion = "manual";
+    splash.style.display = "none";
+    menu.style.display = "flex";
+    estado = "menu";
+    ubicacion = "principal";
+};
+
+if (window.matchMedia('(display-mode: standalone)').matches ||
+    window.navigator.standalone === true) {
+    splash.style.display = "none";
+    menu.style.display = "flex";
+    estado = "menu";
+    ubicacion = "principal";
+}
+
+/* ===== YOUTUBE PARSER ===== */
+
+function getYouTubeEmbed(url) {
+
+    try {
+        const u = new URL(url);
+
+        let id = u.searchParams.get("v");
+
+        // soporte shorts
+        if (!id && u.pathname.includes("/shorts/")) {
+            id = u.pathname.split("/shorts/")[1];
+        }
+
+        if (!id) return null;
+
+        return `https://www.youtube.com/embed/${id}`;
+
+    } catch {
+        return null;
+    }
+}
+
+/* ===== PLAYER ===== */
+function mostrarMensaje(texto) {
+
+    mensaje.textContent = texto;
+    mensaje.style.display = "block";
+
+    setTimeout(() => {
+        mensaje.style.display = "none";
+    }, 3000);
+}
+
+function salirDelPlayer() {
+
+    if (hls) {
+        hls.destroy();
+        hls = null;
+    }
+
+    video.pause();
+    video.removeAttribute("src");
+    video.srcObject = null;
+    video.load();
+
+    document.getElementById("ytOverlay").style.display = "none";
+    document.getElementById("ytFrame").src = "";
+
+    backBtn.classList.remove("show");
+    backBtn.style.opacity = "0";
+
+    clearTimeout(inactivityTimer);
+    }
+
+function mostrarMenuSecundario(nombreMenu) {
+    submenuActual = nombreMenu;
+    if (window.AndroidTVArg) {
+        AndroidTVArg.setMenuPrincipal(false); }
+    menu.style.display = "none";
+    const menuSecundario = document.getElementById("menuSecundario");
+    const backMenuBtn = document.getElementById("backMenuBtn");
+    menuSecundario.style.display = "flex";
+    backBtn.classList.remove("show");
+    backBtn.style.opacity = "0";
+    backMenuBtn.style.display = "block";
+    backMenuBtn.style.opacity = "1";
+    backMenuBtn.style.pointerEvents = "auto";
+    menuActual = "otros";
+    estado = "otros";
+    ubicacion = "secundario";
+}
+
+function abrirWeb(url) {
+    estadoAnterior = estado;
+    const overlay = document.getElementById("webOverlay");
+    const frame = document.getElementById("webFrame");
+    frame.src = url;
+    overlay.style.display = "block";
+    backBtn.classList.add("show");
+    mostrarBackBtn();
+    estado = "web";
+}
+
+function abrirElemento(item) {
+    
+    origenReproduccion = ubicacion;
+    canalAnterior = item;
+
+    // ==========================
+    // RADIOS
+    // ==========================
+    if (item.tipo === "radio") {
+        reproducirRadio(
+            item.url,
+            item.banda,
+            item.nombre,
+            item.frecuencia
+        );
+        return;
+    }
+
+    // ==========================
+    // VARIANTES
+    // ==========================
+    if(tieneVariantes(item)){
+        mostrarSelectorVariantes(item);
+        return;
+    }
+
+console.log(
+    "CANAL SELECCIONADO:",
+    item.nombre,
+    "FUENTES:",
+    item.fuentes.length,
+    item.fuentes,
+    
+    "ABRIENDO:",
+    item.nombre,
+    "ubicacion:",
+    ubicacion,
+    "origen:",
+    origenReproduccion
+);
+    
+
+
+    // ==========================
+    // CANAL SIN FUENTES
+    // ==========================
+    if (!item.fuentes || item.fuentes.length === 0) {
+        console.warn("Canal sin fuentes:", item);
+        return;
+    }
+
+    // ==========================
+    // UNA SOLA FUENTE
+    // ==========================
+if (item.fuentes.length === 1) {
+
+    // Este canal entra directo al reproductor.
+    // No hay ningún selector al que volver.
+    ultimoSelector = null;
+    selectorAbierto = false;
+    itemSelectorActual = null;
+
+    const fuente = item.fuentes[0];
+
+    iniciarEvaluacionCanal(item, fuente);
+
+    switch (fuente.tipo) {
+        case "hls":
+            reproducirHls(item);
+            return;
+        case "youtube":
+            reproducirYoutube(fuente.url);
+            return;
+        case "web":
+            abrirWeb(fuente.url);
+            return;
+    }
+}
+
+    mostrarSelectorFuentes(item);
+}
+
+    // ==========================
+    // VARIAS FUENTES
+    // ==========================
+
+function tieneVariantes(item){
+    return item.variantes && item.variantes.length > 0;
+}
+
+function mostrarSelectorVariantes(item){
+    ultimoSelector = "variantes";
+    itemVariantesActual = item;
+    // Guardamos el canal padre (ej: HBO)
+    canalPadreAnterior = item;
+    const modal =
+        document.getElementById("selectorVariantes");
+    const opciones =
+        document.getElementById("opcionesVariantes");
+    opciones.innerHTML = "";
+    item.variantes.forEach((variante)=>{
+        const boton = document.createElement("button");
+        boton.className = "canal canal-canal";
+        boton.textContent = variante.nombre;
+        boton.onclick = ()=>{
+            modal.style.display = "none";
+            variantesAbierto = false;
+            // Guardamos la variante elegida (ej: HBO 2)
+            varianteAnterior = variante;
+            canalAnterior = variante;
+            // Si tiene una sola fuente, reproduce directo
+            if (variante.fuentes.length === 1) {
+                ultimoSelector = "variantes";
+                canalPadreAnterior = item;
+                varianteAnterior = variante;
+                reproducirFuenteSeleccionada(
+                    variante,
+                    variante.fuentes[0]
+                );
+            } else {
+                // Si tiene varias fuentes, muestra selector
+                mostrarSelectorFuentes(variante);
+            }
+        };
+        opciones.appendChild(boton);
+    });
+    modal.style.display = "flex";
+    variantesAbierto = true;
+}
+
+function reproducirFuenteSeleccionada(item, fuente) {
+
+    // Si este canal/variante sólo tiene una fuente,
+    // no existe selector al que volver.
+if (item.fuentes && item.fuentes.length === 1) {
+    // No existe selector de fuentes
+    selectorAbierto = false;
+    itemSelectorActual = null;
+    // PERO si venimos de variantes,
+    // conservamos el selector padre
+    if (!canalPadreAnterior) {
+        ultimoSelector = null;
+    }
+}
+    varianteAnterior = item;
+
+    console.log(
+        "Fuente seleccionada:",
+        item.nombre,
+        fuente.tipo,
+        fuente.url
+    );
+
+    iniciarEvaluacionCanal(item, fuente);
+    switch (fuente.tipo) {
+        case "hls":
+            reproducirHls({
+                ...item,
+                fuentes: [fuente]
+            });
+            break;
+        case "youtube":
+            reproducirYoutube(fuente.url);
+            break;
+        case "web":
+            abrirWeb(fuente.url);
+            break;
+        default:
+            console.warn(
+                "Tipo de fuente desconocido:",
+                fuente.tipo
+            );
+            break;
+    }
+}
+
+    // ==========================
+
+function obtenerIndicadorEvaluacion(fuente){
+
+    const datos =
+        JSON.parse(
+            localStorage.getItem("evaluacionesTVArg")
+        ) || {};
+
+    const id =
+        canalAnterior.nombre +
+        "_" +
+        fuente.tipo +
+        "_" +
+        btoa(fuente.url) +
+        "_" +
+        (fuente.reproductor || "exo");
+
+    const item = datos[id];
+
+    if(!item){
+        return "Sin datos";
+    }
+
+    const p = item.promedio;
+
+    if(p === 0){
+        return "❌";
+    }
+
+    if(p > 80){
+        return "★★★★★";
+    }
+
+    if(p > 65){
+        return "★★★★☆";
+    }
+
+    if(p > 50){
+        return "★★★☆☆";
+    }
+
+    if(p > 25){
+        return "★★☆☆☆";
+    }
+
+    return "★☆☆☆☆";
+}
+
+    // ==========================
+
+function mostrarSelectorFuentes(item) {
+    ultimoSelector = "fuentes";
+    itemSelectorActual = item;
+    itemSelectorActual = item;
+
+    if(item.variantes){
+        varianteAnterior = item;
+    }
+
+    console.log(
+        "ENTRA SELECTOR:",
+        item.nombre,
+        "FUENTES:",
+        item.fuentes.length,
+        item.fuentes
+    );
+
+    itemSelectorActual = item;
+
+    const selector = document.getElementById("selectorFuente");
+    const opciones = document.getElementById("selectorOpciones");
+    opciones.innerHTML = "";
+    // Agrupar por tipo
+    const grupos = {};
+    item.fuentes.forEach(fuente => {
+        if (!grupos[fuente.tipo]) {
+            grupos[fuente.tipo] = [];
+        }
+        grupos[fuente.tipo].push(fuente);
+    });
+// Orden fijo de visualización
+const ordenTipos = ["hls", "youtube", "web"];
+
+// Dibujar cada grupo respetando orden
+ordenTipos.forEach(tipo => {
+    if (!grupos[tipo]) return;
+    // ---------- TÍTULO ----------
+    const titulo = document.createElement("div");
+    titulo.style.marginTop = "12px";
+    titulo.style.marginBottom = "4px";
+    titulo.style.fontSize = "20px";
+    titulo.style.fontWeight = "bold";
+    titulo.style.textAlign = "left";
+    titulo.style.color = "#8fc8ff";
+    switch (tipo) {
+        case "hls":
+            titulo.textContent = "📺 HLS";
+            break;
+        case "youtube":
+            titulo.textContent = "▶ YOUTUBE";
+            break;
+        case "web":
+            titulo.textContent = "🌐 WEB";
+            break;
+        default:
+            titulo.textContent = tipo.toUpperCase();
+    }
+
+    opciones.appendChild(titulo);
+        // ---------- FUENTES ----------
+        grupos[tipo].forEach((fuente, indice) => {
+            const boton = document.createElement("button");
+            boton.className = "selector-opcion";
+            let reproductor = "";
+            if (fuente.tipo === "hls") {
+                reproductor =
+                    fuente.reproductor === "vlc"
+                        ? "VLC"
+                        : "EXO";
+            }
+
+let indicador =
+    obtenerIndicadorEvaluacion(fuente);
+
+boton.innerHTML = `
+<div style="
+display:flex;
+width:100%;
+align-items:center;
+">
+
+<div style="
+flex:1;
+text-align:left;
+">
+Opción ${indice+1}
+</div>
+
+<div style="
+width:55px;
+text-align:center;
+font-weight:bold;
+">
+${reproductor}
+</div>
+
+<div style="
+width:120px;
+display:flex;
+justify-content:flex-end;
+align-items:center;
+font-size:${indicador === "Sin datos" ? "13px" : "16px"};
+line-height:1;
+letter-spacing:${indicador === "Sin datos" ? "0px" : "1px"};
+font-family:Arial,sans-serif;
+opacity:${indicador === "Sin datos" ? "0.6" : "1"};
+">
+${indicador}
+</div>
+
+</div>
+`;
+
+boton.onclick = () => {
+    selector.style.display = "none";
+    selectorAbierto = false;
+
+    reproducirFuenteSeleccionada(
+        itemSelectorActual,
+        fuente
+    );
+};
+            opciones.appendChild(boton);
+        });
+    });
+    selector.style.display = "flex";
+    selectorAbierto = true;
+}
+
+
+function reproducirRadio(url, banda, nombre, frecuencia) {
+    cerrarTodoMedia(); // limpia video/youtube/web
+    estado = "radio";
+
+    // 🔴 ocultar todo lo demás SI o SI
+    menu.style.display = "none";
+    document.getElementById("menuSecundario").style.display = "none";
+    player.style.display = "none";
+
+    // 🔴 mostrar pantalla radio
+    const radioScreen = document.getElementById("radioScreen");
+    const title = document.getElementById("radioTitle");
+
+title.innerHTML = `
+    <div style="
+        font-size:52px;
+        font-weight:300;
+        color:#A8D9F0; /* gris muy clarito (FM) */
+        line-height:1;
+        letter-spacing:1px;
+    ">
+        ${banda}
+        <span style="
+            font-size:64px;
+            font-weight:900;
+            margin-left:10px;
+            letter-spacing:1px;
+            color:#7BC2E3; /* azul mas oscuro (nombre) */
+        ">
+            ${nombre}
+        </span>
+    </div>
+
+    <div style="
+        font-size:30px;
+        color:#A9D9CF; /* azul más claro (frecuencia) */
+        margin-top:2px;
+        line-height:1;
+        opacity:0.85;
+        letter-spacing:0.5px;
+    ">
+        ${frecuencia ? frecuencia : ""}
+    </div>
+`;
+
+    radioScreen.style.display = "flex";
+
+    // 🔴 arrancar audio
+    radio.src = url;
+    radio.play().catch(() => {});
+
+    // 🔴 back visible
+    backBtn.classList.add("show");
+}
+
+function reproducirYoutube(url) {
+    estado = "player";
+    // ocultar menú
+    menu.style.display = "none";
+    // YouTube usa su propio overlay
+    player.style.display = "none";
+    const iframe = document.getElementById("ytFrame");
+    const overlay = document.getElementById("ytOverlay");
+    // limpiar reproducción anterior
+    iframe.src = "about:blank";
+    overlay.style.display = "block";
+    setTimeout(() => {
+        iframe.src = url;
+    }, 80);
+    backBtn.classList.add("show");
+    mostrarBackBtn();
+}
+
+function reproducirHls(canal) {
+    estado = "player";
+    menu.style.display = "none";
+    player.style.display = "flex";
+    if (hls) {
+        hls.destroy();
+        hls = null;
+    }
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+
+    // ==================================
+    // NUEVO SISTEMA DE FUENTES
+    // ==================================
+    canalActual = canal;
+    if (!canalActual.fuentes) {
+        console.error("Canal sin fuentes");
+        return;
+    }
+    fuenteActual = 0;
+    intentosFuente = 0;
+    let fuente = canalActual.fuentes[fuenteActual];
+
+    let url = fuente.url;
+    let headers = fuente.headers || {};
+    console.log(
+        "Reproduciendo fuente:",
+        url
+    );
+
+    // ==================================
+    // ANDROID APK
+    // ==================================
+
+    if (window.AndroidTVArg) {
+        player.style.display = "none";
+        if (fuente.reproductor === "vlc") {
+            AndroidTVArg.playChannelVLC(
+                url
+            );
+        } else {
+            AndroidTVArg.playChannel(
+                url,
+                headers.Referer || "",
+                headers["User-Agent"] || ""
+            );
+        }
+        backBtn.classList.add("show");
+        mostrarBackBtn();
+        return;
+    }
+
+    // ==================================
+    // WEB HLS NORMAL
+    // ==================================
+
+    if (Hls.isSupported()) {
+        hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(video);
+        hls.on(
+            Hls.Events.MANIFEST_PARSED,
+            () => {
+                video.play();
+                video.style.visibility = "visible";
+                video.style.opacity = "1";
+            }
+        );
+
+        hls.on(
+            Hls.Events.ERROR,
+            () => {
+                mostrarMensaje(
+                    "Error cargando canal"
+                );
+            }
+        );
+    }
+
+    backBtn.classList.add("show");
+    mostrarBackBtn();
+}
+
+function cargarCanal(canal) {
+    abrirElemento(canal);
+}
+
+function dibujarMenu(nombreMenu) {
+    const datos = menus[nombreMenu];
+    if (!datos) return;
+    if (nombreMenu === "principal") {
+        document.getElementById("titulo").textContent = datos.titulo;
+        const lista = document.getElementById("listaCanales");
+        const listaBotones = document.getElementById("listaBotones");
+        lista.innerHTML = "";
+        listaBotones.innerHTML = "";
+        // Canales
+        datos.items.forEach(item => {
+            const div = document.createElement("div");
+            div.className = "canal canal-canal";
+            if (item.variantes) {
+                div.classList.add("canal-con-variantes");
+            }
+            div.textContent = item.nombre;
+
+            div.onclick = () => {
+                origenNavegacion = "principal";
+                abrirElemento(item);
+            };
+
+            lista.appendChild(div);
+        });
+        // Botones de submenús
+        if (datos.botones) {
+            datos.botones.forEach(boton => {
+                const div = document.createElement("div");
+                div.className = "canal canal-menu";
+                div.textContent = boton.nombre;
+        div.onclick = () => {
+            submenuActual = boton.destino;
+            dibujarMenu(boton.destino);
+            mostrarMenuSecundario(boton.destino);
+        };
+                listaBotones.appendChild(div);
+            });
+        }
+        } else {
+            document.getElementById("tituloMenu").textContent = datos.titulo;
+            const lista = document.getElementById("listaMenu");
+            lista.innerHTML = "";
+
+            datos.items.forEach(item => {
+                const div = document.createElement("div");
+
+            div.className = "canal";
+            if (item.variantes) {
+                div.classList.add("canal-con-variantes");
+            }
+            div.textContent = item.nombre;
+
+                div.onclick = () => {
+                    origenNavegacion = "secundario";
+                    abrirElemento(item);
+                };
+
+                lista.appendChild(div);
+
+            });
+        }
+}
+
+dibujarMenu("principal");
+
+// =========================
+// SELECTORES
+// =========================
+
+document.getElementById("selectorCancelar").onclick = () => {
+    document.getElementById("selectorFuente").style.display = "none";
+    selectorAbierto = false;
+    // Si llegamos aquí desde un selector de variantes,
+    // volver a mostrarlo.
+    if (canalPadreAnterior) {
+        mostrarSelectorVariantes(canalPadreAnterior);
+        return;
+    }
+};
+
+document.getElementById("cancelarVariantes").onclick = () => {
+    document.getElementById("selectorVariantes").style.display = "none";
+    variantesAbierto = false;
+    itemVariantesActual = null;
+    canalPadreAnterior = null;
+    varianteAnterior = null;
+};
+
+/* =========================
+   CIERRE CENTRALIZADO
+========================= */
+
+function cerrarTodoMedia() {
+    if (hls) {
+        hls.destroy();
+        hls = null;
+    }
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+    document.getElementById("ytOverlay").style.display = "none";
+    document.getElementById("ytFrame").src = "about:blank";
+    document.getElementById("webOverlay").style.display = "none";
+    document.getElementById("webFrame").src = "about:blank";
+}
+
+function limpiarEstadoSelectores(){
+
+    ultimoSelector = null;
+    itemSelectorActual = null;
+    itemVariantesActual = null;
+    canalPadreAnterior = null;
+    varianteAnterior = null;
+
+}
+
+function restaurarMenu(){
+
+    if (origenReproduccion === "principal") {
+
+        menu.style.display = "flex";
+        document.getElementById("menuSecundario").style.display = "none";
+
+        estado = "menu";
+        ubicacion = "principal";
+        menuActual = "menu";
+
+        if (window.AndroidTVArg) {
+            AndroidTVArg.setMenuPrincipal(true);
+        }
+
+    } else {
+
+        menu.style.display = "none";
+        document.getElementById("menuSecundario").style.display = "flex";
+
+        estado = "otros";
+        ubicacion = "secundario";
+        menuActual = "otros";
+
+        if (window.AndroidTVArg) {
+            AndroidTVArg.setMenuPrincipal(false);
+        }
+    }
+}
+
+
+
+function restaurarNavegacion() {
+
+    let regresoSelector = false;
+
+    console.log(
+        "VOLVIENDO A:",
+        origenReproduccion,
+        "ultimoSelector:",
+        ultimoSelector
+    );
+
+
+    // ==========================
+    // RESTAURAR SELECTOR FUENTES
+    // ==========================
+
+    if (ultimoSelector === "fuentes") {
+
+        let regresar = varianteAnterior || canalAnterior;
+
+        if (
+            regresar &&
+            regresar.fuentes &&
+            regresar.fuentes.length > 1
+        ) {
+
+            regresoSelector = true;
+
+            setTimeout(() => {
+                mostrarSelectorFuentes(regresar);
+            },300);
+        }
+    }
+
+
+    // ==========================
+    // RESTAURAR SELECTOR VARIANTES
+    // ==========================
+
+    else if (
+        ultimoSelector === "variantes" &&
+        canalPadreAnterior
+    ) {
+
+        regresoSelector = true;
+
+        setTimeout(() => {
+            mostrarSelectorVariantes(canalPadreAnterior);
+        },300);
+
+    }
+
+
+    // ==========================
+    // LIMPIAR MEMORIA SI NO HAY REGRESO
+    // ==========================
+
+    if(!regresoSelector){
+        limpiarEstadoSelectores();
+    }
+
+
+    restaurarMenu();
+
+
+    // ==========================
+    // MUY IMPORTANTE
+    // ==========================
+
+    if(!regresoSelector){
+        ultimoSelector = null;
+        varianteAnterior = null;
+        canalAnterior = null;
+        canalPadreAnterior = null;
+    }
+}
+
+
+function cerrarTodo() {
+
+    console.log(
+        "CERRANDO TODO",
+        "estado=",
+        estado,
+        "ubicacion=",
+        ubicacion,
+        "origenReproduccion=",
+        origenReproduccion
+    );
+
+    bloqueandoBack = true;
+
+
+    // ==========================
+    // 1. DESTRUIR HLS
+    // ==========================
+
+    if (hls) {
+        hls.destroy();
+        hls = null;
+    }
+
+
+    // ==========================
+    // 2. LIMPIAR VIDEO
+    // ==========================
+
+    video.pause();
+    video.removeAttribute("src");
+    video.srcObject = null;
+    video.load();
+
+
+    // ==========================
+    // 3. CERRAR YOUTUBE
+    // ==========================
+
+    const ytFrame = document.getElementById("ytFrame");
+    const ytOverlay = document.getElementById("ytOverlay");
+
+    ytOverlay.style.display = "none";
+    ytFrame.src = "about:blank";
+
+
+    // ==========================
+    // 4. CERRAR WEB
+    // ==========================
+
+    const webFrame = document.getElementById("webFrame");
+    const webOverlay = document.getElementById("webOverlay");
+
+    webOverlay.style.display = "none";
+    webFrame.src = "about:blank";
+
+
+    // ==========================
+    // 5. OCULTAR PLAYER
+    // ==========================
+
+    player.style.display = "none";
+
+
+    // ==========================
+    // 6. OCULTAR BACK
+    // ==========================
+
+    backBtn.classList.remove("show");
+    backBtn.style.opacity = "0";
+
+    clearTimeout(inactivityTimer);
+
+    // ==========================
+    // 7. RESTAURAR NAVEGACIÓN
+    // ==========================
+
+    restaurarNavegacion();
+
+    setTimeout(() => {
+        bloqueandoBack = false;
+    }, 500);
+}
+
+/* =========================
+   BACK BUTTON (UI)
+========================= */
+
+backBtn.onclick = () => {
+
+    if (variantesAbierto) {
+        document.getElementById("selectorVariantes").style.display = "none";
+        variantesAbierto = false;
+        ultimoSelector = null;
+        canalPadreAnterior = null;
+        varianteAnterior = null;
+        itemVariantesActual = null;
+        return;
+    }
+
+    if (selectorAbierto) {
+        document.getElementById("selectorFuente").style.display = "none";
+        selectorAbierto = false;
+        if (canalPadreAnterior) {
+            mostrarSelectorVariantes(canalPadreAnterior);
+        }
+        return;
+    }
+
+    // 🔴 NUEVO: SALIDA DE RADIO
+    if (estado === "radio") {
+
+        radio.pause();
+        radio.src = "";
+
+        document.getElementById("radioScreen").style.display = "none";
+        document.getElementById("radioTitle").innerHTML = "";
+
+        // volver al submenú desde donde salió
+        document.getElementById("menuSecundario").style.display = "flex";
+        menu.style.display = "none";
+
+        estado = "otros";
+
+        backBtn.classList.remove("show");
+        backBtn.style.opacity = "0";
+
+        return;
+    }
+
+    // 🔴 EXISTENTE (NO TOCADO)
+    if (estado === "web" || estado === "player") {
+        manejarSalidaCanal();
+        return;
+    }
+
+    if (estado === "otros") {
+        document.getElementById("menuSecundario").style.display = "none";
+        menu.style.display = "flex";
+        estado = "menu";
+        ubicacion = "principal";
+        menuActual = "menu";
+
+        if (window.AndroidTVArg) {
+            AndroidTVArg.setMenuPrincipal(true);
+        }
+        return;
+    }
+
+    if (estado === "menu") {
+        if (window.AndroidTVArg) {
+            AndroidTVArg.closeApp();
+        }
+    }
+};
+
+/* =====      ===== */
+
+document.getElementById("backMenuBtn").onclick = () => {
+    document.getElementById("menuSecundario").style.display = "none";
+    menu.style.display = "flex";
+    menuActual = "menu";
+    submenuActual = null;
+    estado = "menu";
+    ubicacion = "principal";
+    if (window.AndroidTVArg) {
+        AndroidTVArg.setMenuPrincipal(true);
+    }
+};
+
+/* ===== BACK INTELIGENTE TV ===== */
+
+function mostrarBackBtn() {
+    if (bloqueandoBack) return;
+    if (!backBtn.classList.contains("show")) {
+        return;
+    }
+    backBtn.style.opacity = "0.75";
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(() => {
+        if (backBtn.classList.contains("show")) {
+            backBtn.style.opacity = "0.25";
+        }
+    }, 5000);
+}
+    
+/* cualquier actividad vuelve a iluminarlo */
+
+document.addEventListener("keydown", () => {
+    mostrarBackBtn();
+});
+
+document.addEventListener("mousemove", () => {
+    mostrarBackBtn();
+});
+
+document.addEventListener("click", () => {
+    mostrarBackBtn();
+});
+
+/* ===== DEPURACIÓN TECLAS ===== */
+
+document.addEventListener("keydown", e => {
+
+    console.log(
+        "KEY =", e.key,
+        "KEYCODE =", e.keyCode,
+        "WHICH =", e.which
+    );
+
+});
+
+
+/* ===== BACK ENVIADO DESDE ANDROID ===== */
+
+/* =========================
+   BACK ANDROID (CRÍTICO)
+========================= */
+
+window.addEventListener("tvback", () => {
+
+    if (variantesAbierto) {
+        document.getElementById("selectorVariantes").style.display = "none";
+        variantesAbierto = false;
+        ultimoSelector = null;
+        canalPadreAnterior = null;
+        varianteAnterior = null;
+        itemVariantesActual = null;
+        return;
+    }
+
+    if (selectorAbierto) {
+        document.getElementById("selectorFuente").style.display = "none";
+        selectorAbierto = false;
+        if (canalPadreAnterior) {
+            mostrarSelectorVariantes(canalPadreAnterior);
+        }
+        return;
+    }
+
+    // SALIDA DE RADIO
+    if (estado === "radio") {
+
+        radio.pause();
+        radio.src = "";
+
+        document.getElementById("radioScreen").style.display = "none";
+        document.getElementById("radioTitle").textContent = "";
+
+        // volver al menú de radios
+        document.getElementById("menuSecundario").style.display = "flex";
+        menu.style.display = "none";
+
+        estado = "otros";
+
+        backBtn.classList.remove("show");
+        backBtn.style.opacity = "0";
+
+        return;
+    }
+
+// cerrar player/web
+if (estado === "web" || estado === "player") {
+    manejarSalidaCanal();
+    return;
+}
+
+    // volver del menú secundario
+    if (estado === "otros") {
+
+        document.getElementById("menuSecundario").style.display = "none";
+        menu.style.display = "flex";
+
+        estado = "menu";
+        ubicacion = "principal";
+        menuActual = "menu";
+
+        if (window.AndroidTVArg) {
+            AndroidTVArg.setMenuPrincipal(true);
+        }
+        return;
+    }
+
+    // salir de la app
+    if (estado === "menu") {
+        if (window.AndroidTVArg) {
+            AndroidTVArg.closeApp();
+        }
+    }
+
+});
+
+</script>
+<script src="cronometroGeneral.js"></script>
+<script src="evaluador.js"></script>
+</body>
+</html>
