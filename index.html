@@ -814,6 +814,7 @@ const menus = {
         items: canales,
         botones: [
             { nombre:"📻 RADIOS", destino:"radios" },
+            { nombre:"🎵 MÚSICA", destino:"musica" },
             { nombre:"📰 NOTICIAS", destino:"noticias" },
             { nombre:"🎥 CINE", destino:"cine" },
             { nombre:"🌎 DOCUMENTALES", destino:"documentales" },
@@ -831,6 +832,14 @@ const menus = {
             { banda: "FM", nombre: "Vida", frecuencia: "97.9", tipo: "radio", destino: "radio", url: "https://streaming450tb.locucionar.com/proxy/fmvida979?mp=/stream" },
             { banda: "FM", nombre: "Tango", frecuencia: "92.7", tipo: "radio", destino: "radio", url: "https://media.radios.ar:9270/" }
         ]},
+
+    musica: {
+        titulo: "🎵 MÚSICA",
+        items: [
+            { nombre:"Quiero",
+              fuentes: [
+            { tipo:"hls", url: "http://138.59.227.20:8000/play/a06s/index.m3u8" }]}    
+               ]},
 
     noticias: {
         titulo: "📰 NOTICIAS",
