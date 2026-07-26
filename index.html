@@ -1085,6 +1085,9 @@ let varianteAnterior = null;
 let ultimoSelector = null;
 let regresoSelector = false;
 
+let temporizadorRadio = null;
+let desplazamientoRadio = false;
+
 const menu = document.getElementById("menu");
 const video = document.getElementById("video");
 const mensaje = document.getElementById("mensaje");
@@ -1557,7 +1560,30 @@ boton.onclick = () => {
     selectorAbierto = true;
 }
 
-
+function iniciarAntiProtectorRadio() {
+    detenerAntiProtectorRadio();
+    temporizadorRadio = setInterval(() => {
+        const titulo = document.getElementById("radioTitle");
+        if (!titulo) return;
+        desplazamientoRadio = !desplazamientoRadio;
+        titulo.style.transform =
+            desplazamientoRadio
+                ? "translateX(1px)"
+                : "translateX(0px)";
+    }, 300000); // 5 minutos
+}
+function detenerAntiProtectorRadio() {
+    if (temporizadorRadio) {
+        clearInterval(temporizadorRadio);
+        temporizadorRadio = null;
+    }
+    const titulo = document.getElementById("radioTitle");
+    if (titulo) {
+        titulo.style.transform = "translateX(0px)";
+    }
+    desplazamientoRadio = false;
+}
+    
 function reproducirRadio(url, banda, nombre, frecuencia) {
     cerrarTodoMedia(); // limpia video/youtube/web
     estado = "radio";
@@ -1604,6 +1630,7 @@ title.innerHTML = `
 `;
 
     radioScreen.style.display = "flex";
+    iniciarAntiProtectorRadio();
 
     // 🔴 arrancar audio
     radio.src = url;
@@ -2058,6 +2085,7 @@ backBtn.onclick = () => {
     // 🔴 NUEVO: SALIDA DE RADIO
     if (estado === "radio") {
 
+        detenerAntiProtectorRadio();
         radio.pause();
         radio.src = "";
 
@@ -2189,6 +2217,7 @@ window.addEventListener("tvback", () => {
     // SALIDA DE RADIO
     if (estado === "radio") {
 
+        detenerAntiProtectorRadio();
         radio.pause();
         radio.src = "";
 
