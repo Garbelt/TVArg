@@ -545,6 +545,46 @@ body.android-app #backBtn {
     font-size:22px;
 
 }
+
+/* ==========================
+     OSCILADOR - RADIO
+========================== */
+
+#radioOscilador{
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    gap:4px;
+    margin-top:30px;
+    height:18px;
+}
+
+#radioOscilador span{
+    width:4px;
+    height:6px;
+    background:#7BC2E3;
+    border-radius:2px;
+    animation:radioWave 1s infinite ease-in-out;
+}
+
+#radioOscilador span:nth-child(odd){
+    animation-delay:.15s;
+}
+
+#radioOscilador span:nth-child(even){
+    animation-delay:.45s;
+}
+
+@keyframes radioWave{
+    0%,100%{
+        height:5px;
+        opacity:.45;
+    }
+    50%{
+        height:18px;
+        opacity:1;
+    }
+}
 </style>
 </head>
 
@@ -596,6 +636,12 @@ body.android-app #backBtn {
             font-weight:bold;
             text-align:center;
          ">
+    </div>
+
+    <div id="radioOscilador">
+         <span></span><span></span><span></span><span></span><span></span>
+         <span></span><span></span><span></span><span></span><span></span>
+         <span></span><span></span><span></span><span></span><span></span>
     </div>
 
 </div>
