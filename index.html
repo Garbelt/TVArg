@@ -556,35 +556,20 @@ body.android-app #backBtn {
     align-items:flex-end;
     gap:4px;
     margin-top:30px;
-    height:18px;
+    height:45px; /* espacio máximo de crecimiento */
 }
 
 #radioOscilador span{
     width:4px;
-    height:6px;
+    height:5px;
     background:#7BC2E3;
     border-radius:2px;
-    animation:radioWave 1s infinite ease-in-out;
+    opacity:.45;
+    transition:
+        height .08s linear,
+        opacity .08s linear;
 }
 
-#radioOscilador span:nth-child(odd){
-    animation-delay:.15s;
-}
-
-#radioOscilador span:nth-child(even){
-    animation-delay:.45s;
-}
-
-@keyframes radioWave{
-    0%,100%{
-        height:5px;
-        opacity:.45;
-    }
-    50%{
-        height:18px;
-        opacity:1;
-    }
-}
 </style>
 </head>
 
@@ -1131,7 +1116,14 @@ let estadoAnterior = "";
 let menuActual = "menu";
 let menuOrigen = "menu";
 let inactivityTimer;
+
 let radio = new Audio();
+let audioContext = null;
+let analyser = null;
+let sourceAudio = null;
+let datosAudio = null;
+let animacionOscilador = null;
+
 let ubicacion = "principal";
 let bloqueandoBack = false;
 let itemSelectorActual = null;
@@ -1645,6 +1637,45 @@ function detenerAntiProtectorRadio() {
     }
     desplazamientoRadio = false;
 }
+
+function iniciarOsciladorAudio(){
+    const barras =
+        document.querySelectorAll("#radioOscilador span");
+    if(!audioContext){
+        audioContext =
+            new AudioContext();
+        analyser =
+            audioContext.createAnalyser();
+        analyser.fftSize = 64;
+        datosAudio =
+            new Uint8Array(
+                analyser.frequencyBinCount
+            );
+        sourceAudio =
+            audioContext.createMediaElementSource(radio);
+        sourceAudio.connect(analyser);
+        analyser.connect(
+            audioContext.destination
+        );
+    }
+    audioContext.resume();
+    function actualizar(){
+        analyser.getByteFrequencyData(
+            datosAudio
+        );
+        barras.forEach((barra,i)=>{
+            let valor =
+                datosAudio[i] || 0;
+            let altura =
+                5 + (valor / 255) * 35;
+            barra.style.height =
+                altura + "px";
+        });
+        animacionOscilador =
+            requestAnimationFrame(actualizar);
+    }
+    actualizar();
+}
     
 function reproducirRadio(url, banda, nombre, frecuencia) {
     cerrarTodoMedia(); // limpia video/youtube/web
@@ -1696,7 +1727,15 @@ title.innerHTML = `
 
     // 🔴 arrancar audio
     radio.src = url;
-    radio.play().catch(() => {});
+    radio.play()
+    .then(()=>{
+    iniciarOsciladorAudio();
+    })
+    .catch(()=>{
+        mostrarMensaje(
+            "No se pudo iniciar la radio"
+        );
+    });
 
     // 🔴 back visible
     backBtn.classList.add("show");
