@@ -837,10 +837,7 @@ const canales = [
            Referer: "https://vodgc.net",
            "User-Agent": "Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Mobile Safari/537.36" }}]},
 
-    { nombre: "9 Litoral",
-      fuentes: [
-     { tipo: "hls", url: "https://stream.arcast.live/ahora/ahora/playlist.m3u8" },
-     { tipo: "hls", url: "https://stream.arcast.live/canal9litoral/ngrp:canal9litoral_all/playlist.m3u8" }]},
+
     { nombre:"Canal 26",
       fuentes: [
      { tipo:"hls", url: "https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8" },
@@ -856,6 +853,7 @@ const menus = {
         botones: [
             { nombre:"📻 RADIOS", destino:"radios" },
             { nombre:"📰 NOTICIAS", destino:"noticias" },
+            { nombre:"🗺️ REGIONALES", destino:"regionales" },
             { nombre:"🎥 CINE", destino:"cine" },
             { nombre:"🎞️ SERIES", destino:"series" },
             { nombre:"🎭 CULTURA", destino:"cultura" },
@@ -908,6 +906,15 @@ const menus = {
              { tipo:"hls", url: "http://190.7.19.197:232/play/a041/index.m3u8" },
              { tipo:"hls", url: "http://138.59.227.20:8000/play/a05w/index.m3u8" }]},
              ]},
+
+    regionales: {
+        titulo: "🗺️ REGIONALES",
+        items: [
+            { nombre: "9 Litoral",
+              fuentes: [
+            { tipo: "hls", url: "https://stream.arcast.live/ahora/ahora/playlist.m3u8" },
+            { tipo: "hls", url: "https://stream.arcast.live/canal9litoral/ngrp:canal9litoral_all/playlist.m3u8" }]},     
+            ]},
 
     cine: {
         titulo: "🎥 CINE",
