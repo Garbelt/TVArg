@@ -921,6 +921,37 @@ cargarCategorias();
 
 mostrarPeliculas();
 
+
+/* =========================================================
+   BOTÓN BACK — ANDROID TV / CONTROL REMOTO
+========================================================= */
+
+document.addEventListener("keydown", function(event) {
+
+    if (
+        event.key === "Escape" ||
+        event.key === "Back" ||
+        event.keyCode === 4
+    ) {
+
+        event.preventDefault();
+
+        const reproductor =
+            document.getElementById("reproductor");
+
+        if (reproductor.style.display === "flex") {
+
+            cerrarReproductor();
+
+            return;
+        }
+
+        volverTVArg();
+
+    }
+
+});
+
 </script>
 
 </body>
