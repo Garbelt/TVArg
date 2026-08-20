@@ -1931,7 +1931,9 @@ function dibujarMenu(nombreMenu) {
         const listaBotones = document.getElementById("listaBotones");
         lista.innerHTML = "";
         listaBotones.innerHTML = "";
-        // Canales
+        // =========================
+        // CANALES
+        // =========================
         datos.items.forEach(item => {
             const div = document.createElement("div");
             div.className = "canal canal-canal";
@@ -1939,60 +1941,55 @@ function dibujarMenu(nombreMenu) {
                 div.classList.add("canal-con-variantes");
             }
             div.textContent = item.nombre;
-
             div.onclick = () => {
                 origenNavegacion = "principal";
                 abrirElemento(item);
             };
-
             lista.appendChild(div);
         });
-        // Botones de submenús
-if (datos.botones) { 
-// TV A LA CARTA
-const divTVALC = document.createElement("div");
-divTVALC.className = "canal canal-tvalc";
-divTVALC.textContent = "📺 TV A LA CARTA";
-
-divTVALC.onclick = () => {
-    window.location.href = "TVALC.html";
-};
-listaBotones.appendChild(divTVALC);
-// BOTONES DE CLASIFICACIÓN
-datos.botones.forEach(boton => { 
-    const div = document.createElement("div"); 
-    div.className = "canal canal-menu"; 
-    div.textContent = boton.nombre; 
-    div.onclick = () => { 
-        submenuActual = boton.destino; 
-        dibujarMenu(boton.destino); 
-        mostrarMenuSecundario(boton.destino); 
-    }; 
-    listaBotones.appendChild(div); 
-});
-        } else {
-            document.getElementById("tituloMenu").textContent = datos.titulo;
-            const lista = document.getElementById("listaMenu");
-            lista.innerHTML = "";
-
-            datos.items.forEach(item => {
+        // =========================
+        // BOTONES DE SUBMENÚS
+        // =========================
+        if (datos.botones) {
+            // TV A LA CARTA
+            const divTVALC = document.createElement("div");
+            divTVALC.className = "canal canal-tvalc";
+            divTVALC.textContent = "📺 TV A LA CARTA";
+            divTVALC.onclick = () => {
+                window.location.href = "TVALC.html";
+            };
+            listaBotones.appendChild(divTVALC);
+            // BOTONES DE CLASIFICACIÓN
+            datos.botones.forEach(boton => {
                 const div = document.createElement("div");
-
+                div.className = "canal canal-menu";
+                div.textContent = boton.nombre;
+                div.onclick = () => {
+                    submenuActual = boton.destino;
+                    dibujarMenu(boton.destino);
+                    mostrarMenuSecundario(boton.destino);
+                };
+                listaBotones.appendChild(div);
+            });
+        }
+    } else {
+        document.getElementById("tituloMenu").textContent = datos.titulo;
+        const lista = document.getElementById("listaMenu");
+        lista.innerHTML = "";
+        datos.items.forEach(item => {
+            const div = document.createElement("div");
             div.className = "canal";
             if (item.variantes) {
                 div.classList.add("canal-con-variantes");
             }
             div.textContent = item.nombre;
-
-                div.onclick = () => {
-                    origenNavegacion = "secundario";
-                    abrirElemento(item);
-                };
-
-                lista.appendChild(div);
-
-            });
-        }
+            div.onclick = () => {
+                origenNavegacion = "secundario";
+                abrirElemento(item);
+            };
+            lista.appendChild(div);
+        });
+    }
 }
 
 dibujarMenu("principal");
