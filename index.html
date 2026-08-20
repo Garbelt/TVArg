@@ -184,7 +184,7 @@ body {
     width: min(700px, calc(100% - 24px));
     min-width: 100px;
     padding: 8px 10px;
-    margin-bottom: 4px;
+    margin-top: 4px;
     font-size: 12px;
     font-weight: bold;
     background: #00695c;
@@ -1951,28 +1951,28 @@ function dibujarMenu(nombreMenu) {
         // =========================
         // BOTONES DE SUBMENÚS
         // =========================
-        if (datos.botones) {
-            // TV A LA CARTA
-            const divTVALC = document.createElement("div");
-            divTVALC.className = "canal canal-tvalc";
-            divTVALC.textContent = "📺 TV A LA CARTA";
-            divTVALC.onclick = () => {
-                window.location.href = "TVALC.html";
-            };
-            listaBotones.appendChild(divTVALC);
-            // BOTONES DE CLASIFICACIÓN
-            datos.botones.forEach(boton => {
-                const div = document.createElement("div");
-                div.className = "canal canal-menu";
-                div.textContent = boton.nombre;
-                div.onclick = () => {
-                    submenuActual = boton.destino;
-                    dibujarMenu(boton.destino);
-                    mostrarMenuSecundario(boton.destino);
-                };
-                listaBotones.appendChild(div);
-            });
-        }
+if (datos.botones) {
+    // BOTONES DE CLASIFICACIÓN
+    datos.botones.forEach(boton => {
+        const div = document.createElement("div");
+        div.className = "canal canal-menu";
+        div.textContent = boton.nombre;
+        div.onclick = () => {
+            submenuActual = boton.destino;
+            dibujarMenu(boton.destino);
+            mostrarMenuSecundario(boton.destino);
+        };
+        listaBotones.appendChild(div);
+    });
+    // TV A LA CARTA — AL FINAL
+    const divTVALC = document.createElement("div");
+    divTVALC.className = "canal canal-tvalc";
+    divTVALC.textContent = "📺 TV A LA CARTA";
+    divTVALC.onclick = () => {
+        window.location.href = "TVALC.html";
+    };
+    listaBotones.appendChild(divTVALC);
+}
     } else {
         document.getElementById("tituloMenu").textContent = datos.titulo;
         const lista = document.getElementById("listaMenu");
