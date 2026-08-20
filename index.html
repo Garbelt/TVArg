@@ -1948,28 +1948,27 @@ function dibujarMenu(nombreMenu) {
         });
         // Botones de submenús
 if (datos.botones) { 
-    datos.botones.forEach(boton => { 
-        const div = document.createElement("div"); 
-        div.className = "canal canal-menu"; 
-        div.textContent = boton.nombre; 
-        div.onclick = () => { 
-            submenuActual = boton.destino; 
-            dibujarMenu(boton.destino); 
-            mostrarMenuSecundario(boton.destino); 
-        }; 
-        listaBotones.appendChild(div); 
-    });
-    // =========================
-    // TV A LA CARTA
-    // =========================
-    const botonTVALC = document.createElement("div");
-    botonTVALC.className = "canal canal-tvalc";
-    botonTVALC.textContent = "📺 TV A LA CARTA";
-    botonTVALC.onclick = () => {
-        window.location.href = "TVALC.html";
-    };
-    listaBotones.appendChild(botonTVALC);
-}
+// TV A LA CARTA
+const divTVALC = document.createElement("div");
+divTVALC.className = "canal canal-tvalc";
+divTVALC.textContent = "📺 TV A LA CARTA";
+
+divTVALC.onclick = () => {
+    window.location.href = "TVALC.html";
+};
+listaBotones.appendChild(divTVALC);
+// BOTONES DE CLASIFICACIÓN
+datos.botones.forEach(boton => { 
+    const div = document.createElement("div"); 
+    div.className = "canal canal-menu"; 
+    div.textContent = boton.nombre; 
+    div.onclick = () => { 
+        submenuActual = boton.destino; 
+        dibujarMenu(boton.destino); 
+        mostrarMenuSecundario(boton.destino); 
+    }; 
+    listaBotones.appendChild(div); 
+});
         } else {
             document.getElementById("tituloMenu").textContent = datos.titulo;
             const lista = document.getElementById("listaMenu");
