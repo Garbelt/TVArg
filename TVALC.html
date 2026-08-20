@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TVArg - TV A LA CARTA</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #050505;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* =========================
+   CABECERA
+========================= */
+
+header {
+    padding: 20px;
+    text-align: center;
+    background: linear-gradient(to bottom, #181818, #090909);
+    border-bottom: 1px solid #333;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+header p {
+    margin: 6px 0 0;
+    color: #aaa;
+}
+
+/* =========================
+   VOLVER A TVARG
+========================= */
+
+#volverTVArg {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 2000;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.25);
+
+    background: rgba(0,0,0,.65);
+    color: white;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+#volverTVArg:hover {
+    background: rgba(50,50,50,.9);
+    transform: scale(1.08);
+}
+
+/* =========================
+   BUSCADOR
+========================= */
+
+.buscador {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+#buscar {
+    width: min(600px, 95%);
+    padding: 13px 18px;
+    border-radius: 25px;
+    border: 1px solid #444;
+    background: #171717;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+#buscar:focus {
+    border-color: #777;
+}
+
+/* =========================
+   CATEGORÍAS
+========================= */
+
+.categorias {
+    display: flex;
+    gap: 8px;
+    padding: 5px 15px 20px;
+    overflow-x: auto;
+    justify-content: center;
+}
+
+.categorias button {
+    border: none;
+    border-radius: 20px;
+    padding: 9px 16px;
+    background: #222;
+    color: white;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.categorias button:hover {
+    background: #444;
+}
+
+.categorias button.activo {
+    background: #e50914;
+}
+
+/* =========================
+   CONTENEDOR
+========================= */
+
+.contenedor {
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    padding: 10px 20px 40px;
+}
+
+.tituloCategoria {
+    font-size: 22px;
+    margin: 10px 0 18px;
+}
+
+/* =========================
+   PELÍCULAS
+========================= */
+
+.peliculas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 22px;
+}
+
+/* TARJETA */
+
+.pelicula {
+    background: #111;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+    cursor: pointer;
+}
+
+.pelicula:hover {
+    transform: scale(1.04);
+    box-shadow: 0 5px 25px rgba(0,0,0,.7);
+}
+
+.poster {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    display: block;
+    background: #222;
+}
+
+.info {
+    padding: 10px;
+}
+
+.nombre {
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.25;
+}
+
+.año {
+    color: #aaa;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.ver {
+    width: 100%;
+    margin-top: 10px;
+    padding: 9px;
+    border: none;
+    border-radius: 5px;
+    background: #e50914;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.ver:hover {
+    background: #ff202b;
+}
+
+/* =========================
+   REPRODUCTOR
+========================= */
+
+#reproductor {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,.96);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#video {
+    width: 90%;
+    max-width: 1100px;
+    max-height: 80vh;
+    background: black;
+}
+
+#tituloReproductor {
+    margin: 10px;
+    font-size: 20px;
+}
+
+.cerrar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 35px;
+    color: white;
+    cursor: pointer;
+}
+
+/* =========================
+   MÓVIL
+========================= */
+
+@media (max-width: 600px) {
+
+    header h1 {
+        font-size: 23px;
+    }
+
+    .peliculas {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .contenedor {
+        padding: 5px 10px 30px;
+    }
+
+    .nombre {
+        font-size: 14px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     VOLVER A TVARG
+========================= -->
+
+<button
+    id="volverTVArg"
+    onclick="volverTVArg()"
+    title="Volver a TVArg">
+    ←
+</button>
+
+
+<header>
+
+    <h1>🎬 TV A LA CARTA</h1>
+
+    <p>Películas y series</p>
+
+</header>
+
+
+<div class="buscador">
+
+    <input
+        type="text"
+        id="buscar"
+        placeholder="🔎 Buscar película..."
+        oninput="filtrar()"
+    >
+
+</div>
+
+
+<div class="categorias" id="categorias"></div>
+
+
+<div class="contenedor">
+
+    <div class="tituloCategoria" id="tituloCategoria">
+        TODAS
+    </div>
+
+    <div class="peliculas" id="peliculas"></div>
+
+</div>
+
+
+<!-- =========================
+     REPRODUCTOR
+========================= -->
+
+<div id="reproductor">
+
+    <div class="cerrar" onclick="cerrarReproductor()">✕</div>
+
+    <div id="tituloReproductor"></div>
+
+    <video
+        id="video"
+        controls
+        autoplay
+        playsinline>
+    </video>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   DATOS
+========================================================= */
+
+const peliculas = [
+
+    {
+        titulo: "Xeno",
+        año: "2025",
+        categoria: "NUEVAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/rC7hhCxObir6KvH1nLIt06z2CzT.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159278.mkv"
+    },
+
+    {
+        titulo: "Enola Holmes",
+        año: "2020",
+        categoria: "ACCION Y AVENTURA",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/8STWO9pUTqubPV04iXZ2R6SClME.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159254.mkv"
+    },
+
+    {
+        titulo: "Enola Holmes 2",
+        año: "2022",
+        categoria: "ACCION Y AVENTURA",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/hulB3uxIRzerZfjwXdKSKVn2orV.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159255.mkv"
+    },
+
+    {
+        titulo: "Enola Holmes 3",
+        año: "2026",
+        categoria: "NUEVAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7kRYHH9H9PjBFwz1FprbHB2AAjI.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159256.mkv"
+    },
+
+    {
+        titulo: "Dolly",
+        año: "2026",
+        categoria: "NUEVAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/umDXoAiEMb7RxB4gaPAlT02XLAS.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159257.mkv"
+    },
+
+    {
+        titulo: "Toy Story 5",
+        año: "2026",
+        categoria: "NUEVAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/pTjZfbFVWUIwUM5OzX3LVh84ejU.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159239.mkv"
+    },
+
+    {
+        titulo: "Travesuras de una Princesa",
+        año: "2004",
+        categoria: "PELICULAS DE COMEDIAS",
+        poster: "https://m.media-amazon.com/images/I/716XYD3XkhL._AC_UF894,1000_QL80_.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159253.mkv"
+    },
+
+    {
+        titulo: "Las últimas vacaciones",
+        año: "2006",
+        categoria: "PELICULAS DE COMEDIAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/yK9B4XEbYv9OHaAAePm2lhqvxx2.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159238.mkv"
+    },
+
+    {
+        titulo: "Hermanito",
+        año: "2026",
+        categoria: "NUEVAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/s8mudAYQcHmVoFSamqyv1Ron527.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159157.mkv"
+    },
+
+    {
+        titulo: "En prácticas",
+        año: "2026",
+        categoria: "NUEVAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/fX5HV8LC2tulHI2GT9Ar8WVFyg.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159158.mkv"
+    },
+
+    {
+        titulo: "Torrente Presidente",
+        año: "2026",
+        categoria: "NUEVAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/2wyiEiOS8gYyslveyYwlCKB9XYt.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159159.mkv"
+    },
+
+    {
+        titulo: "Les doy un año",
+        año: "2013",
+        categoria: "COMEDIAS 2",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/gNgO8qZj7AQTDVraP1BLTLdiiOs.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158797.avi"
+    },
+
+    {
+        titulo: "Spy Kids 2: La isla de los sueños perdidos",
+        año: "2002",
+        categoria: "CIENCIA FICCION",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/dYmLViA5AWUb5MGH2UzhUwEcN0m.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159066.mkv"
+    },
+
+    {
+        titulo: "Spy Kids 3-D: Game Over",
+        año: "2003",
+        categoria: "CIENCIA FICCION",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/id7FzzvO4GnTCNvT74TjS1doxkb.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159067.mkv"
+    },
+
+    {
+        titulo: "Obsesión",
+        año: "2026",
+        categoria: "NUEVAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/ohi9xvbBUymM4SuIOSlt1xbLRQQ.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159069.mkv"
+    },
+
+    {
+        titulo: "Off the Grid",
+        año: "2025",
+        categoria: "NUEVAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/mMUVnkcx2VawTBJYnnnRN8fxJpb.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159064.mkv"
+    },
+
+    {
+        titulo: "¡Nop!",
+        año: "2022",
+        categoria: "CIENCIA FICCION",
+        poster: "https://m.media-amazon.com/images/I/71ntPgCHTIL.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159065.mkv"
+    },
+
+    {
+        titulo: "Maridos en acción",
+        año: "2026",
+        categoria: "NUEVAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/12TfQSbwyb3t9PN0KTOTE4NB7lq.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159036.mkv"
+    },
+
+    {
+        titulo: "He-Man y los masters del universo",
+        año: "2026",
+        categoria: "NUEVAS",
+        poster: "https://m.media-amazon.com/images/M/MV5BMTM0ODRiMGItMTA3OC00NGI3LTllZTctNGY3NzllMmRjZTNhXkEyXkFqcGc@._V1_.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159032.mkv"
+    },
+
+    {
+        titulo: "Toy Story 5",
+        año: "2026",
+        categoria: "NUEVAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/1yF3AztF3rQ8MZ8En8974AWo5zZ.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159033.mkv"
+    },
+
+    {
+        titulo: "Parto Maldito",
+        año: "2025",
+        categoria: "NUEVAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/4ozeV62H7CGWprsCrif2lax8dHO.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159034.mkv"
+    },
+
+    {
+        titulo: "The Mandalorian and Grogu",
+        año: "2026",
+        categoria: "NUEVAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sWitU9IjgFwf6y1OrI0zUaL3GNa.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159031.mkv"
+    },
+
+    {
+        titulo: "Van Helsing",
+        año: "2004",
+        categoria: "CIENCIA FICCION",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/fqorDWIwBBwMvLTZXxUWgrEyGWy.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159030.mkv"
+    },
+
+    {
+        titulo: "Doom",
+        año: "2005",
+        categoria: "CIENCIA FICCION",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/5fITzPnmagU97nF455DOBSa5Bgg.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159024.mkv"
+    },
+
+    {
+        titulo: "Greenland: El último refugio",
+        año: "2020",
+        categoria: "CIENCIA FICCION",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/9iFkwShRf5M29yLABAdsEZyr9w6.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159026.mkv"
+    },
+
+    {
+        titulo: "Percy Jackson y el mar de los monstruos",
+        año: "2013",
+        categoria: "CIENCIA FICCION",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/akbLEdUzQ5T2R7coc5nOEqk7FjE.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159027.mkv"
+    },
+
+    {
+        titulo: "Percy Jackson y el ladrón del rayo",
+        año: "2010",
+        categoria: "CIENCIA FICCION",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/piKMSnCCT0oqLZ9GWAALXX9e1qh.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159028.mkv"
+    },
+
+    {
+        titulo: "La guerra del mañana",
+        año: "2021",
+        categoria: "CIENCIA FICCION",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/tzp6VzED2TBc02bkYoYnQa6r2OK.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158997.mkv"
+    },
+
+    {
+        titulo: "La llegada",
+        año: "2016",
+        categoria: "CIENCIA FICCION",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/tbVITeytclB4JKx2LxxasrCCmZx.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158998.mkv"
+    },
+
+    {
+        titulo: "Señales",
+        año: "2002",
+        categoria: "CIENCIA FICCION",
+        poster: "https://m.media-amazon.com/images/M/MV5BNTJiZGZkODAtYWVkMi00MGM4LTkzODEtZDU3YjEzYTRmYjAxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158999.mkv"
+    },
+
+    {
+        titulo: "Arcadian",
+        año: "2024",
+        categoria: "PELICULAS 2026",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/2paAs9Azw9CXZe3jD5F3weQVwyr.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158977.mkv"
+    },
+
+    {
+        titulo: "Amenaza en el aire",
+        año: "2025",
+        categoria: "PELICULAS 2026",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/8T6nkYb4W8BIeafmFffyfsRciTL.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158978.mkv"
+    },
+
+    {
+        titulo: "La sustancia",
+        año: "2024",
+        categoria: "POLICIAL, SUSPENSO. CRIMEN",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/6zt77tEJUpm2G5bDC7NvzxRho8R.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158979.mkv"
+    },
+
+    {
+        titulo: "Mortal Kombat II",
+        año: "2026",
+        categoria: "PELICULAS 2026",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/ivVKHht5jutNGnObn1y5sSDrAXn.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158821.mp4"
+    },
+
+    {
+        titulo: "México 86",
+        año: "2026",
+        categoria: "NUEVAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/zzk1iWwQ6Tdv9KBjyUVqzExBEug.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158983.mkv"
+    },
+
+    {
+        titulo: "Cuenta atrás",
+        año: "2026",
+        categoria: "NUEVAS",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/m3On2pUX6KRJwI8Fp7xqJkKQdIv.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158976.mkv"
+    },
+
+    {
+        titulo: "Yo, él y Raquel",
+        año: "2015",
+        categoria: "PELICULAS DE DRAMA",
+        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/tIBKWAZsP9NGMKnVC5N3RySvTfz.jpg",
+        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158804.mp4"
+    }
+
+];
+
+
+/* =========================================================
+   ESTADO
+========================================================= */
+
+let categoriaActual = "TODAS";
+
+
+/* =========================================================
+   VOLVER A TVARG
+========================================================= */
+
+function volverTVArg() {
+
+    window.location.href = "index.html";
+
+}
+
+
+/* =========================================================
+   CATEGORÍAS
+========================================================= */
+
+function cargarCategorias() {
+
+    const contenedor =
+        document.getElementById("categorias");
+
+    const categorias = [
+        "TODAS",
+        ...new Set(
+            peliculas.map(p => p.categoria)
+        )
+    ];
+
+    contenedor.innerHTML = "";
+
+    categorias.forEach(categoria => {
+
+        const boton =
+            document.createElement("button");
+
+        boton.textContent = categoria;
+
+        if (categoria === categoriaActual) {
+
+            boton.classList.add("activo");
+
+        }
+
+        boton.onclick = () => {
+
+            categoriaActual = categoria;
+
+            cargarCategorias();
+
+            mostrarPeliculas();
+
+        };
+
+        contenedor.appendChild(boton);
+
+    });
+
+}
+
+
+/* =========================================================
+   MOSTRAR PELÍCULAS
+========================================================= */
+
+function mostrarPeliculas() {
+
+    const contenedor =
+        document.getElementById("peliculas");
+
+    const titulo =
+        document.getElementById("tituloCategoria");
+
+    const busqueda =
+        document.getElementById("buscar")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    let lista = peliculas;
+
+
+    /* FILTRO CATEGORÍA */
+
+    if (categoriaActual !== "TODAS") {
+
+        lista = lista.filter(
+            p => p.categoria === categoriaActual
+        );
+
+    }
+
+
+    /* FILTRO BÚSQUEDA */
+
+    if (busqueda) {
+
+        lista = lista.filter(
+            p =>
+                p.titulo
+                .toLowerCase()
+                .includes(busqueda)
+        );
+
+    }
+
+
+    titulo.textContent =
+        categoriaActual +
+        "  •  " +
+        lista.length +
+        " películas";
+
+
+    contenedor.innerHTML = "";
+
+
+    if (lista.length === 0) {
+
+        contenedor.innerHTML = `
+
+            <div style="
+                grid-column:1/-1;
+                text-align:center;
+                padding:50px;
+                color:#888;
+            ">
+
+                No se encontraron películas.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    lista.forEach(pelicula => {
+
+        const tarjeta =
+            document.createElement("div");
+
+        tarjeta.className = "pelicula";
+
+
+        tarjeta.innerHTML = `
+
+            <img
+                class="poster"
+                src="${pelicula.poster}"
+                loading="lazy"
+                onerror="this.style.opacity='.3'"
+            >
+
+            <div class="info">
+
+                <div class="nombre">
+                    ${pelicula.titulo}
+                </div>
+
+                <div class="año">
+                    ${pelicula.año}
+                </div>
+
+                <button class="ver">
+                    ▶ VER
+                </button>
+
+            </div>
+
+        `;
+
+
+        tarjeta
+            .querySelector(".ver")
+            .onclick = () =>
+                reproducir(pelicula);
+
+
+        contenedor.appendChild(tarjeta);
+
+    });
+
+}
+
+
+/* =========================================================
+   BÚSQUEDA
+========================================================= */
+
+function filtrar() {
+
+    mostrarPeliculas();
+
+}
+
+
+/* =========================================================
+   REPRODUCIR
+========================================================= */
+
+function reproducir(pelicula) {
+
+    const reproductor =
+        document.getElementById("reproductor");
+
+    const video =
+        document.getElementById("video");
+
+    document.getElementById(
+        "tituloReproductor"
+    ).textContent =
+        pelicula.titulo +
+        " (" +
+        pelicula.año +
+        ")";
+
+
+    video.src = pelicula.url;
+
+    reproductor.style.display = "flex";
+
+    video.play().catch(() => {});
+
+}
+
+
+/* =========================================================
+   CERRAR
+========================================================= */
+
+function cerrarReproductor() {
+
+    const reproductor =
+        document.getElementById("reproductor");
+
+    const video =
+        document.getElementById("video");
+
+
+    video.pause();
+
+    video.removeAttribute("src");
+
+    video.load();
+
+    reproductor.style.display = "none";
+
+}
+
+
+/* =========================================================
+   INICIO
+========================================================= */
+
+cargarCategorias();
+
+mostrarPeliculas();
+
+</script>
+
+</body>
+</html>
