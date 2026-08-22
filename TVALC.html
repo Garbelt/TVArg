@@ -1745,12 +1745,13 @@ function reproducir(pelicula) {
 
 
     // ==========================================
-    // MKV / MP4 → VLC NATIVO
+    // MKV / MP4 / AVI → VLC NATIVO
     // ==========================================
 
     if (
         url.endsWith(".mkv") ||
-        url.endsWith(".mp4")
+        url.endsWith(".mp4") ||
+        url.endsWith(".avi")
     ) {
 
         console.log(
