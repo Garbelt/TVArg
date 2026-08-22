@@ -1729,10 +1729,13 @@ function reproducir(pelicula) {
 
 
     // ==========================================
-    // MKV → VLC NATIVO
+    // MKV / MP4 → VLC NATIVO
     // ==========================================
 
-    if (url.endsWith(".mkv")) {
+    if (
+        url.endsWith(".mkv") ||
+        url.endsWith(".mp4")
+    ) {
 
         console.log(
             "TV A LA CARTA → VLC:",
@@ -1749,7 +1752,6 @@ function reproducir(pelicula) {
             );
 
             return;
-
         }
 
         console.log(
@@ -1761,7 +1763,7 @@ function reproducir(pelicula) {
 
 
     // ==========================================
-    // RESTO → REPRODUCTOR HTML ORIGINAL
+    // OTROS → HTML
     // ==========================================
 
     const reproductor =
@@ -1769,7 +1771,6 @@ function reproducir(pelicula) {
 
     const video =
         document.getElementById("video");
-
 
     document.getElementById(
         "tituloReproductor"
@@ -1779,15 +1780,11 @@ function reproducir(pelicula) {
         pelicula.año +
         ")";
 
-
     video.src = pelicula.url;
-
 
     reproductor.style.display = "flex";
 
-
     video.play().catch(() => {});
-
 }
 
 
