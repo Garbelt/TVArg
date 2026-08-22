@@ -2372,20 +2372,14 @@ function abrirSerie(
                         "botonCapitulo";
 
 
-                    botonCapitulo.textContent =
+botonCapitulo.textContent =
 
-                        "▶ " +
+    "▶ " +
 
-                        "Capítulo " +
-
-                        capitulo.numero +
-
-                        (
-                            capitulo.titulo
-                                ? " — " +
-                                  capitulo.titulo
-                                : ""
-                        );
+    (
+        capitulo.titulo ||
+        "Capítulo " + capitulo.numero
+    );
 
 
                     botonCapitulo.onclick =
