@@ -1723,18 +1723,70 @@ function filtrar() {
 
 function reproducir(pelicula) {
 
-    reproductorAbierto = true;
+    const url = pelicula.url
+        .split("?")[0]
+        .toLowerCase();
 
-    if (esAndroidTVArg) {
 
-        reproduccionNativa = true;
+    // ==========================================
+    // MKV → VLC NATIVO
+    // ==========================================
 
-        reproducirEnAndroid(pelicula);
+    if (url.endsWith(".mkv")) {
+
+        console.log(
+            "TV A LA CARTA → VLC:",
+            pelicula.titulo
+        );
+
+        if (
+            window.AndroidTVArg &&
+            typeof AndroidTVArg.playChannelVLC === "function"
+        ) {
+
+            AndroidTVArg.playChannelVLC(
+                pelicula.url
+            );
+
+            return;
+
+        }
+
+        console.log(
+            "AndroidTVArg no disponible"
+        );
 
         return;
     }
 
-    reproducirWeb(pelicula);
+
+    // ==========================================
+    // RESTO → REPRODUCTOR HTML ORIGINAL
+    // ==========================================
+
+    const reproductor =
+        document.getElementById("reproductor");
+
+    const video =
+        document.getElementById("video");
+
+
+    document.getElementById(
+        "tituloReproductor"
+    ).textContent =
+        pelicula.titulo +
+        " (" +
+        pelicula.año +
+        ")";
+
+
+    video.src = pelicula.url;
+
+
+    reproductor.style.display = "flex";
+
+
+    video.play().catch(() => {});
 
 }
 
