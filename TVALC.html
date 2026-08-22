@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,61 +9,97 @@
 
 <style>
 
+/* =========================================================
+   GENERAL
+========================================================= */
+
 * {
     box-sizing: border-box;
 }
 
+html,
 body {
     margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
     background: #050505;
     color: white;
     font-family: Arial, sans-serif;
 }
 
-/* =========================
+
+/* =========================================================
    CABECERA
-========================= */
+========================================================= */
 
 header {
+
     padding: 20px;
+
     text-align: center;
-    background: linear-gradient(to bottom, #181818, #090909);
+
+    background:
+        linear-gradient(
+            to bottom,
+            #181818,
+            #090909
+        );
+
     border-bottom: 1px solid #333;
 }
 
 header h1 {
+
     margin: 0;
+
     font-size: 28px;
+
 }
 
 header p {
+
     margin: 6px 0 0;
+
     color: #aaa;
+
 }
 
-/* =========================
+
+/* =========================================================
    VOLVER A TVARG
-========================= */
+   SOLO PC / CELULAR
+========================================================= */
 
 #volverTVArg {
+
     position: fixed;
+
     top: 15px;
     left: 15px;
+
     z-index: 2000;
 
     width: 48px;
     height: 48px;
 
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,.25);
 
-    background: rgba(0,0,0,.65);
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    background:
+        rgba(0,0,0,.65);
+
     color: white;
 
     font-size: 22px;
+
     font-weight: bold;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -72,234 +109,780 @@ header p {
 }
 
 #volverTVArg:hover {
-    background: rgba(50,50,50,.9);
+
+    background:
+        rgba(50,50,50,.9);
+
     transform: scale(1.08);
+
 }
 
-/* =========================
+
+/* =========================================================
    BUSCADOR
-========================= */
+========================================================= */
 
 .buscador {
+
     padding: 15px;
+
     display: flex;
+
     justify-content: center;
 }
 
 #buscar {
-    width: min(600px, 95%);
+
+    width: min(600px,95%);
+
     padding: 13px 18px;
+
     border-radius: 25px;
+
     border: 1px solid #444;
+
     background: #171717;
+
     color: white;
+
     font-size: 16px;
+
     outline: none;
 }
 
 #buscar:focus {
+
     border-color: #777;
+
 }
 
-/* =========================
+
+/* =========================================================
    CATEGORÍAS
-========================= */
+========================================================= */
 
 .categorias {
+
     display: flex;
+
     gap: 8px;
-    padding: 5px 15px 20px;
+
+    padding:
+        5px
+        15px
+        20px;
+
     overflow-x: auto;
+
     justify-content: center;
+
 }
 
 .categorias button {
+
     border: none;
+
     border-radius: 20px;
-    padding: 9px 16px;
+
+    padding:
+        9px
+        16px;
+
     background: #222;
+
     color: white;
+
     cursor: pointer;
+
     white-space: nowrap;
+
 }
 
 .categorias button:hover {
+
     background: #444;
+
 }
 
 .categorias button.activo {
+
     background: #e50914;
+
 }
 
-/* =========================
+
+/* =========================================================
    CONTENEDOR
-========================= */
+========================================================= */
 
 .contenedor {
+
     width: 100%;
+
     max-width: 1400px;
+
     margin: auto;
-    padding: 10px 20px 40px;
+
+    padding:
+        10px
+        20px
+        40px;
+
 }
 
 .tituloCategoria {
+
     font-size: 22px;
-    margin: 10px 0 18px;
+
+    margin:
+        10px
+        0
+        18px;
+
 }
 
-/* =========================
+
+/* =========================================================
    PELÍCULAS
-========================= */
+========================================================= */
 
 .peliculas {
+
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(170px,1fr)
+        );
+
     gap: 22px;
+
 }
 
-/* TARJETA */
+
+/* =========================================================
+   TARJETA
+========================================================= */
 
 .pelicula {
+
     background: #111;
+
     border-radius: 8px;
+
     overflow: hidden;
-    transition: transform .2s, box-shadow .2s;
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+
     cursor: pointer;
+
 }
 
 .pelicula:hover {
+
     transform: scale(1.04);
-    box-shadow: 0 5px 25px rgba(0,0,0,.7);
+
+    box-shadow:
+        0 5px 25px
+        rgba(0,0,0,.7);
+
 }
 
 .poster {
+
     width: 100%;
+
     aspect-ratio: 2 / 3;
+
     object-fit: cover;
+
     display: block;
+
     background: #222;
+
 }
 
 .info {
+
     padding: 10px;
+
 }
 
 .nombre {
+
     font-size: 15px;
+
     font-weight: bold;
+
     line-height: 1.25;
+
 }
 
 .año {
+
     color: #aaa;
+
     font-size: 13px;
+
     margin-top: 5px;
+
 }
 
 .ver {
+
     width: 100%;
+
     margin-top: 10px;
+
     padding: 9px;
+
     border: none;
+
     border-radius: 5px;
+
     background: #e50914;
+
     color: white;
+
     font-weight: bold;
+
     cursor: pointer;
+
 }
 
 .ver:hover {
+
     background: #ff202b;
+
 }
 
-/* =========================
+
+/* =========================================================
    REPRODUCTOR
-========================= */
+========================================================= */
 
 #reproductor {
+
     display: none;
+
     position: fixed;
+
     inset: 0;
-    z-index: 1000;
-    background: rgba(0,0,0,.96);
+
+    z-index: 10000;
+
+    background:
+        rgba(0,0,0,.96);
+
     align-items: center;
+
     justify-content: center;
+
     flex-direction: column;
+
 }
 
 #video {
+
     width: 90%;
+
     max-width: 1100px;
+
     max-height: 80vh;
+
     background: black;
+
 }
 
 #tituloReproductor {
+
     margin: 10px;
+
     font-size: 20px;
+
+    text-align: center;
+
 }
 
-.cerrar {
+
+/* =========================================================
+   INDICADOR DE NAVEGACIÓN DEL REPRODUCTOR
+========================================================= */
+
+#mensajeReproductor {
+
     position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 35px;
-    color: white;
-    cursor: pointer;
+
+    bottom: 25px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color: #aaa;
+
+    font-size: 14px;
+
+    pointer-events: none;
+
 }
 
-/* =========================
-   MÓVIL
-========================= */
 
-@media (max-width: 600px) {
+/* =========================================================
+   MODAL SERIES
+========================================================= */
 
-    header h1 {
-        font-size: 23px;
+#modalSerie {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9000;
+
+    background:
+        rgba(0,0,0,.92);
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+}
+
+#modalSerieCaja {
+
+    width: min(900px,95vw);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #111;
+
+    border:
+        1px solid
+        #333;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+}
+
+#modalSerieTitulo {
+
+    text-align: center;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    margin-bottom: 20px;
+
+}
+
+#temporadas {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+}
+
+.botonTemporada {
+
+    padding: 10px 16px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #222;
+
+    color: white;
+
+    cursor: pointer;
+
+}
+
+.botonTemporada.activa {
+
+    background: #e50914;
+
+}
+
+#capitulos {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+.botonCapitulo {
+
+    width: 100%;
+
+    padding: 13px;
+
+    text-align: left;
+
+    border:
+        1px solid
+        #333;
+
+    border-radius: 8px;
+
+    background: #1b1b1b;
+
+    color: white;
+
+    cursor: pointer;
+
+}
+
+.botonCapitulo:hover {
+
+    background: #292929;
+
+}
+
+
+/* =========================================================
+   CERRAR MODAL SERIES
+========================================================= */
+
+#cerrarSerie {
+
+    display: block;
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 11px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #333;
+
+    color: white;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================================================
+   ANDROID
+========================================================= */
+
+/*
+   En Android / TV Stick el botón gráfico
+   de volver NO debe aparecer.
+*/
+
+body.android-app #volverTVArg {
+
+    display: none !important;
+
+}
+
+
+/* =========================================================
+   TV STICK
+========================================================= */
+
+/*
+   Los TV Stick suelen tener una resolución grande
+   pero una interfaz WebView donde los elementos
+   terminan visualmente demasiado grandes.
+
+   Compactamos solamente pantallas grandes
+   de poca altura.
+*/
+
+@media
+(min-width: 900px)
+and (max-height: 800px) {
+
+    header {
+
+        padding:
+            10px
+            15px;
+
     }
 
-    .peliculas {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+    header h1 {
+
+        font-size: 22px;
+
+    }
+
+    header p {
+
+        margin-top: 3px;
+
+        font-size: 13px;
+
+    }
+
+    .buscador {
+
+        padding:
+            8px
+            15px;
+
+    }
+
+    #buscar {
+
+        padding:
+            8px
+            14px;
+
+        font-size: 14px;
+
+        max-width: 450px;
+
+    }
+
+    .categorias {
+
+        padding:
+            3px
+            12px
+            10px;
+
+        gap: 6px;
+
+    }
+
+    .categorias button {
+
+        padding:
+            7px
+            12px;
+
+        font-size: 12px;
+
     }
 
     .contenedor {
-        padding: 5px 10px 30px;
+
+        padding:
+            5px
+            15px
+            25px;
+
+    }
+
+    .tituloCategoria {
+
+        font-size: 18px;
+
+        margin:
+            6px
+            0
+            12px;
+
+    }
+
+    .peliculas {
+
+        grid-template-columns:
+            repeat(
+                auto-fill,
+                minmax(125px,1fr)
+            );
+
+        gap: 12px;
+
+    }
+
+    .info {
+
+        padding: 7px;
+
     }
 
     .nombre {
-        font-size: 14px;
+
+        font-size: 12px;
+
     }
+
+    .año {
+
+        font-size: 11px;
+
+        margin-top: 3px;
+
+    }
+
+    .ver {
+
+        margin-top: 6px;
+
+        padding: 6px;
+
+        font-size: 11px;
+
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width:600px) {
+
+    header h1 {
+
+        font-size: 23px;
+
+    }
+
+    .peliculas {
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap: 12px;
+
+    }
+
+    .contenedor {
+
+        padding:
+            5px
+            10px
+            30px;
+
+    }
+
+    .nombre {
+
+        font-size: 14px;
+
+    }
+
+}
+
+
+/* =========================================================
+   ANDROID TV CON PANTALLA MUY GRANDE
+========================================================= */
+
+@media
+(min-width: 1200px)
+and (min-height: 700px)
+and (max-height: 1000px) {
+
+    .peliculas {
+
+        grid-template-columns:
+            repeat(
+                auto-fill,
+                minmax(150px,1fr)
+            );
+
+        gap: 15px;
+
+    }
+
+    .contenedor {
+
+        padding-left: 18px;
+        padding-right: 18px;
+
+    }
+
+}
+
+
+/* =========================================================
+   ESTADO DE FOCO PARA TV
+========================================================= */
+
+.tv-focus {
+
+    outline:
+        3px solid
+        #ffffff !important;
+
+    outline-offset: 3px;
+
+    transform:
+        scale(1.03);
+
+    z-index: 5;
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 
-<!-- =========================
+<!-- =========================================================
      VOLVER A TVARG
-========================= -->
+========================================================= -->
 
 <button
     id="volverTVArg"
     onclick="volverTVArg()"
     title="Volver a TVArg">
+
     ←
+
 </button>
 
 
+<!-- =========================================================
+     CABECERA
+========================================================= -->
+
 <header>
 
-    <h1>🎬 TV A LA CARTA</h1>
+    <h1>
+        🎬 TV A LA CARTA
+    </h1>
 
-    <p>Películas y series</p>
+    <p>
+        Películas y series
+    </p>
 
 </header>
 
+
+<!-- =========================================================
+     BUSCADOR
+========================================================= -->
 
 <div class="buscador">
 
@@ -313,29 +896,47 @@ header p {
 </div>
 
 
-<div class="categorias" id="categorias"></div>
+<!-- =========================================================
+     CATEGORÍAS
+========================================================= -->
 
+<div
+    class="categorias"
+    id="categorias">
+</div>
+
+
+<!-- =========================================================
+     CONTENIDO
+========================================================= -->
 
 <div class="contenedor">
 
-    <div class="tituloCategoria" id="tituloCategoria">
+    <div
+        class="tituloCategoria"
+        id="tituloCategoria">
+
         TODAS
+
     </div>
 
-    <div class="peliculas" id="peliculas"></div>
+    <div
+        class="peliculas"
+        id="peliculas">
+    </div>
 
 </div>
 
 
-<!-- =========================
+<!-- =========================================================
      REPRODUCTOR
-========================= -->
+========================================================= -->
 
 <div id="reproductor">
 
-    <div class="cerrar" onclick="cerrarReproductor()">✕</div>
-
-    <div id="tituloReproductor"></div>
+    <div
+        id="tituloReproductor">
+    </div>
 
     <video
         id="video"
@@ -344,10 +945,62 @@ header p {
         playsinline>
     </video>
 
+    <div id="mensajeReproductor">
+        ← Back para volver
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL SERIES
+========================================================= -->
+
+<div id="modalSerie">
+
+    <div id="modalSerieCaja">
+
+        <div id="modalSerieTitulo">
+        </div>
+
+        <div id="temporadas">
+        </div>
+
+        <div id="capitulos">
+        </div>
+
+        <button
+            id="cerrarSerie"
+            onclick="cerrarModalSerie()">
+
+            Volver
+
+        </button>
+
+    </div>
+
 </div>
 
 
 <script>
+
+/* =========================================================
+   DETECTAR ANDROID / APK
+========================================================= */
+
+/*
+   TVArg ya utiliza AndroidTVArg como puente nativo.
+
+   Por eso aprovechamos su existencia para marcar
+   el documento como Android.
+*/
+
+if (window.AndroidTVArg) {
+
+    document.body.classList.add("android-app");
+
+}
+
 
 /* =========================================================
    DATOS
@@ -655,10 +1308,67 @@ const peliculas = [
 
 
 /* =========================================================
-   ESTADO
+   SERIES
+   ESTRUCTURA PREPARADA
+========================================================= */
+
+/*
+   Todavía no agregamos series reales al catálogo.
+
+   La estructura será:
+
+   {
+       tipo: "serie",
+       titulo: "...",
+       año: "...",
+       categoria: "SERIES",
+       poster: "...",
+
+       temporadas: [
+
+           {
+               numero: 1,
+
+               capitulos: [
+
+                   {
+                       numero: 1,
+                       titulo: "...",
+                       url: "..."
+                   }
+
+               ]
+           }
+
+       ]
+   }
+
+*/
+
+const series = [];
+
+
+/* =========================================================
+   ESTADO DE NAVEGACIÓN
 ========================================================= */
 
 let categoriaActual = "TODAS";
+
+let nivelNavegacion = "principal";
+
+let serieActual = null;
+
+let temporadaActual = null;
+
+
+/*
+   Estados posibles:
+
+   principal
+   categoria
+   serie
+   reproductor
+*/
 
 
 /* =========================================================
@@ -667,7 +1377,28 @@ let categoriaActual = "TODAS";
 
 function volverTVArg() {
 
-    window.location.href = "index.html";
+    /*
+       Indicamos al APK que volvemos al menú principal.
+    */
+
+    if (window.AndroidTVArg) {
+
+        try {
+
+            AndroidTVArg.setMenuPrincipal(true);
+
+        } catch (e) {}
+
+    }
+
+
+    /*
+       El parámetro permite que index.html
+       sepa que venimos desde TVALC.
+    */
+
+    window.location.href =
+        "index.html?desde=tvalc";
 
 }
 
@@ -681,37 +1412,61 @@ function cargarCategorias() {
     const contenedor =
         document.getElementById("categorias");
 
+
     const categorias = [
+
         "TODAS",
+
         ...new Set(
-            peliculas.map(p => p.categoria)
+            [
+                ...peliculas,
+                ...series
+            ]
+            .map(p => p.categoria)
         )
+
     ];
 
+
     contenedor.innerHTML = "";
+
 
     categorias.forEach(categoria => {
 
         const boton =
             document.createElement("button");
 
-        boton.textContent = categoria;
 
-        if (categoria === categoriaActual) {
+        boton.textContent =
+            categoria;
+
+
+        if (
+            categoria ===
+            categoriaActual
+        ) {
 
             boton.classList.add("activo");
 
         }
 
+
         boton.onclick = () => {
 
-            categoriaActual = categoria;
+            categoriaActual =
+                categoria;
+
+            nivelNavegacion =
+                categoria === "TODAS"
+                ? "principal"
+                : "categoria";
 
             cargarCategorias();
 
             mostrarPeliculas();
 
         };
+
 
         contenedor.appendChild(boton);
 
@@ -721,7 +1476,7 @@ function cargarCategorias() {
 
 
 /* =========================================================
-   MOSTRAR PELÍCULAS
+   MOSTRAR PELÍCULAS / SERIES
 ========================================================= */
 
 function mostrarPeliculas() {
@@ -730,25 +1485,39 @@ function mostrarPeliculas() {
         document.getElementById("peliculas");
 
     const titulo =
-        document.getElementById("tituloCategoria");
+        document.getElementById(
+            "tituloCategoria"
+        );
 
     const busqueda =
-        document.getElementById("buscar")
-        .value
-        .toLowerCase()
-        .trim();
+        document
+            .getElementById("buscar")
+            .value
+            .toLowerCase()
+            .trim();
 
 
-    let lista = peliculas;
+    let lista = [
+
+        ...peliculas,
+        ...series
+
+    ];
 
 
     /* FILTRO CATEGORÍA */
 
-    if (categoriaActual !== "TODAS") {
+    if (
+        categoriaActual !==
+        "TODAS"
+    ) {
 
-        lista = lista.filter(
-            p => p.categoria === categoriaActual
-        );
+        lista =
+            lista.filter(
+                p =>
+                    p.categoria ===
+                    categoriaActual
+            );
 
     }
 
@@ -757,27 +1526,32 @@ function mostrarPeliculas() {
 
     if (busqueda) {
 
-        lista = lista.filter(
-            p =>
-                p.titulo
-                .toLowerCase()
-                .includes(busqueda)
-        );
+        lista =
+            lista.filter(
+                p =>
+                    p.titulo
+                        .toLowerCase()
+                        .includes(
+                            busqueda
+                        )
+            );
 
     }
 
 
     titulo.textContent =
+
         categoriaActual +
-        "  •  " +
-        lista.length +
-        " películas";
+
+        " • " +
+
+        lista.length;
 
 
     contenedor.innerHTML = "";
 
 
-    if (lista.length === 0) {
+    if (!lista.length) {
 
         contenedor.innerHTML = `
 
@@ -788,7 +1562,8 @@ function mostrarPeliculas() {
                 color:#888;
             ">
 
-                No se encontraron películas.
+                No se encontraron
+                contenidos.
 
             </div>
 
@@ -799,31 +1574,35 @@ function mostrarPeliculas() {
     }
 
 
-    lista.forEach(pelicula => {
+    lista.forEach(item => {
 
         const tarjeta =
             document.createElement("div");
 
-        tarjeta.className = "pelicula";
+
+        tarjeta.className =
+            "pelicula";
 
 
         tarjeta.innerHTML = `
 
             <img
                 class="poster"
-                src="${pelicula.poster}"
+                src="${item.poster}"
                 loading="lazy"
-                onerror="this.style.opacity='.3'"
+                onerror="
+                    this.style.opacity='.3'
+                "
             >
 
             <div class="info">
 
                 <div class="nombre">
-                    ${pelicula.titulo}
+                    ${item.titulo}
                 </div>
 
                 <div class="año">
-                    ${pelicula.año}
+                    ${item.año}
                 </div>
 
                 <button class="ver">
@@ -838,12 +1617,36 @@ function mostrarPeliculas() {
         tarjeta
             .querySelector(".ver")
             .onclick = () =>
-                reproducir(pelicula);
+                seleccionarContenido(item);
 
 
-        contenedor.appendChild(tarjeta);
+        contenedor.appendChild(
+            tarjeta
+        );
 
     });
+
+}
+
+
+/* =========================================================
+   SELECCIONAR CONTENIDO
+========================================================= */
+
+function seleccionarContenido(item) {
+
+    if (
+        item.tipo === "serie"
+    ) {
+
+        abrirModalSerie(item);
+
+        return;
+
+    }
+
+
+    reproducir(item);
 
 }
 
@@ -863,54 +1666,441 @@ function filtrar() {
    REPRODUCIR
 ========================================================= */
 
-function reproducir(pelicula) {
+function reproducir(item) {
 
     const reproductor =
-        document.getElementById("reproductor");
+        document.getElementById(
+            "reproductor"
+        );
 
     const video =
-        document.getElementById("video");
+        document.getElementById(
+            "video"
+        );
+
 
     document.getElementById(
         "tituloReproductor"
     ).textContent =
-        pelicula.titulo +
-        " (" +
-        pelicula.año +
-        ")";
+
+        item.titulo +
+
+        (
+            item.año
+            ? " (" + item.año + ")"
+            : ""
+        );
 
 
-    video.src = pelicula.url;
+    video.src =
+        item.url;
 
-    reproductor.style.display = "flex";
 
-    video.play().catch(() => {});
+    reproductor.style.display =
+        "flex";
+
+
+    nivelNavegacion =
+        "reproductor";
+
+
+    video.play()
+        .catch(() => {});
 
 }
 
 
 /* =========================================================
-   CERRAR
+   CERRAR REPRODUCTOR
 ========================================================= */
 
 function cerrarReproductor() {
 
     const reproductor =
-        document.getElementById("reproductor");
+        document.getElementById(
+            "reproductor"
+        );
 
     const video =
-        document.getElementById("video");
+        document.getElementById(
+            "video"
+        );
 
 
     video.pause();
 
-    video.removeAttribute("src");
+    video.removeAttribute(
+        "src"
+    );
 
     video.load();
 
-    reproductor.style.display = "none";
+
+    reproductor.style.display =
+        "none";
+
+
+    nivelNavegacion =
+        "principal";
 
 }
+
+
+/* =========================================================
+   MODAL DE SERIES
+========================================================= */
+
+function abrirModalSerie(serie) {
+
+    serieActual =
+        serie;
+
+
+    temporadaActual =
+        serie.temporadas?.[0] ||
+        null;
+
+
+    document.getElementById(
+        "modalSerieTitulo"
+    ).textContent =
+        serie.titulo;
+
+
+    document.getElementById(
+        "modalSerie"
+    ).style.display =
+        "flex";
+
+
+    nivelNavegacion =
+        "serie";
+
+
+    mostrarTemporadas();
+
+}
+
+
+/* =========================================================
+   TEMPORADAS
+========================================================= */
+
+function mostrarTemporadas() {
+
+    const contenedor =
+        document.getElementById(
+            "temporadas"
+        );
+
+
+    contenedor.innerHTML = "";
+
+
+    if (
+        !serieActual ||
+        !serieActual.temporadas
+    ) {
+
+        return;
+
+    }
+
+
+    serieActual.temporadas
+        .forEach(temporada => {
+
+            const boton =
+                document.createElement(
+                    "button"
+                );
+
+
+            boton.className =
+                "botonTemporada";
+
+
+            if (
+                temporada ===
+                temporadaActual
+            ) {
+
+                boton.classList.add(
+                    "activa"
+                );
+
+            }
+
+
+            boton.textContent =
+                "Temporada " +
+                temporada.numero;
+
+
+            boton.onclick = () => {
+
+                temporadaActual =
+                    temporada;
+
+                mostrarTemporadas();
+
+                mostrarCapitulos();
+
+            };
+
+
+            contenedor.appendChild(
+                boton
+            );
+
+        });
+
+
+    mostrarCapitulos();
+
+}
+
+
+/* =========================================================
+   CAPÍTULOS
+========================================================= */
+
+function mostrarCapitulos() {
+
+    const contenedor =
+        document.getElementById(
+            "capitulos"
+        );
+
+
+    contenedor.innerHTML = "";
+
+
+    if (
+        !temporadaActual ||
+        !temporadaActual.capitulos
+    ) {
+
+        return;
+
+    }
+
+
+    temporadaActual.capitulos
+        .forEach(capitulo => {
+
+            const boton =
+                document.createElement(
+                    "button"
+                );
+
+
+            boton.className =
+                "botonCapitulo";
+
+
+            boton.textContent =
+
+                "Capítulo " +
+                capitulo.numero +
+                " — " +
+                capitulo.titulo;
+
+
+            boton.onclick = () => {
+
+                reproducir({
+
+                    titulo:
+                        serieActual.titulo +
+                        " - " +
+                        capitulo.titulo,
+
+                    url:
+                        capitulo.url
+
+                });
+
+            };
+
+
+            contenedor.appendChild(
+                boton
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   CERRAR MODAL SERIES
+========================================================= */
+
+function cerrarModalSerie() {
+
+    document.getElementById(
+        "modalSerie"
+    ).style.display =
+        "none";
+
+
+    serieActual =
+        null;
+
+    temporadaActual =
+        null;
+
+
+    nivelNavegacion =
+        "principal";
+
+}
+
+
+/* =========================================================
+   BACK
+========================================================= */
+
+function manejarBack() {
+
+    /*
+       1. SI ESTAMOS REPRODUCIENDO
+       -----------------------------
+       Cierra solamente el reproductor.
+    */
+
+    const reproductor =
+        document.getElementById(
+            "reproductor"
+        );
+
+
+    if (
+        reproductor.style.display ===
+        "flex"
+    ) {
+
+        cerrarReproductor();
+
+        return;
+
+    }
+
+
+    /*
+       2. SI ESTAMOS DENTRO DE UNA SERIE
+       ----------------------------------
+       Cerramos el modal de serie.
+    */
+
+    const modalSerie =
+        document.getElementById(
+            "modalSerie"
+        );
+
+
+    if (
+        modalSerie.style.display ===
+        "flex"
+    ) {
+
+        cerrarModalSerie();
+
+        return;
+
+    }
+
+
+    /*
+       3. SI ESTAMOS EN UNA CATEGORÍA
+       --------------------------------
+       Volvemos a TODAS.
+    */
+
+    if (
+        nivelNavegacion ===
+        "categoria"
+    ) {
+
+        categoriaActual =
+            "TODAS";
+
+        nivelNavegacion =
+            "principal";
+
+        cargarCategorias();
+
+        mostrarPeliculas();
+
+        return;
+
+    }
+
+
+    /*
+       4. ESTAMOS EN EL MENÚ PRINCIPAL
+       --------------------------------
+       Salimos hacia TVArg.
+    */
+
+    volverTVArg();
+
+}
+
+
+/* =========================================================
+   TVBACK — ANDROID / TV STICK
+========================================================= */
+
+/*
+   ESTE es el mecanismo principal.
+
+   Es exactamente el mismo evento
+   que utiliza actualmente TVArg.
+*/
+
+window.addEventListener(
+    "tvback",
+    function() {
+
+        manejarBack();
+
+    }
+);
+
+
+/* =========================================================
+   BACKUP PARA PC / NAVEGADOR
+========================================================= */
+
+/*
+   En PC no existe tvback.
+
+   Por eso mantenemos Escape y Back
+   como respaldo.
+
+   El TV Stick utilizará tvback.
+*/
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape" ||
+            event.key === "Back" ||
+            event.keyCode === 4
+        ) {
+
+            event.preventDefault();
+
+            manejarBack();
+
+        }
+
+    }
+);
 
 
 /* =========================================================
@@ -923,34 +2113,28 @@ mostrarPeliculas();
 
 
 /* =========================================================
-   BOTÓN BACK — ANDROID TV / CONTROL REMOTO
+   DETECTAR REGRESO DESDE TVARG
 ========================================================= */
 
-document.addEventListener("keydown", function(event) {
+/*
+   No necesitamos hacer nada aquí todavía.
 
-    if (
-        event.key === "Escape" ||
-        event.key === "Back" ||
-        event.keyCode === 4
-    ) {
+   El parámetro:
 
-        event.preventDefault();
+       ?desde=tvalc
 
-        const reproductor =
-            document.getElementById("reproductor");
+   será utilizado por index.html para
+   saltar directamente al menú principal.
+*/
 
-        if (reproductor.style.display === "flex") {
+const parametros =
+    new URLSearchParams(
+        window.location.search
+    );
 
-            cerrarReproductor();
+const desdeTVArg =
+    parametros.get("desde");
 
-            return;
-        }
-
-        volverTVArg();
-
-    }
-
-});
 
 </script>
 
