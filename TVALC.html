@@ -1721,69 +1721,55 @@ function filtrar() {
    REPRODUCIR
 ========================================================= */
 
-function reproducir(
-    pelicula
-) {
+function reproducir(pelicula) {
 
-    reproductorAbierto =
-        true;
+    reproductorAbierto = true;
 
+    if (esAndroidTVArg()) {
 
-    /*
-       ANDROID
-
-       Usamos EXACTAMENTE el método
-       que existe en MainActivity.java:
-
-           playChannel(
-               String url,
-               String referer,
-               String userAgent
-           )
-    */
-
-    if (esAndroidTVArg) {
-
-        reproducirEnAndroid(
-            pelicula
-        );
+        reproducirEnAndroid(pelicula);
 
         return;
-
     }
 
-
-    /*
-       NAVEGADOR
-    */
-
-    reproducirWeb(
-        pelicula
-    );
+    reproducirWeb(pelicula);
 
 }
 
 
 /* =========================================================
-   REPRODUCCIÓN ANDROID
+   REPRODUCCIÓN ANDROID — TVARG / EXOPLAYER
 ========================================================= */
 
-function reproducirEnAndroid(
-    pelicula
-) {
-
-    reproduccionNativa =
-        true;
-
+function reproducirEnAndroid(pelicula) {
 
     console.log(
-        "TVArg -> PlayerActivity:",
+        "TVALC -> AndroidTVArg.playChannel:",
         pelicula.titulo,
         pelicula.url
     );
 
+    if (!window.AndroidTVArg) {
+
+        mostrarMensaje(
+            "TVArgBridge no está disponible."
+        );
+
+        return;
+    }
 
     try {
+
+        /*
+         * Este es el método REAL que existe
+         * actualmente en MainActivity.java
+         *
+         * playChannel(
+         *     String url,
+         *     String referer,
+         *     String userAgent
+         * )
+         */
 
         AndroidTVArg.playChannel(
             pelicula.url,
@@ -1791,21 +1777,12 @@ function reproducirEnAndroid(
             ""
         );
 
-
     } catch (error) {
 
         console.error(
-            "Error llamando a playChannel:",
+            "Error iniciando PlayerActivity:",
             error
         );
-
-
-        reproductorAbierto =
-            false;
-
-        reproduccionNativa =
-            false;
-
 
         mostrarMensaje(
             "No se pudo iniciar el reproductor."
@@ -1870,6 +1847,27 @@ function reproducirWeb(
         );
 
 }
+
+
+/* =========================================================
+   SALIDA DEL REPRODUCTOR NATIVO
+========================================================= */
+
+function manejarSalidaCanal() {
+
+    console.log(
+        "TVALC: PlayerActivity finalizada"
+    );
+
+    reproductorAbierto = false;
+
+    /*
+     * El reproductor nativo de Android ya se cerró.
+     * TVALC simplemente permanece visible.
+     */
+
+}
+
 
 
 /* =========================================================
