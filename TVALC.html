@@ -10,7 +10,6 @@
 
 <title>TVArg - TV A LA CARTA</title>
 
-
 <style>
 
 /* =========================================================
@@ -33,6 +32,7 @@ body {
     background: #050505;
     color: white;
     font-family: Arial, sans-serif;
+    overflow-x: hidden;
 }
 
 
@@ -42,7 +42,8 @@ body {
 
 header {
 
-    padding: 20px;
+    padding:
+        34px 20px 15px;
 
     text-align: center;
 
@@ -53,7 +54,7 @@ header {
             #090909
         );
 
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #292929;
 }
 
 header h1 {
@@ -61,13 +62,18 @@ header h1 {
     margin: 0;
 
     font-size: 28px;
+
+    letter-spacing: .5px;
 }
 
 header p {
 
-    margin: 6px 0 0;
+    margin:
+        6px 0 0;
 
-    color: #aaa;
+    color: #999;
+
+    font-size: 14px;
 }
 
 
@@ -79,26 +85,26 @@ header p {
 
     position: fixed;
 
-    top: 15px;
-    left: 15px;
+    top: 12px;
+    left: 12px;
 
     z-index: 2000;
 
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
 
     border-radius: 50%;
 
     border:
         1px solid
-        rgba(255,255,255,.25);
+        rgba(255,255,255,.22);
 
     background:
-        rgba(0,0,0,.65);
+        rgba(0,0,0,.72);
 
     color: white;
 
-    font-size: 22px;
+    font-size: 21px;
 
     font-weight: bold;
 
@@ -108,34 +114,18 @@ header p {
     justify-content: center;
 
     cursor: pointer;
-
-    transition: .2s;
 }
 
 #volverTVArg:hover {
 
-    background:
-        rgba(50,50,50,.9);
+    background: #333;
 
-    transform: scale(1.08);
 }
-
-
-/* =========================================================
-   ANDROID
-========================================================= */
-
-/*
-   Cuando TVALC se ejecuta dentro del APK,
-   MainActivity inyecta AndroidTVArg.
-
-   En ese caso el botón visual NO es necesario,
-   porque Android manda el evento "tvback".
-*/
 
 body.android-app #volverTVArg {
 
     display: none !important;
+
 }
 
 
@@ -145,31 +135,38 @@ body.android-app #volverTVArg {
 
 .buscador {
 
-    padding: 15px;
+    width: 100%;
+
+    padding:
+        13px 15px 8px;
 
     display: flex;
 
     justify-content: center;
+
+    position: relative;
 }
 
 #buscar {
 
     width:
-        min(600px, 95%);
+        min(560px, 94%);
+
+    height: 42px;
 
     padding:
-        13px 18px;
+        9px 18px;
 
-    border-radius: 25px;
+    border-radius: 22px;
 
     border:
-        1px solid #444;
+        1px solid #3d3d3d;
 
-    background: #171717;
+    background: #151515;
 
     color: white;
 
-    font-size: 16px;
+    font-size: 15px;
 
     outline: none;
 }
@@ -177,6 +174,24 @@ body.android-app #volverTVArg {
 #buscar:focus {
 
     border-color: #777;
+
+}
+
+
+/*
+   Cuando el campo está bloqueado:
+
+   - puede recibir foco
+   - no abre teclado
+   - se activa con OK / Enter
+*/
+
+#buscar.bloqueado {
+
+    color: #aaa;
+
+    border-color: #333;
+
 }
 
 
@@ -186,51 +201,82 @@ body.android-app #volverTVArg {
 
 .categorias {
 
+    width: 100%;
+
     display: flex;
 
-    gap: 8px;
+    gap: 7px;
 
     padding:
-        5px 15px 20px;
+        7px 14px 14px;
 
     overflow-x: auto;
 
-    justify-content: center;
+    overflow-y: hidden;
 
-    scrollbar-width: none;
-}
+    justify-content: flex-start;
 
-.categorias::-webkit-scrollbar {
+    scrollbar-width: thin;
 
-    display: none;
-}
-
-.categorias button {
-
-    border: none;
-
-    border-radius: 20px;
-
-    padding:
-        9px 16px;
-
-    background: #222;
-
-    color: white;
-
-    cursor: pointer;
+    -webkit-overflow-scrolling: touch;
 
     white-space: nowrap;
 }
 
-.categorias button:hover {
+.categorias::-webkit-scrollbar {
+
+    height: 4px;
+
+}
+
+.categorias::-webkit-scrollbar-thumb {
 
     background: #444;
+
+    border-radius: 4px;
+
+}
+
+.categorias button {
+
+    flex:
+        0 0 auto;
+
+    border:
+        1px solid #333;
+
+    border-radius: 18px;
+
+    padding:
+        8px 13px;
+
+    background: #1d1d1d;
+
+    color: #ddd;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    font-size: 12px;
+
+    transition: .15s;
+}
+
+.categorias button:hover {
+
+    background: #333;
+
 }
 
 .categorias button.activo {
 
     background: #e50914;
+
+    border-color: #e50914;
+
+    color: white;
+
 }
 
 
@@ -242,25 +288,29 @@ body.android-app #volverTVArg {
 
     width: 100%;
 
-    max-width: 1400px;
+    max-width: 1500px;
 
     margin: auto;
 
     padding:
-        10px 20px 40px;
+        4px 16px 35px;
 }
 
 .tituloCategoria {
 
-    font-size: 22px;
+    font-size: 18px;
+
+    font-weight: bold;
 
     margin:
-        10px 0 18px;
+        8px 0 13px;
+
+    color: #ddd;
 }
 
 
 /* =========================================================
-   PELÍCULAS
+   GRILLA
 ========================================================= */
 
 .peliculas {
@@ -270,10 +320,11 @@ body.android-app #volverTVArg {
     grid-template-columns:
         repeat(
             auto-fill,
-            minmax(170px, 1fr)
+            minmax(105px, 1fr)
         );
 
-    gap: 22px;
+    gap:
+        13px;
 }
 
 
@@ -283,26 +334,28 @@ body.android-app #volverTVArg {
 
 .pelicula {
 
+    position: relative;
+
     background: #111;
 
-    border-radius: 8px;
+    border-radius: 6px;
 
     overflow: hidden;
 
-    transition:
-        transform .2s,
-        box-shadow .2s;
-
     cursor: pointer;
+
+    transition:
+        transform .15s,
+        box-shadow .15s;
 }
 
 .pelicula:hover {
 
-    transform: scale(1.04);
+    transform: scale(1.035);
 
     box-shadow:
-        0 5px 25px
-        rgba(0,0,0,.7);
+        0 4px 18px
+        rgba(0,0,0,.8);
 }
 
 .poster {
@@ -315,47 +368,104 @@ body.android-app #volverTVArg {
 
     display: block;
 
-    background: #222;
+    background: #202020;
 }
+
+
+/* =========================================================
+   MARCA P / S
+========================================================= */
+
+.tipoContenido {
+
+    position: absolute;
+
+    top: 5px;
+    right: 5px;
+
+    z-index: 3;
+
+    min-width: 21px;
+    height: 21px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 4px;
+
+    background:
+        rgba(0,0,0,.82);
+
+    border:
+        1px solid
+        rgba(255,255,255,.3);
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   INFORMACIÓN
+========================================================= */
 
 .info {
 
-    padding: 10px;
+    padding:
+        6px 7px 7px;
 }
 
 .nombre {
 
-    font-size: 15px;
+    font-size: 11px;
 
     font-weight: bold;
 
-    line-height: 1.25;
+    line-height: 1.2;
+
+    min-height:
+        26px;
+
+    overflow: hidden;
 }
 
 .año {
 
-    color: #aaa;
+    color: #888;
 
-    font-size: 13px;
+    font-size: 10px;
 
-    margin-top: 5px;
+    margin-top: 3px;
 }
+
+
+/*
+   El botón queda pequeño.
+   La tarjeta completa también es clickeable.
+*/
 
 .ver {
 
     width: 100%;
 
-    margin-top: 10px;
+    margin-top: 5px;
 
-    padding: 9px;
+    padding: 5px;
 
     border: none;
 
-    border-radius: 5px;
+    border-radius: 4px;
 
     background: #e50914;
 
     color: white;
+
+    font-size: 10px;
 
     font-weight: bold;
 
@@ -365,6 +475,7 @@ body.android-app #volverTVArg {
 .ver:hover {
 
     background: #ff202b;
+
 }
 
 
@@ -380,7 +491,7 @@ body.android-app #volverTVArg {
 
     inset: 0;
 
-    z-index: 1000;
+    z-index: 6000;
 
     background:
         rgba(0,0,0,.97);
@@ -405,9 +516,10 @@ body.android-app #volverTVArg {
 
 #tituloReproductor {
 
-    margin: 10px;
+    margin:
+        10px;
 
-    font-size: 20px;
+    font-size: 19px;
 
     text-align: center;
 }
@@ -439,7 +551,7 @@ body.android-app #volverTVArg {
     border-radius: 10px;
 
     background:
-        rgba(20,20,20,.95);
+        rgba(20,20,20,.96);
 
     border:
         1px solid #444;
@@ -488,18 +600,18 @@ body.android-app #volverTVArg {
 
     border-radius: 14px;
 
-    padding: 25px;
+    padding: 22px;
 }
 
 #modalSeriesTitulo {
 
     text-align: center;
 
-    font-size: 22px;
+    font-size: 21px;
 
     font-weight: bold;
 
-    margin-bottom: 20px;
+    margin-bottom: 17px;
 }
 
 
@@ -512,9 +624,9 @@ body.android-app #volverTVArg {
     width: 100%;
 
     margin:
-        6px 0;
+        5px 0;
 
-    padding: 13px;
+    padding: 12px;
 
     background: #222;
 
@@ -523,9 +635,9 @@ body.android-app #volverTVArg {
     border:
         1px solid #444;
 
-    border-radius: 8px;
+    border-radius: 7px;
 
-    font-size: 16px;
+    font-size: 15px;
 
     cursor: pointer;
 
@@ -547,7 +659,7 @@ body.android-app #volverTVArg {
     display: none;
 
     margin:
-        0 0 12px;
+        0 0 10px;
 }
 
 .botonCapitulo {
@@ -555,9 +667,9 @@ body.android-app #volverTVArg {
     width: 100%;
 
     margin:
-        4px 0;
+        3px 0;
 
-    padding: 10px;
+    padding: 9px;
 
     background: #191919;
 
@@ -571,24 +683,28 @@ body.android-app #volverTVArg {
     text-align: left;
 
     cursor: pointer;
+
+    font-size: 13px;
 }
 
 .botonCapitulo:hover {
 
     background: #292929;
+
 }
 
+
 /* =========================================================
-   CANCELAR MODAL SERIES
+   CANCELAR
 ========================================================= */
 
 #cancelarSeries {
 
     width: 100%;
 
-    margin-top: 18px;
+    margin-top: 16px;
 
-    padding: 12px;
+    padding: 11px;
 
     border: 1px solid #444;
 
@@ -598,7 +714,7 @@ body.android-app #volverTVArg {
 
     color: #ddd;
 
-    font-size: 15px;
+    font-size: 14px;
 
     font-weight: bold;
 
@@ -612,6 +728,27 @@ body.android-app #volverTVArg {
     color: white;
 }
 
+
+/* =========================================================
+   PC GRANDE
+========================================================= */
+
+@media (min-width: 1200px) {
+
+    .peliculas {
+
+        grid-template-columns:
+            repeat(
+                auto-fill,
+                minmax(125px, 1fr)
+            );
+
+        gap: 15px;
+    }
+
+}
+
+
 /* =========================================================
    MÓVIL
 ========================================================= */
@@ -621,63 +758,7 @@ body.android-app #volverTVArg {
     header {
 
         padding:
-            15px 10px;
-    }
-
-    header h1 {
-
-        font-size: 23px;
-    }
-
-    header p {
-
-        font-size: 14px;
-    }
-
-    .peliculas {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        gap: 12px;
-    }
-
-    .contenedor {
-
-        padding:
-            5px 10px 30px;
-    }
-
-    .nombre {
-
-        font-size: 14px;
-    }
-
-    .año {
-
-        font-size: 12px;
-    }
-
-    .ver {
-
-        padding: 8px;
-
-        font-size: 13px;
-    }
-
-}
-
-
-/* =========================================================
-   TV / WEBVIEW PEQUEÑO
-========================================================= */
-
-@media (min-width: 601px) and (max-width: 1100px) {
-
-    header {
-
-        padding:
-            12px;
+            31px 10px 12px;
     }
 
     header h1 {
@@ -687,18 +768,18 @@ body.android-app #volverTVArg {
 
     header p {
 
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .buscador {
 
-        padding: 8px;
+        padding:
+            10px 10px 6px;
     }
 
     #buscar {
 
-        padding:
-            9px 15px;
+        height: 39px;
 
         font-size: 14px;
     }
@@ -706,31 +787,125 @@ body.android-app #volverTVArg {
     .categorias {
 
         padding:
-            4px 10px 12px;
-
-        gap: 6px;
-    }
-
-    .categorias button {
-
-        padding:
-            7px 12px;
-
-        font-size: 12px;
+            5px 10px 12px;
     }
 
     .contenedor {
 
         padding:
-            5px 12px 25px;
+            3px 9px 30px;
     }
 
     .tituloCategoria {
 
-        font-size: 17px;
+        font-size: 16px;
 
         margin:
-            8px 0 12px;
+            7px 0 10px;
+    }
+
+    .peliculas {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 9px;
+    }
+
+    .info {
+
+        padding:
+            5px 6px 6px;
+    }
+
+    .nombre {
+
+        font-size: 10px;
+
+        min-height: 24px;
+    }
+
+    .año {
+
+        font-size: 9px;
+    }
+
+    .ver {
+
+        font-size: 9px;
+
+        padding: 4px;
+    }
+
+}
+
+
+/* =========================================================
+   TV / WEBVIEW
+========================================================= */
+
+@media (min-width: 601px) and (max-width: 1100px) {
+
+    header {
+
+        padding:
+            28px 12px 10px;
+    }
+
+    header h1 {
+
+        font-size: 22px;
+    }
+
+    header p {
+
+        font-size: 12px;
+    }
+
+    .buscador {
+
+        padding:
+            7px 10px 5px;
+    }
+
+    #buscar {
+
+        height: 36px;
+
+        padding:
+            7px 14px;
+
+        font-size: 13px;
+    }
+
+    .categorias {
+
+        padding:
+            4px 10px 10px;
+
+        gap: 5px;
+    }
+
+    .categorias button {
+
+        padding:
+            6px 10px;
+
+        font-size: 11px;
+    }
+
+    .contenedor {
+
+        padding:
+            3px 11px 25px;
+    }
+
+    .tituloCategoria {
+
+        font-size: 16px;
+
+        margin:
+            6px 0 10px;
     }
 
     .peliculas {
@@ -738,36 +913,54 @@ body.android-app #volverTVArg {
         grid-template-columns:
             repeat(
                 auto-fill,
-                minmax(130px, 1fr)
+                minmax(105px, 1fr)
             );
 
-        gap: 12px;
+        gap: 10px;
     }
 
     .info {
 
-        padding: 7px;
+        padding:
+            5px 6px;
     }
 
     .nombre {
 
-        font-size: 12px;
+        font-size: 10px;
+
+        min-height: 24px;
     }
 
     .año {
 
-        font-size: 11px;
+        font-size: 9px;
     }
 
     .ver {
 
-        padding: 6px;
+        padding: 5px;
 
-        margin-top: 6px;
+        margin-top: 4px;
 
-        font-size: 11px;
+        font-size: 9px;
     }
 
+}
+
+
+/* =========================================================
+   FOCUS PARA NAVEGACIÓN TV
+========================================================= */
+
+button:focus,
+input:focus {
+
+    outline:
+        2px solid
+        rgba(255,255,255,.65);
+
+    outline-offset: 2px;
 }
 
 </style>
@@ -818,8 +1011,10 @@ body.android-app #volverTVArg {
     <input
         type="text"
         id="buscar"
+        class="bloqueado"
         placeholder="🔎 Buscar película o serie..."
-        oninput="filtrar()">
+        autocomplete="off"
+        spellcheck="false">
 
 </div>
 
@@ -916,24 +1111,12 @@ body.android-app #volverTVArg {
 
 <script>
 
-
 /* =========================================================
    DETECTAR ANDROID TVARG
 ========================================================= */
 
 const esAndroidTVArg =
     !!window.AndroidTVArg;
-
-
-/*
-   Añadimos la clase inmediatamente.
-
-   Esto hace que:
-
-   body.android-app #volverTVArg
-
-   oculte el botón ← dentro del APK.
-*/
 
 if (esAndroidTVArg) {
 
@@ -948,12 +1131,23 @@ if (esAndroidTVArg) {
    DATOS
 ========================================================= */
 
+/*
+   IMPORTANTE:
+
+   categoria = UNO de los 16 géneros principales.
+
+   tipo:
+       pelicula
+       serie
+*/
+
+
 const peliculas = [
 
     {
         titulo: "Xeno",
         año: "2025",
-        categoria: "NUEVAS",
+        categoria: "CIENCIA FICCIÓN",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/rC7hhCxObir6KvH1nLIt06z2CzT.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159278.mkv"
     },
@@ -961,7 +1155,7 @@ const peliculas = [
     {
         titulo: "Enola Holmes",
         año: "2020",
-        categoria: "ACCION Y AVENTURA",
+        categoria: "AVENTURA",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/8STWO9pUTqubPV04iXZ2R6SClME.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159254.mkv"
     },
@@ -969,7 +1163,7 @@ const peliculas = [
     {
         titulo: "Enola Holmes 2",
         año: "2022",
-        categoria: "ACCION Y AVENTURA",
+        categoria: "AVENTURA",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/hulB3uxIRzerZfjwXdKSKVn2orV.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159255.mkv"
     },
@@ -977,7 +1171,7 @@ const peliculas = [
     {
         titulo: "Enola Holmes 3",
         año: "2026",
-        categoria: "NUEVAS",
+        categoria: "AVENTURA",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7kRYHH9H9PjBFwz1FprbHB2AAjI.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159256.mkv"
     },
@@ -985,15 +1179,15 @@ const peliculas = [
     {
         titulo: "Dolly",
         año: "2026",
-        categoria: "NUEVAS",
+        categoria: "DRAMA",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/umDXoAiEMb7RxB4gaPAlT02XLAS.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159257.mkv"
     },
-      
+
     {
         titulo: "Quien tiene un amigo, tiene un tesoro",
         año: "1981",
-        categoria: "PELICULAS CLASICAS",
+        categoria: "COMEDIA",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/kxiqVx4UVxxfrVWLOnFmoaxtjHc.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/146720.avi"
     },
@@ -1001,7 +1195,7 @@ const peliculas = [
     {
         titulo: "Toy Story 5",
         año: "2026",
-        categoria: "NUEVAS",
+        categoria: "INFANTIL",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/pTjZfbFVWUIwUM5OzX3LVh84ejU.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159239.mkv"
     },
@@ -1009,7 +1203,7 @@ const peliculas = [
     {
         titulo: "Travesuras de una Princesa",
         año: "2004",
-        categoria: "PELICULAS DE COMEDIAS",
+        categoria: "COMEDIA",
         poster: "https://m.media-amazon.com/images/I/716XYD3XkhL._AC_UF894,1000_QL80_.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159253.mkv"
     },
@@ -1017,7 +1211,7 @@ const peliculas = [
     {
         titulo: "Las últimas vacaciones",
         año: "2006",
-        categoria: "PELICULAS DE COMEDIAS",
+        categoria: "COMEDIA",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/yK9B4XEbYv9OHaAAePm2lhqvxx2.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159238.mkv"
     },
@@ -1025,7 +1219,7 @@ const peliculas = [
     {
         titulo: "Hermanito",
         año: "2026",
-        categoria: "NUEVAS",
+        categoria: "COMEDIA",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/s8mudAYQcHmVoFSamqyv1Ron527.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159157.mkv"
     },
@@ -1033,7 +1227,7 @@ const peliculas = [
     {
         titulo: "En prácticas",
         año: "2026",
-        categoria: "NUEVAS",
+        categoria: "COMEDIA",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/fX5HV8LC2tulHI2GT9Ar8WVFyg.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159158.mkv"
     },
@@ -1041,7 +1235,7 @@ const peliculas = [
     {
         titulo: "Torrente Presidente",
         año: "2026",
-        categoria: "NUEVAS",
+        categoria: "COMEDIA",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/2wyiEiOS8gYyslveyYwlCKB9XYt.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159159.mkv"
     },
@@ -1049,7 +1243,7 @@ const peliculas = [
     {
         titulo: "Les doy un año",
         año: "2013",
-        categoria: "COMEDIAS 2",
+        categoria: "ROMANCE",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/gNgO8qZj7AQTDVraP1BLTLdiiOs.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158797.avi"
     },
@@ -1057,7 +1251,7 @@ const peliculas = [
     {
         titulo: "Spy Kids 2: La isla de los sueños perdidos",
         año: "2002",
-        categoria: "CIENCIA FICCION",
+        categoria: "INFANTIL",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/dYmLViA5AWUb5MGH2UzhUwEcN0m.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159066.mkv"
     },
@@ -1065,7 +1259,7 @@ const peliculas = [
     {
         titulo: "Spy Kids 3-D: Game Over",
         año: "2003",
-        categoria: "CIENCIA FICCION",
+        categoria: "INFANTIL",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/id7FzzvO4GnTCNvT74TjS1doxkb.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159067.mkv"
     },
@@ -1073,7 +1267,7 @@ const peliculas = [
     {
         titulo: "Obsesión",
         año: "2026",
-        categoria: "NUEVAS",
+        categoria: "SUSPENSO",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/ohi9xvbBUymM4SuIOSlt1xbLRQQ.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159069.mkv"
     },
@@ -1081,7 +1275,7 @@ const peliculas = [
     {
         titulo: "Hokum",
         año: "2026",
-        categoria: "NUEVAS",
+        categoria: "TERROR",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/hzOJEzqrOtwXbPw1U5nZMvTaljQ.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159009.mp4"
     },
@@ -1089,7 +1283,7 @@ const peliculas = [
     {
         titulo: "Off the Grid",
         año: "2025",
-        categoria: "NUEVAS",
+        categoria: "ACCIÓN",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/mMUVnkcx2VawTBJYnnnRN8fxJpb.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159064.mkv"
     },
@@ -1097,7 +1291,7 @@ const peliculas = [
     {
         titulo: "¡Nop!",
         año: "2022",
-        categoria: "CIENCIA FICCION",
+        categoria: "TERROR",
         poster: "https://m.media-amazon.com/images/I/71ntPgCHTIL.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159065.mkv"
     },
@@ -1105,7 +1299,7 @@ const peliculas = [
     {
         titulo: "Maridos en acción",
         año: "2026",
-        categoria: "NUEVAS",
+        categoria: "COMEDIA",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/12TfQSbwyb3t9PN0KTOTE4NB7lq.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159036.mkv"
     },
@@ -1113,7 +1307,7 @@ const peliculas = [
     {
         titulo: "He-Man y los masters del universo",
         año: "2026",
-        categoria: "NUEVAS",
+        categoria: "FANTASÍA",
         poster: "https://m.media-amazon.com/images/M/MV5BMTM0ODRiMGItMTA3OC00NGI3LTllZTctNGY3NzllMmRjZTNhXkEyXkFqcGc@._V1_.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159032.mkv"
     },
@@ -1121,7 +1315,7 @@ const peliculas = [
     {
         titulo: "Toy Story 5",
         año: "2026",
-        categoria: "NUEVAS",
+        categoria: "INFANTIL",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/1yF3AztF3rQ8MZ8En8974AWo5zZ.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159033.mkv"
     },
@@ -1129,7 +1323,7 @@ const peliculas = [
     {
         titulo: "Parto Maldito",
         año: "2025",
-        categoria: "NUEVAS",
+        categoria: "TERROR",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/4ozeV62H7CGWprsCrif2lax8dHO.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159034.mkv"
     },
@@ -1137,7 +1331,7 @@ const peliculas = [
     {
         titulo: "The Mandalorian and Grogu",
         año: "2026",
-        categoria: "NUEVAS",
+        categoria: "CIENCIA FICCIÓN",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sWitU9IjgFwf6y1OrI0zUaL3GNa.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159031.mkv"
     },
@@ -1145,7 +1339,7 @@ const peliculas = [
     {
         titulo: "Van Helsing",
         año: "2004",
-        categoria: "CIENCIA FICCION",
+        categoria: "FANTASÍA",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/fqorDWIwBBwMvLTZXxUWgrEyGWy.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159030.mkv"
     },
@@ -1153,7 +1347,7 @@ const peliculas = [
     {
         titulo: "Doom",
         año: "2005",
-        categoria: "CIENCIA FICCION",
+        categoria: "CIENCIA FICCIÓN",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/5fITzPnmagU97nF455DOBSa5Bgg.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159024.mkv"
     },
@@ -1161,7 +1355,7 @@ const peliculas = [
     {
         titulo: "Greenland: El último refugio",
         año: "2020",
-        categoria: "CIENCIA FICCION",
+        categoria: "CIENCIA FICCIÓN",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/9iFkwShRf5M29yLABAdsEZyr9w6.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159026.mkv"
     },
@@ -1169,7 +1363,7 @@ const peliculas = [
     {
         titulo: "Percy Jackson y el mar de los monstruos",
         año: "2013",
-        categoria: "CIENCIA FICCION",
+        categoria: "FANTASÍA",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/akbLEdUzQ5T2R7coc5nOEqk7FjE.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159027.mkv"
     },
@@ -1177,7 +1371,7 @@ const peliculas = [
     {
         titulo: "Percy Jackson y el ladrón del rayo",
         año: "2010",
-        categoria: "CIENCIA FICCION",
+        categoria: "FANTASÍA",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/piKMSnCCT0oqLZ9GWAALXX9e1qh.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159028.mkv"
     },
@@ -1185,7 +1379,7 @@ const peliculas = [
     {
         titulo: "La guerra del mañana",
         año: "2021",
-        categoria: "CIENCIA FICCION",
+        categoria: "CIENCIA FICCIÓN",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/tzp6VzED2TBc02bkYoYnQa6r2OK.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158997.mkv"
     },
@@ -1193,7 +1387,7 @@ const peliculas = [
     {
         titulo: "La llegada",
         año: "2016",
-        categoria: "CIENCIA FICCION",
+        categoria: "CIENCIA FICCIÓN",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/tbVITeytclB4JKx2LxxasrCCmZx.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158998.mkv"
     },
@@ -1201,7 +1395,7 @@ const peliculas = [
     {
         titulo: "Señales",
         año: "2002",
-        categoria: "CIENCIA FICCION",
+        categoria: "SUSPENSO",
         poster: "https://m.media-amazon.com/images/M/MV5BNTJiZGZkODAtYWVkMi00MGM4LTkzODEtZDU3YjEzYTRmYjAxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158999.mkv"
     },
@@ -1209,7 +1403,7 @@ const peliculas = [
     {
         titulo: "Arcadian",
         año: "2024",
-        categoria: "PELICULAS 2026",
+        categoria: "CIENCIA FICCIÓN",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/2paAs9Azw9CXZe3jD5F3weQVwyr.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158977.mkv"
     },
@@ -1217,7 +1411,7 @@ const peliculas = [
     {
         titulo: "Amenaza en el aire",
         año: "2025",
-        categoria: "PELICULAS 2026",
+        categoria: "SUSPENSO",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/8T6nkYb4W8BIeafmFffyfsRciTL.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158978.mkv"
     },
@@ -1225,7 +1419,7 @@ const peliculas = [
     {
         titulo: "La sustancia",
         año: "2024",
-        categoria: "POLICIAL, SUSPENSO. CRIMEN",
+        categoria: "TERROR",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/6zt77tEJUpm2G5bDC7NvzxRho8R.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158979.mkv"
     },
@@ -1233,7 +1427,7 @@ const peliculas = [
     {
         titulo: "Mortal Kombat II",
         año: "2026",
-        categoria: "PELICULAS 2026",
+        categoria: "ACCIÓN",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/ivVKHht5jutNGnObn1y5sSDrAXn.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158821.mp4"
     },
@@ -1241,7 +1435,7 @@ const peliculas = [
     {
         titulo: "México 86",
         año: "2026",
-        categoria: "NUEVAS",
+        categoria: "HISTORIA",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/zzk1iWwQ6Tdv9KBjyUVqzExBEug.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158983.mkv"
     },
@@ -1249,7 +1443,7 @@ const peliculas = [
     {
         titulo: "Cuenta atrás",
         año: "2026",
-        categoria: "NUEVAS",
+        categoria: "ACCIÓN",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/m3On2pUX6KRJwI8Fp7xqJkKQdIv.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158976.mkv"
     },
@@ -1257,7 +1451,7 @@ const peliculas = [
     {
         titulo: "Yo, él y Raquel",
         año: "2015",
-        categoria: "PELICULAS DE DRAMA",
+        categoria: "DRAMA",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/tIBKWAZsP9NGMKnVC5N3RySvTfz.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/158804.mp4"
     }
@@ -1265,16 +1459,20 @@ const peliculas = [
 ];
 
 
-
+/* =========================================================
+   SERIES
+========================================================= */
 
 const series = [
 
     {
         titulo: "The Walking Dead",
         año: "2010",
-        categoria: "SERIES DE TERROR",
+        categoria: "TERROR",
         tipo: "serie",
-        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/az8sR27PgpYsZwBOkOYI6xt5mLJ.jpg",
+
+        poster:
+            "https://image.tmdb.org/t/p/w600_and_h900_bestv2/az8sR27PgpYsZwBOkOYI6xt5mLJ.jpg",
 
         temporadas: [
 
@@ -1518,6 +1716,33 @@ const series = [
 ];
 
 
+/* =========================================================
+   GÉNEROS OFICIALES
+========================================================= */
+
+const generos = [
+
+    "TODAS",
+
+    "ACCIÓN",
+    "AVENTURA",
+    "COMEDIA",
+    "DRAMA",
+    "CIENCIA FICCIÓN",
+    "FANTASÍA",
+    "TERROR",
+    "SUSPENSO",
+    "ROMANCE",
+    "CRIMEN",
+    "DOCUMENTAL",
+    "HISTORIA",
+    "INFANTIL",
+    "MUSICAL",
+    "BÉLICA",
+    "WESTERN"
+
+];
+
 
 /* =========================================================
    ESTADO
@@ -1535,23 +1760,15 @@ let nivelTVALC =
 let reproduccionNativa =
     false;
 
+let buscadorActivo =
+    false;
+
 
 /* =========================================================
    VOLVER A TVARG
 ========================================================= */
 
 function volverTVArg() {
-
-    /*
-       Siempre volvemos al index indicando
-       que venimos de TVALC.
-
-       index.html detectará:
-
-           desdeTVALC=1
-
-       y entrará directamente al menú principal.
-    */
 
     window.location.href =
         "index.html?desdeTVALC=1";
@@ -1570,38 +1787,10 @@ function cargarCategorias() {
             "categorias"
         );
 
-
-    const categoriasPeliculas =
-        peliculas.map(
-            p => p.categoria
-        );
-
-
-    const categoriasSeries =
-        series.map(
-            s => s.categoria
-        );
-
-
-    const categorias = [
-
-        "TODAS",
-
-        ...new Set(
-            [
-                ...categoriasPeliculas,
-                ...categoriasSeries
-            ]
-        )
-
-    ];
-
-
     contenedor.innerHTML =
         "";
 
-
-    categorias.forEach(
+    generos.forEach(
         categoria => {
 
             const boton =
@@ -1609,10 +1798,8 @@ function cargarCategorias() {
                     "button"
                 );
 
-
             boton.textContent =
                 categoria;
-
 
             if (
                 categoria ===
@@ -1625,21 +1812,20 @@ function cargarCategorias() {
 
             }
 
+            boton.onclick =
+                () => {
 
-            boton.onclick = () => {
+                    categoriaActual =
+                        categoria;
 
-                categoriaActual =
-                    categoria;
+                    nivelTVALC =
+                        "categoria";
 
-                nivelTVALC =
-                    "categoria";
+                    cargarCategorias();
 
-                cargarCategorias();
+                    mostrarContenido();
 
-                mostrarContenido();
-
-            };
-
+                };
 
             contenedor.appendChild(
                 boton
@@ -1672,7 +1858,6 @@ function mostrarContenido() {
             "buscar"
         );
 
-
     const busqueda =
         input.value
             .toLowerCase()
@@ -1682,13 +1867,12 @@ function mostrarContenido() {
     let listaPeliculas =
         peliculas;
 
-
     let listaSeries =
         series;
 
 
     /* =====================================================
-       FILTRO CATEGORÍA
+       FILTRO POR GÉNERO
     ===================================================== */
 
     if (
@@ -1703,7 +1887,6 @@ function mostrarContenido() {
                     categoriaActual
             );
 
-
         listaSeries =
             listaSeries.filter(
                 s =>
@@ -1715,7 +1898,7 @@ function mostrarContenido() {
 
 
     /* =====================================================
-       FILTRO BÚSQUEDA
+       FILTRO POR BÚSQUEDA
     ===================================================== */
 
     if (busqueda) {
@@ -1729,7 +1912,6 @@ function mostrarContenido() {
                             busqueda
                         )
             );
-
 
         listaSeries =
             listaSeries.filter(
@@ -1773,8 +1955,8 @@ function mostrarContenido() {
             <div style="
                 grid-column:1/-1;
                 text-align:center;
-                padding:50px;
-                color:#888;
+                padding:45px 20px;
+                color:#777;
             ">
 
                 No se encontraron
@@ -1837,18 +2019,26 @@ function crearTarjeta(
             "peliculas"
         );
 
-
     const tarjeta =
         document.createElement(
             "div"
         );
 
-
     tarjeta.className =
         "pelicula";
 
 
+    const tipo =
+        esSerie
+            ? "S"
+            : "P";
+
+
     tarjeta.innerHTML = `
+
+        <div class="tipoContenido">
+            ${tipo}
+        </div>
 
         <img
             class="poster"
@@ -1862,15 +2052,11 @@ function crearTarjeta(
         <div class="info">
 
             <div class="nombre">
-
                 ${elemento.titulo}
-
             </div>
 
             <div class="año">
-
                 ${elemento.año}
-
             </div>
 
             <button class="ver">
@@ -1890,26 +2076,26 @@ function crearTarjeta(
         .querySelector(
             ".ver"
         )
-        .onclick = event => {
+        .onclick =
+            event => {
 
-            event.stopPropagation();
+                event.stopPropagation();
 
+                if (esSerie) {
 
-            if (esSerie) {
+                    abrirSerie(
+                        elemento
+                    );
 
-                abrirSerie(
-                    elemento
-                );
+                } else {
 
-            } else {
+                    reproducir(
+                        elemento
+                    );
 
-                reproducir(
-                    elemento
-                );
+                }
 
-            }
-
-        };
+            };
 
 
     tarjeta.onclick =
@@ -1940,14 +2126,119 @@ function crearTarjeta(
 
 
 /* =========================================================
-   BÚSQUEDA
+   BUSCADOR
 ========================================================= */
 
 function filtrar() {
 
+    if (!buscadorActivo) {
+        return;
+    }
+
     mostrarContenido();
 
 }
+
+
+/*
+   Activar el buscador.
+
+   Se utiliza Enter / OK.
+*/
+
+function activarBuscador() {
+
+    const input =
+        document.getElementById(
+            "buscar"
+        );
+
+    buscadorActivo =
+        true;
+
+    input.classList.remove(
+        "bloqueado"
+    );
+
+    input.focus();
+
+}
+
+
+/*
+   Al perder el foco volvemos
+   al estado bloqueado.
+*/
+
+document.getElementById(
+    "buscar"
+).addEventListener(
+    "blur",
+    function() {
+
+        buscadorActivo =
+            false;
+
+        this.classList.add(
+            "bloqueado"
+        );
+
+    }
+);
+
+
+/*
+   Primera pulsación sobre el campo:
+   no se abre el teclado.
+
+   OK / Enter:
+   activa realmente la edición.
+*/
+
+document.getElementById(
+    "buscar"
+).addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter" ||
+            event.key === "OK" ||
+            event.keyCode === 13
+        ) {
+
+            event.preventDefault();
+
+            activarBuscador();
+
+        }
+
+    }
+);
+
+
+/*
+   Evita que un toque accidental
+   abra inmediatamente el teclado
+   cuando se está navegando.
+*/
+
+document.getElementById(
+    "buscar"
+).addEventListener(
+    "click",
+    function(event) {
+
+        if (!buscadorActivo) {
+
+            event.preventDefault();
+
+            this.blur();
+
+        }
+
+    }
+);
 
 
 /* =========================================================
@@ -1956,14 +2247,16 @@ function filtrar() {
 
 function reproducir(pelicula) {
 
-    const url = pelicula.url
-        .split("?")[0]
-        .toLowerCase();
+    const url =
+        pelicula.url
+            .split("?")[0]
+            .toLowerCase();
 
 
-    // ==========================================
-    // VLC NATIVO
-    // ==========================================
+    /*
+       Archivos compatibles con
+       reproducción nativa VLC.
+    */
 
     if (
         url.endsWith(".mkv") ||
@@ -1978,9 +2271,11 @@ function reproducir(pelicula) {
             pelicula.url
         );
 
+
         if (
             window.AndroidTVArg &&
-            typeof AndroidTVArg.playChannelVLC === "function"
+            typeof AndroidTVArg.playChannelVLC ===
+            "function"
         ) {
 
             AndroidTVArg.playChannelVLC(
@@ -1988,48 +2283,33 @@ function reproducir(pelicula) {
             );
 
             return;
+
         }
+
 
         console.log(
             "AndroidTVArg no disponible"
         );
 
         return;
+
     }
 
 
-    // ==========================================
-    // OTROS → HTML
-    // ==========================================
+    reproducirWeb(
+        pelicula
+    );
 
-    const reproductor =
-        document.getElementById("reproductor");
-
-    const video =
-        document.getElementById("video");
-
-    document.getElementById(
-        "tituloReproductor"
-    ).textContent =
-        pelicula.titulo +
-        " (" +
-        pelicula.año +
-        ")";
-
-    video.src =
-        pelicula.url;
-
-    reproductor.style.display =
-        "flex";
-
-    video.play().catch(() => {});
 }
 
+
 /* =========================================================
-   REPRODUCCIÓN ANDROID — TVARG / EXOPLAYER
+   REPRODUCCIÓN ANDROID
 ========================================================= */
 
-function reproducirEnAndroid(pelicula) {
+function reproducirEnAndroid(
+    pelicula
+) {
 
     console.log(
         "TVALC -> AndroidTVArg.playChannel:",
@@ -2037,21 +2317,27 @@ function reproducirEnAndroid(pelicula) {
         pelicula.url
     );
 
+
     if (!window.AndroidTVArg) {
 
         console.error(
             "TVArgBridge no está disponible"
         );
 
-        reproductorAbierto = false;
-        reproduccionNativa = false;
+        reproductorAbierto =
+            false;
+
+        reproduccionNativa =
+            false;
 
         mostrarMensaje(
             "TVArgBridge no está disponible."
         );
 
         return;
+
     }
+
 
     try {
 
@@ -2068,8 +2354,11 @@ function reproducirEnAndroid(pelicula) {
             error
         );
 
-        reproductorAbierto = false;
-        reproduccionNativa = false;
+        reproductorAbierto =
+            false;
+
+        reproduccionNativa =
+            false;
 
         mostrarMensaje(
             "No se pudo iniciar el reproductor."
@@ -2078,6 +2367,7 @@ function reproducirEnAndroid(pelicula) {
     }
 
 }
+
 
 /* =========================================================
    REPRODUCCIÓN WEB
@@ -2091,7 +2381,6 @@ function reproducirWeb(
         document.getElementById(
             "reproductor"
         );
-
 
     const video =
         document.getElementById(
@@ -2118,6 +2407,13 @@ function reproducirWeb(
 
     reproductor.style.display =
         "flex";
+
+
+    reproductorAbierto =
+        true;
+
+    reproduccionNativa =
+        false;
 
 
     video.play()
@@ -2139,22 +2435,6 @@ function reproducirWeb(
    MANEJAR SALIDA DEL PLAYER NATIVO
 ========================================================= */
 
-/*
-   MUY IMPORTANTE:
-
-   MainActivity ejecuta exactamente:
-
-       webView.evaluateJavascript(
-           "manejarSalidaCanal();",
-           null
-       );
-
-   cuando PlayerActivity termina.
-
-   Por lo tanto esta función DEBE existir
-   en TVALC.
-*/
-
 function manejarSalidaCanal() {
 
     console.log(
@@ -2165,17 +2445,8 @@ function manejarSalidaCanal() {
     reproductorAbierto =
         false;
 
-
     reproduccionNativa =
         false;
-
-
-    /*
-       No cerramos TVALC.
-
-       Simplemente queda nuevamente
-       visible la pantalla de películas.
-    */
 
 }
 
@@ -2191,7 +2462,6 @@ function cerrarReproductor() {
             "reproductor"
         );
 
-
     const video =
         document.getElementById(
             "video"
@@ -2200,11 +2470,9 @@ function cerrarReproductor() {
 
     video.pause();
 
-
     video.removeAttribute(
         "src"
     );
-
 
     video.load();
 
@@ -2231,7 +2499,6 @@ function mostrarMensaje(
         document.getElementById(
             "mensajeReproductor"
         );
-
 
     const contenido =
         document.getElementById(
@@ -2273,12 +2540,10 @@ function abrirSerie(
             "modalSeries"
         );
 
-
     const titulo =
         document.getElementById(
             "modalSeriesTitulo"
         );
-
 
     const contenido =
         document.getElementById(
@@ -2318,7 +2583,6 @@ function abrirSerie(
         modal.style.display =
             "flex";
 
-
         return;
 
     }
@@ -2326,7 +2590,6 @@ function abrirSerie(
 
     serie.temporadas.forEach(
         temporada => {
-
 
             const botonTemporada =
                 document.createElement(
@@ -2355,10 +2618,6 @@ function abrirSerie(
                 "capitulos";
 
 
-            /*
-               Capítulos de la temporada
-            */
-
             temporada.capitulos.forEach(
                 capitulo => {
 
@@ -2372,14 +2631,15 @@ function abrirSerie(
                         "botonCapitulo";
 
 
-botonCapitulo.textContent =
+                    botonCapitulo.textContent =
 
-    "▶ " +
+                        "▶ " +
 
-    (
-        capitulo.titulo ||
-        "Capítulo " + capitulo.numero
-    );
+                        (
+                            capitulo.titulo ||
+                            "Capítulo " +
+                            capitulo.numero
+                        );
 
 
                     botonCapitulo.onclick =
@@ -2421,10 +2681,6 @@ botonCapitulo.textContent =
                 }
             );
 
-
-            /*
-               Abrir / cerrar temporada
-            */
 
             botonTemporada.onclick =
                 () => {
@@ -2481,14 +2737,13 @@ function cerrarSeries() {
 
 
 /* =========================================================
-   VOLVER DESDE CATEGORÍA
+   VOLVER DE CATEGORÍA
 ========================================================= */
 
 function volverDeCategoria() {
 
     categoriaActual =
         "TODAS";
-
 
     nivelTVALC =
         "principal";
@@ -2498,6 +2753,17 @@ function volverDeCategoria() {
         "buscar"
     ).value =
         "";
+
+
+    buscadorActivo =
+        false;
+
+
+    document.getElementById(
+        "buscar"
+    ).classList.add(
+        "bloqueado"
+    );
 
 
     cargarCategorias();
@@ -2530,7 +2796,7 @@ window.addEventListener(
 
 
         /* ================================================
-           1. MODAL DE SERIES
+           MODAL SERIES
         ================================================= */
 
         const modalSeries =
@@ -2552,12 +2818,7 @@ window.addEventListener(
 
 
         /* ================================================
-           2. REPRODUCTOR WEB
-
-           El reproductor nativo no está dentro
-           de esta WebView cuando PlayerActivity
-           está abierta, por lo que normalmente
-           este caso corresponde al reproductor web.
+           REPRODUCTOR WEB
         ================================================= */
 
         if (
@@ -2573,7 +2834,25 @@ window.addEventListener(
 
 
         /* ================================================
-           3. ESTAMOS EN CATEGORÍA
+           BUSCADOR
+        ================================================= */
+
+        if (buscadorActivo) {
+
+            document.getElementById(
+                "buscar"
+            ).blur();
+
+            buscadorActivo =
+                false;
+
+            return;
+
+        }
+
+
+        /* ================================================
+           CATEGORÍA
         ================================================= */
 
         if (
@@ -2589,10 +2868,7 @@ window.addEventListener(
 
 
         /* ================================================
-           4. PANTALLA PRINCIPAL TVALC
-
-           SIEMPRE volver directamente
-           al menú principal de TVArg.
+           PRINCIPAL
         ================================================= */
 
         volverTVArg();
@@ -2602,7 +2878,7 @@ window.addEventListener(
 
 
 /* =========================================================
-   BACK TECLADO — PC
+   BACK TECLADO PC
 ========================================================= */
 
 document.addEventListener(
@@ -2657,6 +2933,24 @@ document.addEventListener(
 
 
             /* ============================================
+               BUSCADOR
+            ============================================ */
+
+            if (buscadorActivo) {
+
+                document.getElementById(
+                    "buscar"
+                ).blur();
+
+                buscadorActivo =
+                    false;
+
+                return;
+
+            }
+
+
+            /* ============================================
                CATEGORÍA
             ============================================ */
 
@@ -2673,7 +2967,7 @@ document.addEventListener(
 
 
             /* ============================================
-               PRINCIPAL TVALC
+               PRINCIPAL
             ============================================ */
 
             volverTVArg();
@@ -2685,7 +2979,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   CERRAR MODAL SERIES AL TOCAR FONDO
+   CERRAR MODAL TOCANDO EL FONDO
 ========================================================= */
 
 document.getElementById(
@@ -2707,7 +3001,7 @@ document.getElementById(
 
 
 /* =========================================================
-   MANEJAR ERRORES DEL VIDEO WEB
+   ERROR VIDEO WEB
 ========================================================= */
 
 document.getElementById(
@@ -2722,7 +3016,6 @@ document.getElementById(
 
     }
 );
-
 
 </script>
 
