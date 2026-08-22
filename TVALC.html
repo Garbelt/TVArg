@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
 <title>TVArg - TV A LA CARTA</title>
 
+
 <style>
+
+/* =========================================================
+   GENERAL
+========================================================= */
 
 * {
     box-sizing: border-box;
@@ -34,7 +41,9 @@ body {
 ========================================================= */
 
 header {
+
     padding: 20px;
+
     text-align: center;
 
     background:
@@ -48,12 +57,16 @@ header {
 }
 
 header h1 {
+
     margin: 0;
+
     font-size: 28px;
 }
 
 header p {
+
     margin: 6px 0 0;
+
     color: #aaa;
 }
 
@@ -86,6 +99,7 @@ header p {
     color: white;
 
     font-size: 22px;
+
     font-weight: bold;
 
     display: flex;
@@ -104,6 +118,24 @@ header p {
         rgba(50,50,50,.9);
 
     transform: scale(1.08);
+}
+
+
+/* =========================================================
+   ANDROID
+========================================================= */
+
+/*
+   Cuando TVALC se ejecuta dentro del APK,
+   MainActivity inyecta AndroidTVArg.
+
+   En ese caso el botón visual NO es necesario,
+   porque Android manda el evento "tvback".
+*/
+
+body.android-app #volverTVArg {
+
+    display: none !important;
 }
 
 
@@ -169,6 +201,7 @@ header p {
 }
 
 .categorias::-webkit-scrollbar {
+
     display: none;
 }
 
@@ -191,10 +224,12 @@ header p {
 }
 
 .categorias button:hover {
+
     background: #444;
 }
 
 .categorias button.activo {
+
     background: #e50914;
 }
 
@@ -328,6 +363,7 @@ header p {
 }
 
 .ver:hover {
+
     background: #ff202b;
 }
 
@@ -388,15 +424,15 @@ header p {
     position: fixed;
 
     left: 50%;
-
     top: 50%;
 
     transform:
         translate(-50%, -50%);
 
-    z-index: 3000;
+    z-index: 7000;
 
-    width: min(90%, 500px);
+    width:
+        min(90%, 500px);
 
     padding: 20px;
 
@@ -415,17 +451,131 @@ header p {
 
 
 /* =========================================================
-   ANDROID
+   MODAL SERIES
 ========================================================= */
 
-/*
-   El APK maneja el Back mediante "tvback".
-   Por eso el botón visual no es necesario.
-*/
+#modalSeries {
 
-body.android-app #volverTVArg {
+    display: none;
 
-    display: none !important;
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5000;
+
+    background:
+        rgba(0,0,0,.94);
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+#modalSeriesCaja {
+
+    width:
+        min(90%, 700px);
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    background: #111;
+
+    border:
+        1px solid #333;
+
+    border-radius: 14px;
+
+    padding: 25px;
+}
+
+#modalSeriesTitulo {
+
+    text-align: center;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   TEMPORADAS
+========================================================= */
+
+.botonTemporada {
+
+    width: 100%;
+
+    margin:
+        6px 0;
+
+    padding: 13px;
+
+    background: #222;
+
+    color: white;
+
+    border:
+        1px solid #444;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    text-align: left;
+}
+
+.botonTemporada:hover {
+
+    background: #333;
+}
+
+
+/* =========================================================
+   CAPÍTULOS
+========================================================= */
+
+.capitulos {
+
+    display: none;
+
+    margin:
+        0 0 12px;
+}
+
+.botonCapitulo {
+
+    width: 100%;
+
+    margin:
+        4px 0;
+
+    padding: 10px;
+
+    background: #191919;
+
+    color: #ddd;
+
+    border:
+        1px solid #333;
+
+    border-radius: 6px;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.botonCapitulo:hover {
+
+    background: #292929;
 }
 
 
@@ -488,13 +638,6 @@ body.android-app #volverTVArg {
 /* =========================================================
    TV / WEBVIEW PEQUEÑO
 ========================================================= */
-
-/*
-   En el TV Stick el WebView puede tener una densidad
-   diferente y hacer que todo parezca enorme.
-
-   Reducimos progresivamente la interfaz.
-*/
 
 @media (min-width: 601px) and (max-width: 1100px) {
 
@@ -594,115 +737,6 @@ body.android-app #volverTVArg {
 
 }
 
-
-/* =========================================================
-   SERIES — PREPARADO
-========================================================= */
-
-#modalSeries {
-
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 5000;
-
-    background:
-        rgba(0,0,0,.94);
-
-    align-items: center;
-
-    justify-content: center;
-}
-
-#modalSeriesCaja {
-
-    width:
-        min(90%, 700px);
-
-    max-height: 85vh;
-
-    overflow-y: auto;
-
-    background: #111;
-
-    border:
-        1px solid #333;
-
-    border-radius: 14px;
-
-    padding: 25px;
-}
-
-#modalSeriesTitulo {
-
-    text-align: center;
-
-    font-size: 22px;
-
-    font-weight: bold;
-
-    margin-bottom: 20px;
-}
-
-.botonTemporada {
-
-    width: 100%;
-
-    margin:
-        6px 0;
-
-    padding: 13px;
-
-    background: #222;
-
-    color: white;
-
-    border:
-        1px solid #444;
-
-    border-radius: 8px;
-
-    font-size: 16px;
-
-    cursor: pointer;
-}
-
-.botonTemporada:hover {
-
-    background: #333;
-}
-
-.botonCapitulo {
-
-    width: 100%;
-
-    margin:
-        4px 0;
-
-    padding: 10px;
-
-    background: #191919;
-
-    color: #ddd;
-
-    border:
-        1px solid #333;
-
-    border-radius: 6px;
-
-    text-align: left;
-
-    cursor: pointer;
-}
-
-.botonCapitulo:hover {
-
-    background: #292929;
-}
-
 </style>
 
 </head>
@@ -751,7 +785,7 @@ body.android-app #volverTVArg {
     <input
         type="text"
         id="buscar"
-        placeholder="🔎 Buscar película..."
+        placeholder="🔎 Buscar película o serie..."
         oninput="filtrar()">
 
 </div>
@@ -840,6 +874,33 @@ body.android-app #volverTVArg {
 
 
 <script>
+
+
+/* =========================================================
+   DETECTAR ANDROID TVARG
+========================================================= */
+
+const esAndroidTVArg =
+    !!window.AndroidTVArg;
+
+
+/*
+   Añadimos la clase inmediatamente.
+
+   Esto hace que:
+
+   body.android-app #volverTVArg
+
+   oculte el botón ← dentro del APK.
+*/
+
+if (esAndroidTVArg) {
+
+    document.body.classList.add(
+        "android-app"
+    );
+
+}
 
 
 /* =========================================================
@@ -1148,24 +1209,98 @@ const peliculas = [
 
 
 /* =========================================================
-   ESTADO
+   SERIES
+   ESTRUCTURA PREPARADA
 ========================================================= */
 
-let categoriaActual = "TODAS";
+/*
+   No agregamos series falsas a la pantalla.
 
-let reproductorAbierto = false;
+   Cuando incorporemos una serie real podremos usar:
 
-let nivelTVALC = "principal";
+   {
+       titulo: "...",
+       año: "...",
+       categoria: "SERIES",
+       tipo: "serie",
+       poster: "...",
+
+       temporadas: [
+
+           {
+               numero: 1,
+
+               capitulos: [
+
+                   {
+                       numero: 1,
+                       titulo: "...",
+                       url: "..."
+                   }
+
+               ]
+           }
+
+       ]
+   }
+
+*/
+
+
+const series = [
+
+    /*
+    {
+        titulo: "Ejemplo",
+        año: "2026",
+        categoria: "SERIES",
+        tipo: "serie",
+        poster: "...",
+
+        temporadas: [
+
+            {
+                numero: 1,
+
+                capitulos: [
+
+                    {
+                        numero: 1,
+                        titulo: "Capítulo 1",
+                        url: "..."
+                    },
+
+                    {
+                        numero: 2,
+                        titulo: "Capítulo 2",
+                        url: "..."
+                    }
+
+                ]
+            }
+
+        ]
+    }
+    */
+
+];
 
 
 /* =========================================================
-   DETECTAR ANDROID
+   ESTADO
 ========================================================= */
 
-function esAndroidTVArg() {
+let categoriaActual =
+    "TODAS";
 
-    return !!window.AndroidTVArg;
-}
+let reproductorAbierto =
+    false;
+
+let nivelTVALC =
+    "principal";
+
+let reproduccionNativa =
+    false;
 
 
 /* =========================================================
@@ -1175,40 +1310,18 @@ function esAndroidTVArg() {
 function volverTVArg() {
 
     /*
-       Importante:
+       Siempre volvemos al index indicando
+       que venimos de TVALC.
 
-       No volvemos simplemente a index.html esperando
-       que el splash desaparezca.
+       index.html detectará:
 
-       Primero intentamos indicarle al APK que debe
-       mostrar directamente el menú principal.
+           desdeTVALC=1
+
+       y entrará directamente al menú principal.
     */
 
-    if (window.AndroidTVArg) {
-
-        try {
-
-            if (
-                typeof AndroidTVArg.setMenuPrincipal ===
-                "function"
-            ) {
-
-                AndroidTVArg.setMenuPrincipal(true);
-
-            }
-
-        } catch (e) {
-
-            console.log(
-                "No se pudo establecer menú principal",
-                e
-            );
-
-        }
-
-    }
-
-    window.location.href = "index.html?desdeTVALC=1";
+    window.location.href =
+        "index.html?desdeTVALC=1";
 
 }
 
@@ -1220,30 +1333,53 @@ function volverTVArg() {
 function cargarCategorias() {
 
     const contenedor =
-        document.getElementById("categorias");
+        document.getElementById(
+            "categorias"
+        );
+
+
+    const categoriasPeliculas =
+        peliculas.map(
+            p => p.categoria
+        );
+
+
+    const categoriasSeries =
+        series.map(
+            s => s.categoria
+        );
+
 
     const categorias = [
 
         "TODAS",
 
         ...new Set(
-            peliculas.map(
-                p => p.categoria
-            )
+            [
+                ...categoriasPeliculas,
+                ...categoriasSeries
+            ]
         )
 
     ];
 
-    contenedor.innerHTML = "";
+
+    contenedor.innerHTML =
+        "";
+
 
     categorias.forEach(
         categoria => {
 
             const boton =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
+
 
             boton.textContent =
                 categoria;
+
 
             if (
                 categoria ===
@@ -1256,6 +1392,7 @@ function cargarCategorias() {
 
             }
 
+
             boton.onclick = () => {
 
                 categoriaActual =
@@ -1266,9 +1403,10 @@ function cargarCategorias() {
 
                 cargarCategorias();
 
-                mostrarPeliculas();
+                mostrarContenido();
 
             };
+
 
             contenedor.appendChild(
                 boton
@@ -1281,10 +1419,10 @@ function cargarCategorias() {
 
 
 /* =========================================================
-   MOSTRAR PELÍCULAS
+   MOSTRAR CONTENIDO
 ========================================================= */
 
-function mostrarPeliculas() {
+function mostrarContenido() {
 
     const contenedor =
         document.getElementById(
@@ -1301,41 +1439,69 @@ function mostrarPeliculas() {
             "buscar"
         );
 
+
     const busqueda =
         input.value
             .toLowerCase()
             .trim();
 
 
-    let lista =
+    let listaPeliculas =
         peliculas;
 
 
-    /* FILTRO CATEGORÍA */
+    let listaSeries =
+        series;
+
+
+    /* =====================================================
+       FILTRO CATEGORÍA
+    ===================================================== */
 
     if (
         categoriaActual !==
         "TODAS"
     ) {
 
-        lista =
-            lista.filter(
+        listaPeliculas =
+            listaPeliculas.filter(
                 p =>
                     p.categoria ===
+                    categoriaActual
+            );
+
+
+        listaSeries =
+            listaSeries.filter(
+                s =>
+                    s.categoria ===
                     categoriaActual
             );
 
     }
 
 
-    /* FILTRO BÚSQUEDA */
+    /* =====================================================
+       FILTRO BÚSQUEDA
+    ===================================================== */
 
     if (busqueda) {
 
-        lista =
-            lista.filter(
+        listaPeliculas =
+            listaPeliculas.filter(
                 p =>
                     p.titulo
+                        .toLowerCase()
+                        .includes(
+                            busqueda
+                        )
+            );
+
+
+        listaSeries =
+            listaSeries.filter(
+                s =>
+                    s.titulo
                         .toLowerCase()
                         .includes(
                             busqueda
@@ -1345,22 +1511,28 @@ function mostrarPeliculas() {
     }
 
 
+    const total =
+        listaPeliculas.length +
+        listaSeries.length;
+
+
     titulo.textContent =
 
         categoriaActual +
 
         "  •  " +
 
-        lista.length +
+        total +
 
-        " películas";
+        " títulos";
 
 
-    contenedor.innerHTML = "";
+    contenedor.innerHTML =
+        "";
 
 
     if (
-        lista.length === 0
+        total === 0
     ) {
 
         contenedor.innerHTML = `
@@ -1373,7 +1545,7 @@ function mostrarPeliculas() {
             ">
 
                 No se encontraron
-                películas.
+                películas o series.
 
             </div>
 
@@ -1384,78 +1556,151 @@ function mostrarPeliculas() {
     }
 
 
-    lista.forEach(
+    /* =====================================================
+       PELÍCULAS
+    ===================================================== */
+
+    listaPeliculas.forEach(
         pelicula => {
 
-            const tarjeta =
-                document.createElement(
-                    "div"
-                );
-
-            tarjeta.className =
-                "pelicula";
-
-
-            tarjeta.innerHTML = `
-
-                <img
-                    class="poster"
-                    src="${pelicula.poster}"
-                    loading="lazy"
-                    onerror="
-                        this.style.opacity='.3'
-                    "
-                >
-
-                <div class="info">
-
-                    <div class="nombre">
-                        ${pelicula.titulo}
-                    </div>
-
-                    <div class="año">
-                        ${pelicula.año}
-                    </div>
-
-                    <button class="ver">
-                        ▶ VER
-                    </button>
-
-                </div>
-
-            `;
-
-
-            tarjeta
-                .querySelector(
-                    ".ver"
-                )
-                .onclick = event => {
-
-                    event.stopPropagation();
-
-                    reproducir(
-                        pelicula
-                    );
-
-                };
-
-
-            tarjeta.onclick =
-                () => {
-
-                    reproducir(
-                        pelicula
-                    );
-
-                };
-
-
-            contenedor.appendChild(
-                tarjeta
+            crearTarjeta(
+                pelicula,
+                false
             );
 
         }
+    );
+
+
+    /* =====================================================
+       SERIES
+    ===================================================== */
+
+    listaSeries.forEach(
+        serie => {
+
+            crearTarjeta(
+                serie,
+                true
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CREAR TARJETA
+========================================================= */
+
+function crearTarjeta(
+    elemento,
+    esSerie
+) {
+
+    const contenedor =
+        document.getElementById(
+            "peliculas"
+        );
+
+
+    const tarjeta =
+        document.createElement(
+            "div"
+        );
+
+
+    tarjeta.className =
+        "pelicula";
+
+
+    tarjeta.innerHTML = `
+
+        <img
+            class="poster"
+            src="${elemento.poster}"
+            loading="lazy"
+            onerror="
+                this.style.opacity='.3'
+            "
+        >
+
+        <div class="info">
+
+            <div class="nombre">
+
+                ${elemento.titulo}
+
+            </div>
+
+            <div class="año">
+
+                ${elemento.año}
+
+            </div>
+
+            <button class="ver">
+
+                ${esSerie
+                    ? "▶ SERIE"
+                    : "▶ VER"}
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    tarjeta
+        .querySelector(
+            ".ver"
+        )
+        .onclick = event => {
+
+            event.stopPropagation();
+
+
+            if (esSerie) {
+
+                abrirSerie(
+                    elemento
+                );
+
+            } else {
+
+                reproducir(
+                    elemento
+                );
+
+            }
+
+        };
+
+
+    tarjeta.onclick =
+        () => {
+
+            if (esSerie) {
+
+                abrirSerie(
+                    elemento
+                );
+
+            } else {
+
+                reproducir(
+                    elemento
+                );
+
+            }
+
+        };
+
+
+    contenedor.appendChild(
+        tarjeta
     );
 
 }
@@ -1467,7 +1712,7 @@ function mostrarPeliculas() {
 
 function filtrar() {
 
-    mostrarPeliculas();
+    mostrarContenido();
 
 }
 
@@ -1487,17 +1732,17 @@ function reproducir(
     /*
        ANDROID
 
-       Por ahora NO inventamos un método
-       del puente que no sabemos si existe.
+       Usamos EXACTAMENTE el método
+       que existe en MainActivity.java:
 
-       Cuando tengamos el TVArgBridge actual,
-       aquí conectaremos exactamente con
-       ExoPlayer/VLC.
+           playChannel(
+               String url,
+               String referer,
+               String userAgent
+           )
     */
 
-    if (
-        esAndroidTVArg()
-    ) {
+    if (esAndroidTVArg) {
 
         reproducirEnAndroid(
             pelicula
@@ -1509,14 +1754,64 @@ function reproducir(
 
 
     /*
-       PC / NAVEGADOR
-
-       Reproducción normal.
+       NAVEGADOR
     */
 
     reproducirWeb(
         pelicula
     );
+
+}
+
+
+/* =========================================================
+   REPRODUCCIÓN ANDROID
+========================================================= */
+
+function reproducirEnAndroid(
+    pelicula
+) {
+
+    reproduccionNativa =
+        true;
+
+
+    console.log(
+        "TVArg -> PlayerActivity:",
+        pelicula.titulo,
+        pelicula.url
+    );
+
+
+    try {
+
+        AndroidTVArg.playChannel(
+            pelicula.url,
+            "",
+            ""
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Error llamando a playChannel:",
+            error
+        );
+
+
+        reproductorAbierto =
+            false;
+
+        reproduccionNativa =
+            false;
+
+
+        mostrarMensaje(
+            "No se pudo iniciar el reproductor."
+        );
+
+    }
 
 }
 
@@ -1534,10 +1829,12 @@ function reproducirWeb(
             "reproductor"
         );
 
+
     const video =
         document.getElementById(
             "video"
         );
+
 
     document.getElementById(
         "tituloReproductor"
@@ -1562,90 +1859,66 @@ function reproducirWeb(
 
     video.play()
         .catch(
-            () => {}
+            error => {
+
+                console.log(
+                    "Autoplay bloqueado:",
+                    error
+                );
+
+            }
         );
 
 }
 
 
 /* =========================================================
-   REPRODUCCIÓN ANDROID
+   MANEJAR SALIDA DEL PLAYER NATIVO
 ========================================================= */
 
-function reproducirEnAndroid(
-    pelicula
-) {
+/*
+   MUY IMPORTANTE:
 
-    /*
-       Esta función queda preparada para
-       conectarla con el método REAL del
-       TVArgBridge.
+   MainActivity ejecuta exactamente:
 
-       No se llama a un método inventado.
+       webView.evaluateJavascript(
+           "manejarSalidaCanal();",
+           null
+       );
 
-       Si todavía no existe un método específico,
-       dejamos una salida informativa para
-       poder comprobarlo.
-    */
+   cuando PlayerActivity termina.
+
+   Por lo tanto esta función DEBE existir
+   en TVALC.
+*/
+
+function manejarSalidaCanal() {
 
     console.log(
-        "Solicitando reproducción Android:",
-        pelicula.titulo,
-        pelicula.url
+        "PlayerActivity finalizada -> TVALC"
     );
 
 
-    /*
-       Posibles nombres que YA PODRÍAN existir
-       en tu puente actual.
-
-       No se ejecutan automáticamente.
-    */
-
-    if (
-        typeof AndroidTVArg.playVideo ===
-        "function"
-    ) {
-
-        AndroidTVArg.playVideo(
-            pelicula.url,
-            pelicula.titulo
-        );
-
-        return;
-
-    }
+    reproductorAbierto =
+        false;
 
 
-    if (
-        typeof AndroidTVArg.reproducirVideo ===
-        "function"
-    ) {
-
-        AndroidTVArg.reproducirVideo(
-            pelicula.url,
-            pelicula.titulo
-        );
-
-        return;
-
-    }
+    reproduccionNativa =
+        false;
 
 
     /*
-       Si ninguno existe todavía,
-       mostramos un aviso.
-    */
+       No cerramos TVALC.
 
-    mostrarMensaje(
-        "El reproductor nativo de TVArg todavía no está conectado a TV A LA CARTA."
-    );
+       Simplemente queda nuevamente
+       visible la pantalla de películas.
+    */
 
 }
 
 
 /* =========================================================
-   CERRAR REPRODUCTOR
+   CERRAR REPRODUCTOR WEB
 ========================================================= */
 
 function cerrarReproductor() {
@@ -1655,6 +1928,7 @@ function cerrarReproductor() {
             "reproductor"
         );
 
+
     const video =
         document.getElementById(
             "video"
@@ -1663,9 +1937,11 @@ function cerrarReproductor() {
 
     video.pause();
 
+
     video.removeAttribute(
         "src"
     );
+
 
     video.load();
 
@@ -1692,6 +1968,7 @@ function mostrarMensaje(
         document.getElementById(
             "mensajeReproductor"
         );
+
 
     const contenido =
         document.getElementById(
@@ -1721,7 +1998,7 @@ function mostrarMensaje(
 
 
 /* =========================================================
-   SERIES — ESTRUCTURA PREPARADA
+   SERIES
 ========================================================= */
 
 function abrirSerie(
@@ -1733,10 +2010,12 @@ function abrirSerie(
             "modalSeries"
         );
 
+
     const titulo =
         document.getElementById(
             "modalSeriesTitulo"
         );
+
 
     const contenido =
         document.getElementById(
@@ -1748,22 +2027,180 @@ function abrirSerie(
         serie.titulo;
 
 
-    contenido.innerHTML = "";
+    contenido.innerHTML =
+        "";
 
 
-    /*
-       Aquí posteriormente vamos a construir:
+    if (
+        !serie.temporadas ||
+        serie.temporadas.length === 0
+    ) {
 
-       Temporada 1
-       Temporada 2
-       Temporada 3
+        contenido.innerHTML = `
 
-       y dentro:
+            <div style="
+                text-align:center;
+                padding:30px;
+                color:#888;
+            ">
 
-       Capítulo 1
-       Capítulo 2
-       Capítulo 3
-    */
+                No hay capítulos
+                disponibles.
+
+            </div>
+
+        `;
+
+
+        modal.style.display =
+            "flex";
+
+
+        return;
+
+    }
+
+
+    serie.temporadas.forEach(
+        temporada => {
+
+
+            const botonTemporada =
+                document.createElement(
+                    "button"
+                );
+
+
+            botonTemporada.className =
+                "botonTemporada";
+
+
+            botonTemporada.textContent =
+
+                "▶ Temporada " +
+
+                temporada.numero;
+
+
+            const capitulos =
+                document.createElement(
+                    "div"
+                );
+
+
+            capitulos.className =
+                "capitulos";
+
+
+            /*
+               Capítulos de la temporada
+            */
+
+            temporada.capitulos.forEach(
+                capitulo => {
+
+                    const botonCapitulo =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    botonCapitulo.className =
+                        "botonCapitulo";
+
+
+                    botonCapitulo.textContent =
+
+                        "▶ " +
+
+                        "Capítulo " +
+
+                        capitulo.numero +
+
+                        (
+                            capitulo.titulo
+                                ? " — " +
+                                  capitulo.titulo
+                                : ""
+                        );
+
+
+                    botonCapitulo.onclick =
+                        () => {
+
+                            cerrarSeries();
+
+
+                            reproducir(
+                                {
+
+                                    titulo:
+                                        serie.titulo +
+
+                                        " - T" +
+
+                                        temporada.numero +
+
+                                        "E" +
+
+                                        capitulo.numero,
+
+                                    año:
+                                        serie.año,
+
+                                    url:
+                                        capitulo.url
+
+                                }
+                            );
+
+                        };
+
+
+                    capitulos.appendChild(
+                        botonCapitulo
+                    );
+
+                }
+            );
+
+
+            /*
+               Abrir / cerrar temporada
+            */
+
+            botonTemporada.onclick =
+                () => {
+
+                    if (
+                        capitulos.style.display ===
+                        "block"
+                    ) {
+
+                        capitulos.style.display =
+                            "none";
+
+                    } else {
+
+                        capitulos.style.display =
+                            "block";
+
+                    }
+
+                };
+
+
+            contenido.appendChild(
+                botonTemporada
+            );
+
+
+            contenido.appendChild(
+                capitulos
+            );
+
+        }
+    );
 
 
     modal.style.display =
@@ -1771,6 +2208,10 @@ function abrirSerie(
 
 }
 
+
+/* =========================================================
+   CERRAR SERIES
+========================================================= */
 
 function cerrarSeries() {
 
@@ -1783,16 +2224,43 @@ function cerrarSeries() {
 
 
 /* =========================================================
+   VOLVER DESDE CATEGORÍA
+========================================================= */
+
+function volverDeCategoria() {
+
+    categoriaActual =
+        "TODAS";
+
+
+    nivelTVALC =
+        "principal";
+
+
+    document.getElementById(
+        "buscar"
+    ).value =
+        "";
+
+
+    cargarCategorias();
+
+    mostrarContenido();
+
+}
+
+
+/* =========================================================
    INICIO
 ========================================================= */
 
 cargarCategorias();
 
-mostrarPeliculas();
+mostrarContenido();
 
 
 /* =========================================================
-   BACK ANDROID — CRÍTICO
+   BACK ANDROID
 ========================================================= */
 
 window.addEventListener(
@@ -1804,14 +2272,15 @@ window.addEventListener(
         );
 
 
-        /*
-           1. SI ESTÁ ABIERTA UNA SERIE
-        */
+        /* ================================================
+           1. MODAL DE SERIES
+        ================================================= */
 
         const modalSeries =
             document.getElementById(
                 "modalSeries"
             );
+
 
         if (
             modalSeries.style.display ===
@@ -1825,12 +2294,18 @@ window.addEventListener(
         }
 
 
-        /*
-           2. SI ESTÁ REPRODUCIENDO
-        */
+        /* ================================================
+           2. REPRODUCTOR WEB
+
+           El reproductor nativo no está dentro
+           de esta WebView cuando PlayerActivity
+           está abierta, por lo que normalmente
+           este caso corresponde al reproductor web.
+        ================================================= */
 
         if (
-            reproductorAbierto
+            reproductorAbierto &&
+            !reproduccionNativa
         ) {
 
             cerrarReproductor();
@@ -1840,50 +2315,30 @@ window.addEventListener(
         }
 
 
-        /*
-           3. SI ESTAMOS EN UNA CATEGORÍA
-        */
+        /* ================================================
+           3. ESTAMOS EN CATEGORÍA
+        ================================================= */
 
         if (
             nivelTVALC ===
             "categoria"
         ) {
 
-            categoriaActual =
-                "TODAS";
-
-            nivelTVALC =
-                "principal";
-
-            document.getElementById(
-                "buscar"
-            ).value = "";
-
-            cargarCategorias();
-
-            mostrarPeliculas();
+            volverDeCategoria();
 
             return;
 
         }
 
 
-        /*
-           4. MENÚ PRINCIPAL DE TVALC
-              → VOLVER DIRECTAMENTE
-                AL MENÚ PRINCIPAL DE TVARG
-        */
+        /* ================================================
+           4. PANTALLA PRINCIPAL TVALC
 
-        if (
-            nivelTVALC ===
-            "principal"
-        ) {
+           SIEMPRE volver directamente
+           al menú principal de TVArg.
+        ================================================= */
 
-            volverTVArg();
-
-            return;
-
-        }
+        volverTVArg();
 
     }
 );
@@ -1906,12 +2361,13 @@ document.addEventListener(
             event.preventDefault();
 
 
-            /*
-               Si está abierto el reproductor
-            */
+            /* ============================================
+               REPRODUCTOR WEB
+            ============================================ */
 
             if (
-                reproductorAbierto
+                reproductorAbierto &&
+                !reproduccionNativa
             ) {
 
                 cerrarReproductor();
@@ -1921,14 +2377,15 @@ document.addEventListener(
             }
 
 
-            /*
-               Si está abierto el modal
-            */
+            /* ============================================
+               MODAL SERIES
+            ============================================ */
 
             const modalSeries =
                 document.getElementById(
                     "modalSeries"
                 );
+
 
             if (
                 modalSeries.style.display ===
@@ -1942,37 +2399,25 @@ document.addEventListener(
             }
 
 
-            /*
-               Si estamos dentro de categoría
-            */
+            /* ============================================
+               CATEGORÍA
+            ============================================ */
 
             if (
                 nivelTVALC ===
                 "categoria"
             ) {
 
-                categoriaActual =
-                    "TODAS";
-
-                nivelTVALC =
-                    "principal";
-
-                document.getElementById(
-                    "buscar"
-                ).value = "";
-
-                cargarCategorias();
-
-                mostrarPeliculas();
+                volverDeCategoria();
 
                 return;
 
             }
 
 
-            /*
-               Menú principal TVALC
-            */
+            /* ============================================
+               PRINCIPAL TVALC
+            ============================================ */
 
             volverTVArg();
 
@@ -2005,17 +2450,25 @@ document.getElementById(
 
 
 /* =========================================================
-   ANDROID APP
+   MANEJAR ERRORES DEL VIDEO WEB
 ========================================================= */
 
-/*
-   Si el APK ya inyecta esta clase desde
-   MainActivity, se mantiene.
+document.getElementById(
+    "video"
+).addEventListener(
+    "error",
+    function() {
 
-   No hacemos nada adicional aquí.
-*/
+        mostrarMensaje(
+            "No se pudo reproducir este contenido."
+        );
+
+    }
+);
+
 
 </script>
 
 </body>
+
 </html>
