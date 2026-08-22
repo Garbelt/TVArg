@@ -1320,6 +1320,15 @@ if (window.matchMedia('(display-mode: standalone)').matches ||
     ubicacion = "principal";
 }
 
+/* ===== ENTRADA DESDE TV A LA CARTA ===== */
+const parametrosURL = new URLSearchParams(window.location.search);
+if (parametrosURL.get("desdeTVALC") === "1") {
+    splash.style.display = "none";
+    menu.style.display = "flex";
+    estado = "menu";
+    ubicacion = "principal";
+}
+    
 /* ===== YOUTUBE PARSER ===== */
 
 function getYouTubeEmbed(url) {
