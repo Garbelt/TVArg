@@ -1745,18 +1745,20 @@ function reproducir(pelicula) {
 
 
     // ==========================================
-    // MKV / MP4 / AVI → VLC NATIVO
+    // VLC NATIVO
     // ==========================================
 
     if (
         url.endsWith(".mkv") ||
         url.endsWith(".mp4") ||
-        url.endsWith(".avi")
+        url.endsWith(".avi") ||
+        url.endsWith(".m3u8")
     ) {
 
         console.log(
             "TV A LA CARTA → VLC:",
-            pelicula.titulo
+            pelicula.titulo,
+            pelicula.url
         );
 
         if (
@@ -1797,13 +1799,14 @@ function reproducir(pelicula) {
         pelicula.año +
         ")";
 
-    video.src = pelicula.url;
+    video.src =
+        pelicula.url;
 
-    reproductor.style.display = "flex";
+    reproductor.style.display =
+        "flex";
 
     video.play().catch(() => {});
 }
-
 
 /* =========================================================
    REPRODUCCIÓN ANDROID — TVARG / EXOPLAYER
