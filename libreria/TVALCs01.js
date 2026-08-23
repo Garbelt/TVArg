@@ -1,3 +1,5 @@
+window.TVALC_SERIES = [];
+
 window.TVALC_SERIES.push({
 
     titulo: "The Walking Dead",
