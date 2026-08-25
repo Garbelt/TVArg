@@ -464,109 +464,127 @@ url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/132779.mp4"
     // =========================
 
     {
-        titulo: "Barbie en Un cuento de Navidad (2008)",
+        titulo: "Barbie en Un cuento de Navidad",
+        año: "2008",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/9HuzdX0vCYLUXSqH3rumTRsBHZC.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138371.mkv",
         categoria: "Infantil"
     },
     {
-        titulo: "Barbie Fairytopía: La magia del arco iris (2007)",
+        titulo: "Barbie Fairytopía: La magia del arco iris",
+        año: "2007",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/f1MEVtc6wsk356iaqTG89dsvop9.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138372.mp4",
         categoria: "Infantil"
     },
     {
-        titulo: "Barbie: La princesa de las perlas (2014)",
+        titulo: "Barbie: La princesa de las perlas",
+        año: "2014",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/71DqsfYwgIh74gL3WpK1ZNzx35t.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138373.mp4",
         categoria: "Infantil"
     },
     {
-        titulo: "Barbie: Poder sirenio (2022)",
+        titulo: "Barbie: Poder sirenio",
+        año: "2022",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/isWRWePWGGy5flQPYoj01kPvKFF.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138374.mp4",
         categoria: "Infantil"
     },
     {
-        titulo: "Barbie: Princesa Rapunzel (2002)",
+        titulo: "Barbie: Princesa Rapunzel",
+        año: "2002",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7bqisMuYCUsZIm77T5RJ6qEpyeD.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138375.mkv",
         categoria: "Infantil"
     },
     {
-        titulo: "Barbie: Superheroína del videojuego (2017)",
+        titulo: "Barbie: Superheroína del videojuego",
+        año: "2017",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uS3u0owsEhFZXq2CUVX1eDFofnS.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138376.mp4",
         categoria: "Infantil"
     },
     {
-        titulo: "Barbie: Una aventura de princesas (2020)",
+        titulo: "Barbie: Una aventura de princesas",
+        año: "2020",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/u0je6If2faoPZ4BtVr50EGk9g4G.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138377.mkv",
         categoria: "Infantil"
     },
     {
-        titulo: "Barbie y El castillo de diamantes (2008)",
+        titulo: "Barbie y El castillo de diamantes",
+        año: "2008",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/o3nwrE8OjpOufeu42JbHcW8l4zO.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138378.mkv",
         categoria: "Infantil"
     },
     {
-        titulo: "Barbie y La magia de pegaso (2005)",
+        titulo: "Barbie y La magia de pegaso",
+        año: "2005",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/2s05XyBmImXVtW36NHSr6j1W4FJ.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138379.mp4",
         categoria: "Infantil"
     },
     {
-        titulo: "Barbie y La puerta secreta (2014)",
+        titulo: "Barbie y La puerta secreta",
+        año: "2014",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/jSwwgpvVhh6tAFz5NRWqxVGxMGv.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138380.avi",
         categoria: "Infantil"
     },
     {
-        titulo: "Barbie en La bailarina mágica (2013)",
+        titulo: "Barbie en La bailarina mágica",
+        año: "2013",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/cL2SBmx7awgEjQgRXOaflqTVnbn.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138381.avi",
         categoria: "Infantil"
     },
     {
-        titulo: "Barbie y Los delfines mágicos (2017)",
+        titulo: "Barbie y Los delfines mágicos",
+        año: "2017",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/42MQwsJHg2iKos3yNUkWISzIDbD.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138382.mkv",
         categoria: "Infantil"
     },
     {
-        titulo: "Barbie y sus hermanas en Una aventura de caballos (2013)",
+        titulo: "Barbie y sus hermanas en Una aventura de caballos",
+        año: "2013",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7MjjDplsAtWRrGGIn2dljXeFMlL.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138383.mkv",
         categoria: "Infantil"
     },
     {
-        titulo: "Barbie y Teresa: La receta de la amistad (2025)",
+        titulo: "Barbie y Teresa: La receta de la amistad",
+        año: "2025",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/3qJO7F0Pwz67WhAIbHSs2U5Q0qs.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138384.mp4",
         categoria: "Infantil"
     },
     {
-        titulo: "Los diarios de Barbie (2006)",
+        titulo: "Los diarios de Barbie",
+        año: "2006",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/jXYJ7YmK4LHxCsDF2yL2B8uxuUJ.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138385.mp4",
         categoria: "Infantil"
     },
     {
-        titulo: "Barbie: Una Navidad perfecta (2011)",
+        titulo: "Barbie: Una Navidad perfecta",
+        año: "2011",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/2wBBLFoWQfDPAeNpPVy0Mogio5v.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138386.mkv",
         categoria: "Infantil"
     },
     {
-        titulo: "Lo que aprendí de mi pingüino (2025)",
+        titulo: "Lo que aprendí de mi pingüino",
+        año: "2025",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/eDBIP5e5qn80qhJAQYa2ktq9il0.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138302.mkv",
         categoria: "Infantil"
     },
     {
-        titulo: "LEGO Princesas Disney: Villanos unidos (2025)",
+        titulo: "LEGO Princesas Disney: Villanos unidos",
+        año: "2025",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/ajcRSuv1rYbrDxnlNN5xx5H44Ft.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138303.mkv",
         categoria: "Infantil"
