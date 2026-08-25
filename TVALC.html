@@ -1086,7 +1086,7 @@ function activarCampoBusqueda() {
 
 
     /*
-       Ocultamos el botón.
+       Ocultamos el botón visual.
     */
 
     botonActivarBusqueda.style.display =
@@ -1094,7 +1094,7 @@ function activarCampoBusqueda() {
 
 
     /*
-       Mostramos el input.
+       Mostramos el input real.
     */
 
     inputBuscar.style.display =
@@ -1102,17 +1102,12 @@ function activarCampoBusqueda() {
 
 
     /*
-       Ahora sí damos foco.
-
-       Como recién en este momento el usuario
-       confirmó mediante OK/ENTER, Android puede
-       mostrar el teclado.
+       El foco se coloca solamente ahora.
     */
 
     inputBuscar.focus();
 
 }
-
 
 /* =========================================================
    DESACTIVAR BUSCADOR
@@ -1175,6 +1170,30 @@ function desactivarBusqueda() {
 
 
 /* =========================================================
+   ACTIVAR CON MOUSE / TÁCTIL
+========================================================= */
+
+botonActivarBusqueda.addEventListener(
+    "click",
+    function(event) {
+
+        /*
+           Mouse / táctil:
+
+           El usuario realmente hizo una acción
+           sobre el buscador, por lo que aquí sí
+           permitimos activar el input.
+        */
+
+        event.preventDefault();
+
+        activarCampoBusqueda();
+
+    }
+);
+
+
+/* =========================================================
    CONTROL OK / ENTER DEL BUSCADOR
 ========================================================= */
 
@@ -1206,24 +1225,6 @@ botonActivarBusqueda.addEventListener(
 
     }
 );
-
-
-/*
-   MUY IMPORTANTE:
-
-   No usamos onclick para activar el buscador.
-
-   Por lo tanto:
-
-   tocar con el mouse
-   tocar con el dedo
-   hacer click
-
-   NO abre el teclado.
-
-   En el TV Stick hay que pulsar OK.
-*/
-
 
 /* =========================================================
    VOLVER A TVARG
