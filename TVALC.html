@@ -147,10 +147,8 @@ body.android-app #volverTVArg {
 
 
 /*
-   ESTE ES EL CONTROL QUE SE VE AL ENTRAR.
-
+   CONTROL VISUAL INICIAL.
    No es un input real.
-   Por lo tanto tocarlo NO abre el teclado.
 */
 
 #activarBusqueda {
@@ -191,7 +189,6 @@ body.android-app #volverTVArg {
 
 /*
    INPUT REAL.
-   Inicialmente está completamente oculto.
 */
 
 #buscar {
@@ -225,139 +222,87 @@ body.android-app #volverTVArg {
 
 
 /* =========================================================
-   CATEGORÍAS
+   FILTROS
 ========================================================= */
 
-.categorias {
+.filtros {
 
-    display: flex;
+    width: 100%;
 
-    gap: 8px;
+    max-width: 1400px;
+
+    margin: 0 auto;
 
     padding:
-        5px 15px 15px;
+        5px 20px 15px;
 
-    /*
-       Los géneros comienzan desde la izquierda.
-       Esto facilita la navegación con DPAD.
-    */
+    display: grid;
 
-    justify-content: flex-start;
+    grid-template-columns:
+        minmax(220px, 2fr)
+        minmax(150px, 1fr)
+        minmax(150px, 1fr)
+        minmax(180px, 1.2fr);
 
-    /*
-       Permite recorrer todos los géneros
-       horizontalmente.
-    */
-
-    overflow-x: auto;
-
-    overflow-y: hidden;
-
-    /*
-       Evita que los botones se compriman.
-    */
-
-    flex-wrap: nowrap;
-
-    scrollbar-width: none;
-
-    scroll-behavior: smooth;
-
-    /*
-       El contenedor no necesita una apariencia
-       propia de foco.
-    */
-
-    outline: none;
-}
-
-.categorias::-webkit-scrollbar {
-
-    display: none;
+    gap: 10px;
 }
 
 
 /* =========================================================
-   BOTONES DE CATEGORÍA
+   SELECT
 ========================================================= */
 
-.categorias button {
+.filtro {
 
-    flex:
-        0 0 auto;
+    width: 100%;
 
-    border: none;
-
-    border-radius: 20px;
+    min-height: 42px;
 
     padding:
-        9px 16px;
+        9px 38px 9px 14px;
 
-    background: #222;
+    border:
+        1px solid #444;
+
+    border-radius: 8px;
+
+    background: #171717;
 
     color: white;
 
-    cursor: pointer;
-
-    white-space: nowrap;
+    font-size: 14px;
 
     outline: none;
 
-    transition:
-        background .15s,
-        transform .15s,
-        box-shadow .15s;
+    cursor: pointer;
 }
 
+.filtro:focus {
 
-/*
-   FOCO PARA CONTROL REMOTO
-*/
-
-.categorias button:focus {
-
-    background: #444;
+    border-color: #aaa;
 
     box-shadow:
         0 0 0 2px
-        rgba(255,255,255,.45);
+        rgba(255,255,255,.15);
+}
 
-    transform:
-        scale(1.04);
+.filtro:hover {
+
+    background: #222;
 }
 
 
 /*
-   CATEGORÍA ACTIVA
+   FILTRO ACTIVO
+
+   Permite distinguir visualmente cuando
+   el valor ya no es el predeterminado.
 */
 
-.categorias button.activo {
+.filtro.activo {
 
-    background: #e50914;
-}
+    border-color: #777;
 
-
-/*
-   CATEGORÍA ACTIVA + FOCO
-*/
-
-.categorias button.activo:focus {
-
-    background: #ff202b;
-
-    box-shadow:
-        0 0 0 2px
-        rgba(255,255,255,.55);
-}
-
-
-/*
-   MOUSE
-*/
-
-.categorias button:hover {
-
-    background: #444;
 }
 
 
@@ -789,11 +734,32 @@ body.android-app #volverTVArg {
             12px 8px;
     }
 
-    .categorias {
+
+    /* -----------------------------------------
+       FILTROS MÓVILES
+    ----------------------------------------- */
+
+    .filtros {
 
         padding:
-            5px 14px 15px;
+            5px 14px 12px;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 8px;
     }
+
+    .filtro {
+
+        min-height: 40px;
+
+        padding:
+            8px 30px 8px 10px;
+
+        font-size: 13px;
+    }
+
 
     .peliculas {
 
@@ -807,6 +773,14 @@ body.android-app #volverTVArg {
 
         padding:
             5px 14px 30px;
+    }
+
+    .tituloCategoria {
+
+        font-size: 18px;
+
+        margin:
+            8px 0 14px;
     }
 
     .nombre {
@@ -834,12 +808,6 @@ body.android-app #volverTVArg {
 ========================================================= */
 
 @media (min-width: 601px) and (max-width: 1100px) {
-
-    /*
-       Dejamos margen alrededor de toda la interfaz.
-       Evita que en el Stick quede todo pegado
-       a los bordes de la pantalla.
-    */
 
     header {
 
@@ -883,13 +851,11 @@ body.android-app #volverTVArg {
     }
 
 
-    /*
-       Géneros separados de los bordes.
-       La lista comienza a la izquierda
-       y puede desplazarse horizontalmente.
-    */
+    /* -----------------------------------------
+       FILTROS TV
+    ----------------------------------------- */
 
-    .categorias {
+    .filtros {
 
         margin:
             0 18px;
@@ -897,14 +863,22 @@ body.android-app #volverTVArg {
         padding:
             4px 0 12px;
 
+        width:
+            calc(100% - 36px);
+
+        grid-template-columns:
+            2fr 1fr 1fr 1.2fr;
+
         gap:
             6px;
     }
 
-    .categorias button {
+    .filtro {
+
+        min-height: 36px;
 
         padding:
-            7px 12px;
+            6px 26px 6px 9px;
 
         font-size: 12px;
     }
@@ -1007,13 +981,6 @@ body.android-app #volverTVArg {
 
 <div class="buscador">
 
-    <!--
-        Este botón NO abre el teclado al tocarlo.
-
-        El teclado solamente se activa mediante
-        OK / ENTER / DPAD_CENTER.
-    -->
-
     <button
         id="activarBusqueda"
         type="button">
@@ -1022,11 +989,6 @@ body.android-app #volverTVArg {
 
     </button>
 
-
-    <!--
-        El input real permanece oculto hasta
-        que se presiona OK.
-    -->
 
     <input
         type="text"
@@ -1039,12 +1001,133 @@ body.android-app #volverTVArg {
 
 
 <!-- =====================================================
-     CATEGORÍAS
+     FILTROS
 ===================================================== -->
 
 <div
-    class="categorias"
-    id="categorias">
+    class="filtros"
+    id="filtros">
+
+
+    <!-- CATEGORÍA -->
+
+    <select
+        id="filtroCategoria"
+        class="filtro"
+        aria-label="Categoría">
+
+        <option value="TODAS">
+            TODAS
+        </option>
+
+        <option value="Acción">
+            Acción
+        </option>
+
+        <option value="Aventura">
+            Aventura
+        </option>
+
+        <option value="Comedia">
+            Comedia
+        </option>
+
+        <option value="Drama">
+            Drama
+        </option>
+
+        <option value="Ciencia ficción">
+            Ciencia ficción
+        </option>
+
+        <option value="Fantasía">
+            Fantasía
+        </option>
+
+        <option value="Terror">
+            Terror
+        </option>
+
+        <option value="Suspenso">
+            Suspenso
+        </option>
+
+        <option value="Romance">
+            Romance
+        </option>
+
+        <option value="Crimen">
+            Crimen
+        </option>
+
+        <option value="Documental">
+            Documental
+        </option>
+
+        <option value="Historia">
+            Historia
+        </option>
+
+        <option value="Infantil">
+            Infantil
+        </option>
+
+        <option value="Musical">
+            Musical
+        </option>
+
+        <option value="Bélica">
+            Bélica
+        </option>
+
+        <option value="Western">
+            Western
+        </option>
+
+    </select>
+
+
+    <!-- DESDE -->
+
+    <select
+        id="filtroDesde"
+        class="filtro"
+        aria-label="Desde">
+
+    </select>
+
+
+    <!-- HASTA -->
+
+    <select
+        id="filtroHasta"
+        class="filtro"
+        aria-label="Hasta">
+
+    </select>
+
+
+    <!-- TIPO -->
+
+    <select
+        id="filtroTipo"
+        class="filtro"
+        aria-label="Tipo">
+
+        <option value="TODAS">
+            TODAS
+        </option>
+
+        <option value="peliculas">
+            PELÍCULAS
+        </option>
+
+        <option value="series">
+            SERIES
+        </option>
+
+    </select>
+
 </div>
 
 
@@ -1128,6 +1211,10 @@ body.android-app #volverTVArg {
 </div>
 
 
+<!-- =====================================================
+     DATOS
+===================================================== -->
+
 <script src="libreria/TVALCp01.js"></script>
 <script src="libreria/TVALCp02.js"></script>
 <script src="libreria/TVALCp03.js"></script>
@@ -1138,11 +1225,12 @@ body.android-app #volverTVArg {
 <script src="libreria/TVALCs01.js"></script>
 <script src="libreria/TVALCs02.js"></script>
 
+
 <script>
 
-// =========================================================
-// DATOS TV A LA CARTA
-// =========================================================
+/* =========================================================
+   DATOS TV A LA CARTA
+========================================================= */
 
 const peliculas =
     window.TVALC_PELICULAS || [];
@@ -1151,9 +1239,9 @@ const series =
     window.TVALC_SERIES || [];
 
 
-// =========================================================
-// DETECTAR ANDROID TVARG
-// =========================================================
+/* =========================================================
+   DETECTAR ANDROID TVARG
+========================================================= */
 
 const esAndroidTVArg =
     !!window.AndroidTVArg;
@@ -1167,24 +1255,26 @@ if (esAndroidTVArg) {
 }
 
 
-// =========================================================
-// ESTADO
-// =========================================================
-
-let categoriaActual =
-    "TODAS";
+/* =========================================================
+   ESTADO
+========================================================= */
 
 let reproductorAbierto =
     false;
-
-let nivelTVALC =
-    "principal";
 
 let reproduccionNativa =
     false;
 
 let busquedaActiva =
     false;
+
+
+/* =========================================================
+   AÑO ACTUAL
+========================================================= */
+
+const añoActual =
+    new Date().getFullYear();
 
 
 /* =========================================================
@@ -1200,6 +1290,271 @@ const inputBuscar =
     document.getElementById(
         "buscar"
     );
+
+
+/* =========================================================
+   ELEMENTOS DE FILTROS
+========================================================= */
+
+const filtroCategoria =
+    document.getElementById(
+        "filtroCategoria"
+    );
+
+const filtroDesde =
+    document.getElementById(
+        "filtroDesde"
+    );
+
+const filtroHasta =
+    document.getElementById(
+        "filtroHasta"
+    );
+
+const filtroTipo =
+    document.getElementById(
+        "filtroTipo"
+    );
+
+
+/* =========================================================
+   CARGAR AÑOS
+========================================================= */
+
+function cargarAños() {
+
+    const añosDatos = [
+
+        ...peliculas,
+        ...series
+
+    ]
+        .map(
+            elemento =>
+                parseInt(
+                    elemento.año,
+                    10
+                )
+        )
+        .filter(
+            año =>
+                !isNaN(año)
+        );
+
+
+    /*
+       Últimos 5 años incluyendo
+       el año actual.
+
+       En 2026:
+       2022, 2023, 2024, 2025, 2026
+    */
+
+    const añoInicial =
+        añoActual - 4;
+
+
+    /*
+       Buscamos también el año más antiguo
+       disponible en la biblioteca.
+
+       De esta manera el usuario puede
+       ampliar el rango si quiere.
+    */
+
+    const añoMasAntiguo =
+        añosDatos.length
+            ? Math.min(...añosDatos)
+            : añoInicial;
+
+
+    const añoMinimo =
+        Math.min(
+            añoMasAntiguo,
+            añoInicial
+        );
+
+
+    filtroDesde.innerHTML =
+        "";
+
+    filtroHasta.innerHTML =
+        "";
+
+
+    /*
+       DESDE
+    */
+
+    for (
+        let año = añoMinimo;
+        año <= añoActual;
+        año++
+    ) {
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+        option.value =
+            año;
+
+        option.textContent =
+            año;
+
+        filtroDesde.appendChild(
+            option
+        );
+
+    }
+
+
+    /*
+       HASTA
+    */
+
+    for (
+        let año = añoActual;
+        año >= añoMinimo;
+        año--
+    ) {
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+        option.value =
+            año;
+
+        option.textContent =
+            año;
+
+        filtroHasta.appendChild(
+            option
+        );
+
+    }
+
+
+    /*
+       VALORES PREDETERMINADOS
+    */
+
+    filtroDesde.value =
+        añoInicial;
+
+    filtroHasta.value =
+        añoActual;
+
+}
+
+
+/* =========================================================
+   ACTUALIZAR ESTADO VISUAL DE FILTROS
+========================================================= */
+
+function actualizarEstadoFiltros() {
+
+    /*
+       Categoría
+    */
+
+    filtroCategoria.classList.toggle(
+        "activo",
+        filtroCategoria.value !== "TODAS"
+    );
+
+
+    /*
+       Desde
+
+       Se considera predeterminado
+       el inicio de los últimos 5 años.
+    */
+
+    filtroDesde.classList.toggle(
+        "activo",
+        parseInt(
+            filtroDesde.value,
+            10
+        ) !== añoActual - 4
+    );
+
+
+    /*
+       Hasta
+    */
+
+    filtroHasta.classList.toggle(
+        "activo",
+        parseInt(
+            filtroHasta.value,
+            10
+        ) !== añoActual
+    );
+
+
+    /*
+       Tipo
+    */
+
+    filtroTipo.classList.toggle(
+        "activo",
+        filtroTipo.value !== "TODAS"
+    );
+
+}
+
+
+/* =========================================================
+   CAMBIO DE FILTROS
+========================================================= */
+
+function cambiarFiltros() {
+
+    let desde =
+        parseInt(
+            filtroDesde.value,
+            10
+        );
+
+    let hasta =
+        parseInt(
+            filtroHasta.value,
+            10
+        );
+
+
+    /*
+       Si el usuario selecciona un "Desde"
+       mayor que "Hasta", corregimos
+       automáticamente el otro selector.
+
+       Ejemplo:
+
+       Desde 2025
+       Hasta 2023
+
+       → Hasta pasa a 2025.
+    */
+
+    if (
+        desde > hasta
+    ) {
+
+        filtroHasta.value =
+            desde;
+
+    }
+
+
+    actualizarEstadoFiltros();
+
+    mostrarContenido();
+
+}
 
 
 /* =========================================================
@@ -1219,29 +1574,18 @@ function activarCampoBusqueda() {
         true;
 
 
-    /*
-       Ocultamos el botón visual.
-    */
-
     botonActivarBusqueda.style.display =
         "none";
 
-
-    /*
-       Mostramos el input real.
-    */
 
     inputBuscar.style.display =
         "block";
 
 
-    /*
-       El foco se coloca solamente ahora.
-    */
-
     inputBuscar.focus();
 
 }
+
 
 /* =========================================================
    DESACTIVAR BUSCADOR
@@ -1256,32 +1600,16 @@ function desactivarBusqueda() {
     }
 
 
-    /*
-       Quitamos el foco.
-    */
-
     inputBuscar.blur();
 
-
-    /*
-       Ocultamos nuevamente el input.
-    */
 
     inputBuscar.style.display =
         "none";
 
 
-    /*
-       Limpiamos la búsqueda.
-    */
-
     inputBuscar.value =
         "";
 
-
-    /*
-       Mostramos nuevamente el botón.
-    */
 
     botonActivarBusqueda.style.display =
         "block";
@@ -1290,10 +1618,6 @@ function desactivarBusqueda() {
     busquedaActiva =
         false;
 
-
-    /*
-       Restauramos el contenido.
-    */
 
     mostrarContenido();
 
@@ -1311,14 +1635,6 @@ botonActivarBusqueda.addEventListener(
     "click",
     function(event) {
 
-        /*
-           Mouse / táctil:
-
-           El usuario realmente hizo una acción
-           sobre el buscador, por lo que aquí sí
-           permitimos activar el input.
-        */
-
         event.preventDefault();
 
         activarCampoBusqueda();
@@ -1334,12 +1650,6 @@ botonActivarBusqueda.addEventListener(
 botonActivarBusqueda.addEventListener(
     "keydown",
     function(event) {
-
-        /*
-           Enter
-           DPAD_CENTER = 23
-           ENTER = 66
-        */
 
         if (
             event.key === "Enter" ||
@@ -1360,6 +1670,32 @@ botonActivarBusqueda.addEventListener(
     }
 );
 
+
+/* =========================================================
+   EVENTOS DE FILTROS
+========================================================= */
+
+filtroCategoria.addEventListener(
+    "change",
+    cambiarFiltros
+);
+
+filtroDesde.addEventListener(
+    "change",
+    cambiarFiltros
+);
+
+filtroHasta.addEventListener(
+    "change",
+    cambiarFiltros
+);
+
+filtroTipo.addEventListener(
+    "change",
+    cambiarFiltros
+);
+
+
 /* =========================================================
    VOLVER A TVARG
 ========================================================= */
@@ -1368,158 +1704,6 @@ function volverTVArg() {
 
     window.location.href =
         "index.html?desdeTVALC=1";
-
-}
-
-
-/* =========================================================
-   CATEGORÍAS
-========================================================= */
-
-function cargarCategorias() {
-
-    const contenedor =
-        document.getElementById(
-            "categorias"
-        );
-
-
-    /* =====================================================
-       OBTENER CATEGORÍAS
-    ===================================================== */
-
-    const categoriasPeliculas =
-        peliculas.map(
-            p => p.categoria
-        );
-
-
-    const categoriasSeries =
-        series.map(
-            s => s.categoria
-        );
-
-
-    /* =====================================================
-       UNIFICAR CATEGORÍAS
-       
-       SERIES DE TERROR → TERROR
-    ===================================================== */
-
-    const categoriasNormalizadas = [
-
-        ...categoriasPeliculas,
-
-        ...categoriasSeries
-
-    ].map(
-        categoria => {
-
-            if (
-                categoria
-                    .toUpperCase()
-                    .trim() ===
-                "SERIES DE TERROR"
-            ) {
-
-                return "TERROR";
-
-            }
-
-            return categoria;
-
-        }
-    );
-
-
-    /* =====================================================
-       ELIMINAR DUPLICADOS
-    ===================================================== */
-
-    const categorias = [
-
-        "TODAS",
-
-        ...new Set(
-            categoriasNormalizadas
-        )
-
-    ];
-
-
-    /* =====================================================
-       CREAR BOTONES
-    ===================================================== */
-
-    contenedor.innerHTML =
-        "";
-
-
-    categorias.forEach(
-        categoria => {
-
-            const boton =
-                document.createElement(
-                    "button"
-                );
-
-
-            boton.type =
-                "button";
-
-
-            boton.textContent =
-                categoria;
-
-
-            /*
-               IMPORTANTE:
-
-               El contenedor no debe participar
-               en la navegación por foco.
-
-               El foco debe caer directamente
-               sobre cada botón.
-            */
-
-            boton.tabIndex =
-                0;
-
-
-            if (
-                categoria ===
-                categoriaActual
-            ) {
-
-                boton.classList.add(
-                    "activo"
-                );
-
-            }
-
-
-            boton.onclick =
-                () => {
-
-                    categoriaActual =
-                        categoria;
-
-                    nivelTVALC =
-                        "categoria";
-
-                    cargarCategorias();
-
-                    mostrarContenido();
-
-                };
-
-
-            contenedor.appendChild(
-                boton
-            );
-
-        }
-    );
 
 }
 
@@ -1541,18 +1725,65 @@ function mostrarContenido() {
         );
 
 
+    /*
+       BÚSQUEDA
+    */
+
     const busqueda =
         inputBuscar.value
             .toLowerCase()
             .trim();
 
 
-    let listaPeliculas =
-        peliculas;
+    /*
+       FILTROS
+    */
+
+    const categoria =
+        filtroCategoria.value;
+
+    const desde =
+        parseInt(
+            filtroDesde.value,
+            10
+        );
+
+    const hasta =
+        parseInt(
+            filtroHasta.value,
+            10
+        );
+
+    const tipo =
+        filtroTipo.value;
 
 
-    let listaSeries =
-        series;
+    /*
+       UNIFICAMOS LOS DATOS.
+
+       A cada elemento le agregamos
+       internamente si es serie o película.
+
+       NO modificamos los objetos originales.
+    */
+
+    let lista = [
+
+        ...peliculas.map(
+            pelicula => ({
+                ...pelicula,
+                _esSerie: false
+            })
+        ),
+
+        ...series.map(
+            serie => ({
+                ...serie,
+                _esSerie: true
+            })
+        )
+
+    ];
 
 
     /* =====================================================
@@ -1560,23 +1791,108 @@ function mostrarContenido() {
     ===================================================== */
 
     if (
-        categoriaActual !==
+        categoria !==
         "TODAS"
     ) {
 
-        listaPeliculas =
-            listaPeliculas.filter(
-                p =>
-                    p.categoria ===
-                    categoriaActual
+        lista =
+            lista.filter(
+                elemento => {
+
+                    let categoriaElemento =
+                        elemento.categoria;
+
+
+                    /*
+                       Compatibilidad con
+                       "SERIES DE TERROR".
+                    */
+
+                    if (
+                        categoriaElemento &&
+                        categoriaElemento
+                            .toUpperCase()
+                            .trim() ===
+                        "SERIES DE TERROR"
+                    ) {
+
+                        categoriaElemento =
+                            "TERROR";
+
+                    }
+
+
+                    return (
+                        categoriaElemento ===
+                        categoria
+                    );
+
+                }
             );
 
+    }
 
-        listaSeries =
-            listaSeries.filter(
-                s =>
-                    s.categoria ===
-                    categoriaActual
+
+    /* =====================================================
+       FILTRO DESDE / HASTA
+    ===================================================== */
+
+    lista =
+        lista.filter(
+            elemento => {
+
+                const año =
+                    parseInt(
+                        elemento.año,
+                        10
+                    );
+
+
+                if (
+                    isNaN(año)
+                ) {
+
+                    return false;
+
+                }
+
+
+                return (
+                    año >= desde &&
+                    año <= hasta
+                );
+
+            }
+        );
+
+
+    /* =====================================================
+       FILTRO TIPO
+    ===================================================== */
+
+    if (
+        tipo ===
+        "peliculas"
+    ) {
+
+        lista =
+            lista.filter(
+                elemento =>
+                    !elemento._esSerie
+            );
+
+    }
+
+
+    if (
+        tipo ===
+        "series"
+    ) {
+
+        lista =
+            lista.filter(
+                elemento =>
+                    elemento._esSerie
             );
 
     }
@@ -1588,21 +1904,11 @@ function mostrarContenido() {
 
     if (busqueda) {
 
-        listaPeliculas =
-            listaPeliculas.filter(
-                p =>
-                    p.titulo
-                        .toLowerCase()
-                        .includes(
-                            busqueda
-                        )
-            );
-
-
-        listaSeries =
-            listaSeries.filter(
-                s =>
-                    s.titulo
+        lista =
+            lista.filter(
+                elemento =>
+                    elemento.titulo &&
+                    elemento.titulo
                         .toLowerCase()
                         .includes(
                             busqueda
@@ -1612,14 +1918,48 @@ function mostrarContenido() {
     }
 
 
+    /* =====================================================
+       CANTIDAD
+    ===================================================== */
+
     const total =
-        listaPeliculas.length +
-        listaSeries.length;
+        lista.length;
+
+
+    /* =====================================================
+       TÍTULO
+    ===================================================== */
+
+    const textoCategoria =
+        categoria === "TODAS"
+            ? "TODAS"
+            : categoria;
+
+
+    const textoTipo =
+
+        tipo === "TODAS"
+            ? "TODAS"
+            : tipo === "peliculas"
+                ? "PELÍCULAS"
+                : "SERIES";
 
 
     titulo.textContent =
 
-        categoriaActual +
+        textoCategoria +
+
+        "  •  " +
+
+        desde +
+
+        "–" +
+
+        hasta +
+
+        "  •  " +
+
+        textoTipo +
 
         "  •  " +
 
@@ -1628,9 +1968,17 @@ function mostrarContenido() {
         " títulos";
 
 
+    /* =====================================================
+       LIMPIAR
+    ===================================================== */
+
     contenedor.innerHTML =
         "";
 
+
+    /* =====================================================
+       SIN RESULTADOS
+    ===================================================== */
 
     if (
         total === 0
@@ -1658,31 +2006,15 @@ function mostrarContenido() {
 
 
     /* =====================================================
-       PELÍCULAS
+       MOSTRAR RESULTADOS
     ===================================================== */
 
-    listaPeliculas.forEach(
-        pelicula => {
+    lista.forEach(
+        elemento => {
 
             crearTarjeta(
-                pelicula,
-                false
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       SERIES
-    ===================================================== */
-
-    listaSeries.forEach(
-        serie => {
-
-            crearTarjeta(
-                serie,
-                true
+                elemento,
+                elemento._esSerie
             );
 
         }
@@ -1822,56 +2154,63 @@ function filtrar() {
    REPRODUCIR
 ========================================================= */
 
-function reproducir(pelicula) {
-
-    const url = pelicula.url
-        .split("?")[0]
-        .toLowerCase();
-
-
-/* ==========================================
-   VLC NATIVO
-   TV A LA CARTA
-========================================== */
-
-if (
-    url.endsWith(".mkv") ||
-    url.endsWith(".mp4") ||
-    url.endsWith(".avi") ||
-    url.endsWith(".m3u8")
+function reproducir(
+    pelicula
 ) {
 
-    console.log(
-        "TV A LA CARTA → VLC TVALC:",
-        pelicula.titulo,
+    const url =
         pelicula.url
-    );
+            .split("?")[0]
+            .toLowerCase();
 
+
+    /* ==========================================
+       VLC NATIVO
+       TV A LA CARTA
+    ========================================== */
 
     if (
-        window.AndroidTVArg &&
-        typeof AndroidTVArg.playChannelTVALC === "function"
+        url.endsWith(".mkv") ||
+        url.endsWith(".mp4") ||
+        url.endsWith(".avi") ||
+        url.endsWith(".m3u8")
     ) {
 
-        AndroidTVArg.playChannelTVALC(
-            pelicula.url,
-            pelicula.titulo
+        console.log(
+            "TV A LA CARTA → VLC TVALC:",
+            pelicula.titulo,
+            pelicula.url
+        );
+
+
+        if (
+            window.AndroidTVArg &&
+            typeof AndroidTVArg.playChannelTVALC ===
+            "function"
+        ) {
+
+            AndroidTVArg.playChannelTVALC(
+                pelicula.url,
+                pelicula.titulo
+            );
+
+            return;
+
+        }
+
+
+        console.log(
+            "AndroidTVArg no disponible"
+        );
+
+
+        mostrarMensaje(
+            "El reproductor nativo no está disponible."
         );
 
         return;
+
     }
-
-
-    console.log(
-        "AndroidTVArg no disponible"
-    );
-
-    mostrarMensaje(
-        "El reproductor nativo no está disponible."
-    );
-
-    return;
-}
 
 
     /* ==========================================
@@ -1892,9 +2231,13 @@ if (
     document.getElementById(
         "tituloReproductor"
     ).textContent =
+
         pelicula.titulo +
+
         " (" +
+
         pelicula.año +
+
         ")";
 
 
@@ -1904,6 +2247,13 @@ if (
 
     reproductor.style.display =
         "flex";
+
+
+    reproductorAbierto =
+        true;
+
+    reproduccionNativa =
+        false;
 
 
     video.play().catch(
@@ -2023,6 +2373,13 @@ function reproducirWeb(
 
     reproductor.style.display =
         "flex";
+
+
+    reproductorAbierto =
+        true;
+
+    reproduccionNativa =
+        false;
 
 
     video.play()
@@ -2208,7 +2565,6 @@ function abrirSerie(
     serie.temporadas.forEach(
         temporada => {
 
-
             const botonTemporada =
                 document.createElement(
                     "button"
@@ -2355,52 +2711,6 @@ function cerrarSeries() {
 
 
 /* =========================================================
-   VOLVER DESDE CATEGORÍA
-========================================================= */
-
-function volverDeCategoria() {
-
-    categoriaActual =
-        "TODAS";
-
-
-    nivelTVALC =
-        "principal";
-
-
-    inputBuscar.value =
-        "";
-
-
-    /*
-       Si el buscador estaba activo,
-       lo devolvemos al estado inicial.
-    */
-
-    if (busquedaActiva) {
-
-        desactivarBusqueda();
-
-    }
-
-
-    cargarCategorias();
-
-    mostrarContenido();
-
-}
-
-
-/* =========================================================
-   INICIO
-========================================================= */
-
-cargarCategorias();
-
-mostrarContenido();
-
-
-/* =========================================================
    BACK ANDROID
 ========================================================= */
 
@@ -2414,7 +2724,7 @@ window.addEventListener(
 
 
         /* ================================================
-           0. BUSCADOR ACTIVO
+           1. BUSCADOR ACTIVO
         ================================================= */
 
         if (busquedaActiva) {
@@ -2427,7 +2737,7 @@ window.addEventListener(
 
 
         /* ================================================
-           1. MODAL DE SERIES
+           2. MODAL DE SERIES
         ================================================= */
 
         const modalSeries =
@@ -2449,7 +2759,7 @@ window.addEventListener(
 
 
         /* ================================================
-           2. REPRODUCTOR WEB
+           3. REPRODUCTOR WEB
         ================================================= */
 
         if (
@@ -2458,22 +2768,6 @@ window.addEventListener(
         ) {
 
             cerrarReproductor();
-
-            return;
-
-        }
-
-
-        /* ================================================
-           3. ESTAMOS EN CATEGORÍA
-        ================================================= */
-
-        if (
-            nivelTVALC ===
-            "categoria"
-        ) {
-
-            volverDeCategoria();
 
             return;
 
@@ -2559,22 +2853,6 @@ document.addEventListener(
 
 
             /* ============================================
-               CATEGORÍA
-            ============================================ */
-
-            if (
-                nivelTVALC ===
-                "categoria"
-            ) {
-
-                volverDeCategoria();
-
-                return;
-
-            }
-
-
-            /* ============================================
                PRINCIPAL TVALC
             ============================================ */
 
@@ -2625,6 +2903,16 @@ document.getElementById(
     }
 );
 
+
+/* =========================================================
+   INICIO
+========================================================= */
+
+cargarAños();
+
+actualizarEstadoFiltros();
+
+mostrarContenido();
 
 </script>
 
