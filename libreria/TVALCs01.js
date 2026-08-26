@@ -4,7 +4,7 @@ window.TVALC_SERIES.push({
 
     titulo: "The Walking Dead",
     año: "2010",
-    categoria: "SERIES DE TERROR",
+    categoria: "Terror",
     tipo: "serie",
     poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/az8sR27PgpYsZwBOkOYI6xt5mLJ.jpg",
 
