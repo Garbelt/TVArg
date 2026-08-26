@@ -1822,43 +1822,49 @@ function reproducir(pelicula) {
         .toLowerCase();
 
 
-    /* ==========================================
-       VLC NATIVO
-    ========================================== */
+/* ==========================================
+   VLC NATIVO
+   TV A LA CARTA
+========================================== */
+
+if (
+    url.endsWith(".mkv") ||
+    url.endsWith(".mp4") ||
+    url.endsWith(".avi") ||
+    url.endsWith(".m3u8")
+) {
+
+    console.log(
+        "TV A LA CARTA → VLC TVALC:",
+        pelicula.titulo,
+        pelicula.url
+    );
+
 
     if (
-        url.endsWith(".mkv") ||
-        url.endsWith(".mp4") ||
-        url.endsWith(".avi") ||
-        url.endsWith(".m3u8")
+        window.AndroidTVArg &&
+        typeof AndroidTVArg.playChannelTVALC === "function"
     ) {
 
-        console.log(
-            "TV A LA CARTA → VLC:",
-            pelicula.titulo,
-            pelicula.url
-        );
-
-
-        if (
-            window.AndroidTVArg &&
-            typeof AndroidTVArg.playChannelVLC === "function"
-        ) {
-
-            AndroidTVArg.playChannelVLC(
-                pelicula.url
-            );
-
-            return;
-        }
-
-
-        console.log(
-            "AndroidTVArg no disponible"
+        AndroidTVArg.playChannelTVALC(
+            pelicula.url,
+            pelicula.titulo
         );
 
         return;
     }
+
+
+    console.log(
+        "AndroidTVArg no disponible"
+    );
+
+    mostrarMensaje(
+        "El reproductor nativo no está disponible."
+    );
+
+    return;
+}
 
 
     /* ==========================================
