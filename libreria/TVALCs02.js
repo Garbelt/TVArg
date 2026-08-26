@@ -1,4 +1,4 @@
-window.TVALC_SERIES.push({
+window.TVALC_SERIES.push({ 
 
     titulo: "CIA",
     año: "2025",
