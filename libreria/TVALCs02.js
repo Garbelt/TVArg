@@ -2,7 +2,7 @@ window.TVALC_SERIES.push({
 
     titulo: "CIA",
     año: "2025",
-    categoria: "SERIES DE ACCIÓN",
+    categoria: "Acción",
     tipo: "serie",
     poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7QuzsX5OE1bNOscdUO6RhzNUJFC.jpg",
 
