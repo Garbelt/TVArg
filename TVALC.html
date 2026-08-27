@@ -29,8 +29,11 @@ body {
 }
 
 body {
+
     background: #050505;
+
     color: white;
+
     font-family: Arial, sans-serif;
 }
 
@@ -147,9 +150,9 @@ body.android-app #volverTVArg {
 }
 
 
-/*
+/* =========================================================
    CONTROL VISUAL INICIAL
-*/
+========================================================= */
 
 #activarBusqueda {
 
@@ -187,9 +190,9 @@ body.android-app #volverTVArg {
 }
 
 
-/*
+/* =========================================================
    INPUT REAL
-*/
+========================================================= */
 
 #buscar {
 
@@ -249,14 +252,32 @@ body.android-app #volverTVArg {
         minmax(150px, 1.2fr);
 
     gap: 7px;
+
+    position: relative;
+
+    z-index: 100;
 }
 
 
 /* =========================================================
-   SELECT
+   FILTRO PERSONALIZADO
 ========================================================= */
 
-.filtro {
+.filtroPersonalizado {
+
+    position: relative;
+
+    width: 100%;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   BOTÓN DEL FILTRO
+========================================================= */
+
+.botonFiltro {
 
     width: 100%;
 
@@ -279,9 +300,46 @@ body.android-app #volverTVArg {
     outline: none;
 
     cursor: pointer;
+
+    text-align: left;
+
+    position: relative;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
 }
 
-.filtro:focus {
+.botonFiltro::after {
+
+    content: "▼";
+
+    position: absolute;
+
+    right: 10px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    font-size: 9px;
+
+    color: #888;
+
+    pointer-events: none;
+}
+
+.botonFiltro:hover {
+
+    background: #202020;
+
+    border-color: #555;
+}
+
+.botonFiltro:focus {
 
     border-color: #777;
 
@@ -292,21 +350,162 @@ body.android-app #volverTVArg {
         rgba(255,255,255,.12);
 }
 
-.filtro:hover {
-
-    background: #202020;
-}
-
 
 /* =========================================================
    FILTRO ACTIVO
 ========================================================= */
 
-.filtro.activo {
+.botonFiltro.activo {
 
     color: white;
 
     border-color: #555;
+}
+
+
+/* =========================================================
+   LISTA DESPLEGABLE
+========================================================= */
+
+.listaFiltro {
+
+    display: none;
+
+    position: absolute;
+
+    left: 0;
+
+    top: calc(100% + 4px);
+
+    width: 100%;
+
+    max-height: 300px;
+
+    overflow-y: auto;
+
+    background: #151515;
+
+    border:
+        1px solid #444;
+
+    border-radius: 7px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.75);
+
+    z-index: 1000;
+
+    padding: 4px;
+}
+
+
+/* =========================================================
+   LISTA ABIERTA
+========================================================= */
+
+.filtroPersonalizado.abierto
+.listaFiltro {
+
+    display: block;
+}
+
+
+/* =========================================================
+   OPCIONES
+========================================================= */
+
+.opcionFiltro {
+
+    width: 100%;
+
+    padding:
+        8px 10px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    background: transparent;
+
+    color: #ccc;
+
+    font-size: 13px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+}
+
+.opcionFiltro:hover {
+
+    background: #292929;
+
+    color: white;
+}
+
+
+/* =========================================================
+   OPCIÓN SELECCIONADA
+========================================================= */
+
+.opcionFiltro.seleccionada {
+
+    background: #252525;
+
+    color: white;
+
+    font-weight: bold;
+}
+
+.opcionFiltro.seleccionada::before {
+
+    content: "✓ ";
+
+    color: #aaa;
+}
+
+
+/* =========================================================
+   FOCO TV
+========================================================= */
+
+.opcionFiltro:focus {
+
+    outline: none;
+
+    background: #333;
+
+    color: white;
+}
+
+
+/* =========================================================
+   SCROLL DE LISTAS
+========================================================= */
+
+.listaFiltro::-webkit-scrollbar {
+
+    width: 6px;
+}
+
+.listaFiltro::-webkit-scrollbar-track {
+
+    background: #101010;
+}
+
+.listaFiltro::-webkit-scrollbar-thumb {
+
+    background: #444;
+
+    border-radius: 5px;
+}
+
+.listaFiltro::-webkit-scrollbar-thumb:hover {
+
+    background: #666;
 }
 
 
@@ -765,17 +964,17 @@ body.android-app #volverTVArg {
 
 
     /* -----------------------------------------
-       FILTROS
+       FILTROS 2 × 2
     ----------------------------------------- */
 
     .filtros {
 
         width: 100%;
 
+        margin: 0;
+
         padding:
             3px 14px 9px;
-
-        margin: 0;
 
         grid-template-columns:
             1fr 1fr;
@@ -783,9 +982,12 @@ body.android-app #volverTVArg {
         gap: 6px;
     }
 
-    .filtro {
+    .filtroPersonalizado {
 
-        width: 100%;
+        min-width: 0;
+    }
+
+    .botonFiltro {
 
         height: 35px;
 
@@ -795,8 +997,19 @@ body.android-app #volverTVArg {
         font-size: 12px;
 
         border-radius: 6px;
+    }
 
-        min-width: 0;
+    .listaFiltro {
+
+        max-height: 250px;
+    }
+
+    .opcionFiltro {
+
+        padding:
+            8px 9px;
+
+        font-size: 12px;
     }
 
 
@@ -925,7 +1138,7 @@ body.android-app #volverTVArg {
         gap: 5px;
     }
 
-    .filtro {
+    .botonFiltro {
 
         height: 32px;
 
@@ -935,8 +1148,30 @@ body.android-app #volverTVArg {
         font-size: 11px;
 
         border-radius: 5px;
+    }
 
-        min-width: 0;
+    .botonFiltro::after {
+
+        right: 8px;
+
+        font-size: 8px;
+    }
+
+    .listaFiltro {
+
+        max-height: 230px;
+
+        padding: 3px;
+
+        border-radius: 6px;
+    }
+
+    .opcionFiltro {
+
+        padding:
+            6px 8px;
+
+        font-size: 11px;
     }
 
 
@@ -1000,351 +1235,6 @@ body.android-app #volverTVArg {
 
 }
 
-
-/* =========================================================
-   ANDROID TV / TV STICK
-   ---------------------------------------------------------
-   IMPORTANTE:
-   No depende del ancho de pantalla.
-
-   El JS agrega:
-       body.android-app
-
-   Por lo tanto estos estilos funcionan incluso si
-   el TV Stick informa 1280px, 1920px, etc.
-========================================================= */
-
-body.android-app header {
-
-    margin:
-        8px 18px 0;
-
-    padding:
-        9px 12px;
-
-    border-radius:
-        8px;
-}
-
-body.android-app header h1 {
-
-    font-size: 20px;
-
-    line-height: 1.1;
-}
-
-body.android-app header p {
-
-    margin-top: 3px;
-
-    font-size: 12px;
-}
-
-
-/* -----------------------------------------
-   BUSCADOR TV STICK
------------------------------------------ */
-
-body.android-app .buscador {
-
-    margin:
-        5px 18px 0;
-
-    padding:
-        4px 0 3px;
-
-    min-height: 0;
-}
-
-body.android-app #activarBusqueda,
-body.android-app #buscar {
-
-    width:
-        100%;
-
-    max-width:
-        650px;
-
-    padding:
-        7px 12px;
-
-    font-size:
-        12px;
-
-    border-radius:
-        18px;
-}
-
-
-/* -----------------------------------------
-   FILTROS TV STICK
------------------------------------------ */
-
-body.android-app .filtros {
-
-    margin:
-        0 18px;
-
-    padding:
-        2px 0 6px;
-
-    width:
-        calc(100% - 36px);
-
-    max-width:
-        none;
-
-    grid-template-columns:
-        minmax(180px, 1.7fr)
-        minmax(100px, 1fr)
-        minmax(100px, 1fr)
-        minmax(130px, 1.2fr);
-
-    gap:
-        5px;
-}
-
-body.android-app .filtro {
-
-    height:
-        31px;
-
-    padding:
-        3px 22px 3px 8px;
-
-    font-size:
-        11px;
-
-    border-radius:
-        5px;
-}
-
-
-/* -----------------------------------------
-   CONTENIDO TV STICK
------------------------------------------ */
-
-body.android-app .contenedor {
-
-    max-width:
-        none;
-
-    padding:
-        5px 28px 25px;
-}
-
-body.android-app .tituloCategoria {
-
-    font-size:
-        14px;
-
-    margin:
-        5px 0 9px;
-
-    color:
-        #bbb;
-}
-
-
-/* -----------------------------------------
-   TARJETAS TV STICK
------------------------------------------ */
-
-body.android-app .peliculas {
-
-    grid-template-columns:
-        repeat(
-            auto-fill,
-            minmax(125px, 1fr)
-        );
-
-    gap:
-        10px;
-}
-
-body.android-app .pelicula {
-
-    border-radius:
-        6px;
-}
-
-body.android-app .info {
-
-    padding:
-        6px;
-}
-
-body.android-app .nombre {
-
-    font-size:
-        12px;
-
-    line-height:
-        1.2;
-}
-
-body.android-app .año {
-
-    font-size:
-        10px;
-
-    margin-bottom:
-        6px;
-}
-
-body.android-app .ver {
-
-    padding:
-        6px;
-
-    font-size:
-        10px;
-
-    border-radius:
-        4px;
-}
-
-
-/* -----------------------------------------
-   MODAL SERIES TV STICK
------------------------------------------ */
-
-body.android-app #modalSeriesCaja {
-
-    width:
-        min(80%, 600px);
-
-    max-height:
-        82vh;
-
-    padding:
-        18px;
-
-    border-radius:
-        10px;
-}
-
-body.android-app #modalSeriesTitulo {
-
-    font-size:
-        18px;
-
-    margin-bottom:
-        12px;
-}
-
-body.android-app .botonTemporada {
-
-    margin:
-        4px 0;
-
-    padding:
-        9px;
-
-    font-size:
-        13px;
-
-    border-radius:
-        6px;
-}
-
-body.android-app .botonCapitulo {
-
-    margin:
-        3px 0;
-
-    padding:
-        7px;
-
-    font-size:
-        12px;
-
-    border-radius:
-        5px;
-}
-
-body.android-app #cancelarSeries {
-
-    margin-top:
-        12px;
-
-    padding:
-        9px;
-
-    font-size:
-        12px;
-
-    border-radius:
-        6px;
-}
-
-
-/* -----------------------------------------
-   MENSAJE TV STICK
------------------------------------------ */
-
-body.android-app #mensajeReproductor {
-
-    width:
-        min(70%, 450px);
-
-    padding:
-        15px;
-
-    font-size:
-        13px;
-}
-
-
-/* -----------------------------------------
-   REPRODUCTOR TV STICK
------------------------------------------ */
-
-body.android-app #tituloReproductor {
-
-    margin:
-        7px;
-
-    font-size:
-        16px;
-}
-
-body.android-app #video {
-
-    width:
-        92%;
-
-    max-width:
-        1000px;
-
-    max-height:
-        82vh;
-}
-
-
-/* =========================================================
-   TV STICK MUY ANCHO
-   Reduce aún más las tarjetas si el WebView informa
-   una resolución grande.
-========================================================= */
-
-@media (min-width: 1400px) {
-
-    body.android-app .peliculas {
-
-        grid-template-columns:
-            repeat(
-                auto-fill,
-                minmax(125px, 145px)
-            );
-
-        justify-content:
-            start;
-
-    }
-
-}
-
 </style>
 
 </head>
@@ -1404,13 +1294,13 @@ body.android-app #video {
         id="buscar"
         placeholder="🔎 Buscar película o serie..."
         autocomplete="off"
-        oninput="filtrar">
+        oninput="filtrar()">
 
 </div>
 
 
 <!-- =====================================================
-     FILTROS
+     FILTROS PERSONALIZADOS
 ===================================================== -->
 
 <div
@@ -1418,124 +1308,108 @@ body.android-app #video {
     id="filtros">
 
 
-    <!-- CATEGORÍA -->
+    <!-- =================================================
+         CATEGORÍA
+    ================================================== -->
 
-    <select
-        id="filtroCategoria"
-        class="filtro"
-        aria-label="Categoría">
+    <div
+        class="filtroPersonalizado"
+        id="contenedorCategoria">
 
-        <option value="TODAS">
+        <button
+            class="botonFiltro"
+            id="botonCategoria"
+            type="button">
+
             TODAS
-        </option>
 
-        <option value="Acción">
-            Acción
-        </option>
+        </button>
 
-        <option value="Aventura">
-            Aventura
-        </option>
+        <div
+            class="listaFiltro"
+            id="listaCategoria">
 
-        <option value="Comedia">
-            Comedia
-        </option>
+        </div>
 
-        <option value="Infantil">
-            Infantil
-        </option>
-
-        <option value="Drama">
-            Drama
-        </option>
-
-        <option value="Ciencia ficción">
-            Ciencia ficción
-        </option>
-
-        <option value="Fantasía">
-            Fantasía
-        </option>
-
-        <option value="Terror">
-            Terror
-        </option>
-
-        <option value="Suspenso">
-            Suspenso
-        </option>
-
-        <option value="Romance">
-            Romance
-        </option>
-
-        <option value="Crimen">
-            Crimen
-        </option>
-
-        <option value="Documental">
-            Documental
-        </option>
-
-        <option value="Historia">
-            Historia
-        </option>
-
-        <option value="Musical">
-            Musical
-        </option>
-
-        <option value="Bélica">
-            Bélica
-        </option>
-
-        <option value="Western">
-            Western
-        </option>
-
-    </select>
+    </div>
 
 
-    <!-- DESDE -->
+    <!-- =================================================
+         DESDE
+    ================================================== -->
 
-    <select
-        id="filtroDesde"
-        class="filtro"
-        aria-label="Desde">
+    <div
+        class="filtroPersonalizado"
+        id="contenedorDesde">
 
-    </select>
+        <button
+            class="botonFiltro"
+            id="botonDesde"
+            type="button">
+
+            2022
+
+        </button>
+
+        <div
+            class="listaFiltro"
+            id="listaDesde">
+
+        </div>
+
+    </div>
 
 
-    <!-- HASTA -->
+    <!-- =================================================
+         HASTA
+    ================================================== -->
 
-    <select
-        id="filtroHasta"
-        class="filtro"
-        aria-label="Hasta">
+    <div
+        class="filtroPersonalizado"
+        id="contenedorHasta">
 
-    </select>
+        <button
+            class="botonFiltro"
+            id="botonHasta"
+            type="button">
+
+            2026
+
+        </button>
+
+        <div
+            class="listaFiltro"
+            id="listaHasta">
+
+        </div>
+
+    </div>
 
 
-    <!-- TIPO -->
+    <!-- =================================================
+         TIPO
+    ================================================== -->
 
-    <select
-        id="filtroTipo"
-        class="filtro"
-        aria-label="Tipo">
+    <div
+        class="filtroPersonalizado"
+        id="contenedorTipo">
 
-        <option value="TODAS">
+        <button
+            class="botonFiltro"
+            id="botonTipo"
+            type="button">
+
             TODAS
-        </option>
 
-        <option value="peliculas">
-            PELÍCULAS
-        </option>
+        </button>
 
-        <option value="series">
-            SERIES
-        </option>
+        <div
+            class="listaFiltro"
+            id="listaTipo">
 
-    </select>
+        </div>
+
+    </div>
 
 </div>
 
@@ -1687,7 +1561,7 @@ const añoActual =
 
 
 /* =========================================================
-   ELEMENTOS DEL BUSCADOR
+   ELEMENTOS BUSCADOR
 ========================================================= */
 
 const botonActivarBusqueda =
@@ -1702,35 +1576,155 @@ const inputBuscar =
 
 
 /* =========================================================
-   ELEMENTOS DE FILTROS
+   CATEGORÍAS
 ========================================================= */
 
-const filtroCategoria =
-    document.getElementById(
-        "filtroCategoria"
-    );
+const categorias = [
 
-const filtroDesde =
-    document.getElementById(
-        "filtroDesde"
-    );
+    "TODAS",
 
-const filtroHasta =
-    document.getElementById(
-        "filtroHasta"
-    );
+    "Acción",
 
-const filtroTipo =
-    document.getElementById(
-        "filtroTipo"
-    );
+    "Aventura",
+
+    "Comedia",
+
+    "Drama",
+
+    "Ciencia ficción",
+
+    "Fantasía",
+
+    "Terror",
+
+    "Suspenso",
+
+    "Romance",
+
+    "Crimen",
+
+    "Documental",
+
+    "Historia",
+
+    "Infantil",
+
+    "Musical",
+
+    "Bélica",
+
+    "Western"
+
+];
+
+
+/* =========================================================
+   ESTADO DE FILTROS
+========================================================= */
+
+let filtroActual = {
+
+    categoria: "TODAS",
+
+    desde: añoActual - 4,
+
+    hasta: añoActual,
+
+    tipo: "TODAS"
+
+};
+
+
+/* =========================================================
+   ELEMENTOS FILTROS
+========================================================= */
+
+const filtrosPersonalizados = {
+
+    categoria: {
+
+        contenedor:
+            document.getElementById(
+                "contenedorCategoria"
+            ),
+
+        boton:
+            document.getElementById(
+                "botonCategoria"
+            ),
+
+        lista:
+            document.getElementById(
+                "listaCategoria"
+            )
+
+    },
+
+    desde: {
+
+        contenedor:
+            document.getElementById(
+                "contenedorDesde"
+            ),
+
+        boton:
+            document.getElementById(
+                "botonDesde"
+            ),
+
+        lista:
+            document.getElementById(
+                "listaDesde"
+            )
+
+    },
+
+    hasta: {
+
+        contenedor:
+            document.getElementById(
+                "contenedorHasta"
+            ),
+
+        boton:
+            document.getElementById(
+                "botonHasta"
+            ),
+
+        lista:
+            document.getElementById(
+                "listaHasta"
+            )
+
+    },
+
+    tipo: {
+
+        contenedor:
+            document.getElementById(
+                "contenedorTipo"
+            ),
+
+        boton:
+            document.getElementById(
+                "botonTipo"
+            ),
+
+        lista:
+            document.getElementById(
+                "listaTipo"
+            )
+
+    }
+
+};
 
 
 /* =========================================================
    CARGAR AÑOS
 ========================================================= */
 
-function cargarAños() {
+function obtenerRangoAños() {
 
     const añosDatos = [
 
@@ -1751,14 +1745,6 @@ function cargarAños() {
         );
 
 
-    /*
-       Últimos 5 años incluyendo
-       el año actual.
-
-       En 2026:
-       2022, 2023, 2024, 2025, 2026
-    */
-
     const añoInicial =
         añoActual - 4;
 
@@ -1769,43 +1755,167 @@ function cargarAños() {
             : añoInicial;
 
 
-    const añoMinimo =
-        Math.min(
-            añoMasAntiguo,
-            añoInicial
+    return {
+
+        minimo:
+            Math.min(
+                añoMasAntiguo,
+                añoInicial
+            ),
+
+        maximo:
+            añoActual
+
+    };
+
+}
+
+
+/* =========================================================
+   CREAR OPCIÓN
+========================================================= */
+
+function crearOpcion(
+    lista,
+    texto,
+    valor,
+    grupo
+) {
+
+    const opcion =
+        document.createElement(
+            "button"
         );
 
 
-    filtroDesde.innerHTML =
+    opcion.type =
+        "button";
+
+
+    opcion.className =
+        "opcionFiltro";
+
+
+    opcion.textContent =
+        texto;
+
+
+    opcion.dataset.valor =
+        valor;
+
+
+    opcion.tabIndex =
+        -1;
+
+
+    if (
+        String(
+            filtroActual[grupo]
+        ) ===
+        String(valor)
+    ) {
+
+        opcion.classList.add(
+            "seleccionada"
+        );
+
+    }
+
+
+    opcion.onclick =
+        event => {
+
+            event.stopPropagation();
+
+            seleccionarFiltro(
+                grupo,
+                valor
+            );
+
+        };
+
+
+    lista.appendChild(
+        opcion
+    );
+
+
+    return opcion;
+
+}
+
+
+/* =========================================================
+   CARGAR FILTRO CATEGORÍA
+========================================================= */
+
+function cargarFiltroCategoria() {
+
+    const filtro =
+        filtrosPersonalizados.categoria;
+
+
+    filtro.lista.innerHTML =
         "";
 
-    filtroHasta.innerHTML =
+
+    categorias.forEach(
+        categoria => {
+
+            crearOpcion(
+                filtro.lista,
+                categoria,
+                categoria,
+                "categoria"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CARGAR FILTROS DE AÑOS
+========================================================= */
+
+function cargarFiltrosAños() {
+
+    const rango =
+        obtenerRangoAños();
+
+
+    const desde =
+        filtrosPersonalizados.desde;
+
+    const hasta =
+        filtrosPersonalizados.hasta;
+
+
+    desde.lista.innerHTML =
+        "";
+
+    hasta.lista.innerHTML =
         "";
 
 
     /*
        DESDE
+
+       Ascendente.
     */
 
     for (
-        let año = añoMinimo;
-        año <= añoActual;
+        let año = rango.minimo;
+        año <= rango.maximo;
         año++
     ) {
 
-        const option =
-            document.createElement(
-                "option"
-            );
-
-        option.value =
-            año;
-
-        option.textContent =
-            año;
-
-        filtroDesde.appendChild(
-            option
+        crearOpcion(
+            desde.lista,
+            String(año),
+            año,
+            "desde"
         );
 
     }
@@ -1813,103 +1923,285 @@ function cargarAños() {
 
     /*
        HASTA
+
+       Descendente.
     */
 
     for (
-        let año = añoActual;
-        año >= añoMinimo;
+        let año = rango.maximo;
+        año >= rango.minimo;
         año--
     ) {
 
-        const option =
-            document.createElement(
-                "option"
-            );
-
-        option.value =
-            año;
-
-        option.textContent =
-            año;
-
-        filtroHasta.appendChild(
-            option
+        crearOpcion(
+            hasta.lista,
+            String(año),
+            año,
+            "hasta"
         );
 
     }
 
-
-    /*
-       VALORES PREDETERMINADOS
-
-       Últimos 5 años:
-       2022 → 2026
-    */
-
-    filtroDesde.value =
-        añoInicial;
-
-    filtroHasta.value =
-        añoActual;
-
 }
 
 
 /* =========================================================
-   ACTUALIZAR ESTADO VISUAL DE FILTROS
+   CARGAR FILTRO TIPO
 ========================================================= */
 
-function actualizarEstadoFiltros() {
+function cargarFiltroTipo() {
 
-    filtroCategoria.classList.toggle(
-        "activo",
-        filtroCategoria.value !== "TODAS"
+    const filtro =
+        filtrosPersonalizados.tipo;
+
+
+    filtro.lista.innerHTML =
+        "";
+
+
+    crearOpcion(
+        filtro.lista,
+        "TODAS",
+        "TODAS",
+        "tipo"
     );
 
 
-    filtroDesde.classList.toggle(
-        "activo",
-        parseInt(
-            filtroDesde.value,
-            10
-        ) !== añoActual - 4
+    crearOpcion(
+        filtro.lista,
+        "PELÍCULAS",
+        "peliculas",
+        "tipo"
     );
 
 
-    filtroHasta.classList.toggle(
-        "activo",
-        parseInt(
-            filtroHasta.value,
-            10
-        ) !== añoActual
-    );
-
-
-    filtroTipo.classList.toggle(
-        "activo",
-        filtroTipo.value !== "TODAS"
+    crearOpcion(
+        filtro.lista,
+        "SERIES",
+        "series",
+        "tipo"
     );
 
 }
 
 
 /* =========================================================
-   CAMBIO DE FILTROS
+   ACTUALIZAR TEXTOS
 ========================================================= */
 
-function cambiarFiltros() {
+function actualizarBotonesFiltros() {
 
-    let desde =
-        parseInt(
-            filtroDesde.value,
-            10
+    filtrosPersonalizados
+        .categoria
+        .boton
+        .textContent =
+        filtroActual.categoria;
+
+
+    filtrosPersonalizados
+        .desde
+        .boton
+        .textContent =
+        filtroActual.desde;
+
+
+    filtrosPersonalizados
+        .hasta
+        .boton
+        .textContent =
+        filtroActual.hasta;
+
+
+    filtrosPersonalizados
+        .tipo
+        .boton
+        .textContent =
+
+        filtroActual.tipo ===
+        "peliculas"
+
+            ? "PELÍCULAS"
+
+            :
+
+        filtroActual.tipo ===
+        "series"
+
+            ? "SERIES"
+
+            :
+
+        "TODAS";
+
+
+    actualizarEstadoVisualFiltros();
+
+}
+
+
+/* =========================================================
+   ESTADO VISUAL
+========================================================= */
+
+function actualizarEstadoVisualFiltros() {
+
+    filtrosPersonalizados
+        .categoria
+        .boton
+        .classList.toggle(
+            "activo",
+            filtroActual.categoria !==
+            "TODAS"
         );
 
-    let hasta =
-        parseInt(
-            filtroHasta.value,
-            10
+
+    filtrosPersonalizados
+        .desde
+        .boton
+        .classList.toggle(
+            "activo",
+            filtroActual.desde !==
+            añoActual - 4
         );
+
+
+    filtrosPersonalizados
+        .hasta
+        .boton
+        .classList.toggle(
+            "activo",
+            filtroActual.hasta !==
+            añoActual
+        );
+
+
+    filtrosPersonalizados
+        .tipo
+        .boton
+        .classList.toggle(
+            "activo",
+            filtroActual.tipo !==
+            "TODAS"
+        );
+
+}
+
+
+/* =========================================================
+   ABRIR FILTRO
+========================================================= */
+
+function abrirFiltro(
+    grupo
+) {
+
+    cerrarTodosLosFiltros(
+        grupo
+    );
+
+
+    const filtro =
+        filtrosPersonalizados[
+            grupo
+        ];
+
+
+    filtro.contenedor
+        .classList.add(
+            "abierto"
+        );
+
+
+    const opciones =
+        filtro.lista.querySelectorAll(
+            ".opcionFiltro"
+        );
+
+
+    opciones.forEach(
+        opcion => {
+
+            opcion.tabIndex =
+                -1;
+
+        }
+    );
+
+
+    const seleccionada =
+        filtro.lista.querySelector(
+            ".opcionFiltro.seleccionada"
+        );
+
+
+    if (seleccionada) {
+
+        seleccionada.scrollIntoView({
+            block: "nearest"
+        });
+
+    }
+
+}
+
+
+/* =========================================================
+   CERRAR FILTROS
+========================================================= */
+
+function cerrarTodosLosFiltros(
+    excepto = null
+) {
+
+    Object.keys(
+        filtrosPersonalizados
+    ).forEach(
+        grupo => {
+
+            if (
+                grupo === excepto
+            ) {
+
+                return;
+
+            }
+
+
+            filtrosPersonalizados[
+                grupo
+            ]
+            .contenedor
+            .classList.remove(
+                "abierto"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SELECCIONAR FILTRO
+========================================================= */
+
+function seleccionarFiltro(
+    grupo,
+    valor
+) {
+
+    valor =
+        grupo === "desde" ||
+        grupo === "hasta"
+
+            ? parseInt(
+                valor,
+                10
+            )
+
+            :
+
+        valor;
 
 
     /*
@@ -1918,16 +2210,38 @@ function cambiarFiltros() {
     */
 
     if (
-        desde > hasta
+        grupo === "desde" &&
+        valor >
+        filtroActual.hasta
     ) {
 
-        filtroHasta.value =
-            desde;
+        filtroActual.hasta =
+            valor;
 
     }
 
 
-    actualizarEstadoFiltros();
+    if (
+        grupo === "hasta" &&
+        valor <
+        filtroActual.desde
+    ) {
+
+        filtroActual.desde =
+            valor;
+
+    }
+
+
+    filtroActual[grupo] =
+        valor;
+
+
+    actualizarListasSeleccionadas();
+
+    actualizarBotonesFiltros();
+
+    cerrarTodosLosFiltros();
 
     mostrarContenido();
 
@@ -1935,7 +2249,355 @@ function cambiarFiltros() {
 
 
 /* =========================================================
-   ACTIVAR BUSCADOR
+   ACTUALIZAR OPCIONES SELECCIONADAS
+========================================================= */
+
+function actualizarListasSeleccionadas() {
+
+    Object.keys(
+        filtrosPersonalizados
+    ).forEach(
+        grupo => {
+
+            const filtro =
+                filtrosPersonalizados[
+                    grupo
+                ];
+
+
+            filtro.lista
+                .querySelectorAll(
+                    ".opcionFiltro"
+                )
+                .forEach(
+                    opcion => {
+
+                        opcion.classList.toggle(
+                            "seleccionada",
+
+                            String(
+                                opcion.dataset.valor
+                            ) ===
+                            String(
+                                filtroActual[
+                                    grupo
+                                ]
+                            )
+                        );
+
+                    }
+                );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   EVENTOS BOTONES FILTROS
+========================================================= */
+
+Object.keys(
+    filtrosPersonalizados
+).forEach(
+    grupo => {
+
+        const filtro =
+            filtrosPersonalizados[
+                grupo
+            ];
+
+
+        filtro.boton.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+
+                if (
+                    filtro.contenedor
+                        .classList
+                        .contains(
+                            "abierto"
+                        )
+                ) {
+
+                    cerrarTodosLosFiltros();
+
+                } else {
+
+                    abrirFiltro(
+                        grupo
+                    );
+
+                }
+
+            }
+        );
+
+
+        /*
+           Teclado / control remoto
+        */
+
+        filtro.boton.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === "OK" ||
+                    event.keyCode === 13 ||
+                    event.keyCode === 23 ||
+                    event.keyCode === 66
+                ) {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+                    if (
+                        filtro.contenedor
+                            .classList
+                            .contains(
+                                "abierto"
+                            )
+                    ) {
+
+                        cerrarTodosLosFiltros();
+
+                    } else {
+
+                        abrirFiltro(
+                            grupo
+                        );
+
+                    }
+
+                    return;
+
+                }
+
+
+                if (
+                    event.key === "Escape" ||
+                    event.key === "Back"
+                ) {
+
+                    if (
+                        filtro.contenedor
+                            .classList
+                            .contains(
+                                "abierto"
+                            )
+                    ) {
+
+                        event.preventDefault();
+
+                        cerrarTodosLosFiltros();
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CLIC FUERA DE LOS FILTROS
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            !event.target.closest(
+                ".filtroPersonalizado"
+            )
+        ) {
+
+            cerrarTodosLosFiltros();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   TECLADO DENTRO DE LISTAS
+========================================================= */
+
+Object.keys(
+    filtrosPersonalizados
+).forEach(
+    grupo => {
+
+        const lista =
+            filtrosPersonalizados[
+                grupo
+            ].lista;
+
+
+        lista.addEventListener(
+            "keydown",
+            function(event) {
+
+                const opciones =
+                    Array.from(
+                        lista.querySelectorAll(
+                            ".opcionFiltro"
+                        )
+                    );
+
+
+                if (
+                    !opciones.length
+                ) {
+
+                    return;
+
+                }
+
+
+                const actual =
+                    document.activeElement;
+
+
+                let indice =
+                    opciones.indexOf(
+                        actual
+                    );
+
+
+                /*
+                   ABAJO
+                */
+
+                if (
+                    event.key === "ArrowDown"
+                ) {
+
+                    event.preventDefault();
+
+                    indice =
+                        indice < 0
+                            ? 0
+                            : Math.min(
+                                indice + 1,
+                                opciones.length - 1
+                            );
+
+                    opciones[indice]
+                        .focus();
+
+                    opciones[indice]
+                        .scrollIntoView({
+                            block:
+                                "nearest"
+                        });
+
+                    return;
+
+                }
+
+
+                /*
+                   ARRIBA
+                */
+
+                if (
+                    event.key === "ArrowUp"
+                ) {
+
+                    event.preventDefault();
+
+                    indice =
+                        indice < 0
+                            ? opciones.length - 1
+                            : Math.max(
+                                indice - 1,
+                                0
+                            );
+
+                    opciones[indice]
+                        .focus();
+
+                    opciones[indice]
+                        .scrollIntoView({
+                            block:
+                                "nearest"
+                        });
+
+                    return;
+
+                }
+
+
+                /*
+                   ENTER / OK
+                */
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === "OK" ||
+                    event.keyCode === 13 ||
+                    event.keyCode === 23 ||
+                    event.keyCode === 66
+                ) {
+
+                    event.preventDefault();
+
+                    if (
+                        actual &&
+                        actual.classList
+                            .contains(
+                                "opcionFiltro"
+                            )
+                    ) {
+
+                        actual.click();
+
+                    }
+
+                    return;
+
+                }
+
+
+                /*
+                   ESC / BACK
+                */
+
+                if (
+                    event.key === "Escape" ||
+                    event.key === "Back"
+                ) {
+
+                    event.preventDefault();
+
+                    cerrarTodosLosFiltros();
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   BUSCADOR
 ========================================================= */
 
 function activarCampoBusqueda() {
@@ -1945,6 +2607,9 @@ function activarCampoBusqueda() {
         return;
 
     }
+
+
+    cerrarTodosLosFiltros();
 
 
     busquedaActiva =
@@ -2049,31 +2714,6 @@ botonActivarBusqueda.addEventListener(
 
 
 /* =========================================================
-   EVENTOS DE FILTROS
-========================================================= */
-
-filtroCategoria.addEventListener(
-    "change",
-    cambiarFiltros
-);
-
-filtroDesde.addEventListener(
-    "change",
-    cambiarFiltros
-);
-
-filtroHasta.addEventListener(
-    "change",
-    cambiarFiltros
-);
-
-filtroTipo.addEventListener(
-    "change",
-    cambiarFiltros
-);
-
-
-/* =========================================================
    VOLVER A TVARG
 ========================================================= */
 
@@ -2096,6 +2736,7 @@ function mostrarContenido() {
             "peliculas"
         );
 
+
     const titulo =
         document.getElementById(
             "tituloCategoria"
@@ -2117,41 +2758,41 @@ function mostrarContenido() {
     */
 
     const categoria =
-        filtroCategoria.value;
+        filtroActual.categoria;
 
     const desde =
-        parseInt(
-            filtroDesde.value,
-            10
-        );
+        filtroActual.desde;
 
     const hasta =
-        parseInt(
-            filtroHasta.value,
-            10
-        );
+        filtroActual.hasta;
 
     const tipo =
-        filtroTipo.value;
+        filtroActual.tipo;
 
 
     /*
-       UNIFICAMOS PELÍCULAS Y SERIES.
+       UNIFICAMOS DATOS
     */
 
     let lista = [
 
         ...peliculas.map(
             pelicula => ({
+
                 ...pelicula,
+
                 _esSerie: false
+
             })
         ),
 
         ...series.map(
             serie => ({
+
                 ...serie,
+
                 _esSerie: true
+
             })
         )
 
@@ -2176,8 +2817,8 @@ function mostrarContenido() {
 
 
                     /*
-                       Compatibilidad con
-                       "SERIES DE TERROR".
+                       Compatibilidad
+                       con "SERIES DE TERROR".
                     */
 
                     if (
@@ -2636,7 +3277,7 @@ function reproducir(
 
 
 /* =========================================================
-   REPRODUCCIÓN ANDROID — TVARG / EXOPLAYER
+   REPRODUCCIÓN ANDROID
 ========================================================= */
 
 function reproducirEnAndroid(
@@ -3096,7 +3737,33 @@ window.addEventListener(
 
 
         /* ================================================
-           1. BUSCADOR ACTIVO
+           1. FILTRO ABIERTO
+        ================================================= */
+
+        const hayFiltroAbierto =
+            Object.values(
+                filtrosPersonalizados
+            ).some(
+                filtro =>
+                    filtro.contenedor
+                        .classList
+                        .contains(
+                            "abierto"
+                        )
+            );
+
+
+        if (hayFiltroAbierto) {
+
+            cerrarTodosLosFiltros();
+
+            return;
+
+        }
+
+
+        /* ================================================
+           2. BUSCADOR ACTIVO
         ================================================= */
 
         if (busquedaActiva) {
@@ -3109,7 +3776,7 @@ window.addEventListener(
 
 
         /* ================================================
-           2. MODAL DE SERIES
+           3. MODAL SERIES
         ================================================= */
 
         const modalSeries =
@@ -3131,7 +3798,7 @@ window.addEventListener(
 
 
         /* ================================================
-           3. REPRODUCTOR WEB
+           4. REPRODUCTOR WEB
         ================================================= */
 
         if (
@@ -3147,7 +3814,7 @@ window.addEventListener(
 
 
         /* ================================================
-           4. PANTALLA PRINCIPAL TVALC
+           5. PANTALLA PRINCIPAL
         ================================================= */
 
         volverTVArg();
@@ -3171,6 +3838,32 @@ document.addEventListener(
         ) {
 
             event.preventDefault();
+
+
+            /* ============================================
+               FILTROS
+            ============================================ */
+
+            const hayFiltroAbierto =
+                Object.values(
+                    filtrosPersonalizados
+                ).some(
+                    filtro =>
+                        filtro.contenedor
+                            .classList
+                            .contains(
+                                "abierto"
+                            )
+                );
+
+
+            if (hayFiltroAbierto) {
+
+                cerrarTodosLosFiltros();
+
+                return;
+
+            }
 
 
             /* ============================================
@@ -3280,9 +3973,15 @@ document.getElementById(
    INICIO
 ========================================================= */
 
-cargarAños();
+cargarFiltroCategoria();
 
-actualizarEstadoFiltros();
+cargarFiltrosAños();
+
+cargarFiltroTipo();
+
+actualizarListasSeleccionadas();
+
+actualizarBotonesFiltros();
 
 mostrarContenido();
 
