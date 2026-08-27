@@ -2,6 +2,15 @@ window.TVALC_PELICULAS = [];
 
 window.TVALC_PELICULAS.push(
 
+
+
+{
+    titulo: "Como agua para chocolate",
+    año: "1992",
+    categoria: "Romance",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/bBToqYouLBaoojtC6AyRNeFcQoV.jpg",
+     url: "http://liontv.es:8080/movie/Carlos3750/6u3rx2/1830260.mkv"
+},
 {
     titulo: "Mi mejor amigo, su novia y yo",
     año: "2026",
