@@ -136,19 +136,19 @@ body.android-app #volverTVArg {
 
 .buscador {
 
-    padding: 15px;
+    padding:
+        10px 15px 5px;
 
     display: flex;
 
     justify-content: center;
 
-    min-height: 64px;
+    min-height: 50px;
 }
 
 
 /*
-   CONTROL VISUAL INICIAL.
-   No es un input real.
+   CONTROL VISUAL INICIAL
 */
 
 #activarBusqueda {
@@ -157,18 +157,18 @@ body.android-app #volverTVArg {
         min(600px, 95%);
 
     padding:
-        13px 18px;
+        9px 14px;
 
-    border-radius: 25px;
+    border-radius: 20px;
 
     border:
-        1px solid #444;
+        1px solid #333;
 
-    background: #171717;
+    background: #151515;
 
     color: #aaa;
 
-    font-size: 16px;
+    font-size: 14px;
 
     text-align: left;
 
@@ -188,7 +188,7 @@ body.android-app #volverTVArg {
 
 
 /*
-   INPUT REAL.
+   INPUT REAL
 */
 
 #buscar {
@@ -199,18 +199,18 @@ body.android-app #volverTVArg {
         min(600px, 95%);
 
     padding:
-        13px 18px;
+        9px 14px;
 
-    border-radius: 25px;
+    border-radius: 20px;
 
     border:
-        1px solid #444;
+        1px solid #333;
 
-    background: #171717;
+    background: #151515;
 
     color: white;
 
-    font-size: 16px;
+    font-size: 14px;
 
     outline: none;
 }
@@ -218,6 +218,10 @@ body.android-app #volverTVArg {
 #buscar:focus {
 
     border-color: #777;
+
+    box-shadow:
+        0 0 0 2px
+        rgba(255,255,255,.08);
 }
 
 
@@ -234,17 +238,17 @@ body.android-app #volverTVArg {
     margin: 0 auto;
 
     padding:
-        5px 20px 15px;
+        3px 20px 10px;
 
     display: grid;
 
     grid-template-columns:
-        minmax(220px, 2fr)
-        minmax(150px, 1fr)
-        minmax(150px, 1fr)
-        minmax(180px, 1.2fr);
+        minmax(180px, 1.7fr)
+        minmax(115px, 1fr)
+        minmax(115px, 1fr)
+        minmax(150px, 1.2fr);
 
-    gap: 10px;
+    gap: 7px;
 }
 
 
@@ -256,21 +260,21 @@ body.android-app #volverTVArg {
 
     width: 100%;
 
-    min-height: 42px;
+    height: 36px;
 
     padding:
-        9px 38px 9px 14px;
+        5px 30px 5px 10px;
 
     border:
-        1px solid #444;
+        1px solid #333;
 
-    border-radius: 8px;
+    border-radius: 6px;
 
-    background: #171717;
+    background: #151515;
 
-    color: white;
+    color: #ccc;
 
-    font-size: 14px;
+    font-size: 13px;
 
     outline: none;
 
@@ -279,30 +283,30 @@ body.android-app #volverTVArg {
 
 .filtro:focus {
 
-    border-color: #aaa;
+    border-color: #777;
+
+    background: #202020;
 
     box-shadow:
         0 0 0 2px
-        rgba(255,255,255,.15);
+        rgba(255,255,255,.12);
 }
 
 .filtro:hover {
 
-    background: #222;
+    background: #202020;
 }
 
 
-/*
+/* =========================================================
    FILTRO ACTIVO
-
-   Permite distinguir visualmente cuando
-   el valor ya no es el predeterminado.
-*/
+========================================================= */
 
 .filtro.activo {
 
-    border-color: #777;
+    color: white;
 
+    border-color: #555;
 }
 
 
@@ -322,12 +326,19 @@ body.android-app #volverTVArg {
         10px 20px 40px;
 }
 
+
+/* =========================================================
+   TÍTULO DE RESULTADOS
+========================================================= */
+
 .tituloCategoria {
 
-    font-size: 22px;
+    font-size: 18px;
+
+    color: #ccc;
 
     margin:
-        10px 0 18px;
+        8px 0 14px;
 }
 
 
@@ -677,7 +688,8 @@ body.android-app #volverTVArg {
 
     padding: 12px;
 
-    border: 1px solid #444;
+    border:
+        1px solid #444;
 
     border-radius: 8px;
 
@@ -728,46 +740,60 @@ body.android-app #volverTVArg {
         font-size: 14px;
     }
 
+
+    /* -----------------------------------------
+       BUSCADOR
+    ----------------------------------------- */
+
     .buscador {
 
         padding:
-            12px 8px;
+            8px 8px 4px;
     }
 
+    #activarBusqueda,
+    #buscar {
 
-    /* -----------------------------------------
-       FILTROS MÓVILES
-    ----------------------------------------- */
-
-    .filtros {
+        width: 95%;
 
         padding:
-            5px 14px 12px;
-
-        grid-template-columns:
-            1fr 1fr;
-
-        gap: 8px;
-    }
-
-    .filtro {
-
-        min-height: 40px;
-
-        padding:
-            8px 30px 8px 10px;
+            8px 12px;
 
         font-size: 13px;
     }
 
 
-    .peliculas {
+    /* -----------------------------------------
+       FILTROS
+    ----------------------------------------- */
+
+    .filtros {
+
+        padding:
+            3px 14px 9px;
 
         grid-template-columns:
-            repeat(2, 1fr);
+            1fr 1fr;
 
-        gap: 12px;
+        gap: 6px;
     }
+
+    .filtro {
+
+        height: 35px;
+
+        padding:
+            5px 25px 5px 9px;
+
+        font-size: 12px;
+
+        border-radius: 6px;
+    }
+
+
+    /* -----------------------------------------
+       CONTENIDO
+    ----------------------------------------- */
 
     .contenedor {
 
@@ -777,10 +803,23 @@ body.android-app #volverTVArg {
 
     .tituloCategoria {
 
-        font-size: 18px;
+        font-size: 16px;
 
         margin:
-            8px 0 14px;
+            6px 0 12px;
+    }
+
+
+    /* -----------------------------------------
+       TARJETAS
+    ----------------------------------------- */
+
+    .peliculas {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 12px;
     }
 
     .nombre {
@@ -832,27 +871,31 @@ body.android-app #volverTVArg {
     }
 
 
+    /* -----------------------------------------
+       BUSCADOR
+    ----------------------------------------- */
+
     .buscador {
 
         margin:
             8px 18px 0;
 
         padding:
-            8px;
+            6px 8px 3px;
     }
 
     #activarBusqueda,
     #buscar {
 
         padding:
-            9px 15px;
+            7px 12px;
 
-        font-size: 14px;
+        font-size: 12px;
     }
 
 
     /* -----------------------------------------
-       FILTROS TV
+       FILTROS
     ----------------------------------------- */
 
     .filtros {
@@ -861,43 +904,52 @@ body.android-app #volverTVArg {
             0 18px;
 
         padding:
-            4px 0 12px;
+            2px 0 8px;
 
         width:
             calc(100% - 36px);
 
         grid-template-columns:
-            2fr 1fr 1fr 1.2fr;
+            1.7fr 1fr 1fr 1.2fr;
 
-        gap:
-            6px;
+        gap: 5px;
     }
 
     .filtro {
 
-        min-height: 36px;
+        height: 32px;
 
         padding:
-            6px 26px 6px 9px;
+            4px 24px 4px 8px;
 
-        font-size: 12px;
+        font-size: 11px;
+
+        border-radius: 5px;
     }
 
+
+    /* -----------------------------------------
+       CONTENIDO
+    ----------------------------------------- */
 
     .contenedor {
 
         padding:
-            10px 28px 35px;
+            8px 28px 35px;
     }
 
     .tituloCategoria {
 
-        font-size: 17px;
+        font-size: 15px;
 
         margin:
-            8px 0 12px;
+            6px 0 10px;
     }
 
+
+    /* -----------------------------------------
+       TARJETAS
+    ----------------------------------------- */
 
     .peliculas {
 
