@@ -716,7 +716,8 @@ body.android-app #volverTVArg {
    MÓVIL
 ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 600px),
+       (max-width: 800px) and (orientation: portrait) {
 
     header {
 
@@ -769,8 +770,12 @@ body.android-app #volverTVArg {
 
     .filtros {
 
+        width: 100%;
+
         padding:
             3px 14px 9px;
+
+        margin: 0;
 
         grid-template-columns:
             1fr 1fr;
@@ -780,6 +785,8 @@ body.android-app #volverTVArg {
 
     .filtro {
 
+        width: 100%;
+
         height: 35px;
 
         padding:
@@ -788,6 +795,8 @@ body.android-app #volverTVArg {
         font-size: 12px;
 
         border-radius: 6px;
+
+        min-width: 0;
     }
 
 
@@ -843,10 +852,11 @@ body.android-app #volverTVArg {
 
 
 /* =========================================================
-   TV / WEBVIEW PEQUEÑO
+   TV / WEBVIEW PEQUEÑO — HORIZONTAL
 ========================================================= */
 
-@media (min-width: 601px) and (max-width: 1100px) {
+@media (min-width: 601px) and (max-width: 1100px)
+       and (orientation: landscape) {
 
     header {
 
@@ -925,6 +935,8 @@ body.android-app #volverTVArg {
         font-size: 11px;
 
         border-radius: 5px;
+
+        min-width: 0;
     }
 
 
