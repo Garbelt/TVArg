@@ -92,6 +92,179 @@ window.TVALC_SERIES.push({
 
 });
 
+window.TVALC_SERIES.push({
+
+titulo: "Las crónicas del miedo",
+año: "2020",
+categoria: "Terror",
+tipo: "serie",
+poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/vX9pJg34KjBBDIZLS6I29CfQD9h.jpg",
+
+temporadas: [
+
+    {
+        numero: 1,
+
+        capitulos: [
+
+            {
+                numero: 1,
+                titulo: "Capítulo 1",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67863.mkv"
+            },
+
+            {
+                numero: 2,
+                titulo: "Capítulo 2",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67864.mkv"
+            },
+
+            {
+                numero: 3,
+                titulo: "Capítulo 3",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67865.mkv"
+            },
+
+            {
+                numero: 4,
+                titulo: "Capítulo 4",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67866.mkv"
+            },
+
+            {
+                numero: 5,
+                titulo: "Capítulo 5",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67867.mkv"
+            },
+
+            {
+                numero: 6,
+                titulo: "Capítulo 6",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67868.mkv"
+            },
+
+            {
+                numero: 7,
+                titulo: "Capítulo 7",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67869.mkv"
+            },
+
+            {
+                numero: 8,
+                titulo: "Capítulo 8",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67870.mkv"
+            },
+
+            {
+                numero: 9,
+                titulo: "Capítulo 9",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67871.mkv"
+            },
+
+            {
+                numero: 10,
+                titulo: "Capítulo 10",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67872.mkv"
+            },
+
+            {
+                numero: 11,
+                titulo: "Capítulo 11",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67873.mkv"
+            },
+
+            {
+                numero: 12,
+                titulo: "Capítulo 12",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67874.mkv"
+            },
+
+            {
+                numero: 13,
+                titulo: "Capítulo 13",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67875.mkv"
+            }
+
+        ]
+    },
+
+    {
+        numero: 2,
+
+        capitulos: [
+
+            {
+                numero: 1,
+                titulo: "Capítulo 1",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67876.mkv"
+            },
+
+            {
+                numero: 2,
+                titulo: "Capítulo 2",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67877.mkv"
+            },
+
+            {
+                numero: 3,
+                titulo: "Capítulo 3",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67878.mkv"
+            },
+
+            {
+                numero: 4,
+                titulo: "Capítulo 4",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67879.mkv"
+            },
+
+            {
+                numero: 5,
+                titulo: "Capítulo 5",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67880.mkv"
+            },
+
+            {
+                numero: 6,
+                titulo: "Capítulo 6",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67881.mkv"
+            },
+
+            {
+                numero: 7,
+                titulo: "Capítulo 7",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67882.mkv"
+            },
+
+            {
+                numero: 8,
+                titulo: "Capítulo 8",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67883.mkv"
+            },
+
+            {
+                numero: 9,
+                titulo: "Capítulo 9",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67884.mkv"
+            },
+
+            {
+                numero: 10,
+                titulo: "Capítulo 10",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67885.mkv"
+            },
+
+            {
+                numero: 11,
+                titulo: "Capítulo 11",
+                url: "http://planettvweb.com:8091/series/Pablo653/FPad2549d/67886.mkv"
+            }
+
+        ]
+    }
+
+]
+
+});
 
 window.TVALC_SERIES.push({
 
