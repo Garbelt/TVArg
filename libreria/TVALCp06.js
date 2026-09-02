@@ -650,6 +650,111 @@ window.TVALC_PELICULAS.push(
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/fYrX4Xn8hIaIBx5p1HRFJ3uG7uH.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138090.mkv",
         categoria: "Infantil"
-    }
+    },
+
+{
+titulo: "En mar abierto",
+año: "2026",
+categoria: "Acción",
+poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/2yXnZvLxfi0paO0HnjpO4rLfocr.jpg",
+url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159562.mkv"
+},
+
+{
+titulo: "The Furious",
+año: "2026",
+categoria: "Acción",
+poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/ryOVzYoGhiOn4QtkwSa8pUTivPO.jpg",
+url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159302.mkv"
+},
+
+{
+titulo: "La Odisea",
+año: "2026",
+categoria: "Aventura",
+poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sf2ke1nwFOLLcwLZiXu9VaMMv8e.jpg",
+url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159432.mkv"
+},
+
+{
+titulo: "Moana",
+año: "2026",
+categoria: "Infantil",
+poster: "https://mx.web.img3.acsta.net/c_310_420/img/56/67/566712bc2f37976f5326d35ae0955faf.jpg",
+url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159318.mkv"
+},
+
+{
+titulo: "Dink",
+año: "2026",
+categoria: "Comedia",
+poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/5rVJLhpYrtaDzeItzhteP3xCZW7.jpg",
+url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159456.mkv"
+},
+
+{
+titulo: "La casaca de Dios",
+año: "2026",
+categoria: "Comedia",
+poster: "https://grupocine.com.uy/storage/peliculas/01KMJSKHFTD2X5F2RQ29G0F1WD.jpg",
+url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159338.mkv"
+},
+
+{
+titulo: "Normal",
+año: "2026",
+categoria: "Comedia",
+poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/1KmqwmCPrrs06qHFmwx4kzB58kJ.jpg",
+url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159301.mkv"
+},
+
+{
+titulo: "Hasta el final",
+año: "2026",
+categoria: "Drama",
+poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/vaedoBmTuQ3zutjUxDvd2YpsHyQ.jpg",
+url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159336.mkv"
+},
+
+{
+titulo: "El día de la revelación",
+año: "2026",
+categoria: "Ciencia ficción",
+poster: "https://es.web.img3.acsta.net/img/4c/76/4c76c87d9cf346dfc2af1fcaa76f964a.jpg",
+url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159415.mkv"
+},
+
+{
+titulo: "El juego de la venganza",
+año: "2026",
+categoria: "Crimen",
+poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/dzHcsmW6jTCXZdVKbaxV3m1crSg.jpg",
+url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159335.mkv"
+},
+
+{
+titulo: "Minions y monstruos",
+año: "2026",
+categoria: "Infantil",
+poster: "https://es.web.img3.acsta.net/img/70/1c/701c8be06bb096a2110e506f5bbb0581.jpg",
+url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159342.mkv"
+},
+
+{
+titulo: "Tiempo de victoria",
+año: "2026",
+categoria: "Bélica",
+poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/d0PeqfICHgKnQ2f8YxyRJAg62fK.jpg",
+url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159303.mkv"
+},
+
+{
+titulo: "El pasajero nocturno",
+año: "2026",
+categoria: "Terror",
+poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/iX8D97TG8gVvHZ8S4clcdpCX7Uv.jpg",
+url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159286.mkv"
+}
+
 
 );
