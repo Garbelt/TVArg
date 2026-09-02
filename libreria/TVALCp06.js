@@ -585,14 +585,6 @@ window.TVALC_PELICULAS.push(
     },
 
     {
-        titulo: "Lo que aprendí de mi pingüino",
-        año: "2025",
-        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/eDBIP5e5qn80qhJAQYa2ktq9il0.jpg",
-        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138302.mkv",
-        categoria: "Infantil"
-    },
-
-    {
         titulo: "LEGO Princesas Disney: Villanos unidos",
         año: "2025",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/ajcRSuv1rYbrDxnlNN5xx5H44Ft.jpg",
@@ -629,22 +621,6 @@ window.TVALC_PELICULAS.push(
         año: "2025",
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/zBdQclxQnEDOhDOjkKgKPW6jEHh.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138005.mkv",
-        categoria: "Infantil"
-    },
-
-    {
-        titulo: "Elio Full HD",
-        año: "2025",
-        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/fGjwHlv8bCjZypi2bHbbSmyIGMV.jpg",
-        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138263.mkv",
-        categoria: "Infantil"
-    },
-
-    {
-        titulo: "Policán Las aventuras de Dog Man",
-        año: "2025",
-        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/fYrX4Xn8hIaIBx5p1HRFJ3uG7uH.jpg",
-        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138090.mkv",
         categoria: "Infantil"
     },
 
