@@ -456,10 +456,6 @@ window.TVALC_PELICULAS.push(
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159001.mkv"
     },
 
-    // =========================
-    // INFANTIL
-    // =========================
-
     {
         titulo: "Barbie en Un cuento de Navidad",
         año: "2008",
@@ -677,14 +673,6 @@ url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159432.mkv"
 },
 
 {
-titulo: "Moana",
-año: "2026",
-categoria: "Infantil",
-poster: "https://mx.web.img3.acsta.net/c_310_420/img/56/67/566712bc2f37976f5326d35ae0955faf.jpg",
-url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159318.mkv"
-},
-
-{
 titulo: "Dink",
 año: "2026",
 categoria: "Comedia",
@@ -730,14 +718,6 @@ año: "2026",
 categoria: "Crimen",
 poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/dzHcsmW6jTCXZdVKbaxV3m1crSg.jpg",
 url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159335.mkv"
-},
-
-{
-titulo: "Minions y monstruos",
-año: "2026",
-categoria: "Infantil",
-poster: "https://es.web.img3.acsta.net/img/70/1c/701c8be06bb096a2110e506f5bbb0581.jpg",
-url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159342.mkv"
 },
 
 {
