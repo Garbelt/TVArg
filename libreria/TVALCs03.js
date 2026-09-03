@@ -807,3 +807,106 @@ window.TVALC_SERIES.push({
     ]
 
 });
+
+
+window.TVALC_SERIES.push({
+
+    titulo: "Schmigadoon!",
+    año: "2021",
+    categoria: "Comedia",
+    tipo: "serie",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/gskkQQfjteknSho5UlfyK9KrzxU.jpg",
+
+    temporadas: [
+
+        {
+            numero: 1,
+
+            capitulos: [
+
+                {
+                    numero: 1,
+                    titulo: "Capítulo 1",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85882.mkv"
+                },
+
+                {
+                    numero: 2,
+                    titulo: "Capítulo 2",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85883.mkv"
+                },
+
+                {
+                    numero: 3,
+                    titulo: "Capítulo 3",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85884.mkv"
+                },
+
+                {
+                    numero: 4,
+                    titulo: "Capítulo 4",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85885.mkv"
+                },
+
+                {
+                    numero: 5,
+                    titulo: "Capítulo 5",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85886.mkv"
+                },
+
+                {
+                    numero: 6,
+                    titulo: "Capítulo 6",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85887.mkv"
+                }
+
+            ]
+        },
+
+        {
+            numero: 2,
+
+            capitulos: [
+
+                {
+                    numero: 1,
+                    titulo: "Capítulo 1",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85888.mkv"
+                },
+
+                {
+                    numero: 2,
+                    titulo: "Capítulo 2",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85889.mkv"
+                },
+
+                {
+                    numero: 3,
+                    titulo: "Capítulo 3",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85890.mkv"
+                },
+
+                {
+                    numero: 4,
+                    titulo: "Capítulo 4",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85891.mkv"
+                },
+
+                {
+                    numero: 5,
+                    titulo: "Capítulo 5",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85892.mkv"
+                },
+
+                {
+                    numero: 6,
+                    titulo: "Capítulo 6",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85893.mkv"
+                }
+
+            ]
+        }
+
+    ]
+
+});
