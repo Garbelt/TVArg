@@ -585,3 +585,124 @@ window.TVALC_SERIES.push({
     ]
 
 });
+
+
+window.TVALC_SERIES.push({
+
+    titulo: "Lo último que me dijo",
+    año: "2023",
+    categoria: "SERIES DE SUSPENSO",
+    tipo: "serie",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7Iz3oGNFtO474Xo06YETe3uEplG.jpg",
+
+    temporadas: [
+
+        {
+            numero: 1,
+
+            capitulos: [
+
+                {
+                    numero: 1,
+                    titulo: "Capítulo 1",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85755.mkv"
+                },
+
+                {
+                    numero: 2,
+                    titulo: "Capítulo 2",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85756.mkv"
+                },
+
+                {
+                    numero: 3,
+                    titulo: "Capítulo 3",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85757.mkv"
+                },
+
+                {
+                    numero: 4,
+                    titulo: "Capítulo 4",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85758.mkv"
+                },
+
+                {
+                    numero: 5,
+                    titulo: "Capítulo 5",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85759.mkv"
+                },
+
+                {
+                    numero: 6,
+                    titulo: "Capítulo 6",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85760.mkv"
+                },
+
+                {
+                    numero: 7,
+                    titulo: "Capítulo 7",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/85761.mkv"
+                }
+
+            ]
+        },
+
+        {
+            numero: 2,
+
+            capitulos: [
+
+                {
+                    numero: 1,
+                    titulo: "Capítulo 1",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/148333.mkv"
+                },
+
+                {
+                    numero: 2,
+                    titulo: "Capítulo 2",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/148334.mkv"
+                },
+
+                {
+                    numero: 3,
+                    titulo: "Capítulo 3",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/148335.mkv"
+                },
+
+                {
+                    numero: 4,
+                    titulo: "Capítulo 4",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/148336.mkv"
+                },
+
+                {
+                    numero: 5,
+                    titulo: "Capítulo 5",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/148337.mkv"
+                },
+
+                {
+                    numero: 6,
+                    titulo: "Capítulo 6",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/148338.mkv"
+                },
+
+                {
+                    numero: 7,
+                    titulo: "Capítulo 7",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/148339.mkv"
+                },
+
+                {
+                    numero: 8,
+                    titulo: "Capítulo 8",
+                    url: "http://planettvweb.com:8091/series/Carmen65/RMap9748d/148340.mkv"
+                }
+
+            ]
+        }
+
+    ]
+
+});
