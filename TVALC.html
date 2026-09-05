@@ -699,19 +699,6 @@ body.android-app #volverTVArg {
     background: black;
 }
 
-#youtubeWebView {
-
-    width: 90%;
-
-    max-width: 1100px;
-
-    height: 70vh;
-
-    border: none;
-
-    background: black;
-}
-
 #tituloReproductor {
 
     margin: 10px;
@@ -719,6 +706,35 @@ body.android-app #volverTVArg {
     font-size: 20px;
 
     text-align: center;
+}
+
+
+/* =========================================================
+   YOUTUBE WEBVIEW — PANTALLA COMPLETA
+========================================================= */
+
+#youtubeOverlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: black;
+
+    display: none;
+
+    z-index: 3000;
+}
+
+#youtubeFrame {
+
+    width: 100%;
+
+    height: 100%;
+
+    border: 0;
+
+    display: block;
 }
 
 
@@ -1467,6 +1483,21 @@ body.android-app #volverTVArg {
         autoplay
         playsinline>
     </video>
+
+</div>
+
+
+<!-- =====================================================
+     YOUTUBE WEBVIEW — PANTALLA COMPLETA
+===================================================== -->
+
+<div id="youtubeOverlay">
+
+    <iframe
+        id="youtubeFrame"
+        allow="autoplay; encrypted-media; fullscreen"
+        allowfullscreen>
+    </iframe>
 
 </div>
 
@@ -3198,73 +3229,52 @@ if (
     pelicula.reproductor === "WebView"
 ) {
 
-    const reproductor =
+    const youtubeOverlay =
         document.getElementById(
-            "reproductor"
+            "youtubeOverlay"
         );
 
-    const video =
+    const youtubeFrame =
         document.getElementById(
-            "video"
-        );
-
-    const tituloReproductor =
-        document.getElementById(
-            "tituloReproductor"
+            "youtubeFrame"
         );
 
 
-    /* Ocultar el reproductor HTML */
+    /* Limpiar reproducción anterior */
 
-    video.style.display =
-        "none";
-
-
-    tituloReproductor.textContent =
-        pelicula.titulo +
-        " (" +
-        pelicula.año +
-        ")";
+    youtubeFrame.src =
+        "about:blank";
 
 
-    /* Crear iframe de YouTube */
+    /* Mostrar pantalla completa */
 
-    const iframe =
-        document.createElement(
-            "iframe"
-        );
-
-    iframe.id =
-        "youtubeWebView";
-
-    iframe.src =
-        pelicula.url;
+    youtubeOverlay.style.display =
+        "block";
 
 
-    iframe.setAttribute(
-        "allow",
-        "autoplay; encrypted-media; fullscreen"
+    /*
+       Igual que TVArg:
+       damos un pequeño margen antes
+       de cargar YouTube.
+    */
+
+    setTimeout(
+        () => {
+
+            youtubeFrame.src =
+                pelicula.url;
+
+        },
+        80
     );
 
-    iframe.setAttribute(
-        "allowfullscreen",
-        ""
-    );
-
-
-    reproductor.appendChild(
-        iframe
-    );
-
-
-    reproductor.style.display =
-        "flex";
 
     reproductorAbierto =
         true;
 
     reproduccionNativa =
         false;
+
 
     return;
 }
@@ -3563,6 +3573,25 @@ function cerrarReproductor() {
 
     video.style.display =
         "";
+
+
+const youtubeOverlay =
+    document.getElementById(
+        "youtubeOverlay"
+    );
+
+const youtubeFrame =
+    document.getElementById(
+        "youtubeFrame"
+    );
+
+
+youtubeOverlay.style.display =
+    "none";
+
+
+youtubeFrame.src =
+    "about:blank";
 
 
     const youtubeWebView =
