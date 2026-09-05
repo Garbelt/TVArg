@@ -326,7 +326,7 @@ window.TVALC_PELICULAS.push(
     titulo: "Phil Collins: Finally... The First Farewell Tour",
     año: "2004",
     categoria: "Recital",
-    poster: "https://images.justwatch.com/poster/272395251/s718/phil-collins-finally-the-first-farewell-tour.jpg",
+    poster: "https://images.coveralia.com/audio/p/Phil_Collins-Finally_The_First_Farewell_Tour-Frontal.jpg",
     url: "https://www.youtube.com/embed/cPzrZ-1g-7U?autoplay=1",
     reproductor: "WebView"
 },
