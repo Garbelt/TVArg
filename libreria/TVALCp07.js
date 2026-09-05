@@ -331,4 +331,13 @@ window.TVALC_PELICULAS.push(
     reproductor: "WebView"
 },
 
+{
+    titulo: "Pink Floyd: P.U.L.S.E.",
+    año: "1995",
+    categoria: "Recital",
+    poster: "https://rockaway.com.au/cdn/shop/files/194398995199.jpg?v=1753505044",
+    url: "https://www.youtube.com/embed/HriYRoxWo1I?autoplay=1",
+    reproductor: "WebView"
+},
+
 );
