@@ -350,6 +350,14 @@ window.TVALC_PELICULAS.push(
 },
 
 {
+    titulo: "Michael Jackson - Live in Munich",
+    año: "1997",
+    categoria: "Recital",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/i1eQN3qOcsYAOFGVHr5ACSPB1L7.jpg",
+    url: "http://planettvweb.com:8091/movie/VianaJulio/Julio2582/138085.mkv"
+},
+
+{
     titulo: "Mi Navidad con Bob",
     año: "2020",
     categoria: "Drama",
