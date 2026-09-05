@@ -335,8 +335,17 @@ window.TVALC_PELICULAS.push(
     titulo: "Pink Floyd: P.U.L.S.E.",
     año: "1995",
     categoria: "Recital",
-    poster: "https://rockaway.com.au/cdn/shop/files/194398995199.jpg?v=1753505044",
+    poster: "https://i.pinimg.com/736x/54/71/83/54718384c5ca96de9bc7341fc1580e66.jpg",
     url: "https://www.youtube.com/embed/HriYRoxWo1I?autoplay=1",
+    reproductor: "WebView"
+},
+
+{
+    titulo: "Paul McCartney & Wings: Rockshow",
+    año: "1980",
+    categoria: "Recital",
+    poster: "https://www.thevintageposter.com/Art_Images/Medium/11630.jpg",
+    url: "https://www.youtube.com/embed/8ahZ1ijLmMY?autoplay=1",
     reproductor: "WebView"
 },
 
