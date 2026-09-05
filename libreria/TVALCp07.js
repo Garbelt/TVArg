@@ -349,4 +349,124 @@ window.TVALC_PELICULAS.push(
     reproductor: "WebView"
 },
 
+{
+    titulo: "Mi Navidad con Bob",
+    año: "2020",
+    categoria: "Drama",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/6RzyEQ9KdXnW8X4EVGBLqfAW1iU.jpg",
+    url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/117061.mkv"
+},
+
+{
+    titulo: "La purga infinita",
+    año: "2021",
+    categoria: "Terror",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/zWiXxOTM3NeYcj3dzbtoGqIIJPz.jpg",
+    url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/117057.mkv"
+},
+
+{
+    titulo: "El vidente",
+    año: "2007",
+    categoria: "Ciencia ficción",
+    poster: "https://image.tmdb.org/t/p/original/gxM0puUmmkKaAzrIo3RvRoX8ZAY.jpg",
+    url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/117059.mkv"
+},
+
+{
+    titulo: "Mente criminal",
+    año: "2006",
+    categoria: "Crimen",
+    poster: "https://m.media-amazon.com/images/M/MV5BYzhhMmRiNGQtMjNjOC00ZWU2LWEzY2YtYmM5NDA0OTY5OWVmXkEyXkFqcGc@._V1_.jpg",
+    url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/117056.mp4"
+},
+
+{
+    titulo: "Pequeño Manhattan",
+    año: "2005",
+    categoria: "Romance",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uphY0n0Nm47l4MHzqYNoaZJuzBJ.jpg",
+    url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/117054.mkv"
+},
+
+{
+    titulo: "Sleepover",
+    año: "2004",
+    categoria: "Comedia",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/jaPVV3JQWpMK3E5MnmUZmKJug0v.jpg",
+    url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/117047.mkv"
+},
+
+{
+    titulo: "La peor obra de Navidad",
+    año: "2024",
+    categoria: "Comedia",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/wec38vzKfaNU39y8XzWg8OJffe4.jpg",
+    url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/116923.mkv"
+},
+
+{
+    titulo: "El misterio de Marilyn Monroe: Las cintas inéditas",
+    año: "2022",
+    categoria: "Documental",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/wizYwoGqL2hVTFcHHAyi2dfYGnk.jpg",
+    url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/116920.mkv"
+},
+
+{
+    titulo: "Campanas de Navidad",
+    año: "2022",
+    categoria: "Historia",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/gobUFD2A2IGMXsn7ESp4Ad7UpnT.jpg",
+    url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/116902.mkv"
+},
+
+{
+    titulo: "El señor de los anillos: La guerra de los Rohirrim",
+    año: "2024",
+    categoria: "Fantasía",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/mD2m6Lr7GtyBv85EP1s0dQHQo1X.jpg",
+    url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/116901.mkv"
+},
+
+{
+    titulo: "Downhill",
+    año: "2016",
+    categoria: "Terror",
+    poster: "https://m.media-amazon.com/images/M/MV5BMWZlNDJiYjUtNWExNC00YTU2LTk0ODQtMzc2MzEyNmFhNDBjXkEyXkFqcGc@._V1_QL75_UX480_.jpg",
+    url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/116898.mkv"
+},
+
+{
+    titulo: "Muertos vivientes",
+    año: "2007",
+    categoria: "Terror",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/j3LWOKFoeKJDn2dHXoJoRWeakRu.jpg",
+    url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/116899.mkv"
+},
+
+{
+    titulo: "Sky High: Una escuela de altos vuelos",
+    año: "2005",
+    categoria: "Aventura",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/dXtT1o8bLUflTSh1e0XvDSzCFs4.jpg",
+    url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/116894.mkv"
+},
+
+{
+    titulo: "El hombre agua",
+    año: "2020",
+    categoria: "Fantasía",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/1lXwd3eZOE8KoLsmIw7evmiDFTF.jpg",
+    url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/116895.mkv"
+},
+
+{
+    titulo: "The Queen",
+    año: "2006",
+    categoria: "Historia",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/e2nS4Yl8ggUlAV2qpnLRYL4Hatb.jpg",
+    url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/116896.mkv"
+},
+
 );
