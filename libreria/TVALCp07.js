@@ -307,7 +307,7 @@ window.TVALC_PELICULAS.push(
 {
     titulo: "Stevie Wonder: Live at Last",
     año: "2009",
-    categoria: "Recitales",
+    categoria: "Recital",
     poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/lPYaTHn3kj8YLLQMJ4JrL7RVuoW.jpg",
     url: "https://www.youtube.com/embed/Oqxs2WutrzQ?autoplay=1",
     reproductor: "WebView"
@@ -316,7 +316,7 @@ window.TVALC_PELICULAS.push(
 {
     titulo: "Concert for George",
     año: "2003",
-    categoria: "Recitales",
+    categoria: "Recital",
     poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/gVVd7hEfOgJ3OYkOUaoCqIZMmpC.jpg",
     url: "https://www.youtube.com/embed/vJ_HvLolKJE?autoplay=1",
     reproductor: "WebView"
