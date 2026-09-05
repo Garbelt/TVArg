@@ -302,6 +302,15 @@ window.TVALC_PELICULAS.push(
     categoria: "Ciencia ficción",
     poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/vzJkrTx01ol7FTIhzS50pms5xEG.jpg",
     url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159020.mkv"
-}
+},
+
+{
+    titulo: "Stevie Wonder: Live at Last",
+    año: "2009",
+    categoria: "Recitales",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/lPYaTHn3kj8YLLQMJ4JrL7RVuoW.jpg",
+    url: "https://www.youtube.com/embed/Oqxs2WutrzQ?autoplay=1",
+    reproductor: "WebView"
+},
 
 );
