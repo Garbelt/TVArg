@@ -3175,6 +3175,90 @@ function reproducir(
     pelicula
 ) {
 
+    /* ==========================================
+       WEBVIEW — YOUTUBE
+    ========================================== */
+
+    if (
+        pelicula.reproductor === "WebView"
+    ) {
+
+        const reproductor =
+            document.getElementById(
+                "reproductor"
+            );
+
+        const tituloReproductor =
+            document.getElementById(
+                "tituloReproductor"
+            );
+
+        tituloReproductor.textContent =
+            pelicula.titulo +
+            " (" +
+            pelicula.año +
+            ")";
+
+
+        /* Crear WebView visual mediante iframe */
+
+        const iframe =
+            document.createElement(
+                "iframe"
+            );
+
+        iframe.id =
+            "youtubeWebView";
+
+        iframe.src =
+            pelicula.url;
+
+        iframe.style.width =
+            "90%";
+
+        iframe.style.maxWidth =
+            "1100px";
+
+        iframe.style.height =
+            "70vh";
+
+        iframe.style.border =
+            "none";
+
+        iframe.style.background =
+            "black";
+
+        iframe.setAttribute(
+            "allow",
+            "autoplay; encrypted-media; fullscreen"
+        );
+
+        iframe.setAttribute(
+            "allowfullscreen",
+            ""
+        );
+
+
+        reproductor.appendChild(
+            iframe
+        );
+
+
+        reproductor.style.display =
+            "flex";
+
+        reproductorAbierto =
+            true;
+
+        reproduccionNativa =
+            false;
+
+        return;
+    }
+
+    /* ==========================================
+    ========================================== */
+
     const url =
         pelicula.url
             .split("?")[0]
@@ -3446,7 +3530,6 @@ function cerrarReproductor() {
             "reproductor"
         );
 
-
     const video =
         document.getElementById(
             "video"
@@ -3455,18 +3538,27 @@ function cerrarReproductor() {
 
     video.pause();
 
-
     video.removeAttribute(
         "src"
     );
 
-
     video.load();
+
+
+    const youtubeWebView =
+        document.getElementById(
+            "youtubeWebView"
+        );
+
+    if (youtubeWebView) {
+
+        youtubeWebView.remove();
+
+    }
 
 
     reproductor.style.display =
         "none";
-
 
     reproductorAbierto =
         false;
