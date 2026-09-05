@@ -3194,82 +3194,80 @@ function reproducir(
        WEBVIEW — YOUTUBE
     ========================================== */
 
-    if (
-        pelicula.reproductor === "WebView"
-    ) {
+if (
+    pelicula.reproductor === "WebView"
+) {
 
-        const reproductor =
-            document.getElementById(
-                "reproductor"
-            );
-
-        const tituloReproductor =
-            document.getElementById(
-                "tituloReproductor"
-            );
-
-        tituloReproductor.textContent =
-            pelicula.titulo +
-            " (" +
-            pelicula.año +
-            ")";
-
-
-        /* Crear WebView visual mediante iframe */
-
-        const iframe =
-            document.createElement(
-                "iframe"
-            );
-
-        iframe.id =
-            "youtubeWebView";
-
-        iframe.src =
-            pelicula.url;
-
-        iframe.style.width =
-            "90%";
-
-        iframe.style.maxWidth =
-            "1100px";
-
-        iframe.style.height =
-            "70vh";
-
-        iframe.style.border =
-            "none";
-
-        iframe.style.background =
-            "black";
-
-        iframe.setAttribute(
-            "allow",
-            "autoplay; encrypted-media; fullscreen"
+    const reproductor =
+        document.getElementById(
+            "reproductor"
         );
 
-        iframe.setAttribute(
-            "allowfullscreen",
-            ""
+    const video =
+        document.getElementById(
+            "video"
+        );
+
+    const tituloReproductor =
+        document.getElementById(
+            "tituloReproductor"
         );
 
 
-        reproductor.appendChild(
-            iframe
+    /* Ocultar el reproductor HTML */
+
+    video.style.display =
+        "none";
+
+
+    tituloReproductor.textContent =
+        pelicula.titulo +
+        " (" +
+        pelicula.año +
+        ")";
+
+
+    /* Crear iframe de YouTube */
+
+    const iframe =
+        document.createElement(
+            "iframe"
         );
 
+    iframe.id =
+        "youtubeWebView";
 
-        reproductor.style.display =
-            "flex";
+    iframe.src =
+        pelicula.url;
 
-        reproductorAbierto =
-            true;
 
-        reproduccionNativa =
-            false;
+    iframe.setAttribute(
+        "allow",
+        "autoplay; encrypted-media; fullscreen"
+    );
 
-        return;
-    }
+    iframe.setAttribute(
+        "allowfullscreen",
+        ""
+    );
+
+
+    reproductor.appendChild(
+        iframe
+    );
+
+
+    reproductor.style.display =
+        "flex";
+
+    reproductorAbierto =
+        true;
+
+    reproduccionNativa =
+        false;
+
+    return;
+}
 
     /* ==========================================
     ========================================== */
@@ -3343,6 +3341,8 @@ function reproducir(
             "video"
         );
 
+    video.style.display =
+        "";
 
     document.getElementById(
         "tituloReproductor"
@@ -3469,6 +3469,8 @@ function reproducirWeb(
             "video"
         );
 
+    video.style.display =
+        "";
 
     document.getElementById(
         "tituloReproductor"
@@ -3558,6 +3560,9 @@ function cerrarReproductor() {
     );
 
     video.load();
+
+    video.style.display =
+        "";
 
 
     const youtubeWebView =
