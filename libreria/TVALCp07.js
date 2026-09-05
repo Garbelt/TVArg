@@ -3,7 +3,7 @@ window.TVALC_PELICULAS.push(
 {
     titulo: "Posesión infernal: En llamas",
     año: "2026",
-    categoria: "Terror",
+    categoria: "Terror", 
     poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/hDXmoQJ7EClgjv83Z0vEIQu2t7S.jpg",
     url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159695.mkv"
 },
