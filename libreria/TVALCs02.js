@@ -3,8 +3,10 @@ window.TVALC_SERIES.push({
     titulo: "CIA",
     año: "2025",
     categoria: "SERIES DE ACCIÓN",
+    clasificacion: "MAYORES DE 16",
     tipo: "serie",
     poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7QuzsX5OE1bNOscdUO6RhzNUJFC.jpg",
+    descripcion: "Un agente de la CIA se ve involucrado en peligrosas operaciones de espionaje y debe enfrentarse a amenazas internacionales mientras intenta cumplir sus misiones y proteger a quienes lo rodean."
 
     temporadas: [
 
@@ -97,8 +99,10 @@ window.TVALC_SERIES.push({
 titulo: "Las crónicas del miedo",
 año: "2020",
 categoria: "Terror",
+clasificacion: "MAYORES DE 16",
 tipo: "serie",
 poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/vX9pJg34KjBBDIZLS6I29CfQD9h.jpg",
+descripcion: "Serie de terror y suspenso que presenta diferentes historias y situaciones inquietantes, en las que sus protagonistas deben enfrentarse a fenómenos sobrenaturales, misterios y amenazas aterradoras."
 
 temporadas: [
 
@@ -271,8 +275,10 @@ window.TVALC_SERIES.push({
     titulo: "Shadow Detective",
     año: "2022",
     categoria: "Suspenso",
+    clasificacion: "MAYORES DE 16",
     tipo: "serie",
     poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/9nErYfGcBn3SixPqSWDS5pk0AOX.jpg",
+    descripcion: "Un detective de policía veterano, a punto de jubilarse, recibe misteriosas llamadas de un hombre que afirma haber cometido un asesinato. Mientras intenta descubrir la identidad del desconocido, se ve envuelto en una peligrosa investigación que lo obliga a confrontar casos del pasado y secretos que amenazan su propia vida."
 
     temporadas: [
 
@@ -330,8 +336,10 @@ window.TVALC_SERIES.push({
     titulo: "Stan Lee's Lucky Man",
     año: "2016",
     categoria: "Crimen",
+    clasificacion: "MAYORES DE 16",
     tipo: "serie",
     poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/vkYlRsOjJ82uKIlxwonaTSVx0ng.jpg",
+    descripcion: "Harry Clayton es un detective de la policía de Londres cuya vida cambia cuando una misteriosa pulsera le concede una increíble capacidad para controlar su suerte. Mientras investiga peligrosos casos criminales, descubre que el poder de la pulsera tiene un precio y que otras personas también están dispuestas a todo por conseguirla."
 
     temporadas: [
 
