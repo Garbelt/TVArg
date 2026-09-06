@@ -3,8 +3,10 @@ window.TVALC_SERIES.push({
 titulo: "Bloque de Búsqueda",
 año: "2016",
 categoria: "Crimen",
+clasificacion: "MAYORES DE 16",
 tipo: "serie",
 poster: "http://redworld.pro:8880/images/82012e668dc7ce187094e88f2ba5a8a0.jpg",
+descripcion: "Serie basada en hechos reales que sigue a un grupo especial de la Policía Nacional de Colombia creado para localizar y capturar a Pablo Escobar. Mientras persiguen al líder del cartel de Medellín, los agentes enfrentan una peligrosa guerra contra el narcotráfico, la corrupción y la violencia.",
 
 temporadas: [
 
@@ -471,8 +473,10 @@ window.TVALC_SERIES.push({
     titulo: "Lo último que me dijo",
     año: "2023",
     categoria: "Suspenso",
+    clasificacion: "MAYORES DE 16",
     tipo: "serie",
     poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7Iz3oGNFtO474Xo06YETe3uEplG.jpg",
+    descripcion: "Hannah se enfrenta a la repentina desaparición de su esposo, quien deja atrás una nota con un mensaje inquietante. Mientras intenta descubrir qué ocurrió realmente, debe reconstruir los secretos de su matrimonio y acercarse a su hijastra adolescente, con quien busca descubrir la verdad.",
 
     temporadas: [
 
@@ -592,8 +596,10 @@ window.TVALC_SERIES.push({
     titulo: "Las gotas de Dios",
     año: "2023",
     categoria: "Drama",
+    clasificacion: "MAYORES DE 13",
     tipo: "serie",
     poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/l5hm31u0JDu3dQudhxSafbkLRzS.jpg",
+    descripcion: "Tras la muerte de un reconocido experto en vinos, su hija Camille viaja a Tokio para recibir la herencia que le corresponde. Para quedarse con la extraordinaria colección de vinos de su padre, deberá competir contra Issei Tomine, un brillante joven especialista en vinos que fue considerado su hijo espiritual.",
 
     temporadas: [
 
@@ -663,8 +669,10 @@ window.TVALC_SERIES.push({
     titulo: "Harriet la espía",
     año: "2021",
     categoria: "Infantil",
+    clasificacion: "TODO PÚBLICO",
     tipo: "serie",
     poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/qDXe9qmLV7llpkEvjsGRol2BXGG.jpg",
+    descripcion: "Harriet es una niña curiosa y observadora que sueña con convertirse en escritora. Para lograrlo, comienza a espiar y tomar notas sobre las personas que la rodean, pero sus secretos salen a la luz y deberá aprender sobre la amistad, la honestidad y las consecuencias de sus acciones.",
 
     temporadas: [
 
