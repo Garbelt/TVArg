@@ -1,4 +1,4 @@
-window.TVALC_SERIES = [];
+window.TVALC_SERIES = []; 
 
 window.TVALC_SERIES.push({
 
