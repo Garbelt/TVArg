@@ -5,8 +5,10 @@ window.TVALC_SERIES.push({
     titulo: "The Walking Dead",
     año: "2010",
     categoria: "Terror",
+    clasificacion: "MAYORES DE 16",
     tipo: "serie",
     poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/az8sR27PgpYsZwBOkOYI6xt5mLJ.jpg",
+    descripcion: "Tras un apocalipsis zombi, el oficial de policía Rick Grimes despierta de un coma y emprende la búsqueda de su familia. En un mundo devastado por los muertos vivientes, Rick y un grupo de supervivientes deben enfrentarse a hordas de zombis y a otros grupos humanos mientras luchan por mantenerse con vida."
 
     temporadas: [
 
