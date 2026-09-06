@@ -941,6 +941,252 @@ body.android-app #volverTVArg {
 
 
 /* =========================================================
+   MODAL INFORMACIÓN
+========================================================= */
+
+#modalInfo {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 6000;
+
+    background:
+        rgba(0,0,0,.94);
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+
+#modalInfoCaja {
+
+    position: relative;
+
+    width:
+        min(90%, 800px);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    display: flex;
+
+    gap: 22px;
+
+    background: #111;
+
+    border:
+        1px solid #333;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 10px 40px
+        rgba(0,0,0,.8);
+}
+
+
+.infoPoster {
+
+    width: 180px;
+
+    height: 270px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+
+    background: #222;
+
+    flex-shrink: 0;
+}
+
+
+#infoContenidoTexto {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+#infoTitulo {
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    line-height: 1.2;
+
+    margin-bottom: 10px;
+}
+
+
+#infoDatos {
+
+    color: #aaa;
+
+    font-size: 14px;
+
+    margin-bottom: 14px;
+}
+
+
+#infoClasificacion {
+
+    display: inline-block;
+
+    padding:
+        6px 10px;
+
+    margin-bottom: 18px;
+
+    border:
+        1px solid #555;
+
+    border-radius: 6px;
+
+    background: #222;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+#infoDescripcion {
+
+    color: #ddd;
+
+    font-size: 15px;
+
+    line-height: 1.55;
+}
+
+
+#cerrarInfo {
+
+    position: absolute;
+
+    top: 10px;
+
+    right: 10px;
+
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #222;
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+#botonCerrarInfo {
+
+    position: absolute;
+
+    bottom: 15px;
+
+    right: 20px;
+
+    padding:
+        9px 18px;
+
+    border:
+        1px solid #444;
+
+    border-radius: 6px;
+
+    background: #222;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+#cerrarInfo:hover,
+#botonCerrarInfo:hover {
+
+    background: #333;
+}
+
+
+.infoContenido {
+
+    flex: 0 0 42px;
+
+    width: 42px;
+
+    height: 42px;
+
+    padding: 0;
+
+    border:
+        1px solid #444;
+
+    border-radius: 5px;
+
+    background: #222;
+
+    color: #ddd;
+
+    font-size: 19px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.infoContenido:hover {
+
+    background: #333;
+
+    color: white;
+}
+
+
+.acciones {
+
+    display: flex;
+
+    gap: 6px;
+
+    width: 100%;
+}
+
+
+.acciones .ver {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+/* =========================================================
    MÓVIL
 ========================================================= */
 
@@ -1090,8 +1336,89 @@ body.android-app #volverTVArg {
         font-size: 13px;
     }
 
+
+#modalInfo {
+
+    padding: 10px;
 }
 
+
+#modalInfoCaja {
+
+    width: 95%;
+
+    max-height: 92vh;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 20px 15px 65px;
+
+    gap: 12px;
+}
+
+
+.infoPoster {
+
+    width: 120px;
+
+    height: 180px;
+}
+
+
+#infoContenidoTexto {
+
+    width: 100%;
+
+    text-align: center;
+}
+
+
+#infoTitulo {
+
+    font-size: 20px;
+}
+
+
+#infoDescripcion {
+
+    font-size: 14px;
+
+    text-align: left;
+}
+
+
+#infoClasificacion {
+
+    margin-bottom: 10px;
+}
+
+
+#botonCerrarInfo {
+
+    left: 20px;
+
+    right: 20px;
+
+    bottom: 12px;
+
+    width: calc(100% - 40px);
+}
+
+
+.infoContenido {
+
+    flex: 0 0 38px;
+
+    width: 38px;
+
+    height: 38px;
+
+    font-size: 17px;
+}
+
+}
 
 /* =========================================================
    TV / WEBVIEW PEQUEÑO — HORIZONTAL
@@ -1539,6 +1866,64 @@ body.android-app #volverTVArg {
 
 </div>
 
+
+<!-- =====================================================
+     MODAL INFORMACIÓN
+===================================================== -->
+
+<div id="modalInfo">
+
+    <div id="modalInfoCaja">
+
+        <button
+            id="cerrarInfo"
+            type="button"
+            title="Cerrar">
+
+            ✕
+
+        </button>
+
+
+        <img
+            id="infoPoster"
+            class="infoPoster"
+            src=""
+            alt=""
+        >
+
+
+        <div id="infoContenidoTexto">
+
+            <div id="infoTitulo">
+            </div>
+
+
+            <div id="infoDatos">
+            </div>
+
+
+            <div id="infoClasificacion">
+            </div>
+
+
+            <div id="infoDescripcion">
+            </div>
+
+        </div>
+
+
+        <button
+            id="botonCerrarInfo"
+            type="button">
+
+            CERRAR
+
+        </button>
+
+    </div>
+
+</div>
 
 <!-- =====================================================
      DATOS
@@ -3136,13 +3521,25 @@ function crearTarjeta(
 
             </div>
 
-            <button class="ver">
+<div class="acciones">
 
-                ${esSerie
-                    ? "▶ SERIE"
-                    : "▶ VER"}
+    <button class="ver">
 
-            </button>
+        ${esSerie
+            ? "▶ SERIE"
+            : "▶ VER"}
+
+    </button>
+
+    <button
+        class="infoContenido"
+        title="Información">
+
+        ℹ
+
+    </button>
+
+</div>
 
         </div>
 
@@ -3175,6 +3572,21 @@ function crearTarjeta(
         };
 
 
+tarjeta
+    .querySelector(
+        ".infoContenido"
+    )
+    .onclick = event => {
+
+        event.stopPropagation();
+
+        mostrarInfoContenido(
+            elemento
+        );
+
+    };
+
+
     tarjeta.onclick =
         () => {
 
@@ -3198,6 +3610,101 @@ function crearTarjeta(
     contenedor.appendChild(
         tarjeta
     );
+
+}
+
+
+/* =========================================================
+   MOSTRAR INFORMACIÓN
+========================================================= */
+
+function mostrarInfoContenido(
+    elemento
+) {
+
+    const modal =
+        document.getElementById(
+            "modalInfo"
+        );
+
+
+    const poster =
+        document.getElementById(
+            "infoPoster"
+        );
+
+
+    const titulo =
+        document.getElementById(
+            "infoTitulo"
+        );
+
+
+    const datos =
+        document.getElementById(
+            "infoDatos"
+        );
+
+
+    const clasificacion =
+        document.getElementById(
+            "infoClasificacion"
+        );
+
+
+    const descripcion =
+        document.getElementById(
+            "infoDescripcion"
+        );
+
+
+    poster.src =
+        elemento.poster || "";
+
+
+    poster.alt =
+        elemento.titulo || "";
+
+
+    titulo.textContent =
+        elemento.titulo || "Sin título";
+
+
+    datos.textContent =
+
+        (elemento.año || "") +
+
+        "  •  " +
+
+        (elemento.categoria || "Sin categoría");
+
+
+    clasificacion.textContent =
+
+        elemento.clasificacion ||
+
+        "SIN CLASIFICAR";
+
+
+    descripcion.textContent =
+
+        elemento.descripcion ||
+
+        "No hay descripción disponible.";
+
+
+    modal.style.display =
+        "flex";
+
+
+    /*
+       Dejamos el foco en CERRAR
+       para navegación con control remoto.
+    */
+
+    document.getElementById(
+        "botonCerrarInfo"
+    ).focus();
 
 }
 
@@ -3616,6 +4123,31 @@ youtubeFrame.src =
 
 
 /* =========================================================
+   CERRAR INFORMACIÓN
+========================================================= */
+
+function cerrarInfo() {
+
+    document.getElementById(
+        "modalInfo"
+    ).style.display =
+        "none";
+
+}
+
+document.getElementById(
+    "cerrarInfo"
+).onclick =
+    cerrarInfo;
+
+
+document.getElementById(
+    "botonCerrarInfo"
+).onclick =
+    cerrarInfo;
+
+
+/* =========================================================
    MENSAJE
 ========================================================= */
 
@@ -3920,6 +4452,27 @@ window.addEventListener(
         }
 
 
+/* ================================================
+   3. MODAL INFORMACIÓN
+================================================= */
+
+const modalInfo =
+    document.getElementById(
+        "modalInfo"
+    );
+
+
+if (
+    modalInfo.style.display ===
+    "flex"
+) {
+
+    cerrarInfo();
+
+    return;
+
+}
+
         /* ================================================
            3. MODAL SERIES
         ================================================= */
@@ -4022,6 +4575,27 @@ document.addEventListener(
                 return;
 
             }
+
+
+/* ============================================
+   MODAL INFORMACIÓN
+============================================ */
+
+const modalInfo =
+    document.getElementById(
+        "modalInfo"
+    );
+
+if (
+    modalInfo.style.display ===
+    "flex"
+) {
+
+    cerrarInfo();
+
+    return;
+
+}
 
 
             /* ============================================
