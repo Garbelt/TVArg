@@ -12,12 +12,14 @@ window.TVALC_PELICULAS.push(
      url: "http://liontv.es:8080/movie/Carlos3750/6u3rx2/1830260.mkv"
 },
 {
-    titulo: "Mi mejor amigo, su novia y yo",
-    año: "2026",
-    categoria: "Comedia",
-    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/slZ1c32UqVgl94XV3CMDFjiZdTZ.jpg",
-    url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/160415.mkv"
-},
+    "titulo": "Mi mejor amigo, su novia y yo",
+    "año": "2026",
+    "categoria": "Comedia",
+    "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/slZ1c32UqVgl94XV3CMDFjiZdTZ.jpg",
+    "url": "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/160415.mkv",
+    "clasificacion": "+16",
+    "descripcion": "Olli y Matze son dos amigos inseparables que viven, trabajan y sueñan con recorrer el mundo juntos. Pero cuando Matze se enamora de Rebecca, todo cambia."
+}
 {
     titulo: "Spider-Man: Brand New Day",
     año: "2026",
