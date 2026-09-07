@@ -1,0 +1,5936 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Editor TVALC</title>
+
+<style>
+
+*{
+    box-sizing:border-box
+}
+
+body{
+    margin:0;
+    background:#0b0b0b;
+    color:#eee;
+    font-family:Arial,Helvetica,sans-serif
+}
+
+header{
+    padding:18px 22px;
+    background:#151515;
+    border-bottom:1px solid #333
+}
+
+header h1{
+    margin:0 0 6px;
+    font-size:24px
+}
+
+header p{
+    margin:0;
+    color:#aaa;
+    font-size:14px
+}
+
+main{
+    max-width:1500px;
+    margin:auto;
+    padding:20px
+}
+
+.panel{
+    background:#151515;
+    border:1px solid #303030;
+    border-radius:10px;
+    padding:18px;
+    margin-bottom:18px
+}
+
+.panel h2{
+    margin:0 0 14px;
+    font-size:18px
+}
+
+.panel h3{
+    margin:18px 0 10px;
+    font-size:16px
+}
+
+.controles{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+    align-items:center
+}
+
+input,
+button,
+select{
+    font:inherit
+}
+
+input[type=file]{
+    max-width:100%
+}
+
+input[type=text],
+input[type=password]{
+    flex:1;
+    min-width:220px;
+    padding:10px;
+    background:#0d0d0d;
+    border:1px solid #444;
+    border-radius:6px;
+    color:#fff
+}
+
+button{
+    border:1px solid #444;
+    border-radius:6px;
+    padding:9px 13px;
+    background:#222;
+    color:#fff;
+    cursor:pointer
+}
+
+button:hover{
+    background:#333
+}
+
+button.primario{
+    background:#e50914;
+    border-color:#e50914
+}
+
+button.primario:hover{
+    background:#ff202b
+}
+
+button.verde{
+    background:#176b36;
+    border-color:#238b48
+}
+
+button.azul{
+    background:#174d72;
+    border-color:#286f9f
+}
+
+button.naranja{
+    background:#704500;
+    border-color:#a26700
+}
+
+button.morado{
+    background:#573b78;
+    border-color:#7652a0
+}
+
+button.pequeno{
+    padding:6px 9px;
+    font-size:12px
+}
+
+button:disabled{
+    opacity:.45;
+    cursor:not-allowed
+}
+
+.estado,
+.resultadoInfo{
+    margin-top:12px;
+    color:#aaa;
+    font-size:14px;
+    white-space:pre-wrap
+}
+
+.estadisticas{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+    gap:10px
+}
+
+.estadistica{
+    background:#101010;
+    border:1px solid #292929;
+    border-radius:8px;
+    padding:14px
+}
+
+.estadistica strong{
+    display:block;
+    font-size:25px;
+    margin-bottom:4px
+}
+
+.estadistica span{
+    color:#aaa;
+    font-size:13px
+}
+
+.lista{
+    display:grid;
+    gap:10px;
+    margin-top:12px
+}
+
+.registro{
+    background:#101010;
+    border:1px solid #2d2d2d;
+    border-radius:8px;
+    padding:14px
+}
+
+.registro.cuidado{
+    border-color:#8a6500
+}
+
+.registro.seleccionado{
+    border-color:#286f9f;
+    box-shadow:0 0 0 1px rgba(40,111,159,.25)
+}
+
+.registro-cabecera{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    align-items:flex-start
+}
+
+.registro-titulo{
+    display:flex;
+    align-items:flex-start;
+    gap:10px
+}
+
+.registro-seleccion{
+    flex:0 0 auto;
+    padding-top:1px
+}
+
+.registro-seleccion input{
+    width:20px;
+    height:20px;
+    cursor:pointer;
+    accent-color:#e50914
+}
+
+.registro h3{
+    margin:0 0 6px;
+    font-size:17px
+}
+
+.meta,
+.origen{
+    color:#aaa;
+    font-size:13px
+}
+
+.origen{
+    margin-top:10px;
+    color:#666;
+    font-size:12px
+}
+
+.campos{
+    margin-top:12px;
+    display:grid;
+    gap:6px
+}
+
+.campo{
+    display:grid;
+    grid-template-columns:145px 1fr;
+    gap:10px;
+    padding:7px 0;
+    border-top:1px solid #222
+}
+
+.campo-nombre{
+    color:#aaa
+}
+
+.campo-valor{
+    overflow-wrap:anywhere
+}
+
+.ok{
+    color:#7ee787
+}
+
+.faltante{
+    color:#ffb000;
+    font-weight:bold
+}
+
+.badge{
+    display:inline-block;
+    padding:3px 7px;
+    border-radius:5px;
+    background:#222;
+    border:1px solid #444;
+    font-size:11px;
+    margin-left:5px
+}
+
+.vacio{
+    color:#777;
+    padding:20px 0
+}
+
+
+/* =========================================================
+   SELECCIÓN MÚLTIPLE
+   ========================================================= */
+
+.seleccion-controles{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:center;
+    padding:12px;
+    background:#101010;
+    border:1px solid #292929;
+    border-radius:8px;
+    margin-top:12px
+}
+
+.seleccion-info{
+    color:#aaa;
+    font-size:13px;
+    margin-left:auto
+}
+
+
+/* =========================================================
+   DUPLICADOS
+   ========================================================= */
+
+.duplicado{
+    background:#101010;
+    border:1px solid #664f00;
+    border-radius:10px;
+    padding:14px;
+    margin-bottom:14px
+}
+
+.duplicado-cabecera{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px
+}
+
+.duplicado-titulo{
+    font-size:17px;
+    font-weight:bold
+}
+
+.coincidencia{
+    padding:5px 9px;
+    border-radius:5px;
+    background:#5a4300;
+    border:1px solid #8a6500;
+    font-size:12px;
+    white-space:nowrap
+}
+
+.tabla-contenedor{
+    width:100%;
+    overflow-x:auto;
+    border:1px solid #292929;
+    border-radius:7px
+}
+
+.tabla{
+    width:100%;
+    min-width:900px;
+    border-collapse:collapse;
+    font-size:13px
+}
+
+.tabla th{
+    background:#1c1c1c;
+    color:#aaa;
+    text-align:left;
+    padding:9px;
+    border-bottom:1px solid #333;
+    white-space:nowrap
+}
+
+.tabla td{
+    padding:9px;
+    border-bottom:1px solid #222;
+    vertical-align:top
+}
+
+.tabla tr:last-child td{
+    border-bottom:0
+}
+
+.tabla .diferente{
+    color:#ffb000;
+    font-weight:bold
+}
+
+.tabla .igual{
+    color:#7ee787
+}
+
+.tabla a{
+    color:#70b7ff;
+    word-break:break-all
+}
+
+.acciones-tabla{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px
+}
+
+
+/* =========================================================
+   CONSULTA INTERNET
+   ========================================================= */
+
+.tmdb-config{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:9px;
+    align-items:center
+}
+
+.tmdb-ayuda{
+    margin-top:9px;
+    color:#888;
+    font-size:12px;
+    line-height:1.5
+}
+
+.tmdb-ayuda a{
+    color:#70b7ff
+}
+
+.consulta{
+    margin-top:15px;
+    background:#101010;
+    border:1px solid #303030;
+    border-radius:9px;
+    padding:14px
+}
+
+.resultados-tmdb{
+    display:grid;
+    gap:10px;
+    margin-top:12px
+}
+
+.tmdb-resultado{
+    display:grid;
+    grid-template-columns:80px 1fr auto;
+    gap:12px;
+    align-items:center;
+    background:#171717;
+    border:1px solid #333;
+    border-radius:8px;
+    padding:10px
+}
+
+.tmdb-poster{
+    width:80px;
+    height:110px;
+    object-fit:cover;
+    border-radius:5px;
+    background:#222
+}
+
+.tmdb-info h4{
+    margin:0 0 5px;
+    font-size:15px
+}
+
+.tmdb-info p{
+    margin:4px 0;
+    color:#aaa;
+    font-size:12px;
+    line-height:1.4
+}
+
+.tmdb-preview{
+    margin-top:14px;
+    border-top:1px solid #333;
+    padding-top:14px
+}
+
+.tmdb-preview-grid{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:15px
+}
+
+.tmdb-preview img{
+    width:180px;
+    max-height:260px;
+    object-fit:cover;
+    border-radius:7px
+}
+
+.tmdb-dato{
+    padding:7px 0;
+    border-bottom:1px solid #222;
+    line-height:1.4
+}
+
+.tmdb-dato strong{
+    display:inline-block;
+    width:130px;
+    color:#aaa
+}
+
+.tmdb-aplicar{
+    margin-top:14px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px
+}
+
+
+/* =========================================================
+   GENERADOR
+   ========================================================= */
+
+.generador{
+    margin-top:12px;
+    background:#090909;
+    border:1px solid #333;
+    border-radius:8px;
+    padding:12px
+}
+
+.generador textarea{
+    width:100%;
+    min-height:300px;
+    resize:vertical;
+    background:#050505;
+    color:#d7d7d7;
+    border:1px solid #333;
+    border-radius:6px;
+    padding:12px;
+    font-family:Consolas,monospace;
+    font-size:12px;
+    line-height:1.45
+}
+
+.generador-acciones{
+    margin-top:8px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal-fondo{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.78);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:1000
+}
+
+.modal{
+    width:min(1100px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:#151515;
+    border:1px solid #444;
+    border-radius:10px;
+    padding:18px;
+    box-shadow:0 20px 60px #000
+}
+
+.modal-cabecera{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    align-items:center;
+    margin-bottom:15px
+}
+
+.modal-cabecera h2{
+    margin:0
+}
+
+.modal-cerrar{
+    font-size:20px;
+    padding:4px 9px
+}
+
+.oculto{
+    display:none!important
+}
+
+
+/* =========================================================
+   FILTROS
+   ========================================================= */
+
+.filtros{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:12px
+}
+
+.filtro-activo{
+    background:#e50914;
+    border-color:#e50914
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:700px){
+
+    main{
+        padding:10px
+    }
+
+    .registro-cabecera{
+        flex-direction:column
+    }
+
+    .registro-titulo{
+        width:100%
+    }
+
+    .campo{
+        grid-template-columns:1fr;
+        gap:3px
+    }
+
+    input[type=text],
+    input[type=password]{
+        min-width:0
+    }
+
+    .tmdb-config{
+        grid-template-columns:1fr
+    }
+
+    .tmdb-resultado{
+        grid-template-columns:60px 1fr
+    }
+
+    .tmdb-poster{
+        width:60px;
+        height:85px
+    }
+
+    .tmdb-resultado button{
+        grid-column:1 / -1
+    }
+
+    .tmdb-preview-grid{
+        grid-template-columns:1fr
+    }
+
+    .tmdb-preview img{
+        width:140px
+    }
+
+    .tmdb-dato strong{
+        display:block;
+        width:auto;
+        margin-bottom:2px
+    }
+
+    .seleccion-info{
+        width:100%;
+        margin-left:0
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>EDITOR TVALC</h1>
+
+<p>
+Analizador y organizador de biblioteca.
+Lee los archivos, consulta información externa y genera registros.
+Nunca modifica la base original.
+</p>
+
+</header>
+
+
+<main>
+
+
+<!-- =====================================================
+     1. CARGAR
+     ===================================================== -->
+
+<section class="panel">
+
+<h2>1. Cargar biblioteca</h2>
+
+<div class="controles">
+
+<input
+    id="archivos"
+    type="file"
+    accept=".js"
+    multiple
+>
+
+<button
+    id="btnCargar"
+    class="primario"
+>
+CARGAR ARCHIVOS
+</button>
+
+<button id="btnLimpiar">
+LIMPIAR
+</button>
+
+</div>
+
+<div id="estado" class="estado">
+
+Seleccioná todos los TVALCpXX.js y TVALCsXX.js de la carpeta libreria.
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     2. RESUMEN
+     ===================================================== -->
+
+<section class="panel">
+
+<h2>2. Resumen</h2>
+
+<div class="estadisticas">
+
+<div class="estadistica">
+<strong id="totalArchivos">0</strong>
+<span>Archivos</span>
+</div>
+
+<div class="estadistica">
+<strong id="totalPeliculas">0</strong>
+<span>Películas</span>
+</div>
+
+<div class="estadistica">
+<strong id="totalSeries">0</strong>
+<span>Series</span>
+</div>
+
+<div class="estadistica">
+<strong id="totalDuplicados">0</strong>
+<span>Posibles duplicados</span>
+</div>
+
+<div class="estadistica">
+<strong id="sinDescripcion">0</strong>
+<span>Sin descripción</span>
+</div>
+
+<div class="estadistica">
+<strong id="sinClasificacion">0</strong>
+<span>Sin clasificación</span>
+</div>
+
+<div class="estadistica">
+<strong id="sinCategoria">0</strong>
+<span>Sin categoría</span>
+</div>
+
+<div class="estadistica">
+<strong id="sinPoster">0</strong>
+<span>Sin poster</span>
+</div>
+
+<div class="estadistica">
+<strong id="sinAno">0</strong>
+<span>Sin año</span>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     3. DUPLICADOS
+     ===================================================== -->
+
+<section class="panel">
+
+<h2>3. Detectar duplicados</h2>
+
+<div class="controles">
+
+<button
+    id="btnDuplicados"
+    class="naranja"
+>
+🔎 ANALIZAR DUPLICADOS
+</button>
+
+<button
+    id="btnDuplicadosPeliculas"
+>
+PELÍCULAS
+</button>
+
+<button
+    id="btnDuplicadosSeries"
+>
+SERIES
+</button>
+
+<button
+    id="btnDuplicadosTodos"
+>
+TODOS
+</button>
+
+</div>
+
+<div
+    id="duplicadosInfo"
+    class="resultadoInfo"
+>
+Todavía no se realizó el análisis.
+</div>
+
+<div
+    id="duplicadosLista"
+    style="margin-top:12px"
+>
+
+<div class="vacio">
+Cargá la biblioteca y ejecutá el análisis.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     4. TMDB
+     ===================================================== -->
+
+<section class="panel">
+
+<h2>4. Consultar datos en Internet</h2>
+
+<div class="tmdb-config">
+
+<input
+    id="tmdbToken"
+    type="password"
+    placeholder="API Read Access Token de TMDB"
+/>
+
+<button
+    id="btnGuardarToken"
+    class="azul"
+>
+GUARDAR TOKEN
+</button>
+
+</div>
+
+<div class="tmdb-ayuda">
+
+El token se guarda solamente en el navegador mediante localStorage.
+La consulta utiliza TMDB para buscar películas y series.
+
+<br>
+
+Necesitás un
+<a
+    href="https://www.themoviedb.org/settings/api"
+    target="_blank"
+    rel="noopener"
+>
+API Read Access Token de TMDB
+</a>.
+
+<br>
+
+Esta aplicación utiliza la API de TMDB pero no está respaldada ni certificada por TMDB.
+
+</div>
+
+<div
+    id="consultaInternet"
+    class="consulta"
+>
+
+<div class="vacio">
+Seleccioná un registro desde la lista para consultar sus datos.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     5. BUSCAR
+     ===================================================== -->
+
+<section class="panel">
+
+<h2>5. Buscar en la biblioteca</h2>
+
+<div class="controles">
+
+<input
+    id="buscar"
+    type="text"
+    placeholder="Título, año, categoría, clasificación, archivo..."
+>
+
+<button
+    id="btnBuscar"
+    class="primario"
+>
+BUSCAR
+</button>
+
+<button id="btnTodos">
+TODOS
+</button>
+
+<button id="btnFaltantes">
+⚠ FALTANTES
+</button>
+
+</div>
+
+<div class="filtros">
+
+<button
+    id="btnFiltroPeliculas"
+>
+SOLO PELÍCULAS
+</button>
+
+<button
+    id="btnFiltroSeries"
+>
+SOLO SERIES
+</button>
+
+</div>
+
+
+<!-- =====================================================
+     CONTROLES DE SELECCIÓN MÚLTIPLE
+     ===================================================== -->
+
+<div class="seleccion-controles">
+
+<button
+    id="btnSeleccionarTodos"
+    class="azul"
+>
+☑ SELECCIONAR TODOS
+</button>
+
+<button
+    id="btnLimpiarSeleccion"
+>
+☐ LIMPIAR SELECCIÓN
+</button>
+
+<button
+    id="btnGenerarSeleccionados"
+    class="verde"
+>
+📦 GENERAR JS SELECCIONADOS
+</button>
+
+<div
+    id="seleccionInfo"
+    class="seleccion-info"
+>
+0 seleccionados
+</div>
+
+</div>
+
+
+<div
+    id="resultadoInfo"
+    class="resultadoInfo"
+></div>
+
+<div
+    id="lista"
+    class="lista"
+>
+
+<div class="vacio">
+Cargá los archivos para comenzar.
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+     MODAL GENERADOR
+     ===================================================== -->
+
+<div
+    id="modalGenerador"
+    class="modal-fondo oculto"
+>
+
+<div class="modal">
+
+<div class="modal-cabecera">
+
+<h2 id="tituloModalGenerador">
+Registro listo para agregar
+</h2>
+
+<button
+    id="btnCerrarGenerador"
+    class="modal-cerrar"
+>
+×
+</button>
+
+</div>
+
+<div id="generadorContenido"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+"use strict";
+
+
+/* =========================================================
+   DATOS
+   ========================================================= */
+
+let peliculas=[];
+let series=[];
+let registros=[];
+let archivosProcesados=[];
+
+let duplicados=[];
+
+let filtroActual="todos";
+
+let registroConsultaActual=null;
+
+let tmdbResultados=[];
+
+let tmdbSeleccionado=null;
+
+
+/*
+ * Registros seleccionados para generación múltiple.
+ *
+ * Guardamos los _indice de los registros y no
+ * referencias a los objetos para que la selección
+ * sobreviva a búsquedas y filtros.
+ */
+
+let registrosSeleccionados =
+    new Set();
+
+
+/* =========================================================
+   TMDB
+   ========================================================= */
+
+const TMDB_BASE =
+    "https://api.themoviedb.org/3";
+
+const TMDB_IMAGEN =
+    "https://image.tmdb.org/t/p/w500";
+
+
+/* =========================================================
+   CATEGORÍAS TVALC
+   ========================================================= */
+
+const GENEROS_TVALC={
+
+    28:"Acción",
+    12:"Aventura",
+    35:"Comedia",
+    18:"Drama",
+    878:"Ciencia ficción",
+    14:"Fantasía",
+    27:"Terror",
+    53:"Suspenso",
+    10749:"Romance",
+    80:"Crimen",
+    99:"Documental",
+    36:"Historia",
+    10751:"Infantil",
+    10402:"Musical",
+    10752:"Bélica",
+    37:"Western"
+
+};
+
+
+/* =========================================================
+   UTILIDADES
+   ========================================================= */
+
+function normalizar(texto){
+
+    return String(texto ?? "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"")
+        .toLowerCase()
+        .replace(/\s+/g," ")
+        .trim();
+
+}
+
+
+function normalizarTitulo(texto){
+
+    return normalizar(texto)
+        .replace(/[^\p{L}\p{N}\s]/gu," ")
+        .replace(/\s+/g," ")
+        .trim();
+
+}
+
+
+function tieneValor(valor){
+
+    return (
+        valor !== undefined &&
+        valor !== null &&
+        String(valor).trim() !== ""
+    );
+
+}
+
+
+function escaparHTML(texto){
+
+    return String(texto ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escaparHTMLMultilinea(texto){
+
+    return escaparHTML(texto)
+        .replace(/\n/g,"<br>");
+
+}
+
+
+function mostrarEstado(texto){
+
+    document.getElementById(
+        "estado"
+    ).textContent=texto;
+
+}
+
+
+function obtenerAno(registro){
+
+    if(!tieneValor(registro?.año)){
+        return "";
+    }
+
+    const coincidencia =
+        String(registro.año)
+            .match(/\d{4}/);
+
+    return coincidencia
+        ? coincidencia[0]
+        : "";
+
+}
+
+
+function valorTexto(valor){
+
+    if(!tieneValor(valor)){
+        return "";
+    }
+
+    return String(valor).trim();
+
+}
+
+
+/* =========================================================
+   SELECCIÓN MÚLTIPLE
+   ========================================================= */
+
+function actualizarInfoSeleccion(){
+
+    const cantidad =
+        registrosSeleccionados.size;
+
+
+    const elemento =
+        document.getElementById(
+            "seleccionInfo"
+        );
+
+
+    if(cantidad === 0){
+
+        elemento.textContent =
+            "0 seleccionados";
+
+        return;
+
+    }
+
+
+    elemento.textContent =
+        cantidad === 1
+            ? "1 seleccionado"
+            : cantidad +
+              " seleccionados";
+
+}
+
+
+function registroEstaSeleccionado(
+    registro
+){
+
+    return registrosSeleccionados.has(
+        registro._indice
+    );
+
+}
+
+
+function cambiarSeleccionRegistro(
+    registro,
+    seleccionado
+){
+
+    if(seleccionado){
+
+        registrosSeleccionados.add(
+            registro._indice
+        );
+
+    }else{
+
+        registrosSeleccionados.delete(
+            registro._indice
+        );
+
+    }
+
+
+    actualizarInfoSeleccion();
+
+}
+
+
+/*
+ * Selecciona todos los registros que están
+ * actualmente visibles.
+ *
+ * No selecciona registros que estén ocultos
+ * por un filtro o búsqueda.
+ */
+
+function seleccionarTodosVisibles(){
+
+    const texto =
+        document.getElementById(
+            "buscar"
+        ).value.trim();
+
+
+    let visibles=registros;
+
+
+    if(filtroActual==="peliculas"){
+
+        visibles=peliculas;
+
+    }else if(filtroActual==="series"){
+
+        visibles=series;
+
+    }
+
+
+    if(texto){
+
+        const normalizado =
+            normalizar(texto);
+
+
+        visibles=
+            visibles.filter(
+                r=>{
+
+                    const datos=[
+
+                        r.titulo,
+                        r.año,
+                        r.categoria,
+                        r.clasificacion,
+                        r.descripcion,
+                        r.poster,
+                        r.url,
+                        r._archivo
+
+                    ]
+                    .map(normalizar)
+                    .join(" ");
+
+
+                    return datos.includes(
+                        normalizado
+                    );
+
+                }
+            );
+
+    }
+
+
+    /*
+     * Si todos los registros visibles ya están
+     * seleccionados, el mismo botón los deselecciona.
+     *
+     * Si falta al menos uno, selecciona todos.
+     */
+
+    const todosSeleccionados =
+        visibles.length > 0 &&
+        visibles.every(
+            registro =>
+                registrosSeleccionados.has(
+                    registro._indice
+                )
+        );
+
+
+    if(todosSeleccionados){
+
+        for(
+            const registro of visibles
+        ){
+
+            registrosSeleccionados.delete(
+                registro._indice
+            );
+
+        }
+
+
+        mostrarEstado(
+            visibles.length +
+            " registro(s) visible(s) deseleccionado(s)."
+        );
+
+    }else{
+
+        for(
+            const registro of visibles
+        ){
+
+            registrosSeleccionados.add(
+                registro._indice
+            );
+
+        }
+
+
+        mostrarEstado(
+            visibles.length +
+            " registro(s) visible(s) seleccionado(s)."
+        );
+
+    }
+
+
+    mostrarLista(
+        visibles,
+        "Registros encontrados: "
+    );
+
+
+    actualizarInfoSeleccion();
+
+    actualizarBotonSeleccionTodos();
+
+}
+
+function actualizarBotonSeleccionTodos(){
+
+    const boton =
+        document.getElementById(
+            "btnSeleccionarTodos"
+        );
+
+
+    if(!boton){
+
+        return;
+
+    }
+
+
+    const checks =
+        Array.from(
+            document.querySelectorAll(
+                "#lista input[data-seleccionar]"
+            )
+        );
+
+
+    if(!checks.length){
+
+        boton.textContent =
+            "☑ SELECCIONAR TODOS";
+
+        return;
+
+    }
+
+
+    const todosMarcados =
+        checks.every(
+            checkbox =>
+                checkbox.checked
+        );
+
+
+    boton.textContent =
+        todosMarcados
+            ? "☐ DESELECCIONAR TODOS"
+            : "☑ SELECCIONAR TODOS";
+
+}
+
+function limpiarSeleccion(){
+
+    registrosSeleccionados.clear();
+
+
+    actualizarInfoSeleccion();
+
+
+    /*
+     * Volvemos a dibujar la lista actual para
+     * quitar las casillas marcadas visualmente.
+     */
+
+    const texto =
+        document.getElementById(
+            "buscar"
+        ).value.trim();
+
+
+    if(texto){
+
+        buscar();
+
+    }else{
+
+        let base=registros;
+
+        if(filtroActual==="peliculas"){
+            base=peliculas;
+        }else if(filtroActual==="series"){
+            base=series;
+        }
+
+        mostrarLista(
+            base,
+            "Registros encontrados: "
+        );
+
+    }
+
+
+    mostrarEstado(
+        "Selección limpiada."
+    );
+
+}
+
+
+function obtenerRegistrosSeleccionados(){
+
+    return registros.filter(
+        registro=>
+            registrosSeleccionados.has(
+                registro._indice
+            )
+    );
+
+}
+
+
+/* =========================================================
+   TOKEN TMDB
+   ========================================================= */
+
+function cargarTokenGuardado(){
+
+    const token =
+        localStorage.getItem(
+            "TVALC_TMDB_TOKEN"
+        ) || "";
+
+    document.getElementById(
+        "tmdbToken"
+    ).value=token;
+
+}
+
+
+function guardarToken(){
+
+    const token =
+        document.getElementById(
+            "tmdbToken"
+        ).value.trim();
+
+
+    if(!token){
+
+        localStorage.removeItem(
+            "TVALC_TMDB_TOKEN"
+        );
+
+        mostrarEstado(
+            "Token TMDB eliminado del navegador."
+        );
+
+        return;
+    }
+
+
+    localStorage.setItem(
+        "TVALC_TMDB_TOKEN",
+        token
+    );
+
+
+    mostrarEstado(
+        "Token TMDB guardado en este navegador."
+    );
+
+}
+
+
+function obtenerToken(){
+
+    return (
+        document.getElementById(
+            "tmdbToken"
+        ).value.trim()
+        ||
+        localStorage.getItem(
+            "TVALC_TMDB_TOKEN"
+        )
+        ||
+        ""
+    );
+
+}
+
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+document
+    .getElementById("btnCargar")
+    .addEventListener(
+        "click",
+        cargarArchivos
+    );
+
+
+document
+    .getElementById("btnLimpiar")
+    .addEventListener(
+        "click",
+        limpiar
+    );
+
+
+document
+    .getElementById("btnTodos")
+    .addEventListener(
+        "click",
+        ()=>{
+            filtroActual="todos";
+
+            mostrarLista(
+                registros,
+                "Registros encontrados: "
+            );
+        }
+    );
+
+
+document
+    .getElementById("btnFaltantes")
+    .addEventListener(
+        "click",
+        mostrarFaltantes
+    );
+
+
+document
+    .getElementById("btnBuscar")
+    .addEventListener(
+        "click",
+        buscar
+    );
+
+
+document
+    .getElementById("buscar")
+    .addEventListener(
+        "keydown",
+        e=>{
+            if(e.key==="Enter"){
+                buscar();
+            }
+        }
+    );
+
+
+document
+    .getElementById("btnFiltroPeliculas")
+    .addEventListener(
+        "click",
+        ()=>{
+            filtroActual="peliculas";
+
+            mostrarLista(
+                peliculas,
+                "Películas: "
+            );
+        }
+    );
+
+
+document
+    .getElementById("btnFiltroSeries")
+    .addEventListener(
+        "click",
+        ()=>{
+            filtroActual="series";
+
+            mostrarLista(
+                series,
+                "Series: "
+            );
+        }
+    );
+
+
+document
+    .getElementById("btnDuplicados")
+    .addEventListener(
+        "click",
+        analizarDuplicados
+    );
+
+
+document
+    .getElementById("btnDuplicadosPeliculas")
+    .addEventListener(
+        "click",
+        ()=>{
+            analizarDuplicados();
+
+            mostrarDuplicados(
+                duplicados.filter(
+                    grupo=>grupo.tipo==="PELÍCULA"
+                )
+            );
+        }
+    );
+
+
+document
+    .getElementById("btnDuplicadosSeries")
+    .addEventListener(
+        "click",
+        ()=>{
+            analizarDuplicados();
+
+            mostrarDuplicados(
+                duplicados.filter(
+                    grupo=>grupo.tipo==="SERIE"
+                )
+            );
+        }
+    );
+
+
+document
+    .getElementById("btnDuplicadosTodos")
+    .addEventListener(
+        "click",
+        ()=>{
+            analizarDuplicados();
+        }
+    );
+
+
+document
+    .getElementById("btnGuardarToken")
+    .addEventListener(
+        "click",
+        guardarToken
+    );
+
+
+document
+    .getElementById("btnCerrarGenerador")
+    .addEventListener(
+        "click",
+        cerrarGenerador
+    );
+
+
+document
+    .getElementById("btnSeleccionarTodos")
+    .addEventListener(
+        "click",
+        seleccionarTodosVisibles
+    );
+
+
+document
+    .getElementById("btnLimpiarSeleccion")
+    .addEventListener(
+        "click",
+        limpiarSeleccion
+    );
+
+
+document
+    .getElementById("btnGenerarSeleccionados")
+    .addEventListener(
+        "click",
+        generarSeleccionadosJS
+    );
+
+
+document
+    .getElementById("modalGenerador")
+    .addEventListener(
+        "click",
+        e=>{
+            if(
+                e.target.id==="modalGenerador"
+            ){
+                cerrarGenerador();
+            }
+        }
+    );
+
+
+/* =========================================================
+   CARGAR ARCHIVOS
+   ========================================================= */
+
+async function cargarArchivos(){
+
+    const archivos =
+        Array.from(
+            document.getElementById(
+                "archivos"
+            ).files || []
+        );
+
+
+    if(!archivos.length){
+
+        mostrarEstado(
+            "No seleccionaste archivos."
+        );
+
+        return;
+    }
+
+
+    peliculas=[];
+    series=[];
+    registros=[];
+    archivosProcesados=[];
+    duplicados=[];
+
+
+    registrosSeleccionados.clear();
+
+    actualizarInfoSeleccion();
+
+
+    mostrarEstado(
+        "Leyendo " +
+        archivos.length +
+        " archivo(s)..."
+    );
+
+
+    for(const archivo of archivos){
+
+        const nombre=archivo.name;
+
+
+        if(
+            !/^TVALC[ps]\d+\.js$/i.test(nombre)
+        ){
+            continue;
+        }
+
+
+        try{
+
+            const texto =
+                await archivo.text();
+
+
+            procesarArchivo(
+                nombre,
+                texto
+            );
+
+
+        }catch(error){
+
+            console.error(
+                "Error leyendo",
+                nombre,
+                error
+            );
+
+        }
+
+    }
+
+
+    registros=[
+        ...peliculas,
+        ...series
+    ];
+
+
+    /*
+     * Índice interno para identificar cada
+     * registro de manera inequívoca.
+     */
+
+    registros.forEach(
+        (registro,indice)=>{
+            registro._indice=indice;
+        }
+    );
+
+
+    actualizarResumen();
+
+
+    mostrarLista(
+        registros,
+        "Registros encontrados: "
+    );
+
+
+    mostrarEstado(
+
+        "Carga terminada.\n" +
+
+        "Archivos reconocidos: " +
+        archivosProcesados.length +
+
+        "\nPelículas: " +
+        peliculas.length +
+
+        "\nSeries: " +
+        series.length +
+
+        "\nTotal de registros: " +
+        registros.length
+
+    );
+
+}
+
+
+/* =========================================================
+   PROCESAR ARCHIVO
+   ========================================================= */
+
+function procesarArchivo(
+    nombre,
+    texto
+){
+
+    const esPelicula =
+        /^TVALCp\d+\.js$/i.test(nombre);
+
+
+    const esSerie =
+        /^TVALCs\d+\.js$/i.test(nombre);
+
+
+    if(!esPelicula && !esSerie){
+
+        return;
+
+    }
+
+
+    const variable =
+        esPelicula
+            ? "TVALC_PELICULAS"
+            : "TVALC_SERIES";
+
+
+    const objetos =
+        extraerTodosLosPush(
+            texto,
+            variable
+        );
+
+
+    for(const objeto of objetos){
+
+        objeto._archivo=nombre;
+
+        objeto._esSerie=esSerie;
+
+
+        if(esSerie){
+
+            series.push(objeto);
+
+        }else{
+
+            peliculas.push(objeto);
+
+        }
+
+    }
+
+
+    archivosProcesados.push(nombre);
+
+}
+
+
+/* =========================================================
+   EXTRAER TODOS LOS PUSH
+   ========================================================= */
+
+function extraerTodosLosPush(
+    texto,
+    nombreVariable
+){
+
+    const resultados=[];
+
+
+    const patron =
+        nombreVariable === "TVALC_PELICULAS"
+
+            ? /TVALC_PELICULAS\.push\s*\(/g
+
+            : /TVALC_SERIES\.push\s*\(/g;
+
+
+    let coincidencia;
+
+
+    while(
+        (coincidencia=patron.exec(texto)) !== null
+    ){
+
+        const inicioContenido =
+            patron.lastIndex;
+
+
+        const cierre =
+            encontrarCierreParentesis(
+                texto,
+                inicioContenido
+            );
+
+
+        if(cierre === -1){
+
+            console.warn(
+                "No se encontró el cierre de push() en",
+                nombreVariable
+            );
+
+            break;
+        }
+
+
+        let contenido =
+            texto.slice(
+                inicioContenido,
+                cierre
+            );
+
+
+        contenido =
+            convertirEnlacesMarkdown(
+                contenido
+            );
+
+
+        contenido =
+            normalizarObjetoJavaScript(
+                contenido
+            );
+
+
+        try{
+
+            const objetos =
+                evaluarListaSegura(
+                    contenido
+                );
+
+
+            if(
+                Array.isArray(objetos)
+            ){
+
+                for(
+                    const objeto of objetos
+                ){
+
+                    if(
+                        objeto &&
+                        typeof objeto === "object" &&
+                        !Array.isArray(objeto)
+                    ){
+
+                        resultados.push(
+                            objeto
+                        );
+
+                    }
+
+                }
+
+            }
+
+
+        }catch(error){
+
+            console.warn(
+                "No se pudo interpretar un push de",
+                nombreVariable,
+                error
+            );
+
+            console.warn(
+                contenido
+            );
+
+        }
+
+
+        patron.lastIndex =
+            cierre + 1;
+
+    }
+
+
+    return resultados;
+
+}
+
+
+/* =========================================================
+   ENCONTRAR CIERRE
+   ========================================================= */
+
+function encontrarCierreParentesis(
+    texto,
+    inicio
+){
+
+    let profundidad=1;
+
+    let cadena=null;
+
+    let escape=false;
+
+
+    for(
+        let i=inicio;
+        i<texto.length;
+        i++
+    ){
+
+        const caracter=texto[i];
+
+
+        if(cadena){
+
+            if(escape){
+
+                escape=false;
+
+                continue;
+
+            }
+
+
+            if(caracter==="\\"){
+
+                escape=true;
+
+                continue;
+
+            }
+
+
+            if(caracter===cadena){
+
+                cadena=null;
+
+            }
+
+
+            continue;
+
+        }
+
+
+        if(
+            caracter === '"' ||
+            caracter === "'" ||
+            caracter === "`"
+        ){
+
+            cadena=caracter;
+
+            continue;
+
+        }
+
+
+        if(caracter==="("){
+
+            profundidad++;
+
+            continue;
+
+        }
+
+
+        if(caracter===")"){
+
+            profundidad--;
+
+
+            if(profundidad===0){
+
+                return i;
+
+            }
+
+        }
+
+    }
+
+
+    return -1;
+
+}
+
+
+/* =========================================================
+   NORMALIZAR OBJETO
+   ========================================================= */
+
+function normalizarObjetoJavaScript(
+    texto
+){
+
+    let convertido =
+        texto.replace(
+            /([{,]\s*)([A-Za-z_$][\w$]*)(\s*:)/g,
+            '$1"$2"$3'
+        );
+
+
+    convertido =
+        convertido.replace(
+            /,\s*([}\]])/g,
+            "$1"
+        );
+
+
+    return convertido;
+
+}
+
+
+/* =========================================================
+   EVALUAR LISTA
+   ========================================================= */
+
+function evaluarListaSegura(
+    texto
+){
+
+    return Function(
+        '"use strict"; return ([' +
+        texto +
+        ']);'
+    )();
+
+}
+
+
+/* =========================================================
+   MARKDOWN
+   ========================================================= */
+
+function convertirEnlacesMarkdown(
+    texto
+){
+
+    return texto.replace(
+        /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,
+        (_,visible,url)=>{
+
+            return JSON.stringify(
+                url
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   RESUMEN
+   ========================================================= */
+
+function actualizarResumen(){
+
+    document.getElementById(
+        "totalArchivos"
+    ).textContent =
+        archivosProcesados.length;
+
+
+    document.getElementById(
+        "totalPeliculas"
+    ).textContent =
+        peliculas.length;
+
+
+    document.getElementById(
+        "totalSeries"
+    ).textContent =
+        series.length;
+
+
+    document.getElementById(
+        "sinDescripcion"
+    ).textContent =
+
+        registros.filter(
+            r=>!tieneValor(
+                r.descripcion
+            )
+        ).length;
+
+
+    document.getElementById(
+        "sinClasificacion"
+    ).textContent =
+
+        registros.filter(
+            r=>!tieneValor(
+                r.clasificacion
+            )
+        ).length;
+
+
+    document.getElementById(
+        "sinCategoria"
+    ).textContent =
+
+        registros.filter(
+            r=>!tieneValor(
+                r.categoria
+            )
+        ).length;
+
+
+    document.getElementById(
+        "sinPoster"
+    ).textContent =
+
+        registros.filter(
+            r=>!tieneValor(
+                r.poster
+            )
+        ).length;
+
+
+    document.getElementById(
+        "sinAno"
+    ).textContent =
+
+        registros.filter(
+            r=>!tieneValor(
+                r.año
+            )
+        ).length;
+
+
+    document.getElementById(
+        "totalDuplicados"
+    ).textContent =
+        duplicados.length;
+
+}
+
+
+/* =========================================================
+   BUSCAR
+   ========================================================= */
+
+function buscar(){
+
+    const texto =
+        normalizar(
+            document.getElementById(
+                "buscar"
+            ).value
+        );
+
+
+    let base=registros;
+
+
+    if(filtroActual==="peliculas"){
+
+        base=peliculas;
+
+    }else if(filtroActual==="series"){
+
+        base=series;
+
+    }
+
+
+    if(!texto){
+
+        mostrarLista(
+            base,
+            "Registros encontrados: "
+        );
+
+        return;
+
+    }
+
+
+    const encontrados =
+        base.filter(
+            r=>{
+
+                const datos=[
+
+                    r.titulo,
+                    r.año,
+                    r.categoria,
+                    r.clasificacion,
+                    r.descripcion,
+                    r.poster,
+                    r.url,
+                    r._archivo
+
+                ]
+                .map(normalizar)
+                .join(" ");
+
+
+                return datos.includes(
+                    texto
+                );
+
+            }
+        );
+
+
+    mostrarLista(
+        encontrados,
+        "Resultados para «"+texto+"»: "
+    );
+
+}
+
+
+/* =========================================================
+   FALTANTES
+   ========================================================= */
+
+function mostrarFaltantes(){
+
+    const faltantes =
+        registros.filter(
+            r=>
+
+                !tieneValor(
+                    r.descripcion
+                )
+
+                ||
+
+                !tieneValor(
+                    r.clasificacion
+                )
+
+                ||
+
+                !tieneValor(
+                    r.categoria
+                )
+
+                ||
+
+                !tieneValor(
+                    r.poster
+                )
+
+                ||
+
+                !tieneValor(
+                    r.año
+                )
+        );
+
+
+    filtroActual="todos";
+
+
+    mostrarLista(
+        faltantes,
+        "Registros con uno o más campos faltantes: "
+    );
+
+}
+
+
+/* =========================================================
+   MOSTRAR LISTA
+   ========================================================= */
+
+function mostrarLista(
+    lista,
+    mensaje
+){
+
+    const contenedor =
+        document.getElementById(
+            "lista"
+        );
+
+
+    contenedor.innerHTML="";
+
+
+    document.getElementById(
+        "resultadoInfo"
+    ).textContent =
+        mensaje +
+        lista.length;
+
+
+    actualizarInfoSeleccion();
+    actualizarBotonSeleccionTodos();
+
+
+    if(!lista.length){
+
+        contenedor.innerHTML =
+            '<div class="vacio">No hay registros para mostrar.</div>';
+
+        return;
+
+    }
+
+
+    for(
+        const registro of lista
+    ){
+
+        contenedor.appendChild(
+            crearRegistro(
+                registro
+            )
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CREAR REGISTRO VISUAL
+   ========================================================= */
+
+function crearRegistro(
+    registro
+){
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    const faltaDescripcion =
+        !tieneValor(
+            registro.descripcion
+        );
+
+
+    const faltaClasificacion =
+        !tieneValor(
+            registro.clasificacion
+        );
+
+
+    const faltaCategoria =
+        !tieneValor(
+            registro.categoria
+        );
+
+
+    const faltaPoster =
+        !tieneValor(
+            registro.poster
+        );
+
+
+    const faltaAno =
+        !tieneValor(
+            registro.año
+        );
+
+
+    const seleccionado =
+        registroEstaSeleccionado(
+            registro
+        );
+
+
+    if(
+        faltaDescripcion ||
+        faltaClasificacion ||
+        faltaCategoria ||
+        faltaPoster ||
+        faltaAno
+    ){
+
+        div.className =
+            seleccionado
+                ? "registro cuidado seleccionado"
+                : "registro cuidado";
+
+    }else{
+
+        div.className =
+            seleccionado
+                ? "registro seleccionado"
+                : "registro";
+
+    }
+
+
+    div.innerHTML=`
+
+        <div class="registro-cabecera">
+
+            <div class="registro-titulo">
+
+                <div class="registro-seleccion">
+
+                    <input
+                        type="checkbox"
+                        ${seleccionado ? "checked" : ""}
+                        data-seleccionar="${registro._indice}"
+                        title="Seleccionar este registro"
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+
+                        ${escaparHTML(
+                            registro.titulo ||
+                            "Sin título"
+                        )}
+
+                        <span class="badge">
+
+                            ${
+                                registro._esSerie
+                                    ? "SERIE"
+                                    : "PELÍCULA"
+                            }
+
+                        </span>
+
+                    </h3>
+
+
+                    <div class="meta">
+
+                        ${escaparHTML(
+                            registro.año ||
+                            "Sin año"
+                        )}
+
+                        ·
+
+                        ${escaparHTML(
+                            registro.categoria ||
+                            "Sin categoría"
+                        )}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="acciones-tabla">
+
+                <button
+                    class="pequeno azul"
+                    data-consultar="${registro._indice}"
+                >
+                    🌐 CONSULTAR
+                </button>
+
+                <button
+                    class="pequeno verde"
+                    data-generar="${registro._indice}"
+                >
+                    ➕ GENERAR JS
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="campos">
+
+
+            <div class="campo">
+
+                <div class="campo-nombre">
+                    Año
+                </div>
+
+                <div class="campo-valor">
+
+                    ${
+                        tieneValor(registro.año)
+
+                        ?
+
+                        '<span class="ok">✓</span> ' +
+                        escaparHTML(
+                            registro.año
+                        )
+
+                        :
+
+                        '<span class="faltante">⚠ FALTA</span>'
+                    }
+
+                </div>
+
+            </div>
+
+
+            <div class="campo">
+
+                <div class="campo-nombre">
+                    Categoría
+                </div>
+
+                <div class="campo-valor">
+
+                    ${
+                        tieneValor(
+                            registro.categoria
+                        )
+
+                        ?
+
+                        '<span class="ok">✓</span> ' +
+                        escaparHTML(
+                            registro.categoria
+                        )
+
+                        :
+
+                        '<span class="faltante">⚠ FALTA</span>'
+                    }
+
+                </div>
+
+            </div>
+
+
+            <div class="campo">
+
+                <div class="campo-nombre">
+                    Clasificación
+                </div>
+
+                <div class="campo-valor">
+
+                    ${
+                        tieneValor(
+                            registro.clasificacion
+                        )
+
+                        ?
+
+                        '<span class="ok">✓</span> ' +
+                        escaparHTML(
+                            registro.clasificacion
+                        )
+
+                        :
+
+                        '<span class="faltante">⚠ FALTA</span>'
+                    }
+
+                </div>
+
+            </div>
+
+
+            <div class="campo">
+
+                <div class="campo-nombre">
+                    Descripción
+                </div>
+
+                <div class="campo-valor">
+
+                    ${
+                        tieneValor(
+                            registro.descripcion
+                        )
+
+                        ?
+
+                        '<span class="ok">✓</span> ' +
+                        escaparHTMLMultilinea(
+                            registro.descripcion
+                        )
+
+                        :
+
+                        '<span class="faltante">⚠ FALTA</span>'
+                    }
+
+                </div>
+
+            </div>
+
+
+            <div class="campo">
+
+                <div class="campo-nombre">
+                    Poster
+                </div>
+
+                <div class="campo-valor">
+
+                    ${
+                        tieneValor(
+                            registro.poster
+                        )
+
+                        ?
+
+                        '<span class="ok">✓</span> ' +
+                        escaparHTML(
+                            registro.poster
+                        )
+
+                        :
+
+                        '<span class="faltante">⚠ FALTA</span>'
+                    }
+
+                </div>
+
+            </div>
+
+
+            <div class="campo">
+
+                <div class="campo-nombre">
+                    URL
+                </div>
+
+                <div class="campo-valor">
+
+                    ${
+                        tieneValor(
+                            registro.url
+                        )
+
+                        ?
+
+                        '<span class="ok">✓</span> URL disponible'
+
+                        :
+
+                        '<span class="faltante">⚠ FALTA</span>'
+                    }
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="origen">
+
+            Archivo:
+            ${escaparHTML(
+                registro._archivo ||
+                "desconocido"
+            )}
+
+        </div>
+
+    `;
+
+
+    /*
+     * Checkbox de selección.
+     */
+
+    const checkbox =
+        div.querySelector(
+            "[data-seleccionar]"
+        );
+
+
+checkbox.addEventListener(
+    "change",
+    ()=>{
+        cambiarSeleccionRegistro(
+            registro,
+            checkbox.checked
+        );
+
+
+        if(checkbox.checked){
+
+            div.classList.add(
+                "seleccionado"
+            );
+
+        }else{
+
+            div.classList.remove(
+                "seleccionado"
+            );
+
+        }
+
+
+        actualizarBotonSeleccionTodos();
+
+    }
+);
+
+
+    /*
+     * Eventos de los botones.
+     */
+
+    const btnConsultar =
+        div.querySelector(
+            "[data-consultar]"
+        );
+
+
+    const btnGenerar =
+        div.querySelector(
+            "[data-generar]"
+        );
+
+
+    btnConsultar.addEventListener(
+        "click",
+        ()=>{
+            consultarRegistro(
+                registro
+            );
+        }
+    );
+
+
+    btnGenerar.addEventListener(
+        "click",
+        ()=>{
+            generarRegistroJS(
+                registro
+            );
+        }
+    );
+
+
+    return div;
+
+}
+
+
+/* =========================================================
+   DUPLICADOS
+   ========================================================= */
+
+function calcularSimilitud(
+    a,
+    b
+){
+
+    a=normalizarTitulo(a);
+
+    b=normalizarTitulo(b);
+
+
+    if(!a || !b){
+
+        return 0;
+
+    }
+
+
+    if(a===b){
+
+        return 1;
+
+    }
+
+
+    const distancia =
+        distanciaLevenshtein(
+            a,
+            b
+        );
+
+
+    const longitud =
+        Math.max(
+            a.length,
+            b.length
+        );
+
+
+    if(!longitud){
+
+        return 0;
+
+    }
+
+
+    return 1 -
+        (
+            distancia /
+            longitud
+        );
+
+}
+
+
+function distanciaLevenshtein(
+    a,
+    b
+){
+
+    const matriz=[];
+
+
+    for(
+        let i=0;
+        i<=b.length;
+        i++
+    ){
+
+        matriz[i]=[i];
+
+    }
+
+
+    for(
+        let j=0;
+        j<=a.length;
+        j++
+    ){
+
+        matriz[0][j]=j;
+
+    }
+
+
+    for(
+        let i=1;
+        i<=b.length;
+        i++
+    ){
+
+        for(
+            let j=1;
+            j<=a.length;
+            j++
+        ){
+
+            if(
+                b.charAt(i-1) ===
+                a.charAt(j-1)
+            ){
+
+                matriz[i][j]=
+                    matriz[i-1][j-1];
+
+            }else{
+
+                matriz[i][j]=Math.min(
+
+                    matriz[i-1][j-1]+1,
+
+                    matriz[i][j-1]+1,
+
+                    matriz[i-1][j]+1
+
+                );
+
+            }
+
+        }
+
+    }
+
+
+    return matriz[b.length][a.length];
+
+}
+
+
+/*
+ * Devuelve un score 0-100.
+ */
+
+function obtenerCoincidencia(
+    a,
+    b
+){
+
+    const tituloA=
+        normalizarTitulo(
+            a.titulo
+        );
+
+
+    const tituloB=
+        normalizarTitulo(
+            b.titulo
+        );
+
+
+    if(!tituloA || !tituloB){
+
+        return {
+            score:0,
+            motivo:"Sin título"
+        };
+
+    }
+
+
+    const similitud =
+        calcularSimilitud(
+            tituloA,
+            tituloB
+        );
+
+
+    const anoA=
+        obtenerAno(a);
+
+
+    const anoB=
+        obtenerAno(b);
+
+
+    let score =
+        similitud * 100;
+
+
+    let motivo =
+        "Título parecido";
+
+
+    if(tituloA===tituloB){
+
+        score=96;
+
+        motivo=
+            "Mismo título normalizado";
+
+
+        if(
+            anoA &&
+            anoB &&
+            anoA===anoB
+        ){
+
+            score=100;
+
+            motivo=
+                "Mismo título y mismo año";
+
+        }
+
+    }else if(
+        similitud>=0.93 &&
+        anoA &&
+        anoB &&
+        anoA===anoB
+    ){
+
+        score=98;
+
+        motivo=
+            "Título muy parecido y mismo año";
+
+    }else if(
+        similitud>=0.93
+    ){
+
+        score=93;
+
+        motivo=
+            "Título muy parecido";
+
+    }else if(
+        similitud>=0.88 &&
+        anoA &&
+        anoB &&
+        anoA===anoB
+    ){
+
+        score=92;
+
+        motivo=
+            "Título parecido y mismo año";
+
+    }
+
+
+    /*
+     * Mismo URL: fuerte indicio aunque el título
+     * sea distinto.
+     */
+
+    if(
+        tieneValor(a.url) &&
+        tieneValor(b.url) &&
+        normalizar(a.url)===normalizar(b.url)
+    ){
+
+        score=Math.max(
+            score,
+            99
+        );
+
+        motivo=
+            "Misma URL";
+
+    }
+
+
+    return {
+        score:Math.round(score),
+        motivo
+    };
+
+}
+
+
+/*
+ * Agrupamos solamente candidatos.
+ *
+ * No comparamos películas con series.
+ */
+
+function analizarDuplicados(){
+
+    duplicados=[];
+
+
+    analizarDuplicadosTipo(
+        peliculas,
+        "PELÍCULA"
+    );
+
+
+    analizarDuplicadosTipo(
+        series,
+        "SERIE"
+    );
+
+
+    actualizarResumen();
+
+
+    mostrarDuplicados(
+        duplicados
+    );
+
+}
+
+
+function analizarDuplicadosTipo(
+    lista,
+    tipo
+){
+
+    /*
+     * Para evitar comparar todo contra todo,
+     * primero agrupamos por la primera palabra
+     * significativa del título.
+     *
+     * Luego hacemos las comparaciones dentro
+     * de esos grupos.
+     */
+
+    const grupos=new Map();
+
+
+    for(const registro of lista){
+
+        const titulo=
+            normalizarTitulo(
+                registro.titulo
+            );
+
+
+        if(!titulo){
+
+            continue;
+
+        }
+
+
+        const palabras=
+            titulo.split(" ")
+                .filter(Boolean);
+
+
+        const clave =
+            palabras[0] ||
+            titulo;
+
+
+        if(!grupos.has(clave)){
+
+            grupos.set(
+                clave,
+                []
+            );
+
+        }
+
+
+        grupos.get(clave).push(
+            registro
+        );
+
+    }
+
+
+    const usados=new Set();
+
+
+    for(
+        const candidatos of grupos.values()
+    ){
+
+        if(candidatos.length<2){
+
+            continue;
+
+        }
+
+
+        for(
+            let i=0;
+            i<candidatos.length;
+            i++
+        ){
+
+            for(
+                let j=i+1;
+                j<candidatos.length;
+                j++
+            ){
+
+                const a=candidatos[i];
+
+                const b=candidatos[j];
+
+
+                if(
+                    a._indice ===
+                    b._indice
+                ){
+
+                    continue;
+
+                }
+
+
+                const coincidencia =
+                    obtenerCoincidencia(
+                        a,
+                        b
+                    );
+
+
+                if(
+                    coincidencia.score < 88
+                ){
+
+                    continue;
+
+                }
+
+
+                const claveGrupo =
+                    [
+                        Math.min(
+                            a._indice,
+                            b._indice
+                        ),
+                        Math.max(
+                            a._indice,
+                            b._indice
+                        ),
+                        tipo
+                    ].join("|");
+
+
+                if(
+                    usados.has(
+                        claveGrupo
+                    )
+                ){
+
+                    continue;
+
+                }
+
+
+                usados.add(
+                    claveGrupo
+                );
+
+
+                duplicados.push({
+
+                    tipo,
+                    score:
+                        coincidencia.score,
+
+                    motivo:
+                        coincidencia.motivo,
+
+                    registros:[
+                        a,
+                        b
+                    ]
+
+                });
+
+            }
+
+        }
+
+    }
+
+
+    duplicados.sort(
+        (a,b)=>
+            b.score-a.score
+    );
+
+}
+
+
+/* =========================================================
+   MOSTRAR DUPLICADOS
+   ========================================================= */
+
+function mostrarDuplicados(
+    lista=duplicados
+){
+
+    const contenedor =
+        document.getElementById(
+            "duplicadosLista"
+        );
+
+
+    contenedor.innerHTML="";
+
+
+    document.getElementById(
+        "duplicadosInfo"
+    ).textContent =
+        "Grupos de posibles duplicados: " +
+        lista.length;
+
+
+    if(!lista.length){
+
+        contenedor.innerHTML =
+            '<div class="vacio">No se encontraron posibles duplicados con el umbral actual.</div>';
+
+        return;
+
+    }
+
+
+    for(
+        let i=0;
+        i<lista.length;
+        i++
+    ){
+
+        contenedor.appendChild(
+            crearGrupoDuplicado(
+                lista[i],
+                i+1
+            )
+        );
+
+    }
+
+}
+
+
+function crearGrupoDuplicado(
+    grupo,
+    numero
+){
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.className="duplicado";
+
+
+    const filas =
+        grupo.registros.map(
+            registro=>{
+
+                const otro =
+                    grupo.registros.find(
+                        r=>
+                            r._indice !==
+                            registro._indice
+                    );
+
+
+                const anoIgual =
+                    obtenerAno(
+                        registro
+                    ) ===
+                    obtenerAno(
+                        otro
+                    );
+
+
+                const categoriaIgual =
+                    normalizar(
+                        registro.categoria
+                    ) ===
+                    normalizar(
+                        otro.categoria
+                    );
+
+
+                const clasificacionIgual =
+                    normalizar(
+                        registro.clasificacion
+                    ) ===
+                    normalizar(
+                        otro.clasificacion
+                    );
+
+
+                const posterIgual =
+                    normalizar(
+                        registro.poster
+                    ) ===
+                    normalizar(
+                        otro.poster
+                    );
+
+
+                const urlIgual =
+                    normalizar(
+                        registro.url
+                    ) ===
+                    normalizar(
+                        otro.url
+                    );
+
+
+                return `
+
+                    <tr>
+
+                        <td>
+
+                            <strong>
+                                ${escaparHTML(
+                                    registro.titulo ||
+                                    "Sin título"
+                                )}
+                            </strong>
+
+                            <br>
+
+                            <span class="meta">
+
+                                ${escaparHTML(
+                                    registro._archivo
+                                )}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            ${
+                                anoIgual
+                                ? '<span class="igual">✓</span>'
+                                : '<span class="diferente">⚠</span>'
+                            }
+
+                            ${escaparHTML(
+                                registro.año ||
+                                "—"
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            ${
+                                categoriaIgual
+                                ? '<span class="igual">✓</span>'
+                                : '<span class="diferente">⚠</span>'
+                            }
+
+                            ${escaparHTML(
+                                registro.categoria ||
+                                "—"
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            ${
+                                clasificacionIgual
+                                ? '<span class="igual">✓</span>'
+                                : '<span class="diferente">⚠</span>'
+                            }
+
+                            ${escaparHTML(
+                                registro.clasificacion ||
+                                "—"
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            ${
+                                posterIgual
+                                ? '<span class="igual">✓</span>'
+                                : '<span class="diferente">⚠</span>'
+                            }
+
+                            ${
+                                tieneValor(
+                                    registro.poster
+                                )
+                                ? "Disponible"
+                                : "Falta"
+                            }
+
+                        </td>
+
+
+<td>
+
+    ${
+        !tieneValor(registro.url)
+        ? '<span class="diferente">— SIN ENLACE</span>'
+        :
+        urlIgual
+        ? '<span class="igual">✓ IGUAL</span>'
+        : '<span class="diferente">⚠ DIFERENTE</span>'
+    }
+
+</td>
+
+                        <td>
+
+                            <div class="acciones-tabla">
+
+                                <button
+                                    class="pequeno azul"
+                                    data-dup-consultar="${registro._indice}"
+                                >
+                                    CONSULTAR
+                                </button>
+
+                                <button
+                                    class="pequeno verde"
+                                    data-dup-generar="${registro._indice}"
+                                >
+                                    GENERAR JS
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        ).join("");
+
+
+    div.innerHTML=`
+
+        <div class="duplicado-cabecera">
+
+            <div class="duplicado-titulo">
+
+                #${numero}
+
+                ·
+
+                ${grupo.tipo}
+
+                ·
+
+                ${escaparHTML(
+                    grupo.registros[0].titulo ||
+                    "Sin título"
+                )}
+
+            </div>
+
+            <div class="coincidencia">
+
+                ${grupo.score}% ·
+
+                ${escaparHTML(
+                    grupo.motivo
+                )}
+
+            </div>
+
+        </div>
+
+
+        <div class="tabla-contenedor">
+
+            <table class="tabla">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Registro / Archivo</th>
+                        <th>Año</th>
+                        <th>Categoría</th>
+                        <th>Clasificación</th>
+                        <th>Poster</th>
+                        <th>URL</th>
+                        <th>Acciones</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    ${filas}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    `;
+
+
+    div.querySelectorAll(
+        "[data-dup-consultar]"
+    ).forEach(
+        boton=>{
+
+            boton.addEventListener(
+                "click",
+                ()=>{
+
+                    const registro =
+                        obtenerRegistroPorIndice(
+                            Number(
+                                boton.dataset
+                                    .dupConsultar
+                            )
+                        );
+
+
+                    if(registro){
+
+                        consultarRegistro(
+                            registro
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    div.querySelectorAll(
+        "[data-dup-generar]"
+    ).forEach(
+        boton=>{
+
+            boton.addEventListener(
+                "click",
+                ()=>{
+
+                    const registro =
+                        obtenerRegistroPorIndice(
+                            Number(
+                                boton.dataset
+                                    .dupGenerar
+                            )
+                        );
+
+
+                    if(registro){
+
+                        generarRegistroJS(
+                            registro
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    return div;
+
+}
+
+
+/* =========================================================
+   OBTENER REGISTRO
+   ========================================================= */
+
+function obtenerRegistroPorIndice(
+    indice
+){
+
+    return registros.find(
+        r=>
+            r._indice === indice
+    ) || null;
+
+}
+
+
+/* =========================================================
+   CONSULTA INTERNET
+   ========================================================= */
+
+async function consultarRegistro(
+    registro
+){
+
+    registroConsultaActual=
+        registro;
+
+
+    tmdbResultados=[];
+    tmdbSeleccionado=null;
+
+
+    const contenedor =
+        document.getElementById(
+            "consultaInternet"
+        );
+
+
+    contenedor.innerHTML=`
+
+        <div>
+
+            <strong>
+                Consultando:
+            </strong>
+
+            ${escaparHTML(
+                registro.titulo ||
+                "Sin título"
+            )}
+
+            <span class="badge">
+
+                ${
+                    registro._esSerie
+                        ? "SERIE"
+                        : "PELÍCULA"
+                }
+
+            </span>
+
+        </div>
+
+
+        <div
+            class="resultadoInfo"
+        >
+            Buscando en TMDB...
+        </div>
+
+    `;
+
+
+    const token=obtenerToken();
+
+
+    if(!token){
+
+        contenedor.innerHTML=`
+
+            <div class="faltante">
+
+                ⚠ No hay token de TMDB configurado.
+
+            </div>
+
+            <p class="tmdb-ayuda">
+
+                Colocá tu API Read Access Token
+                arriba y presioná GUARDAR TOKEN.
+
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    const titulo=
+        valorTexto(
+            registro.titulo
+        );
+
+
+    if(!titulo){
+
+        contenedor.innerHTML=`
+
+            <div class="faltante">
+
+                ⚠ El registro no tiene título.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    try{
+
+        const resultados =
+            await buscarTMDB(
+                titulo,
+                obtenerAno(registro),
+                registro._esSerie,
+                token
+            );
+
+
+        tmdbResultados=
+            resultados;
+
+
+        mostrarResultadosTMDB(
+            resultados,
+            registro
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+
+        contenedor.innerHTML=`
+
+            <div class="faltante">
+
+                ⚠ No se pudo consultar TMDB.
+
+            </div>
+
+            <div class="resultadoInfo">
+
+                ${escaparHTML(
+                    error.message ||
+                    String(error)
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   BUSCAR TMDB
+   ========================================================= */
+
+async function buscarTMDB(
+    titulo,
+    ano,
+    esSerie,
+    token
+){
+
+    const endpoint =
+        esSerie
+            ? "/search/tv"
+            : "/search/movie";
+
+
+    const params =
+        new URLSearchParams();
+
+
+    params.set(
+        "query",
+        titulo
+    );
+
+
+    params.set(
+        "language",
+        "es-ES"
+    );
+
+
+    params.set(
+        "include_adult",
+        "false"
+    );
+
+
+    if(ano){
+
+        if(esSerie){
+
+            params.set(
+                "first_air_date_year",
+                ano
+            );
+
+        }else{
+
+            params.set(
+                "year",
+                ano
+            );
+
+        }
+
+    }
+
+
+    const respuesta =
+        await fetch(
+            TMDB_BASE +
+            endpoint +
+            "?" +
+            params.toString(),
+            {
+
+                headers:{
+                    "Authorization":
+                        "Bearer " +
+                        token,
+
+                    "accept":
+                        "application/json"
+                }
+
+            }
+        );
+
+
+    if(!respuesta.ok){
+
+        let detalle="";
+
+
+        try{
+
+            const errorJSON =
+                await respuesta.json();
+
+
+            detalle =
+                errorJSON.status_message ||
+                "";
+
+        }catch(_){}
+
+
+        throw new Error(
+            "TMDB respondió HTTP " +
+            respuesta.status +
+            (
+                detalle
+                    ? " — " + detalle
+                    : ""
+            )
+        );
+
+    }
+
+
+    const datos =
+        await respuesta.json();
+
+
+    return Array.isArray(
+        datos.results
+    )
+        ? datos.results
+        : [];
+
+}
+
+
+/* =========================================================
+   MOSTRAR RESULTADOS TMDB
+   ========================================================= */
+
+function mostrarResultadosTMDB(
+    resultados,
+    registro
+){
+
+    const contenedor =
+        document.getElementById(
+            "consultaInternet"
+        );
+
+
+    if(!resultados.length){
+
+        contenedor.innerHTML=`
+
+            <div class="faltante">
+
+                ⚠ No se encontraron coincidencias
+                en TMDB para:
+
+            </div>
+
+            <div style="margin-top:8px">
+
+                ${escaparHTML(
+                    registro.titulo
+                )}
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const tarjetas =
+        resultados
+            .slice(0,10)
+            .map(
+                (resultado,indice)=>
+                    crearResultadoTMDB(
+                        resultado,
+                        indice,
+                        registro._esSerie
+                    )
+            )
+            .join("");
+
+
+    contenedor.innerHTML=`
+
+        <div>
+
+            <strong>
+                Resultados encontrados:
+            </strong>
+
+            ${resultados.length}
+
+        </div>
+
+
+        <div class="resultadoInfo">
+
+            Elegí el título correcto.
+            Después podremos revisar sus datos
+            antes de aplicarlos al registro.
+
+        </div>
+
+
+        <div class="resultados-tmdb">
+
+            ${tarjetas}
+
+        </div>
+
+
+        <div
+            id="tmdbDetalle"
+            class="tmdb-preview"
+        >
+
+            <div class="vacio">
+
+                Seleccioná un resultado.
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    contenedor
+        .querySelectorAll(
+            "[data-tmdb-indice]"
+        )
+        .forEach(
+            boton=>{
+
+                boton.addEventListener(
+                    "click",
+                    ()=>{
+
+                        const indice=
+                            Number(
+                                boton.dataset
+                                    .tmdbIndice
+                            );
+
+
+                        seleccionarResultadoTMDB(
+                            indice,
+                            registro
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   TARJETA TMDB
+   ========================================================= */
+
+function crearResultadoTMDB(
+    resultado,
+    indice,
+    esSerie
+){
+
+    const titulo =
+        esSerie
+            ? resultado.name
+            : resultado.title;
+
+
+    const fecha =
+        esSerie
+            ? resultado.first_air_date
+            : resultado.release_date;
+
+
+    const poster =
+        resultado.poster_path
+            ? TMDB_IMAGEN +
+              resultado.poster_path
+            : "";
+
+
+    const ano =
+        fecha
+            ? String(fecha).slice(0,4)
+            : "Sin año";
+
+
+    return `
+
+        <div class="tmdb-resultado">
+
+            ${
+                poster
+
+                ?
+
+                `<img
+                    class="tmdb-poster"
+                    src="${escaparHTML(poster)}"
+                    alt=""
+                >`
+
+                :
+
+                `<div
+                    class="tmdb-poster"
+                ></div>`
+            }
+
+
+            <div class="tmdb-info">
+
+                <h4>
+
+                    ${escaparHTML(
+                        titulo ||
+                        "Sin título"
+                    )}
+
+                </h4>
+
+
+                <p>
+
+                    Año:
+                    ${escaparHTML(ano)}
+
+                </p>
+
+
+                <p>
+
+                    TMDB ID:
+                    ${escaparHTML(
+                        resultado.id
+                    )}
+
+                </p>
+
+
+                <p>
+
+                    ${
+                        resultado.overview
+                            ? escaparHTML(
+                                resultado.overview
+                              )
+                            : "Sin descripción"
+                    }
+
+                </p>
+
+            </div>
+
+
+            <button
+                class="azul"
+                data-tmdb-indice="${indice}"
+            >
+
+                SELECCIONAR
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   SELECCIONAR TMDB
+   ========================================================= */
+
+async function seleccionarResultadoTMDB(
+    indice,
+    registro
+){
+
+    const resultado =
+        tmdbResultados[indice];
+
+
+    if(!resultado){
+
+        return;
+
+    }
+
+
+    tmdbSeleccionado=
+        resultado;
+
+
+    const detalle =
+        document.getElementById(
+            "tmdbDetalle"
+        );
+
+
+    detalle.innerHTML=`
+
+        <div class="resultadoInfo">
+
+            Obteniendo información detallada...
+
+        </div>
+
+    `;
+
+
+    const token=obtenerToken();
+
+
+    try{
+
+        const datos =
+            await obtenerDetalleTMDB(
+                resultado.id,
+                registro._esSerie,
+                token
+            );
+
+
+        tmdbSeleccionado=
+            datos;
+
+
+        mostrarDetalleTMDB(
+            datos,
+            registro
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+
+        detalle.innerHTML=`
+
+            <div class="faltante">
+
+                ⚠ No se pudo obtener el detalle.
+
+            </div>
+
+            <div class="resultadoInfo">
+
+                ${escaparHTML(
+                    error.message
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   DETALLE TMDB
+   ========================================================= */
+
+async function obtenerDetalleTMDB(
+    id,
+    esSerie,
+    token
+){
+
+    const endpoint =
+        esSerie
+            ? "/tv/" + id
+            : "/movie/" + id;
+
+
+    const params =
+        new URLSearchParams();
+
+
+    params.set(
+        "language",
+        "es-ES"
+    );
+
+
+    const respuesta =
+        await fetch(
+            TMDB_BASE +
+            endpoint +
+            "?" +
+            params.toString(),
+            {
+
+                headers:{
+                    "Authorization":
+                        "Bearer " +
+                        token,
+
+                    "accept":
+                        "application/json"
+                }
+
+            }
+        );
+
+
+    if(!respuesta.ok){
+
+        throw new Error(
+            "TMDB respondió HTTP " +
+            respuesta.status
+        );
+
+    }
+
+
+    const datos =
+        await respuesta.json();
+
+
+    if(esSerie){
+
+        datos._clasificacion =
+            await obtenerClasificacionSerie(
+                id,
+                token
+            );
+
+    }else{
+
+        datos._clasificacion =
+            await obtenerClasificacionPelicula(
+                id,
+                token
+            );
+
+    }
+
+
+    return datos;
+
+}
+
+
+/* =========================================================
+   CLASIFICACIÓN PELÍCULA
+   ========================================================= */
+
+async function obtenerClasificacionPelicula(
+    id,
+    token
+){
+
+    const respuesta =
+        await fetch(
+            TMDB_BASE +
+            "/movie/" +
+            id +
+            "/release_dates",
+            {
+
+                headers:{
+                    "Authorization":
+                        "Bearer " +
+                        token,
+
+                    "accept":
+                        "application/json"
+                }
+
+            }
+        );
+
+
+    if(!respuesta.ok){
+
+        return "";
+
+    }
+
+
+    const datos =
+        await respuesta.json();
+
+
+    const argentina =
+        Array.isArray(
+            datos.results
+        )
+        ?
+        datos.results.find(
+            r=>
+                r.iso_3166_1 ===
+                "AR"
+        )
+        :
+        null;
+
+
+    if(
+        argentina &&
+        Array.isArray(
+            argentina.release_dates
+        )
+    ){
+
+        const certificado =
+            argentina.release_dates.find(
+                r=>
+                    tieneValor(
+                        r.certification
+                    )
+            );
+
+
+        if(
+            certificado &&
+            tieneValor(
+                certificado.certification
+            )
+        ){
+
+            return certificado.certification;
+
+        }
+
+    }
+
+
+    const usa =
+        Array.isArray(
+            datos.results
+        )
+        ?
+        datos.results.find(
+            r=>
+                r.iso_3166_1 ===
+                "US"
+        )
+        :
+        null;
+
+
+    if(
+        usa &&
+        Array.isArray(
+            usa.release_dates
+        )
+    ){
+
+        const certificado =
+            usa.release_dates.find(
+                r=>
+                    tieneValor(
+                        r.certification
+                    )
+            );
+
+
+        if(certificado){
+
+            return certificado.certification;
+
+        }
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =========================================================
+   CLASIFICACIÓN SERIE
+   ========================================================= */
+
+async function obtenerClasificacionSerie(
+    id,
+    token
+){
+
+    const respuesta =
+        await fetch(
+            TMDB_BASE +
+            "/tv/" +
+            id +
+            "/content_ratings",
+            {
+
+                headers:{
+                    "Authorization":
+                        "Bearer " +
+                        token,
+
+                    "accept":
+                        "application/json"
+                }
+
+            }
+        );
+
+
+    if(!respuesta.ok){
+
+        return "";
+
+    }
+
+
+    const datos =
+        await respuesta.json();
+
+
+    const argentina =
+        Array.isArray(
+            datos.results
+        )
+        ?
+        datos.results.find(
+            r=>
+                r.iso_3166_1 ===
+                "AR"
+        )
+        :
+        null;
+
+
+    if(
+        argentina &&
+        tieneValor(
+            argentina.rating
+        )
+    ){
+
+        return argentina.rating;
+
+    }
+
+
+    const usa =
+        Array.isArray(
+            datos.results
+        )
+        ?
+        datos.results.find(
+            r=>
+                r.iso_3166_1 ===
+                "US"
+        )
+        :
+        null;
+
+
+    if(
+        usa &&
+        tieneValor(
+            usa.rating
+        )
+    ){
+
+        return usa.rating;
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =========================================================
+   CATEGORÍA DESDE TMDB
+   ========================================================= */
+
+function obtenerCategoriaTMDB(
+    generos
+){
+
+    if(
+        !Array.isArray(generos) ||
+        !generos.length
+    ){
+
+        return "";
+
+    }
+
+
+    const categorias=[];
+
+
+    for(
+        const genero of generos
+    ){
+
+        const categoria =
+            GENEROS_TVALC[
+                genero.id
+            ];
+
+
+        if(
+            categoria &&
+            !categorias.includes(
+                categoria
+            )
+        ){
+
+            categorias.push(
+                categoria
+            );
+
+        }
+
+    }
+
+
+    return categorias
+        .slice(0,3)
+        .join(", ");
+
+}
+
+
+/* =========================================================
+   MOSTRAR DETALLE
+   ========================================================= */
+
+function mostrarDetalleTMDB(
+    datos,
+    registro
+){
+
+    const detalle =
+        document.getElementById(
+            "tmdbDetalle"
+        );
+
+
+    const esSerie=
+        registro._esSerie;
+
+
+    const titulo =
+        esSerie
+            ? datos.name
+            : datos.title;
+
+
+    const fecha =
+        esSerie
+            ? datos.first_air_date
+            : datos.release_date;
+
+
+    const ano =
+        fecha
+            ? String(fecha).slice(0,4)
+            : "";
+
+
+    const poster =
+        datos.poster_path
+            ? TMDB_IMAGEN +
+              datos.poster_path
+            : "";
+
+
+    const categoria =
+        obtenerCategoriaTMDB(
+            datos.genres
+        );
+
+
+    const descripcion =
+        datos.overview ||
+        "";
+
+
+    const clasificacion =
+        datos._clasificacion ||
+        "";
+
+
+    detalle.innerHTML=`
+
+        <h3>
+
+            Resultado seleccionado:
+
+            ${escaparHTML(
+                titulo ||
+                "Sin título"
+            )}
+
+        </h3>
+
+
+        <div class="tmdb-preview-grid">
+
+            <div>
+
+                ${
+                    poster
+
+                    ?
+
+                    `<img
+                        src="${escaparHTML(poster)}"
+                        alt=""
+                    >`
+
+                    :
+
+                    `<div class="vacio">
+                        Sin poster
+                    </div>`
+                }
+
+            </div>
+
+
+            <div>
+
+                <div class="tmdb-dato">
+
+                    <strong>Título</strong>
+
+                    ${escaparHTML(
+                        titulo ||
+                        ""
+                    )}
+
+                </div>
+
+
+                <div class="tmdb-dato">
+
+                    <strong>Año</strong>
+
+                    ${escaparHTML(
+                        ano ||
+                        "No encontrado"
+                    )}
+
+                </div>
+
+
+                <div class="tmdb-dato">
+
+                    <strong>Categoría</strong>
+
+                    ${escaparHTML(
+                        categoria ||
+                        "No encontrada"
+                    )}
+
+                </div>
+
+
+                <div class="tmdb-dato">
+
+                    <strong>Clasificación</strong>
+
+                    ${escaparHTML(
+                        clasificacion ||
+                        "No encontrada"
+                    )}
+
+                </div>
+
+
+                <div class="tmdb-dato">
+
+                    <strong>Descripción</strong>
+
+                    ${escaparHTMLMultilinea(
+                        descripcion ||
+                        "No encontrada"
+                    )}
+
+                </div>
+
+
+                <div class="tmdb-dato">
+
+                    <strong>Poster</strong>
+
+                    ${
+                        poster
+                            ? escaparHTML(
+                                poster
+                              )
+                            : "No encontrado"
+                    }
+
+                </div>
+
+
+                <div class="tmdb-dato">
+
+                    <strong>TMDB ID</strong>
+
+                    ${escaparHTML(
+                        datos.id
+                    )}
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="tmdb-aplicar">
+
+            <button
+                id="btnAplicarFaltantes"
+                class="verde"
+            >
+                ✓ APLICAR SOLO FALTANTES
+            </button>
+
+
+            <button
+                id="btnAplicarTodo"
+                class="naranja"
+            >
+                APLICAR DATOS ENCONTRADOS
+            </button>
+
+        </div>
+
+
+        <div class="resultadoInfo">
+
+            "Solo faltantes" no toca ningún campo
+            que ya tenga información.
+
+        </div>
+
+    `;
+
+
+    document
+        .getElementById(
+            "btnAplicarFaltantes"
+        )
+        .addEventListener(
+            "click",
+            ()=>{
+                aplicarDatosTMDB(
+                    registro,
+                    datos,
+                    true
+                );
+            }
+        );
+
+
+    document
+        .getElementById(
+            "btnAplicarTodo"
+        )
+        .addEventListener(
+            "click",
+            ()=>{
+                aplicarDatosTMDB(
+                    registro,
+                    datos,
+                    false
+                );
+            }
+        );
+
+}
+
+
+/* =========================================================
+   APLICAR DATOS TMDB
+   ========================================================= */
+
+function aplicarDatosTMDB(
+    registro,
+    datos,
+    soloFaltantes
+){
+
+    const esSerie=
+        registro._esSerie;
+
+
+    const titulo =
+        esSerie
+            ? datos.name
+            : datos.title;
+
+
+    const fecha =
+        esSerie
+            ? datos.first_air_date
+            : datos.release_date;
+
+
+    const ano =
+        fecha
+            ? String(fecha).slice(0,4)
+            : "";
+
+
+    const poster =
+        datos.poster_path
+            ? TMDB_IMAGEN +
+              datos.poster_path
+            : "";
+
+
+    const categoria =
+        obtenerCategoriaTMDB(
+            datos.genres
+        );
+
+
+    const descripcion =
+        datos.overview ||
+        "";
+
+
+    const clasificacion =
+        datos._clasificacion ||
+        "";
+
+
+    if(
+        tieneValor(titulo) &&
+        (
+            !soloFaltantes ||
+            !tieneValor(registro.titulo)
+        )
+    ){
+
+        registro.titulo=titulo;
+
+    }
+
+
+    if(
+        tieneValor(ano) &&
+        (
+            !soloFaltantes ||
+            !tieneValor(registro.año)
+        )
+    ){
+
+        registro.año=ano;
+
+    }
+
+
+    if(
+        tieneValor(categoria) &&
+        (
+            !soloFaltantes ||
+            !tieneValor(registro.categoria)
+        )
+    ){
+
+        registro.categoria=categoria;
+
+    }
+
+
+    if(
+        tieneValor(clasificacion) &&
+        (
+            !soloFaltantes ||
+            !tieneValor(
+                registro.clasificacion
+            )
+        )
+    ){
+
+        registro.clasificacion=
+            clasificacion;
+
+    }
+
+
+    if(
+        tieneValor(descripcion) &&
+        (
+            !soloFaltantes ||
+            !tieneValor(
+                registro.descripcion
+            )
+        )
+    ){
+
+        registro.descripcion=
+            descripcion;
+
+    }
+
+
+    if(
+        tieneValor(poster) &&
+        (
+            !soloFaltantes ||
+            !tieneValor(registro.poster)
+        )
+    ){
+
+        registro.poster=poster;
+
+    }
+
+
+    actualizarResumen();
+
+
+    /*
+     * IMPORTANTE:
+     * La selección del registro se conserva.
+     */
+
+    mostrarLista(
+        filtroActual==="peliculas"
+            ? peliculas
+            : filtroActual==="series"
+                ? series
+                : registros,
+
+        "Datos actualizados. Registros: "
+    );
+
+
+    mostrarEstado(
+        "Datos de TMDB aplicados al registro en memoria.\n" +
+        "Los archivos originales NO fueron modificados."
+    );
+
+
+    mostrarDetalleTMDB(
+        datos,
+        registro
+    );
+
+}
+
+
+/* =========================================================
+   GENERAR REGISTRO JS INDIVIDUAL
+   ========================================================= */
+
+function limpiarInternos(
+    objeto
+){
+
+    if(
+        objeto === null ||
+        typeof objeto !== "object"
+    ){
+
+        return objeto;
+
+    }
+
+
+    if(Array.isArray(objeto)){
+
+        return objeto.map(
+            limpiarInternos
+        );
+
+    }
+
+
+    const nuevo={};
+
+
+    for(
+        const [clave,valor]
+        of Object.entries(objeto)
+    ){
+
+        /*
+         * Nunca exportamos campos internos
+         * del editor.
+         */
+
+        if(
+            clave.startsWith("_")
+        ){
+
+            continue;
+
+        }
+
+
+        nuevo[clave]=
+            limpiarInternos(
+                valor
+            );
+
+    }
+
+
+    return nuevo;
+
+}
+
+
+function generarRegistroJS(
+    registro
+){
+
+    const limpio =
+        limpiarInternos(
+            registro
+        );
+
+
+    const variable =
+        registro._esSerie
+            ? "TVALC_SERIES"
+            : "TVALC_PELICULAS";
+
+
+    const textoObjeto =
+        JSON.stringify(
+            limpio,
+            null,
+            4
+        );
+
+
+    const codigo =
+        variable +
+        ".push(\n" +
+        textoObjeto +
+        "\n);";
+
+
+    abrirGenerador(
+        codigo,
+        registro
+    );
+
+}
+
+
+/* =========================================================
+   GENERAR SELECCIONADOS
+   ========================================================= */
+
+function generarSeleccionadosJS(){
+
+    const seleccionados =
+        obtenerRegistrosSeleccionados();
+
+
+    if(!seleccionados.length){
+
+        mostrarEstado(
+            "No hay registros seleccionados."
+        );
+
+        alert(
+            "Seleccioná al menos un registro para generar el JS."
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Separamos películas y series.
+     *
+     * Esto permite seleccionar cualquier combinación
+     * y generar un código válido para ambas variables.
+     */
+
+    const seleccionPeliculas =
+        seleccionados.filter(
+            registro=>
+                !registro._esSerie
+        );
+
+
+    const seleccionSeries =
+        seleccionados.filter(
+            registro=>
+                registro._esSerie
+        );
+
+
+    const bloques=[];
+
+
+    /*
+     * PELÍCULAS
+     */
+
+    if(seleccionPeliculas.length){
+
+        const objetos =
+            seleccionPeliculas.map(
+                registro=>
+                    limpiarInternos(
+                        registro
+                    )
+            );
+
+
+        const textoObjetos =
+            objetos.map(
+                objeto=>
+                    JSON.stringify(
+                        objeto,
+                        null,
+                        4
+                    )
+            ).join(",\n");
+
+
+        bloques.push(
+            "TVALC_PELICULAS.push(\n" +
+            textoObjetos +
+            "\n);"
+        );
+
+    }
+
+
+    /*
+     * SERIES
+     */
+
+    if(seleccionSeries.length){
+
+        const objetos =
+            seleccionSeries.map(
+                registro=>
+                    limpiarInternos(
+                        registro
+                    )
+            );
+
+
+        const textoObjetos =
+            objetos.map(
+                objeto=>
+                    JSON.stringify(
+                        objeto,
+                        null,
+                        4
+                    )
+            ).join(",\n");
+
+
+        bloques.push(
+            "TVALC_SERIES.push(\n" +
+            textoObjetos +
+            "\n);"
+        );
+
+    }
+
+
+    const codigo =
+        bloques.join(
+            "\n\n"
+        );
+
+
+    abrirGeneradorMultiple(
+        codigo,
+        seleccionados
+    );
+
+}
+
+
+/* =========================================================
+   GENERADOR MODAL INDIVIDUAL
+   ========================================================= */
+
+function abrirGenerador(
+    codigo,
+    registro
+){
+
+    const modal =
+        document.getElementById(
+            "modalGenerador"
+        );
+
+
+    const contenido =
+        document.getElementById(
+            "generadorContenido"
+        );
+
+
+    document.getElementById(
+        "tituloModalGenerador"
+    ).textContent =
+        "Registro listo para agregar";
+
+
+    contenido.innerHTML=`
+
+        <div class="resultadoInfo">
+
+            Registro:
+
+            <strong>
+
+                ${escaparHTML(
+                    registro.titulo ||
+                    "Sin título"
+                )}
+
+            </strong>
+
+            ·
+
+            ${escaparHTML(
+                registro._archivo ||
+                ""
+            )}
+
+        </div>
+
+
+        <div class="generador">
+
+            <textarea
+                id="codigoGenerado"
+                spellcheck="false"
+            ></textarea>
+
+
+            <div class="generador-acciones">
+
+                <button
+                    id="btnCopiarCodigo"
+                    class="primario"
+                >
+                    📋 COPIAR
+                </button>
+
+                <button
+                    id="btnSeleccionarCodigo"
+                >
+                    SELECCIONAR TODO
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "codigoGenerado"
+    ).value=String(codigo);
+
+
+    configurarBotonesGenerador();
+
+
+    modal.classList.remove(
+        "oculto"
+    );
+
+}
+
+
+/* =========================================================
+   GENERADOR MODAL MÚLTIPLE
+   ========================================================= */
+
+function abrirGeneradorMultiple(
+    codigo,
+    seleccionados
+){
+
+    const modal =
+        document.getElementById(
+            "modalGenerador"
+        );
+
+
+    const contenido =
+        document.getElementById(
+            "generadorContenido"
+        );
+
+
+    const cantidad =
+        seleccionados.length;
+
+
+    const peliculasCantidad =
+        seleccionados.filter(
+            registro=>
+                !registro._esSerie
+        ).length;
+
+
+    const seriesCantidad =
+        seleccionados.filter(
+            registro=>
+                registro._esSerie
+        ).length;
+
+
+    document.getElementById(
+        "tituloModalGenerador"
+    ).textContent =
+        "Registros seleccionados listos para agregar";
+
+
+    contenido.innerHTML=`
+
+        <div class="resultadoInfo">
+
+            <strong>
+                ${cantidad}
+                ${
+                    cantidad === 1
+                        ? " registro seleccionado"
+                        : " registros seleccionados"
+                }
+            </strong>
+
+            ${
+                peliculasCantidad
+                    ? " · " +
+                      peliculasCantidad +
+                      " película(s)"
+                    : ""
+            }
+
+            ${
+                seriesCantidad
+                    ? " · " +
+                      seriesCantidad +
+                      " serie(s)"
+                    : ""
+            }
+
+        </div>
+
+
+        <div class="resultadoInfo">
+
+            Se generó un único bloque JS.
+            Si hay películas y series, se separan
+            automáticamente en sus respectivas variables.
+
+        </div>
+
+
+        <div class="generador">
+
+            <textarea
+                id="codigoGenerado"
+                spellcheck="false"
+            ></textarea>
+
+
+            <div class="generador-acciones">
+
+                <button
+                    id="btnCopiarCodigo"
+                    class="primario"
+                >
+                    📋 COPIAR TODO
+                </button>
+
+                <button
+                    id="btnSeleccionarCodigo"
+                >
+                    SELECCIONAR TODO
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "codigoGenerado"
+    ).value=String(codigo);
+
+
+    configurarBotonesGenerador();
+
+
+    modal.classList.remove(
+        "oculto"
+    );
+
+}
+
+
+/* =========================================================
+   CONFIGURAR BOTONES DEL GENERADOR
+   ========================================================= */
+
+function configurarBotonesGenerador(){
+
+    document
+        .getElementById(
+            "btnCopiarCodigo"
+        )
+        .addEventListener(
+            "click",
+            async ()=>{
+
+                const textarea =
+                    document.getElementById(
+                        "codigoGenerado"
+                    );
+
+
+                try{
+
+                    await navigator.clipboard.writeText(
+                        textarea.value
+                    );
+
+
+                    mostrarEstado(
+                        "Código copiado al portapapeles."
+                    );
+
+
+                }catch(error){
+
+                    textarea.select();
+
+                    document.execCommand(
+                        "copy"
+                    );
+
+
+                    mostrarEstado(
+                        "Código copiado."
+                    );
+
+                }
+
+            }
+        );
+
+
+    document
+        .getElementById(
+            "btnSeleccionarCodigo"
+        )
+        .addEventListener(
+            "click",
+            ()=>{
+
+                const textarea =
+                    document.getElementById(
+                        "codigoGenerado"
+                    );
+
+
+                textarea.focus();
+
+                textarea.select();
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   CERRAR GENERADOR
+   ========================================================= */
+
+function cerrarGenerador(){
+
+    document
+        .getElementById(
+            "modalGenerador"
+        )
+        .classList.add(
+            "oculto"
+        );
+
+}
+
+
+/* =========================================================
+   LIMPIAR
+   ========================================================= */
+
+function limpiar(){
+
+    peliculas=[];
+    series=[];
+    registros=[];
+    archivosProcesados=[];
+    duplicados=[];
+
+
+    registrosSeleccionados.clear();
+
+
+    registroConsultaActual=null;
+
+    tmdbResultados=[];
+
+    tmdbSeleccionado=null;
+
+    filtroActual="todos";
+
+
+    document.getElementById(
+        "archivos"
+    ).value="";
+
+
+    document.getElementById(
+        "buscar"
+    ).value="";
+
+
+    actualizarResumen();
+
+    actualizarInfoSeleccion();
+
+
+    document.getElementById(
+        "resultadoInfo"
+    ).textContent="";
+
+
+    document.getElementById(
+        "duplicadosInfo"
+    ).textContent =
+        "Todavía no se realizó el análisis.";
+
+
+    document.getElementById(
+        "duplicadosLista"
+    ).innerHTML =
+        '<div class="vacio">Cargá la biblioteca y ejecutá el análisis.</div>';
+
+
+    document.getElementById(
+        "lista"
+    ).innerHTML =
+        '<div class="vacio">Cargá los archivos para comenzar.</div>';
+
+
+    document.getElementById(
+        "consultaInternet"
+    ).innerHTML =
+        '<div class="vacio">Seleccioná un registro desde la lista para consultar sus datos.</div>';
+
+
+    cerrarGenerador();
+
+
+    mostrarEstado(
+        "Biblioteca limpiada. Los archivos originales no fueron modificados."
+    );
+
+}
+
+
+/* =========================================================
+   INICIO
+   ========================================================= */
+
+cargarTokenGuardado();
+
+actualizarResumen();
+
+actualizarInfoSeleccion();
+
+</script>
+
+</body>
+</html>
