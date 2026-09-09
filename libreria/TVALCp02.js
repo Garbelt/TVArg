@@ -1,4 +1,4 @@
-window.TVALC_PELICULAS.push(
+window.TVALC_PELICULAS.push( 
 
     {
         titulo: "F1 la película",
