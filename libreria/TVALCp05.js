@@ -1,4 +1,4 @@
-window.TVALC_PELICULAS.push(
+window.TVALC_PELICULAS.push( 
 
 {
     titulo: "Os declaro marido y marido",
