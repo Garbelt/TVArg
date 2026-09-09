@@ -341,16 +341,6 @@ window.TVALC_PELICULAS.push(
 },
 
 {
-    titulo: "El cuchitril de Joe",
-    año: "1996",
-    categoria: "Comedia",
-    clasificacion: "MAYORES DE 13",
-    descripcion: "Un joven descubre que su apartamento está habitado por un grupo de peculiares criaturas que pueden hablar y que convierten su vida cotidiana en una sucesión de situaciones absurdas.",
-    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/8odl5dqj0xu5dUXIJ25DJGbwn5I.jpg",
-    url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159025.mkv"
-},
-
-{
     titulo: "El santuario",
     año: "2011",
     categoria: "Aventura",
