@@ -501,16 +501,6 @@ window.TVALC_PELICULAS.push(
     },
 
     {
-        titulo: "El engaño",
-        año: "2026",
-        categoria: "Suspenso",
-        clasificacion: "MAYORES DE 16",
-        descripcion: "Un engaño cuidadosamente planeado comienza a desmoronarse y obliga a sus protagonistas a enfrentarse a secretos, sospechas y consecuencias inesperadas.",
-        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/y8ADH1i7Ti1A0WLWjMCTEN6s4F8.jpg",
-        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159019.mkv"
-    },
-
-    {
         titulo: "Psycho Killer",
         año: "2026",
         categoria: "Suspenso",
