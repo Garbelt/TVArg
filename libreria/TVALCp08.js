@@ -1,4 +1,3 @@
-window.TVALC_PELICULAS = [];
 
 TVALC_PELICULAS.push(
 {
