@@ -180,6 +180,6 @@ window.TVALC_PELICULAS.push(
     categoria: "Terror",
     poster: "https://moviefilms.com.uy/wp-content/uploads/2026/06/Engendro_Arte_640x1138.jpg",
     url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159797.mkv"
-},
+}
 
 );
