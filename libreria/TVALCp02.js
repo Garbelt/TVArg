@@ -29,7 +29,7 @@ window.TVALC_PELICULAS.push(
         categoria: "Acción"
     },
     {
-        titulo: "Misión: Imposible - Sentencia final Full HD",
+        titulo: "Misión: Imposible - Sentencia final",
         año: 2025,
         poster: "https://m.media-amazon.com/images/M/MV5BMjQ3MzNlOTEtNGU5ZS00ODI0LTgxNDctMjA4MTUxMjY4NTU0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
         url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138223.mkv",
