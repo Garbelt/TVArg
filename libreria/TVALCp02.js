@@ -1,13 +1,6 @@
 window.TVALC_PELICULAS.push( 
 
     {
-        titulo: "Shadow Force",
-        año: 2025,
-        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/1PjZIyaMQGhSg8qPdtEZdYBBXah.jpg",
-        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138301.mkv",
-        categoria: "Acción"
-    },
-    {
         titulo: "F1 la película",
         año: 2025,
         poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/yKIG63pXN89EfbTA7yKpwxAU1rf.jpg",
