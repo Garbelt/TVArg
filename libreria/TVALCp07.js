@@ -91,16 +91,6 @@ window.TVALC_PELICULAS.push(
 },
 
 {
-    titulo: "La Odisea",
-    año: "2026",
-    categoria: "Aventura",
-    clasificacion: "MAYORES DE 13",
-    descripcion: "Odiseo emprende un extraordinario viaje de regreso a Ítaca después de la guerra de Troya, enfrentándose a criaturas míticas, dioses y peligros que pondrán a prueba su determinación.",
-    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sf2ke1nwFOLLcwLZiXu9VaMMv8e.jpg",
-    url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159432.mkv"
-},
-
-{
     titulo: "Elize: Sombras de una mujer",
     año: "2026",
     categoria: "Suspenso",
