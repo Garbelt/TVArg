@@ -918,3 +918,296 @@ window.TVALC_SERIES.push({
     ]
 
 });
+
+
+window.TVALC_SERIES.push({
+
+    titulo: "La Pantera Rosa",
+    año: "1969",
+    categoria: "Infantil",
+    tipo: "serie",
+    poster: "http://redworld.pro:8880/images/3c9e7a3c9e2c67a984acadeb86d00e98.jpg",
+
+    temporadas: [
+
+        {
+            numero: 1,
+
+            capitulos: [
+
+                {
+                    numero: 1,
+                    titulo: "Capítulo 1",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516358.avi"
+                },
+
+                {
+                    numero: 2,
+                    titulo: "Capítulo 2",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516359.avi"
+                },
+
+                {
+                    numero: 3,
+                    titulo: "Capítulo 3",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516360.avi"
+                },
+
+                {
+                    numero: 4,
+                    titulo: "Capítulo 4",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516361.avi"
+                },
+
+                {
+                    numero: 5,
+                    titulo: "Capítulo 5",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516362.avi"
+                },
+
+                {
+                    numero: 6,
+                    titulo: "Capítulo 6",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516363.avi"
+                },
+
+                {
+                    numero: 7,
+                    titulo: "Capítulo 7",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516364.avi"
+                },
+
+                {
+                    numero: 8,
+                    titulo: "Capítulo 8",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516365.avi"
+                },
+
+                {
+                    numero: 9,
+                    titulo: "Capítulo 9",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516366.avi"
+                },
+
+                {
+                    numero: 10,
+                    titulo: "Capítulo 10",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516367.avi"
+                },
+
+                {
+                    numero: 11,
+                    titulo: "Capítulo 11",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516368.avi"
+                },
+
+                {
+                    numero: 12,
+                    titulo: "Capítulo 12",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516369.avi"
+                },
+
+                {
+                    numero: 13,
+                    titulo: "Capítulo 13",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516370.avi"
+                },
+
+                {
+                    numero: 14,
+                    titulo: "Capítulo 14",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516371.avi"
+                },
+
+                {
+                    numero: 15,
+                    titulo: "Capítulo 15",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516372.avi"
+                },
+
+                {
+                    numero: 16,
+                    titulo: "Capítulo 16",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516373.avi"
+                },
+
+                {
+                    numero: 17,
+                    titulo: "Capítulo 17",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516374.avi"
+                },
+
+                {
+                    numero: 18,
+                    titulo: "Capítulo 18",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516375.avi"
+                },
+
+                {
+                    numero: 19,
+                    titulo: "Capítulo 19",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516376.avi"
+                },
+
+                {
+                    numero: 20,
+                    titulo: "Capítulo 20",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516377.avi"
+                },
+
+                {
+                    numero: 21,
+                    titulo: "Capítulo 21",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516378.avi"
+                },
+
+                {
+                    numero: 22,
+                    titulo: "Capítulo 22",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516379.avi"
+                },
+
+                {
+                    numero: 23,
+                    titulo: "Capítulo 23",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516380.avi"
+                },
+
+                {
+                    numero: 24,
+                    titulo: "Capítulo 24",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516381.avi"
+                },
+
+                {
+                    numero: 25,
+                    titulo: "Capítulo 25",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516382.avi"
+                },
+
+                {
+                    numero: 26,
+                    titulo: "Capítulo 26",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516383.avi"
+                },
+
+                {
+                    numero: 27,
+                    titulo: "Capítulo 27",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516384.avi"
+                },
+
+                {
+                    numero: 28,
+                    titulo: "Capítulo 28",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516385.avi"
+                },
+
+                {
+                    numero: 29,
+                    titulo: "Capítulo 29",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516386.avi"
+                },
+
+                {
+                    numero: 30,
+                    titulo: "Capítulo 30",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516387.avi"
+                },
+
+                {
+                    numero: 31,
+                    titulo: "Capítulo 31",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516388.avi"
+                },
+
+                {
+                    numero: 32,
+                    titulo: "Capítulo 32",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516389.avi"
+                },
+
+                {
+                    numero: 33,
+                    titulo: "Capítulo 33",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516390.avi"
+                },
+
+                {
+                    numero: 34,
+                    titulo: "Capítulo 34",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516391.avi"
+                },
+
+                {
+                    numero: 35,
+                    titulo: "Capítulo 35",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516392.avi"
+                },
+
+                {
+                    numero: 36,
+                    titulo: "Capítulo 36",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516393.avi"
+                },
+
+                {
+                    numero: 37,
+                    titulo: "Capítulo 37",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516394.avi"
+                },
+
+                {
+                    numero: 38,
+                    titulo: "Capítulo 38",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516395.avi"
+                },
+
+                {
+                    numero: 39,
+                    titulo: "Capítulo 39",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516396.avi"
+                },
+
+                {
+                    numero: 40,
+                    titulo: "Capítulo 40",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516397.avi"
+                },
+
+                {
+                    numero: 41,
+                    titulo: "Capítulo 41",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516398.avi"
+                },
+
+                {
+                    numero: 42,
+                    titulo: "Capítulo 42",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516399.avi"
+                },
+
+                {
+                    numero: 43,
+                    titulo: "Capítulo 43",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516400.avi"
+                },
+
+                {
+                    numero: 44,
+                    titulo: "Capítulo 44",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516401.avi"
+                },
+
+                {
+                    numero: 45,
+                    titulo: "Capítulo 45",
+                    url: "http://superxlatino.com:8880/series/Kasx1.2212@/UtwtRcLvthdC73Ape32/516402.avi"
+                }
+
+            ]
+        }
+
+    ]
+
+});
