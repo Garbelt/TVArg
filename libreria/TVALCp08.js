@@ -1,5 +1,15 @@
 
 TVALC_PELICULAS.push(
+
+{
+    "titulo": "Shadow Force",
+    "año": "2025",
+    "poster": "https://image.tmdb.org/t/p/w500/xauUzJhyk1bX7GO2LAI4JP5cP33.jpg",
+    "url": "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/138301.mkv",
+    "categoria": "Acción, Suspenso",
+    "clasificacion": "+13",
+    "descripcion": "Con una recompensa por sus cabezas, la pareja formada por Omar Sy y Kerry Washington, huye con su hijo para escapar de su antigua organización: una unidad de operaciones en la sombra que ha sido enviada para liquidarlos."
+},
 {
     "titulo": "La momia de Lee Cronin",
     "año": "2026",
