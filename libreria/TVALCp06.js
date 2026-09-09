@@ -481,16 +481,6 @@ window.TVALC_PELICULAS.push(
     },
 
     {
-        titulo: "La momia de Lee Cronin",
-        año: "2026",
-        categoria: "Terror",
-        clasificacion: "MAYORES DE 16",
-        descripcion: "Una antigua momia vuelve a la vida y desencadena una serie de acontecimientos aterradores que ponen en peligro a quienes descubren su secreto.",
-        poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sKYkjA9H4Qlzz5M1oqGCFVsTOfL.jpg",
-        url: "http://planettvweb.com:8091/movie/Carmen65/RMap9748d/159015.mkv"
-    },
-
-    {
         titulo: "911: Llamada infernal",
         año: "2026",
         categoria: "Terror",
