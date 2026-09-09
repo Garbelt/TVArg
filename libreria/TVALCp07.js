@@ -563,6 +563,6 @@ window.TVALC_PELICULAS.push(
     descripcion: "Tras la muerte de Diana de Gales, la reina Isabel II y el primer ministro Tony Blair enfrentan la presión pública y política mientras buscan la manera de responder a una nación conmocionada.",
     poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/e2nS4Yl8ggUlAV2qpnLRYL4Hatb.jpg",
     url: "http://planettvweb.com:8091/movie/andresperezvaz/855kjhn63/116896.mkv"
-},
+}
 
 );
