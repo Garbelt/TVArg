@@ -925,8 +925,10 @@ window.TVALC_SERIES.push({
     titulo: "La Pantera Rosa",
     año: "1969",
     categoria: "Infantil",
+    clasificacion: "TODO PÚBLICO",
     tipo: "serie",
     poster: "http://redworld.pro:8880/images/3c9e7a3c9e2c67a984acadeb86d00e98.jpg",
+    descripcion: "Las divertidas aventuras de la Pantera Rosa, llena de ingenio, humor y situaciones disparatadas.",
 
     temporadas: [
 
