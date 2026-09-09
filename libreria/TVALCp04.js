@@ -1,4 +1,4 @@
-window.TVALC_PELICULAS.push(
+window.TVALC_PELICULAS.push( 
  
     {
         titulo: "Intoxicación: La cruda verdad de nuestra comida",
