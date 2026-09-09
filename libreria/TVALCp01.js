@@ -19,7 +19,7 @@ window.TVALC_PELICULAS.push(
     "url": "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/160415.mkv",
     "clasificacion": "+16",
     "descripcion": "Olli y Matze son dos amigos inseparables que viven, trabajan y sueñan con recorrer el mundo juntos. Pero cuando Matze se enamora de Rebecca, todo cambia."
-}
+},
 {
     titulo: "Spider-Man: Brand New Day",
     año: "2026",
