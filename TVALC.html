@@ -1311,6 +1311,28 @@ body.android-app #volverTVArg {
        TARJETAS
     ----------------------------------------- */
 
+.poster-contenedor{
+    position:relative;
+}
+
+.sticker-serie{
+    position:absolute;
+    top:8px;
+    left:8px;
+    width:30px;
+    height:30px;
+    background:#000;
+    color:#fff;
+    border-radius:5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+    font-weight:bold;
+    z-index:5;
+    box-shadow:0 2px 5px rgba(0,0,0,.5);
+}
+
     .peliculas {
 
         grid-template-columns:
@@ -3499,14 +3521,20 @@ function crearTarjeta(
 
     tarjeta.innerHTML = `
 
-        <img
-            class="poster"
-            src="${elemento.poster}"
-            loading="lazy"
-            onerror="
-                this.style.opacity='.3'
-            "
-        >
+<div class="poster-contenedor">
+
+    ${elemento._esSerie ? '<div class="sticker-serie">S</div>' : ''}
+
+    <img
+        class="poster"
+        src="${elemento.poster}"
+        loading="lazy"
+        onerror="
+            this.style.opacity='.3'
+        "
+    >
+
+</div>
 
         <div class="info">
 
@@ -3526,9 +3554,7 @@ function crearTarjeta(
 
     <button class="ver">
 
-        ${esSerie
-            ? "▶ SERIE"
-            : "▶ VER"}
+        ▶ VER
 
     </button>
 
