@@ -1,9 +1,25 @@
-window.TVALC_PELICULAS = []; 
+window.TVALC_PELICULAS = [];
 
 window.TVALC_PELICULAS.push(
 
-
-
+{
+    "titulo": "Los Cretinos",
+    "año": "2025",
+    "poster": "https://image.tmdb.org/t/p/w500/fAeHnC35RtbYLm5tRGLveLa0YvH.jpg",
+    "url": "http://superxlatino.com:8880/movie/Barber/UcxVLfq8MNcg/556744.mkv",
+    "categoria": "Comedia, Infantil, Fantasía",
+    "clasificacion": "PG",
+    "descripcion": "Cuando los villanos más malos y repugnantes se apoderan de la ciudad con un truquito, dos niños valientes se alían con una familia de animales mágicos para acabar con ellos."
+},
+{
+    "titulo": "Los dos hemisferios de Lucca",
+    "año": "2025",
+    "poster": "https://image.tmdb.org/t/p/w500/VZq0UExqBbST1LDYWJYsZ0qvMO.jpg",
+    "url": "http://superxlatino.com:8880/movie/Barber/UcxVLfq8MNcg/556746.mkv",
+    "categoria": "Drama",
+    "clasificacion": "PG-13",
+    "descripcion": "Bárbara viaja a la India con su familia para probar un tratamiento experimental y ayudar a su hijo con parálisis cerebral."
+},
 {
     titulo: "Como agua para chocolate",
     año: "1992",
