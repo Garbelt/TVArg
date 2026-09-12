@@ -141,6 +141,42 @@ TVALC_PELICULAS.push(
     "url": "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/158999.mkv"
 },
 {
+    "titulo": "Kung Fu Panda 1",
+    "año": "2008",
+    "poster": "https://image.tmdb.org/t/p/w500/zcORJ8s9zsBjvKxP0k4FASQSjpf.jpg",
+    "url": "https://ia601503.us.archive.org/3/items/videoplayback10_20200326/sub1d0_p4r4_5tr34ming_P5F11X/videoplayback001.mp4",
+    "categoria": "Acción, Comedia, Infantil",
+    "clasificacion": "ATP",
+    "descripcion": "El protagonista es un oso panda llamado Po, el más vago de todas las criaturas del Valle de la Paz. Con poderosos enemigos acercándose, la esperanza es depositada en una antigua profecía que dice que un héroe se alzará para salvarles. Voces originales de Jack Black, Angelina Jolie, Dustin Hoffman, Lucy Liu & Jackie Chan."
+},
+{
+    "titulo": "Kung Fu Panda 2",
+    "año": "2011",
+    "poster": "https://image.tmdb.org/t/p/w500/aNji9U9SPTecmoqGippQUBEyouy.jpg",
+    "url": "https://ia601503.us.archive.org/3/items/videoplayback10_20200326/sub1d0_p4r4_5tr34ming_P5F11X/videoplayback4.mp4",
+    "categoria": "Infantil, Comedia, Acción",
+    "clasificacion": "ATP",
+    "descripcion": "Po está ahora viviendo su sueño como el Guerrero del Dragón, protegiendo el Valle de la Paz junto a sus amigos y sus compañeros maestros del kung fu. Los Cinco Furiosos. Pero su nueva e impresionante vida se encuentra amenazada por la aparición de un villano formidable, que planea usar un arma secreta imparable para conquistar China y destruir el kung fu. Po debe volver la vista a su pasado para descubrir los secretos de su misterioso origen; solo entonces podrá adquirir la fuerza que necesita para vencer."
+},
+{
+    "titulo": "Kung Fu Panda 3",
+    "año": "2016",
+    "poster": "https://image.tmdb.org/t/p/w500/t11f8palNbICK9Ip5QLrUfhLJYq.jpg",
+    "url": "https://ia601503.us.archive.org/3/items/videoplayback10_20200326/sub1d0_p4r4_5tr34ming_P5F11X/videoplayback10.mp4",
+    "categoria": "Acción, Aventura, Comedia",
+    "clasificacion": "ATP",
+    "descripcion": "Cuando el durante mucho tiempo perdido padre de Po aparece de repente, el dúo ya reunido viaja a un paraíso secreto de pandas para conocer a montones de nuevos e hilarantes osos. Pero cuando el villano sobrenatural Kai comienza a recorrer toda China venciendo a todos los maestros de kung fu, Po deberá hacer lo imposible: aprender a entrenar a una comunidad repleta de divertidos y torpes hermanos para formar el equipo definitivo de Kung Fu Pandas."
+},
+{
+    "titulo": "Kung Fu Panda 4",
+    "año": "2024",
+    "poster": "https://image.tmdb.org/t/p/w500/2xgGWjM3a38E4KTLapvC53RnpN1.jpg",
+    "url": "https://dl.dropbox.com/scl/fi/8fm8d0ktuvq0l8icgirlh/kung4.mkv?rlkey=p6lk2tbw00i9du7men82bb0ui",
+    "categoria": "Acción, Aventura, Comedia",
+    "clasificacion": "ATP",
+    "descripcion": "Po se prepara para ser el líder espiritual del Valle de la Paz, buscando un sucesor como Guerrero Dragón. Mientras entrena a un nuevo practicante de kung fu, enfrenta al villano llamado \"el Camaleón\", que evoca villanos del pasado, desafiando todo lo que Po y sus amigos han aprendido."
+},
+{
     "titulo": "Intensamente 2",
     "año": "2024",
     "poster": "https://image.tmdb.org/t/p/w500/lE3DCRI7bQgHSiIuEPcFiXpiuGV.jpg",
