@@ -176,5 +176,14 @@ TVALC_PELICULAS.push(
     "categoria": "Acción, Aventura, Comedia",
     "clasificacion": "PG",
     "descripcion": "Po se prepara para ser el líder espiritual del Valle de la Paz, buscando un sucesor como Guerrero Dragón. Mientras entrena a un nuevo practicante de kung fu, enfrenta al villano llamado \"el Camaleón\", que evoca villanos del pasado, desafiando todo lo que Po y sus amigos han aprendido."
+},
+{
+    "titulo": "Intensamente 2",
+    "año": "",
+    "poster": "",
+    "url": "https://archive.org/download/457626384-3837006406554626-8111903668788379276-n/IntensaMente.2.2024.720p-Dual-Lat.mkv",
+    "categoria": "",
+    "clasificacion": "",
+    "descripcion": ""
 }
 );
