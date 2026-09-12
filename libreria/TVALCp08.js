@@ -163,7 +163,7 @@ TVALC_PELICULAS.push(
     "año": "2016",
     "poster": "https://image.tmdb.org/t/p/w500/t11f8palNbICK9Ip5QLrUfhLJYq.jpg",
     "url": "https://ia601503.us.archive.org/3/items/videoplayback10_20200326/sub1d0_p4r4_5tr34ming_P5F11X/videoplayback10.mp4",
-    "categoria": "Acción, Aventura, Comedia",
+    "categoria": "Acción, Aventura, Comedia, Infantil",
     "clasificacion": "ATP",
     "descripcion": "Cuando el durante mucho tiempo perdido padre de Po aparece de repente, el dúo ya reunido viaja a un paraíso secreto de pandas para conocer a montones de nuevos e hilarantes osos. Pero cuando el villano sobrenatural Kai comienza a recorrer toda China venciendo a todos los maestros de kung fu, Po deberá hacer lo imposible: aprender a entrenar a una comunidad repleta de divertidos y torpes hermanos para formar el equipo definitivo de Kung Fu Pandas."
 },
@@ -172,7 +172,7 @@ TVALC_PELICULAS.push(
     "año": "2024",
     "poster": "https://image.tmdb.org/t/p/w500/2xgGWjM3a38E4KTLapvC53RnpN1.jpg",
     "url": "https://dl.dropbox.com/scl/fi/8fm8d0ktuvq0l8icgirlh/kung4.mkv?rlkey=p6lk2tbw00i9du7men82bb0ui",
-    "categoria": "Acción, Aventura, Comedia",
+    "categoria": "Acción, Aventura, Comedia, Infantil",
     "clasificacion": "ATP",
     "descripcion": "Po se prepara para ser el líder espiritual del Valle de la Paz, buscando un sucesor como Guerrero Dragón. Mientras entrena a un nuevo practicante de kung fu, enfrenta al villano llamado \"el Camaleón\", que evoca villanos del pasado, desafiando todo lo que Po y sus amigos han aprendido."
 },
