@@ -184,5 +184,14 @@ TVALC_PELICULAS.push(
     "categoria": "Aventura, Comedia, Infantil",
     "clasificacion": "ATP",
     "descripcion": "Riley entra en la adolescencia y el Cuartel General de su cabeza sufre una repentina reforma para hacerle hueco a algo totalmente inesperado propio de la pubertad: ¡nuevas emociones! Alegría, Tristeza, Ira, Miedo y Asco, con años de impecable gestión a sus espaldas (según ellos...) no saben muy bien qué sentir cuando aparece con enorme ímpetu Ansiedad. Y no viene sola: le acompañan envidia, vergüenza y aburrimiento."
+},
+{
+    "titulo": "Super Mario Bros: La Película",
+    "año": "2023",
+    "poster": "https://image.tmdb.org/t/p/w500/4CDkQMpNDTtVKwS0BBZw5RIXDtY.jpg",
+    "url": "https://od.lk/s/NV8xODUzNTIxNDZf/Super%20Mario%20Bros.%20La%20pel%C3%ADcula%20online%202023%20HD.mp4",
+    "categoria": "Infantil, Comedia, Aventura, Fantasía",
+    "clasificacion": "ATP",
+    "descripcion": "Mientras trabajan en una avería subterránea, los fontaneros de Brooklyn, Mario y su hermano Luigi, viajan por una misteriosa tubería hasta un nuevo mundo mágico. Pero, cuando los hermanos se separan, Mario deberá emprender una épica misión para encontrar a Luigi. Con la ayuda del champiñón local Toad y unas cuantas nociones de combate de la guerrera líder del Reino Champiñón, la princesa Peach, Mario descubre todo el poder que alberga en su interior."
 }
 );
