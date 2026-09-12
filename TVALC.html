@@ -3225,6 +3225,41 @@ function mostrarContenido() {
 
 
     /*
+       Normaliza texto para búsqueda.
+
+       Permite, por ejemplo:
+
+       "kung fu"
+       "kungfu"
+       "KUNG-FU"
+
+       como la misma búsqueda.
+    */
+
+    function normalizarBusqueda(texto) {
+
+        return String(texto || "")
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(
+                /[\u0300-\u036f]/g,
+                ""
+            )
+            .replace(
+                /[^a-z0-9]/g,
+                ""
+            );
+
+    }
+
+
+    const busquedaNormalizada =
+        normalizarBusqueda(
+            busqueda
+        );
+
+
+    /*
        FILTROS
     */
 
@@ -3271,86 +3306,6 @@ function mostrarContenido() {
 
 
     /* =====================================================
-       FILTRO CATEGORÍA
-    ===================================================== */
-
-    if (
-        categoria !==
-        "TODAS"
-    ) {
-
-        lista =
-            lista.filter(
-                elemento => {
-
-                    let categoriaElemento =
-                        elemento.categoria;
-
-
-                    /*
-                       Compatibilidad
-                       con "SERIES DE TERROR".
-                    */
-
-                    if (
-                        categoriaElemento &&
-                        categoriaElemento
-                            .toUpperCase()
-                            .trim() ===
-                        "SERIES DE TERROR"
-                    ) {
-
-                        categoriaElemento =
-                            "TERROR";
-
-                    }
-
-
-                    return (
-                        categoriaElemento ===
-                        categoria
-                    );
-
-                }
-            );
-
-    }
-
-
-    /* =====================================================
-       FILTRO DESDE / HASTA
-    ===================================================== */
-
-    lista =
-        lista.filter(
-            elemento => {
-
-                const año =
-                    parseInt(
-                        elemento.año,
-                        10
-                    );
-
-
-                if (
-                    isNaN(año)
-                ) {
-
-                    return false;
-
-                }
-
-
-                return (
-                    año >= desde &&
-                    año <= hasta
-                );
-
-            }
-        );
-
-
-    /* =====================================================
        FILTRO TIPO
     ===================================================== */
 
@@ -3383,21 +3338,404 @@ function mostrarContenido() {
 
 
     /* =====================================================
-       FILTRO BÚSQUEDA
+       SIN BÚSQUEDA
+       
+       Comportamiento tradicional:
+       categoría + año
     ===================================================== */
 
-    if (busqueda) {
+    if (
+        !busquedaNormalizada
+    ) {
+
+        /*
+           FILTRO CATEGORÍA
+        */
+
+        if (
+            categoria !==
+            "TODAS"
+        ) {
+
+            lista =
+                lista.filter(
+                    elemento => {
+
+                        let categoriasElemento =
+                            String(
+                                elemento.categoria ||
+                                ""
+                            )
+                            .split(",")
+                            .map(
+                                c =>
+                                    c.trim()
+                            )
+                            .filter(
+                                Boolean
+                            );
+
+
+                        /*
+                           Compatibilidad
+                           con "SERIES DE TERROR".
+                        */
+
+                        categoriasElemento =
+                            categoriasElemento.map(
+                                c =>
+
+                                    c.toUpperCase()
+                                        .trim() ===
+                                    "SERIES DE TERROR"
+
+                                        ? "TERROR"
+
+                                        : c
+                            );
+
+
+                        return categoriasElemento
+                            .some(
+                                c =>
+                                    c.toLowerCase()
+                                        .trim() ===
+                                    categoria.toLowerCase()
+                                        .trim()
+                            );
+
+                    }
+                );
+
+        }
+
+
+        /*
+           FILTRO DESDE / HASTA
+        */
 
         lista =
             lista.filter(
-                elemento =>
-                    elemento.titulo &&
-                    elemento.titulo
-                        .toLowerCase()
-                        .includes(
-                            busqueda
-                        )
+                elemento => {
+
+                    const año =
+                        parseInt(
+                            elemento.año,
+                            10
+                        );
+
+
+                    if (
+                        isNaN(año)
+                    ) {
+
+                        return false;
+
+                    }
+
+
+                    return (
+                        año >= desde &&
+                        año <= hasta
+                    );
+
+                }
             );
+
+    }
+
+
+    /* =====================================================
+       BÚSQUEDA CON RANKING
+    ===================================================== */
+
+    else {
+
+        /*
+           Primero comprobamos si existe
+           AL MENOS UNA coincidencia real
+           en los títulos.
+
+           Si no existe ninguna,
+           no mostramos resultados
+           de relleno.
+        */
+
+        const existeCoincidenciaTitulo =
+            lista.some(
+                elemento => {
+
+                    const tituloElemento =
+                        normalizarBusqueda(
+                            elemento.titulo
+                        );
+
+
+                    return (
+                        tituloElemento &&
+                        tituloElemento.includes(
+                            busquedaNormalizada
+                        )
+                    );
+
+                }
+            );
+
+
+        /*
+           Si no existe ninguna coincidencia
+           en los títulos, lista vacía.
+        */
+
+        if (
+            !existeCoincidenciaTitulo
+        ) {
+
+            lista = [];
+
+        } else {
+
+            /*
+               Calculamos coincidencias
+               y puntaje.
+            */
+
+            lista =
+                lista
+                    .map(
+                        elemento => {
+
+                            /*
+                               TÍTULO
+                            */
+
+                            const tituloElemento =
+                                normalizarBusqueda(
+                                    elemento.titulo
+                                );
+
+
+                            const coincideTitulo =
+                                !!(
+                                    tituloElemento &&
+                                    tituloElemento.includes(
+                                        busquedaNormalizada
+                                    )
+                                );
+
+
+                            /*
+                               CATEGORÍA
+                            */
+
+                            let categoriasElemento =
+                                String(
+                                    elemento.categoria ||
+                                    ""
+                                )
+                                .split(",")
+                                .map(
+                                    c =>
+                                        c.trim()
+                                )
+                                .filter(
+                                    Boolean
+                                );
+
+
+                            /*
+                               Compatibilidad
+                               con "SERIES DE TERROR".
+                            */
+
+                            categoriasElemento =
+                                categoriasElemento.map(
+                                    c =>
+
+                                        c.toUpperCase()
+                                            .trim() ===
+                                        "SERIES DE TERROR"
+
+                                            ? "TERROR"
+
+                                            : c
+                                );
+
+
+                            const coincideCategoria =
+
+                                categoria ===
+                                "TODAS"
+
+                                    ?
+
+                                true
+
+                                    :
+
+                                categoriasElemento.some(
+                                    c =>
+                                        c.toLowerCase()
+                                            .trim() ===
+                                        categoria.toLowerCase()
+                                            .trim()
+                                );
+
+
+                            /*
+                               AÑO
+                            */
+
+                            const año =
+                                parseInt(
+                                    elemento.año,
+                                    10
+                                );
+
+
+                            const coincideAño =
+
+                                !isNaN(año) &&
+                                año >= desde &&
+                                año <= hasta;
+
+
+                            /*
+                               RANKING
+
+                               1 =
+                               título + categoría + año
+
+                               2 =
+                               título + categoría
+
+                               3 =
+                               título + año
+
+                               4 =
+                               título solamente
+
+                               5 =
+                               categoría + año
+
+                               6 =
+                               solamente año
+
+                               7 =
+                               solamente categoría
+
+                               8 =
+                               ninguna coincidencia
+                            */
+
+                            let prioridad;
+
+
+                            if (
+                                coincideTitulo &&
+                                coincideCategoria &&
+                                coincideAño
+                            ) {
+
+                                prioridad = 1;
+
+                            }
+
+                            else if (
+                                coincideTitulo &&
+                                coincideCategoria &&
+                                !coincideAño
+                            ) {
+
+                                prioridad = 2;
+
+                            }
+
+                            else if (
+                                coincideTitulo &&
+                                !coincideCategoria &&
+                                coincideAño
+                            ) {
+
+                                prioridad = 3;
+
+                            }
+
+                            else if (
+                                coincideTitulo &&
+                                !coincideCategoria &&
+                                !coincideAño
+                            ) {
+
+                                prioridad = 4;
+
+                            }
+
+                            else if (
+                                !coincideTitulo &&
+                                coincideCategoria &&
+                                coincideAño
+                            ) {
+
+                                prioridad = 5;
+
+                            }
+
+                            else if (
+                                !coincideTitulo &&
+                                !coincideCategoria &&
+                                coincideAño
+                            ) {
+
+                                prioridad = 6;
+
+                            }
+
+                            else if (
+                                !coincideTitulo &&
+                                coincideCategoria &&
+                                !coincideAño
+                            ) {
+
+                                prioridad = 7;
+
+                            }
+
+                            else {
+
+                                prioridad = 8;
+
+                            }
+
+
+                            return {
+
+                                ...elemento,
+
+                                _prioridad:
+                                    prioridad
+
+                            };
+
+                        }
+                    )
+                    .filter(
+                        elemento =>
+
+                            elemento._prioridad <
+                            8
+                    )
+                    .sort(
+                        (
+                            a,
+                            b
+                        ) =>
+
+                            a._prioridad -
+                            b._prioridad
+                    );
+
+        }
 
     }
 
