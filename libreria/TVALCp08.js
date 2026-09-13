@@ -193,5 +193,104 @@ TVALC_PELICULAS.push(
     "categoria": "Infantil, Comedia, Aventura, Fantasía",
     "clasificacion": "ATP",
     "descripcion": "Mientras trabajan en una avería subterránea, los fontaneros de Brooklyn, Mario y su hermano Luigi, viajan por una misteriosa tubería hasta un nuevo mundo mágico. Pero, cuando los hermanos se separan, Mario deberá emprender una épica misión para encontrar a Luigi. Con la ayuda del champiñón local Toad y unas cuantas nociones de combate de la guerrera líder del Reino Champiñón, la princesa Peach, Mario descubre todo el poder que alberga en su interior."
+},
+{
+    "titulo": "Mayday",
+    "año": "2026",
+    "poster": "https://image.tmdb.org/t/p/w500/naKQcM3HRuaISCtsSx5ibVMTbDu.jpg",
+    "url": "http://23.153.217.158:8080/movie/933733838tv/a3603s/285653.mkv",
+    "categoria": "Acción, Comedia",
+    "clasificacion": "+13",
+    "descripcion": "Cuando un piloto de la Marina estadounidense en misión ultrasecreta durante la Guerra Fría queda atrapado tras las líneas enemigas, su única oportunidad de sobrevivir es aliarse con un excéntrico exagente del KGB."
+},
+{
+    "titulo": "La Ventana Indiscreta",
+    "año": "1954",
+    "poster": "https://image.tmdb.org/t/p/w500/fH1MipE8PXGg0rlI5cUdzxKnyA2.jpg",
+    "url": "http://23.153.217.158:8080/movie/933733838tv/a3603s/285465.mkv",
+    "categoria": "Suspenso, Drama",
+    "clasificacion": "+13",
+    "descripcion": "Un reportero fotográfico se ve obligado a permanecer en reposo con una pierna escayolada. A pesar de la compañía de su novia y de su enfermera, procura escapar al tedio, observando desde la ventana de su apartamento con unos prismáticos lo que ocurre en las viviendas de enfrente. Debido a una serie de extrañas circunstancias empieza a sospechar de un vecino cuya mujer ha desaparecido."
+},
+{
+    "titulo": "David: Una Aventura Gigante",
+    "año": "2025",
+    "poster": "https://image.tmdb.org/t/p/w500/tQdGrkZbGuCUReW9VibTwJchFbL.jpg",
+    "url": "http://23.153.217.158:8080/movie/933733838tv/a3603s/285466.mkv",
+    "categoria": "Infantil, Drama, Historia, Aventura",
+    "clasificacion": "ATP",
+    "descripcion": "En un reino gobernado por el miedo, un joven pastor se atreve a enfrentarse a un gigante y a la oscuridad que se oculta tras él. Su valor despertará a una nación y demostrará que la verdadera fuerza proviene de la confianza, no del poder."
+},
+{
+    "titulo": "Aniversario",
+    "año": "2025",
+    "poster": "https://image.tmdb.org/t/p/w500/ivuxh5CskKOHcjgCmjZRBvxGwBL.jpg",
+    "url": "http://23.153.217.158:8080/movie/933733838tv/a3603s/285652.mkv",
+    "categoria": "Suspenso, Drama",
+    "clasificacion": "+16",
+    "descripcion": "Cuando Josh, el hijo de Ellen y Paul, presenta a su nueva novia en la fiesta de su vigesimoquinto aniversario, nadie sospecha que es el principio del fin para esta familia feliz. La nueva novia es Liz, una antigua alumna de Ellen que dejó la universidad unos años antes, después de que Ellen la confrontara en clase por su ideología radical."
+},
+{
+    "titulo": "Moana",
+    "año": "2026",
+    "poster": "https://image.tmdb.org/t/p/w500/dWQwKbh3pmTXTICZWljlGdI8NTq.jpg",
+    "url": "http://23.153.217.158:8080/movie/933733838tv/a3603s/285578.mp4",
+    "categoria": "Infantil, Fantasía, Comedia, Aventura",
+    "clasificacion": "ATP",
+    "descripcion": "Moana (Catherine Lagaʻaia) responde a la llamada del océano y, por primera vez, viaja más allá del arrecife de su isla de Motunui con el semidiós Maui (Dwayne Johnson) en un viaje inolvidable para devolver la prosperidad a su pueblo."
+},
+{
+    "titulo": "Barreda",
+    "año": "2026",
+    "poster": "https://image.tmdb.org/t/p/w500/a25CyXmPJx6SrVFA9yirJTL9iAH.jpg",
+    "url": "http://23.153.217.158:8080/movie/933733838tv/a3603s/285468.mkv",
+    "categoria": "Drama, Crimen, Historia",
+    "clasificacion": "+18",
+    "descripcion": "Película basada en uno de los crímenes más impactantes de la historia de Argentina. En 1992, Ricardo Barreda, un dentista de aspecto inofensivo, asesinó brutalmente a su mujer, a su suegra y a sus dos hijas adultas en el domicilio familiar. Presentándose a sí mismo como una víctima, Ricardo Barreda desató una tormenta mediática y avivó un escándalo nacional."
+},
+{
+    "titulo": "La hija del general",
+    "año": "1999",
+    "poster": "https://image.tmdb.org/t/p/w500/imuM9xxClNHYd41EnL6h99Xw4TS.jpg",
+    "url": "http://23.153.217.158:8080/movie/933733838tv/a3603s/285510.mkv",
+    "categoria": "Suspenso, Crimen",
+    "clasificacion": "+16",
+    "descripcion": "Un tenaz y astuto oficial de élite de la división de Investigación Criminal del ejército estadounidense recibe una nueva misión: encontrar, junto con una colega, al asesino de la hija de un famoso general, que tenía cargo de capitán. Podrá arrestar a cualquier miembro del Ejército sobre el que recaigan sus sospechas, pero el asunto se complica cuando van descubriendo que la vida privada de la muerta hace sospechosos a todos los residentes de Fort MacCullam: desde el propio padre, pasando por su fiel ayudante y amigo, hasta el oficial de mando."
+},
+{
+    "titulo": "Francotirador: Sin Nacion",
+    "año": "2026",
+    "poster": "https://image.tmdb.org/t/p/w500/hdSt80XqI2IWu9WOWZQVecuPT7D.jpg",
+    "url": "http://23.153.217.158:8080/movie/933733838tv/a3603s/285509.mkv",
+    "categoria": "Acción, Suspenso",
+    "clasificacion": "+16",
+    "descripcion": "Cuando el francotirador Brandon Beckett es tachado de terrorista, se ve obligado a desaparecer y embarcarse en una misión de rescate imposible junto a su legendario padre."
+},
+{
+    "titulo": "Hasta el fin del mundo",
+    "año": "2026",
+    "poster": "https://image.tmdb.org/t/p/w500/1aCGJVkBZch6UN62yk44TGYU5Or.jpg",
+    "url": "http://23.153.217.158:8080/movie/933733838tv/a3603s/285639.mkv",
+    "categoria": "Drama",
+    "clasificacion": "+16",
+    "descripcion": "Manuel está a punto de casarse cuando recibe una llamada inesperada de Esmeralda, su amor perdido de hace 15 años. El reencuentro los llevará a descubrir que algunos amores pueden sobrevivir al paso del tiempo."
+},
+{
+    "titulo": "Enfrentados: Marfil",
+    "año": "2026",
+    "poster": "https://image.tmdb.org/t/p/w500/umlft1ztFbUcnHf960pXJocjpdv.jpg",
+    "url": "http://23.153.217.158:8080/movie/933733838tv/a3603s/285651.mkv",
+    "categoria": "Romance, Suspenso",
+    "clasificacion": "+16",
+    "descripcion": "Marfil Cortés, la hija de un poderoso empresario español, ve como su perfecta vida en Nueva York da un vuelco cuando es repentinamente secuestrada y liberada sin aparente explicación. Su padre decide entonces contratar al enigmático Sebastián Moore como guardaespaldas. Forzados a pasar cada minuto juntos y aunque inicialmente choquen por el espíritu indomable de ella y el carácter reservado de él, surgirá una irremediable atracción entre ambos. Al volver a España, con las amenazas intensificándose, deberán moverse en un mundo donde nadie es quien dice ser y nada es lo que parece."
+},
+{
+    "titulo": "Kangaroo",
+    "año": "2025",
+    "poster": "https://image.tmdb.org/t/p/w500/9n7jV2Xt8AE9nAKSJojRcSZBV1N.jpg",
+    "url": "http://23.153.217.158:8080/movie/933733838tv/a3603s/285472.mkv",
+    "categoria": "Infantil, Comedia",
+    "clasificacion": "ATP",
+    "descripcion": "Tras sufrir un accidente de coche en un pueblo del interior de Australia, Charlie, una ex estrella de la televisión, acaba cuidando a una cría de canguro herida. Juntos forman una improbable amistad con una niña indígena de 11 años y colaboran para rescatar y rehabilitar crías huérfanas en Outback, una remota comunidad del interior de Australia, en una aventura que les cambiará la vida a ambos."
 }
 );
