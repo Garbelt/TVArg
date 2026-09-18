@@ -2,7 +2,7 @@ window.TVALC_PELICULAS = [];
 
 TVALC_PELICULAS.push(
 {
-    "titulo": "Sisu: Sisu: Camino a la venganza",
+    "titulo": "Sisu: Camino a la venganza",
     "año": "2025",
     "poster": "https://image.tmdb.org/t/p/w500/qQyc6t9dHS5dlIUt3ccCQnRIAc1.jpg",
     "url": "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/144580.mkv",
