@@ -1737,7 +1737,7 @@ ordenTipos.forEach(tipo => {
             const boton = document.createElement("button");
             boton.className = "selector-opcion";
             let reproductor = "";
-            if (fuente.tipo === "hls") {
+            if (fuente.tipo === "hls" || fuente.tipo === "ts") {
                 reproductor =
                     fuente.reproductor === "vlc"
                         ? "VLC"
