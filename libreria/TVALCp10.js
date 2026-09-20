@@ -37,4 +37,3 @@ TVALC_PELICULAS.push(
     "descripcion": "Este grupo de soul-pop estadounidense, liderado por el dúo que forman los hermanos Clyde y Gracie Lawrence, se dio a conocer en los programas de TV de Jimmy Fallon y Kelly Clarkson. Han compartido escenario con los Rolling Stones, los Jonas Brothers o Vulfpeck, y se han presentado en festivales importantes como Coachella o Bonnaroo."
 }
 );
-
