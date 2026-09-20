@@ -4104,182 +4104,212 @@ function filtrar() {
 }
 
 
-/* =========================================================
-   REPRODUCIR
-========================================================= */
+/* ========================================================= 
+   REPRODUCIR 
+========================================================= */ 
+ 
+function reproducir( 
+    pelicula 
+) { 
+ 
+    /* ========================================== 
+       WEBVIEW — YOUTUBE 
+    ========================================== */ 
+ 
+if ( 
+    pelicula.reproductor === "WebView" 
+) { 
+ 
+    const youtubeOverlay = 
+        document.getElementById( 
+            "youtubeOverlay" 
+        ); 
+ 
+    const youtubeFrame = 
+        document.getElementById( 
+            "youtubeFrame" 
+        ); 
+ 
+ 
+    /* Limpiar reproducción anterior */ 
+ 
+    youtubeFrame.src = 
+        "about:blank"; 
+ 
+ 
+    /* Mostrar pantalla completa */ 
+ 
+    youtubeOverlay.style.display = 
+        "block"; 
+ 
+ 
+    /* 
+       Igual que TVArg: 
+       damos un pequeño margen antes 
+       de cargar YouTube. 
+    */ 
+ 
+    setTimeout( 
+        () => { 
+ 
+            youtubeFrame.src = 
+                pelicula.url; 
+ 
+        }, 
+        80 
+    ); 
+ 
+ 
+    reproductorAbierto = 
+        true; 
+ 
+    reproduccionNativa = 
+        false; 
+ 
+ 
+    return; 
+} 
+ 
+    /* ========================================== 
+    ========================================== */ 
+ 
+    const url = 
+        pelicula.url 
+            .split("?")[0] 
+            .toLowerCase(); 
+ 
+ 
+    /* ========================================== 
+       VLC NATIVO 
+       TV A LA CARTA 
+    ========================================== */ 
+ 
+    if ( 
+        url.endsWith(".mkv") || 
+        url.endsWith(".mp4") || 
+        url.endsWith(".avi") || 
+        url.endsWith(".m3u8") 
+    ) { 
+ 
+        console.log( 
+            "TV A LA CARTA → VLC TVALC:", 
+            pelicula.titulo, 
+            pelicula.url 
+        ); 
+ 
+ 
+        if ( 
+            window.AndroidTVArg && 
+            typeof AndroidTVArg.playChannelTVALC === 
+            "function" 
+        ) { 
+ 
+            /* ==========================================
+               VIDEO + AUDIO EXTERNO
+               Solo si el contenido lo tiene
+            ========================================== */
 
-function reproducir(
-    pelicula
-) {
+            if (
+                pelicula.audioUrl &&
+                String(pelicula.audioUrl).trim() !== ""
+            ) {
 
-    /* ==========================================
-       WEBVIEW — YOUTUBE
-    ========================================== */
+                console.log(
+                    "TV A LA CARTA → VIDEO + AUDIO EXTERNO:",
+                    pelicula.titulo,
+                    pelicula.url,
+                    pelicula.audioUrl
+                );
 
-if (
-    pelicula.reproductor === "WebView"
-) {
+                AndroidTVArg.playChannelTVALC(
+                    pelicula.url,
+                    pelicula.titulo,
+                    pelicula.audioUrl
+                );
 
-    const youtubeOverlay =
-        document.getElementById(
-            "youtubeOverlay"
-        );
+            } else {
 
-    const youtubeFrame =
-        document.getElementById(
-            "youtubeFrame"
-        );
+                /* ==========================================
+                   REPRODUCCIÓN NORMAL
+                   Se conserva como estaba
+                ========================================== */
 
+                AndroidTVArg.playChannelTVALC(
+                    pelicula.url,
+                    pelicula.titulo
+                );
 
-    /* Limpiar reproducción anterior */
+            }
 
-    youtubeFrame.src =
-        "about:blank";
-
-
-    /* Mostrar pantalla completa */
-
-    youtubeOverlay.style.display =
-        "block";
-
-
-    /*
-       Igual que TVArg:
-       damos un pequeño margen antes
-       de cargar YouTube.
-    */
-
-    setTimeout(
-        () => {
-
-            youtubeFrame.src =
-                pelicula.url;
-
-        },
-        80
-    );
-
-
-    reproductorAbierto =
-        true;
-
-    reproduccionNativa =
-        false;
-
-
-    return;
+            return; 
+ 
+        } 
+ 
+ 
+        console.log( 
+            "AndroidTVArg no disponible" 
+        ); 
+ 
+ 
+        mostrarMensaje( 
+            "El reproductor nativo no está disponible." 
+        ); 
+ 
+        return; 
+ 
+    } 
+ 
+ 
+    /* ========================================== 
+       OTROS → HTML 
+    ========================================== */ 
+ 
+    const reproductor = 
+        document.getElementById( 
+            "reproductor" 
+        ); 
+ 
+    const video = 
+        document.getElementById( 
+            "video" 
+        ); 
+ 
+    video.style.display = 
+        ""; 
+ 
+    document.getElementById( 
+        "tituloReproductor" 
+    ).textContent = 
+ 
+        pelicula.titulo + 
+ 
+        " (" + 
+ 
+        pelicula.año + 
+ 
+        ")"; 
+ 
+ 
+    video.src = 
+        pelicula.url; 
+ 
+ 
+    reproductor.style.display = 
+        "flex"; 
+ 
+ 
+    reproductorAbierto = 
+        true; 
+ 
+    reproduccionNativa = 
+        false; 
+ 
+ 
+    video.play().catch( 
+        () => {} 
+    ); 
+ 
 }
-
-    /* ==========================================
-    ========================================== */
-
-    const url =
-        pelicula.url
-            .split("?")[0]
-            .toLowerCase();
-
-
-    /* ==========================================
-       VLC NATIVO
-       TV A LA CARTA
-    ========================================== */
-
-    if (
-        url.endsWith(".mkv") ||
-        url.endsWith(".mp4") ||
-        url.endsWith(".avi") ||
-        url.endsWith(".m3u8")
-    ) {
-
-        console.log(
-            "TV A LA CARTA → VLC TVALC:",
-            pelicula.titulo,
-            pelicula.url
-        );
-
-
-        if (
-            window.AndroidTVArg &&
-            typeof AndroidTVArg.playChannelTVALC ===
-            "function"
-        ) {
-
-        AndroidTVArg.playChannelTVALC(
-            pelicula.url,
-            pelicula.titulo,
-            pelicula.audioUrl
-        );
-
-            return;
-
-        }
-
-
-        console.log(
-            "AndroidTVArg no disponible"
-        );
-
-
-        mostrarMensaje(
-            "El reproductor nativo no está disponible."
-        );
-
-        return;
-
-    }
-
-
-    /* ==========================================
-       OTROS → HTML
-    ========================================== */
-
-    const reproductor =
-        document.getElementById(
-            "reproductor"
-        );
-
-    const video =
-        document.getElementById(
-            "video"
-        );
-
-    video.style.display =
-        "";
-
-    document.getElementById(
-        "tituloReproductor"
-    ).textContent =
-
-        pelicula.titulo +
-
-        " (" +
-
-        pelicula.año +
-
-        ")";
-
-
-    video.src =
-        pelicula.url;
-
-
-    reproductor.style.display =
-        "flex";
-
-
-    reproductorAbierto =
-        true;
-
-    reproduccionNativa =
-        false;
-
-
-    video.play().catch(
-        () => {}
-    );
-
-}
-
 
 /* =========================================================
    REPRODUCCIÓN ANDROID
