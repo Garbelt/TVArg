@@ -29,6 +29,7 @@ TVALC_PELICULAS.push(
 {
     "titulo": "Lawrence - Festival de Jazz de Leverkusen",
     "año": "2025",
+    "duracion": 6365,
     "poster": "https://image.tmdb.org/t/p/w500/1secgSGRsQpT4iCZgoYcus0enGF.jpg",
     "url": "https://arte-cmafhls.akamaized.net/am/cmaf-concert-webonly/128000/128800/128862-012-A_VO/20251209178632BC8833FA84E4ED295F419C0FD103/medias/128862-012-A_v1080.mp4",
     "categoria": "Recital, Musical",   
