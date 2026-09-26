@@ -1964,6 +1964,8 @@ body.android-app #volverTVArg {
 
 </div>
 
+
+
 <!-- =====================================================
      DATOS
 ===================================================== -->
@@ -4209,53 +4211,32 @@ if (
                Solo si el contenido lo tiene
             ========================================== */
 
-if (
-    pelicula.audioUrl &&
-    String(pelicula.audioUrl).trim() !== ""
-) {
+        if (
+            pelicula.audioUrl &&
+            String(pelicula.audioUrl).trim() !== ""
+        ) {
 
-    console.log(
-        "TV A LA CARTA → VIDEO + AUDIO EXTERNO:",
-        pelicula.titulo,
-        pelicula.url,
-        pelicula.audioUrl
-    );
+            console.log(
+                "TV A LA CARTA → VIDEO + AUDIO EXTERNO:",
+                pelicula.titulo,
+                pelicula.url,
+                pelicula.audioUrl
+            );
 
-    if (
-        pelicula.duracion &&
-        Number(pelicula.duracion) > 0
-    ) {
+            AndroidTVArg.playChannelTVALC(
+                pelicula.url,
+                pelicula.titulo,
+                pelicula.audioUrl
+            );
 
-        console.log(
-            "TV A LA CARTA → DURACIÓN:",
-            pelicula.duracion
-        );
+        } else {
 
-        AndroidTVArg.playChannelTVALC(
-            pelicula.url,
-            pelicula.titulo,
-            pelicula.audioUrl,
-            Number(pelicula.duracion)
-        );
+            AndroidTVArg.playChannelTVALC(
+                pelicula.url,
+                pelicula.titulo
+            );
 
-    } else {
-
-        AndroidTVArg.playChannelTVALC(
-            pelicula.url,
-            pelicula.titulo,
-            pelicula.audioUrl
-        );
-
-    }
-
-} else {
-
-    AndroidTVArg.playChannelTVALC(
-        pelicula.url,
-        pelicula.titulo
-    );
-
-}
+        }
 
             return; 
  
