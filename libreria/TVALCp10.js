@@ -29,10 +29,8 @@ TVALC_PELICULAS.push(
 {
     "titulo": "Lawrence - Festival de Jazz de Leverkusen",
     "año": "2025",
-    "duracion": 6365,
     "poster": "https://image.tmdb.org/t/p/w500/1secgSGRsQpT4iCZgoYcus0enGF.jpg",
-    "url": "https://arte-cmafhls.akamaized.net/am/cmaf-concert-webonly/128000/128800/128862-012-A_VO/20251209178632BC8833FA84E4ED295F419C0FD103/medias/128862-012-A_v1080.mp4",
-    "audioUrl": "https://arte-cmafhls.akamaized.net/am/cmaf-concert-webonly/128000/128800/128862-012-A_VO/20251209178632BC8833FA84E4ED295F419C0FD103/medias/128862-012-A_aud_VO-MUS_1.mp4",
+    "url": "https://arte-cmafhls.akamaized.net/am/cmaf-concert-webonly/128000/128800/128862-012-A_VO/20251209178632BC8833FA84E4ED295F419C0FD103/medias/128862-012-A_v1080.m3u8",
     "categoria": "Recital, Musical",   
     "clasificacion": "ATP",
     "descripcion": "Este grupo de soul-pop estadounidense, liderado por el dúo que forman los hermanos Clyde y Gracie Lawrence, se dio a conocer en los programas de TV de Jimmy Fallon y Kelly Clarkson. Han compartido escenario con los Rolling Stones, los Jonas Brothers o Vulfpeck, y se han presentado en festivales importantes como Coachella o Bonnaroo."
