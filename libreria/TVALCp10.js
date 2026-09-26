@@ -36,5 +36,16 @@ TVALC_PELICULAS.push(
     "categoria": "Recital, Musical",
     "clasificacion": "ATP",
     "descripcion": "Este grupo de soul-pop estadounidense, liderado por el dúo que forman los hermanos Clyde y Gracie Lawrence, se dio a conocer en los programas de TV de Jimmy Fallon y Kelly Clarkson. Han compartido escenario con los Rolling Stones, los Jonas Brothers o Vulfpeck, y se han presentado en festivales importantes como Coachella o Bonnaroo."
+},
+{
+    "titulo": "Homenaje a The Beatles - The Analogues en la sala Pleyel de París",
+    "año": "2023",
+    "poster": "https://www.sallepleyel.com/app/uploads/2023/04/THE-ANALOGUES-SITE-717x1024.jpg",
+    "url": "https://arte-cmafhls.akamaized.net/am/cmaf-concert-webonly/117000/117200/117221-000-C_VO/240118125446/medias/117221-000-C_v1080.mp4",
+    "audioUrl": "https://arte-cmafhls.akamaized.net/am/cmaf-concert-webonly/117000/117200/117221-000-C_VO/240118125446/medias/117221-000-C_aud_VO-PLU_1.mp4",
+    "reproductor": "VimasAu",
+    "categoria": "Recital, Musical",
+    "clasificacion": "ATP",
+    "descripcion": "Los holandeses de The Analogues se encuentran con el público parisino para un concierto homenaje a los Beatles. Suficiente para sumergir a la legendaria Salle Pleyel en el mundo único de los Fab Four de Liverpool."
 }
 );
