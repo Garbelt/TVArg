@@ -58,5 +58,16 @@ TVALC_PELICULAS.push(
     "categoria": "Recital, Musical",
     "clasificacion": "ATP",
     "descripcion": "El reconocido bajista neoyorquino Marcus Miller, empapado de jazz y soul, ofrece una generosa actuación al público del TSF Jazz Chantilly Festival."
+},
+{
+    "titulo": "Sting en el Panteón de París",
+    "año": "2021",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/8/1/3/6/9/1/813691-sting-au-pantheon-40-ans-de-fip--0-2000-0-3000-crop.jpg?v=342b959d71",
+    "url": "https://arte-cmafhls.akamaized.net/am/cmaf-concert/105000/105800/105870-000-B/20260619101EF3313093B9DC07B7029F83F6F45F3B/medias/105870-000-B_v1080_h265.mp4",
+    "audioUrl": "https://arte-cmafhls.akamaized.net/am/cmaf-concert/105000/105800/105870-000-B/20260619101EF3313093B9DC07B7029F83F6F45F3B/medias/105870-000-B_aud_VO-ANG_1.mp4",
+    "reproductor": "VimasAu",
+    "categoria": "Recital, Musical",
+    "clasificacion": "ATP",
+    "descripcion": "Para celebrar los 50 años de la emisora ​​de radio francesa FIP, Sting ofrece una actuación especial en el monumental entorno del Panteón de París."
 }
 );
