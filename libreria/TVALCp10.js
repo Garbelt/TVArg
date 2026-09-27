@@ -47,5 +47,16 @@ TVALC_PELICULAS.push(
     "categoria": "Recital, Musical",
     "clasificacion": "ATP",
     "descripcion": "Los holandeses de The Analogues se encuentran con el público parisino para un concierto homenaje a los Beatles. Suficiente para sumergir a la legendaria Salle Pleyel en el mundo único de los Fab Four de Liverpool."
+},
+{
+    "titulo": "Marcus Miller - TSF Jazz Chantilly Festival",
+    "año": "2025",
+    "poster": "https://raw.githubusercontent.com/Garbelt/TVArg/main/libreria/Posters/MillerChantillyFestival.jpg",
+    "url": "https://arte-cmafhls.akamaized.net/am/cmaf-concert-webonly/127000/127000/127070-002-A_VO/2025071016BBF8000731716577D41340E735B7281F/medias/127070-002-A_v1080_h265.mp4",
+    "audioUrl": "https://arte-cmafhls.akamaized.net/am/cmaf-concert-webonly/127000/127000/127070-002-A_VO/2025071016BBF8000731716577D41340E735B7281F/medias/127070-002-A_aud_VO-MUS_1.mp4",
+    "reproductor": "VimasAu",
+    "categoria": "Recital, Musical",
+    "clasificacion": "ATP",
+    "descripcion": "El reconocido bajista neoyorquino Marcus Miller, empapado de jazz y soul, ofrece una generosa actuación al público del TSF Jazz Chantilly Festival."
 }
 );
