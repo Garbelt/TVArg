@@ -4175,60 +4175,61 @@ function reproducir(
     }
 
 
-    /* ==========================================
-       MEDIA3 — VIDEO + AUDIO SEPARADOS
-       ========================================== */
+/* ==========================================
+   MEDIA3 — VIDEO + AUDIO + SUBTÍTULOS
+   ========================================== */
+
+if (
+    pelicula.reproductor === "VimasAu"
+) {
+
+    console.log(
+        "TV A LA CARTA → VIDEO + AUDIO + SUBTÍTULOS → Media3:",
+        pelicula.titulo,
+        pelicula.url,
+        pelicula.audioUrl,
+        pelicula.subtituloUrl
+    );
+
 
     if (
-        pelicula.reproductor === "VimasAu"
+        window.AndroidTVArg &&
+        typeof AndroidTVArg.playChannelTVALCVimasAu ===
+        "function"
     ) {
 
-        console.log(
-            "TV A LA CARTA → VIDEO + AUDIO → Media3:",
-            pelicula.titulo,
+        AndroidTVArg.playChannelTVALCVimasAu(
             pelicula.url,
-            pelicula.audioUrl
+            pelicula.titulo,
+            pelicula.audioUrl,
+            pelicula.subtituloUrl
         );
 
 
-        if (
-            window.AndroidTVArg &&
-            typeof AndroidTVArg.playChannelTVALCVimasAu ===
-            "function"
-        ) {
+        reproductorAbierto =
+            true;
 
-            AndroidTVArg.playChannelTVALCVimasAu(
-                pelicula.url,
-                pelicula.titulo,
-                pelicula.audioUrl
-            );
-
-
-            reproductorAbierto =
-                true;
-
-            reproduccionNativa =
-                true;
-
-
-            return;
-
-        }
-
-
-        console.log(
-            "AndroidTVArg.playChannelTVALCVimasAu no disponible"
-        );
-
-
-        mostrarMensaje(
-            "El reproductor Media3 no está disponible."
-        );
+        reproduccionNativa =
+            true;
 
 
         return;
+
     }
 
+
+    console.log(
+        "AndroidTVArg.playChannelTVALCVimasAu no disponible"
+    );
+
+
+    mostrarMensaje(
+        "El reproductor Media3 no está disponible."
+    );
+
+
+    return;
+}
 
     /* ==========================================
        URL
