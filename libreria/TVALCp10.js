@@ -76,7 +76,7 @@ TVALC_PELICULAS.push(
     "poster": "https://image.tmdb.org/t/p/w500/x1pv6zZxFISbR1Ljpn9hnfjqdhf.jpg",
     "url": "https://arte-cmafhls.akamaized.net/am/cmaf-concert/119000/119000/119031-004-A/20260521152170F40DC4B07BE39672ED321ACB2340/medias/119031-004-A_v1080.mp4",
    "audioUrl": "https://arte-cmafhls.akamaized.net/am/cmaf-concert/119000/119000/119031-004-A/20260521152170F40DC4B07BE39672ED321ACB2340/medias/119031-004-A_aud_VO-MUS_1.mp4",
-    "subtituloUrl": "https://arte-cmafhls.akamaized.net/am/cmaf-concert/119000/119000/119031-004-A/20260521152170F40DC4B07BE39672ED321ACB2340/medias/119031-004-A_SPR.vtt",
+    "subtituloUrl": "https://raw.githubusercontent.com/Garbelt/TVArg/main/libreria/Subtitulos/Sting-SLA_subt-esp.vtt.txt",
     "reproductor": "VimasAu",
     "categoria": "Recital, Musical",
     "clasificacion": "ATP",
