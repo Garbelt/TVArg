@@ -194,6 +194,17 @@ window.TVALC_PELICULAS.push(
     categoria: "Terror",
     poster: "https://moviefilms.com.uy/wp-content/uploads/2026/06/Engendro_Arte_640x1138.jpg",
     url: "http://planettvweb.com:8091/movie/Pablo653/FPad2549d/159797.mkv"
+},
+{
+    "titulo": "Inteligencia artificial, un tsunami en la web",
+    "año": "2025",
+    "poster": "https://image.tmdb.org/t/p/w500/vxUTUJXlB3xUjMrXK0vgIEBNPyf.jpg",
+    "url": "https://arte-cmafhls.akamaized.net/am/cmaf/114000/114500/114598-000-A/202607230927BFCBDF44CEB1E59575C5DA15540725/medias/114598-000-A_v1080_crf_h265.mp4",
+    "audioUrl": "https://arte-cmafhls.akamaized.net/am/cmaf/114000/114500/114598-000-A/202607230927BFCBDF44CEB1E59575C5DA15540725/medias/114598-000-A_aud_VOEU-ALL_3.mp4",
+    "subtituloUrl": "https://arte-cmafhls.akamaized.net/am/cmaf/114000/114500/114598-000-A/202607230927BFCBDF44CEB1E59575C5DA15540725/medias/114598-000-A_st_VO-ESP_42852224_7622559.vtt",
+    "reproductor": "VimasAu",
+    "categoria": "Documental, Drama",
+    "clasificacion": "ATP",
+    "descripcion": "Entre la vigilancia generalizada y la amenaza de una extinción humana, un mundo dominado por la inteligencia artificial es aterrador. ¿Cómo podemos limitar sus poderes para beneficiarnos de la IA y preservar la democracia? Este documental profundiza en las consecuencias de la revolución digital a nivel social, psicológico y político."
 }
-
 );
