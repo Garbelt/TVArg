@@ -1,0 +1,1023 @@
+WEBVTT
+
+STYLE
+::cue(.black) {
+ color: black;
+}
+
+STYLE
+::cue(.red) {
+ color: red;
+}
+
+STYLE
+::cue(.green) {
+ color: green;
+}
+
+STYLE
+::cue(.yellow) {
+ color: yellow;
+}
+
+STYLE
+::cue(.blue) {
+ color: blue;
+}
+
+STYLE
+::cue(.magenta) {
+ color: magenta;
+}
+
+STYLE
+::cue(.cyan) {
+ color: cyan;
+}
+
+STYLE
+::cue(.white) {
+ color: white;
+}
+
+STYLE
+::cue(.bg_black) {
+ background-color: black;
+}
+
+STYLE
+::cue(.bg_red) {
+ background-color: red;
+}
+
+STYLE
+::cue(.bg_green) {
+ background-color: green;
+}
+
+STYLE
+::cue(.bg_yellow) {
+ background-color: yellow;
+}
+
+STYLE
+::cue(.bg_blue) {
+ background-color: blue;
+}
+
+STYLE
+::cue(.bg_magenta) {
+ background-color: magenta;
+}
+
+STYLE
+::cue(.bg_cyan) {
+ background-color: cyan;
+}
+
+STYLE
+::cue(.bg_white) {
+ background-color: white;
+}
+
+00:00:21.720 --> 00:00:25.440 line:83% align:center
+En el puerto de Ámsterdam,
+hay marineros que cantan
+
+00:00:26.160 --> 00:00:30.040 line:83% align:center
+Los sueños que los persiguen,
+mar adentro en Ámsterdam...
+
+00:00:32.560 --> 00:00:35.280 line:83% align:center
+Estas son las letras del gran
+cantautor belga
+
+00:00:35.480 --> 00:00:36.680 line:91% align:center
+Jacques Brel.
+
+00:00:38.640 --> 00:00:40.320 line:91% align:center
+Soy Sting, y esta noche,
+
+00:00:40.520 --> 00:00:43.560 line:83% align:center
+voy a recorrer
+esos sueños de alta mar
+
+00:00:43.840 --> 00:00:48.040 line:83% align:center
+a lo largo del canal que lleva
+al gran museo de arte de Ámsterdam,
+
+00:00:48.600 --> 00:00:49.760 line:91% align:center
+el Rijksmuseum.
+
+00:00:54.400 --> 00:00:57.200 line:83% align:center
+Estoy aquí para presentar
+"The Last Ship",
+
+00:00:57.400 --> 00:00:59.520 line:83% align:center
+un musical
+sobre mi ciudad natal,
+
+00:00:59.720 --> 00:01:00.880 line:91% align:center
+a orillas del río Tyne,
+
+00:01:01.080 --> 00:01:03.080 line:83% align:center
+en la costa noreste
+de Inglaterra.
+
+00:01:04.440 --> 00:01:06.880 line:83% align:center
+Esta noche, tengo el privilegio
+de cantar las canciones
+
+00:01:07.200 --> 00:01:09.120 line:91% align:center
+de este proyecto personal
+
+00:01:09.480 --> 00:01:11.120 line:83% align:center
+en estas salas
+que albergan algunas
+
+00:01:11.320 --> 00:01:14.200 line:83% align:center
+de las mayores obras maestras
+de la historia del arte.
+
+00:01:14.880 --> 00:01:17.800 line:83% align:center
+Voy a ofrecer
+un concierto muy especial
+
+00:01:18.000 --> 00:01:21.040 line:83% align:center
+en la Galería de Honor
+del Rijksmuseum,
+
+00:01:21.400 --> 00:01:24.000 line:83% align:center
+y vamos a descubrir
+las increíbles obras de Rembrandt,
+
+00:01:24.560 --> 00:01:25.800 line:91% align:center
+Vermeer,
+
+00:01:26.200 --> 00:01:27.440 line:91% align:center
+y Judith Leyster,
+
+00:01:27.720 --> 00:01:31.440 line:83% align:center
+así como la espectacular
+biblioteca del Rijksmuseum.
+
+00:01:32.280 --> 00:01:35.120 line:83% align:center
+Será un viaje de descubrimiento
+y me alegra mucho
+
+00:01:35.480 --> 00:01:37.640 line:83% align:center
+que estén aquí,
+en esta noche de invierno,
+
+00:01:37.840 --> 00:01:41.960 line:83% align:center
+para recorrer conmigo esta
+magnífica catedral del arte.
+
+00:01:57.720 --> 00:01:58.840 line:91% align:center
+Gracias.
+
+00:02:00.080 --> 00:02:05.400 line:83% align:center
+Quiero decir que es
+un privilegio extraordinario
+
+00:02:05.600 --> 00:02:09.880 line:83% align:center
+estar en esta sala,
+rodeado de obras maestras.
+
+00:02:10.840 --> 00:02:15.080 line:83% align:center
+En particular esta,
+"La ronda de noche" de Rembrandt.
+
+00:02:15.280 --> 00:02:16.760 line:91% align:center
+Nunca me habría imaginado
+
+00:02:17.120 --> 00:02:19.080 line:83% align:center
+tocando algún día
+en un lugar como este.
+
+00:07:07.560 --> 00:07:08.560 line:91% align:center
+Gracias.
+
+00:07:13.720 --> 00:07:18.520 line:83% align:center
+Creo que después de unirme
+a mi banda en 1990,
+
+00:07:18.720 --> 00:07:20.720 line:91% align:center
+un tiempo después,
+
+00:07:21.680 --> 00:07:23.800 line:83% align:center
+Dominic vino a mi casa,
+en Inglaterra,
+
+00:07:24.000 --> 00:07:27.520 line:83% align:center
+mientras yo estaba escribiendo
+y grabando un álbum.
+
+00:07:28.120 --> 00:07:30.400 line:91% align:center
+Y me dijo: "Tengo un riff."
+
+00:07:31.240 --> 00:07:33.160 line:91% align:center
+Le pedí que me lo tocara.
+
+00:07:34.240 --> 00:07:35.520 line:91% align:center
+Tócalo, Dom.
+
+00:07:41.320 --> 00:07:42.760 line:91% align:center
+Le dije: "Para ahí.
+
+00:07:46.000 --> 00:07:47.440 line:91% align:center
+Es maravilloso.
+
+00:07:48.200 --> 00:07:50.880 line:83% align:center
+Déjame escribir una canción
+alrededor de este riff."
+
+00:07:51.880 --> 00:07:56.560 line:83% align:center
+Para mí, la música
+pinta imágenes.
+
+00:07:57.120 --> 00:08:01.560 line:83% align:center
+Imágenes e historias,
+relatos.
+
+00:08:01.760 --> 00:08:03.960 line:83% align:center
+Esta canción se titula
+"Shape of My Heart".
+
+00:08:04.160 --> 00:08:05.640 line:91% align:center
+Dominic, te toca.
+
+00:12:45.240 --> 00:12:49.200 line:83% align:center
+La historia de "The Last Ship",
+mi historia personal,
+
+00:12:49.400 --> 00:12:52.160 line:83% align:center
+comienza con mi nacimiento
+cerca de un astillero.
+
+00:12:52.800 --> 00:12:56.080 line:83% align:center
+En mis recuerdos más antiguos,
+miro al final de la calle,
+
+00:12:56.280 --> 00:12:58.400 line:91% align:center
+y veo un inmenso barco
+
+00:12:58.600 --> 00:13:00.280 line:83% align:center
+que se perfila
+por encima de las casas,
+
+00:13:00.680 --> 00:13:02.920 line:91% align:center
+tan grande que tapa el sol.
+
+00:13:05.560 --> 00:13:08.040 line:83% align:center
+Era un entorno
+industrial surrealista
+
+00:13:08.360 --> 00:13:10.680 line:83% align:center
+que no disfrutaba
+particularmente.
+
+00:13:10.880 --> 00:13:12.400 line:91% align:center
+Quería irme.
+
+00:13:13.160 --> 00:13:15.120 line:83% align:center
+No quería trabajar
+en el astillero.
+
+00:13:15.320 --> 00:13:17.320 line:91% align:center
+Pero más tarde, comprendí
+
+00:13:18.320 --> 00:13:22.640 line:83% align:center
+hasta qué punto ese entorno
+estaba lleno de simbolismo.
+
+00:13:23.760 --> 00:13:27.640 line:83% align:center
+Los barcos, el río,
+el mar, la iglesia...
+
+00:13:28.160 --> 00:13:33.640 line:83% align:center
+Todo eso me alimentó como
+artista, escritor, contador de historias.
+
+00:13:34.640 --> 00:13:38.960 line:83% align:center
+Y en 1990,
+cuando Dominic se unió a mí,
+
+00:13:39.800 --> 00:13:43.080 line:83% align:center
+grabamos una canción
+titulada "Island of Souls".
+
+00:13:43.400 --> 00:13:46.640 line:83% align:center
+Fue ahí cuando surgió en mí
+la primera intuición:
+
+00:13:46.840 --> 00:13:50.520 line:83% align:center
+esta historia, la de mi ciudad
+y la del astillero,
+
+00:13:50.920 --> 00:13:54.880 line:83% align:center
+poseía tal vez
+un cierto potencial teatral.
+
+00:13:55.520 --> 00:13:58.360 line:83% align:center
+Así que todo empezó en 1990,
+cuando Dominic y yo
+
+00:13:59.080 --> 00:14:00.800 line:91% align:center
+tocamos "Island of Souls".
+
+00:18:08.880 --> 00:18:10.720 line:91% align:center
+Mi abuela vivía en Wallsend.
+
+00:18:10.920 --> 00:18:13.000 line:83% align:center
+Guardaba sus libros
+en estanterías
+
+00:18:13.200 --> 00:18:16.880 line:83% align:center
+que iban del suelo al techo,
+en una alcoba cerca de la chimenea.
+
+00:18:17.440 --> 00:18:20.160 line:83% align:center
+Pasaba la mayor parte
+de su tiempo en su sillón,
+
+00:18:20.600 --> 00:18:21.840 line:91% align:center
+con un libro en la mano,
+
+00:18:22.040 --> 00:18:25.400 line:83% align:center
+sus gafas de carey
+en la punta de la nariz,
+
+00:18:25.600 --> 00:18:28.320 line:83% align:center
+con una pila de libros
+detrás de ella,
+
+00:18:28.560 --> 00:18:30.080 line:91% align:center
+testimonio de su erudición.
+
+00:18:31.760 --> 00:18:33.400 line:91% align:center
+Nunca tiraba un libro.
+
+00:18:33.600 --> 00:18:36.880 line:83% align:center
+Me prestó "La isla del tesoro"
+de Robert Louis Stevenson.
+
+00:18:37.200 --> 00:18:39.360 line:83% align:center
+Lo leí
+cuando apenas tenía siete años,
+
+00:18:39.560 --> 00:18:42.480 line:83% align:center
+y aunque mi comprensión
+era sin duda rudimentaria,
+
+00:18:42.680 --> 00:18:45.000 line:83% align:center
+lo devoré
+con la misma determinación
+
+00:18:45.200 --> 00:18:48.160 line:83% align:center
+que pondría más tarde
+en aprender música.
+
+00:18:50.600 --> 00:18:53.760 line:83% align:center
+En esta increíble
+biblioteca neogótica,
+
+00:18:54.080 --> 00:18:55.480 line:91% align:center
+pienso en mi abuela
+
+00:18:55.680 --> 00:18:58.960 line:83% align:center
+y en cómo me decía
+que si yo era inteligente,
+
+00:18:59.360 --> 00:19:01.240 line:91% align:center
+sin duda lo había heredado de ella.
+
+00:19:02.480 --> 00:19:05.040 line:83% align:center
+Fue gracias a su apoyo
+y a sus ánimos
+
+00:19:05.240 --> 00:19:07.160 line:91% align:center
+que empecé a considerarme
+
+00:19:07.360 --> 00:19:09.800 line:83% align:center
+como alguien ilustrado,
+o al menos curioso.
+
+00:19:12.800 --> 00:19:14.760 line:83% align:center
+En la biblioteca pública más antigua
+
+00:19:14.960 --> 00:19:17.200 line:83% align:center
+de investigación en historia del arte
+de los Países Bajos,
+
+00:19:17.400 --> 00:19:20.560 line:83% align:center
+se siente que las bibliotecas y el
+conocimiento que albergan
+
+00:19:20.760 --> 00:19:22.800 line:91% align:center
+nos dan un verdadero poder.
+
+00:22:03.840 --> 00:22:07.560 line:83% align:center
+Puede que Rembrandt van Rijn
+no haya nacido en Ámsterdam,
+
+00:22:08.000 --> 00:22:10.920 line:83% align:center
+pero tras instalarse allí
+en 1631,
+
+00:22:11.120 --> 00:22:14.160 line:83% align:center
+se convirtió en uno de sus artistas
+más importantes,
+
+00:22:14.480 --> 00:22:17.000 line:83% align:center
+y su fama
+así como la de su arte
+
+00:22:17.200 --> 00:22:19.160 line:83% align:center
+se extendieron
+por todo el mundo.
+
+00:22:20.200 --> 00:22:24.760 line:83% align:center
+La obra maestra absoluta de Rembrandt,
+que es el corazón mismo de este museo,
+
+00:22:25.080 --> 00:22:26.640 line:91% align:center
+es "La ronda de noche".
+
+00:22:27.040 --> 00:22:29.080 line:91% align:center
+Se trata de un retrato monumental
+
+00:22:29.280 --> 00:22:31.200 line:83% align:center
+de una de las guardias cívicas
+de Ámsterdam
+
+00:22:31.400 --> 00:22:33.240 line:83% align:center
+durante la Guerra
+de los Ochenta Años.
+
+00:23:33.440 --> 00:23:37.720 line:83% align:center
+Pero desde el principio, Rembrandt quiso
+hacer de esta pintura algo más que eso.
+
+00:22:38.720 --> 00:22:41.040 line:83% align:center
+La pintó
+como una pintura histórica,
+
+00:22:41.240 --> 00:22:43.640 line:83% align:center
+incluyendo en ella
+muchos detalles extraños.
+
+00:22:44.160 --> 00:22:46.600 line:83% align:center
+Como la joven
+vestida con un traje amarillo,
+
+00:22:46.800 --> 00:22:48.640 line:83% align:center
+con un pollo
+colgado de su cinturón,
+
+00:22:48.840 --> 00:22:50.960 line:91% align:center
+que constituye su centro luminoso.
+
+00:22:51.960 --> 00:22:56.200 line:83% align:center
+Uno no nota de inmediato
+que muchos soldados
+
+00:22:56.680 --> 00:23:00.800 line:83% align:center
+llevan armaduras pasadas de moda
+desde hace más de medio siglo.
+
+00:23:01.760 --> 00:23:04.920 line:83% align:center
+Estos anacronismos evocadores
+formaban parte integral
+
+00:23:05.120 --> 00:23:07.680 line:83% align:center
+de la manera en que Rembrandt
+pintaba a los hombres armados,
+
+00:23:07.880 --> 00:23:11.120 line:83% align:center
+y no iba a cambiar
+sus hábitos por un encargo.
+
+00:23:12.000 --> 00:23:13.880 line:83% align:center
+Lo que llama la atención
+en "La ronda de noche",
+
+00:23:14.080 --> 00:23:17.560 line:83% align:center
+es la acción presente
+en esta imagen fija.
+
+00:23:18.600 --> 00:23:20.320 line:91% align:center
+Todo parece estar en movimiento.
+
+00:23:20.600 --> 00:23:22.960 line:91% align:center
+El tambor a la derecha marca el ritmo.
+
+00:23:23.160 --> 00:23:25.960 line:83% align:center
+El mosquetero a la izquierda
+carga su mosquete,
+
+00:23:26.160 --> 00:23:28.240 line:83% align:center
+y el niño pequeño
+en medio del cuadro
+
+00:23:28.440 --> 00:23:31.280 line:83% align:center
+no se limita a llevar
+un mosquete, lo usa.
+
+00:23:31.640 --> 00:23:34.560 line:83% align:center
+Esto sucede justo
+detrás del capitán de los guardias,
+
+00:23:34.880 --> 00:23:38.320 line:83% align:center
+que se encuentra en el centro de la obra
+y da la orden a sus hombres
+
+00:23:38.520 --> 00:23:42.840 line:83% align:center
+de seguirlo para defender
+su ciudad, Ámsterdam.
+
+00:25:12.560 --> 00:25:16.000 line:83% align:center
+La historia de "The Last Ship"
+es muy importante para mí.
+
+00:25:17.960 --> 00:25:21.440 line:83% align:center
+Escribir un musical
+ha sido el proyecto más difícil,
+
+00:25:21.640 --> 00:25:26.600 line:83% align:center
+el más desafiante y, sin embargo,
+el más gratificante de toda mi vida.
+
+00:25:27.880 --> 00:25:32.000 line:83% align:center
+Es la obra que quería crear
+y que necesitaba crear.
+
+00:25:32.440 --> 00:25:34.160 line:91% align:center
+Y por eso estoy aquí.
+
+00:25:35.920 --> 00:25:37.440 line:91% align:center
+Llevo puesto mi vestuario.
+
+00:25:38.120 --> 00:25:41.080 line:83% align:center
+En la obra, interpreto
+a un trabajador del astillero.
+
+00:25:41.280 --> 00:25:43.320 line:83% align:center
+Es lo que me pongo
+todas las noches.
+
+00:25:45.000 --> 00:25:48.880 line:83% align:center
+No sé si sea apropiado aquí,
+pero era lo que quería.
+
+00:25:49.240 --> 00:25:52.640 line:83% align:center
+Voy a interpretar la canción principal
+de nuestro musical,
+
+00:25:52.840 --> 00:25:55.040 line:83% align:center
+"The Last Ship",
+y empieza así...
+
+00:29:41.640 --> 00:29:45.600 line:83% align:center
+Hay elementos de mi vida
+en la historia de "The Last Ship".
+
+00:29:46.040 --> 00:29:47.920 line:83% align:center
+El personaje principal
+se llama Gideon,
+
+00:29:48.120 --> 00:29:51.240 line:83% align:center
+lo cual es bastante cercano
+a mi nombre, Gordon.
+
+00:29:51.800 --> 00:29:55.280 line:83% align:center
+Pero su historia y la mía
+no son del todo iguales.
+
+00:29:55.560 --> 00:29:57.680 line:91% align:center
+Llevo una vida internacional.
+
+00:29:58.240 --> 00:30:01.680 line:83% align:center
+Vengo de una comunidad,
+pero vivo fuera de ella.
+
+00:30:02.240 --> 00:30:04.840 line:83% align:center
+Espero poder dar voz
+a una comunidad
+
+00:30:05.040 --> 00:30:07.360 line:83% align:center
+cuya historia
+no ha sido contada.
+
+00:30:11.480 --> 00:30:13.720 line:83% align:center
+Mi región natal
+ha cambiado de manos
+
+00:30:13.920 --> 00:30:16.160 line:91% align:center
+varias veces a lo largo de los siglos.
+
+00:30:16.480 --> 00:30:20.920 line:83% align:center
+Escocia, Inglaterra, los sajones,
+los daneses, los normandos...
+
+00:30:21.120 --> 00:30:24.600 line:83% align:center
+Hoy en día, sentimos
+que solo nos pertenecemos a nosotros mismos.
+
+00:30:24.800 --> 00:30:26.560 line:91% align:center
+Nos llamamos los Geordies
+
+00:30:27.120 --> 00:30:29.880 line:83% align:center
+por razones históricas
+que aún se debaten,
+
+00:30:30.080 --> 00:30:32.480 line:83% align:center
+pero que hemos olvidado
+hace mucho tiempo.
+
+00:33:52.000 --> 00:33:57.000 line:83% align:center
+Solo queda
+una feroz identidad regional,
+
+00:37:44.000 --> 00:37:49.760 line:83% align:center
+respaldada en su singularidad
+por un dialecto
+
+00:39:56.000 --> 00:39:58.800 line:91% align:center
+que puede parecer incomprensible
+
+00:43:00.000 --> 00:43:02.680 line:83% align:center
+para los demás habitantes
+de las islas británicas.
+
+00:47:20.000 --> 00:49:28.000 line:83% align:center
+No quería que me juzgaran
+por mi acento,
+
+00:49:28.000 --> 00:49:32.200 line:83% align:center
+así que al llegar a Londres, lo perdí.
+
+00:49:32.480 --> 00:49:35.200 line:83% align:center
+Al menos hasta que
+me enojo
+
+00:49:55.400 --> 00:49:58.000 line:91% align:center
+y vuelve sin avisar.
+
+00:33:59.040 --> 00:34:00.080 line:91% align:center
+Bonito acorde.
+
+00:34:12.760 --> 00:34:18.800 line:83% align:center
+En 1980, tenía un apartamento
+en un sótano en Leinster Square.
+
+00:34:19.800 --> 00:34:25.320 line:83% align:center
+Una mañana, al salir,
+me crucé con una chica rubia
+
+00:34:25.680 --> 00:34:27.680 line:91% align:center
+que salía del sótano vecino.
+
+00:34:27.880 --> 00:34:30.960 line:83% align:center
+Tenía unos
+hermosos ojos verdes,
+
+00:34:32.280 --> 00:34:35.280 line:83% align:center
+y me enamoré de ella
+a primera vista.
+
+00:34:35.480 --> 00:34:39.000 line:83% align:center
+Saben, ves a alguien
+y te enamoras.
+
+00:34:40.160 --> 00:34:45.640 line:83% align:center
+Me tomó dos años
+tener el valor de hablarle.
+
+00:34:46.320 --> 00:34:48.520 line:91% align:center
+Esta canción habla de ella.
+
+00:37:41.960 --> 00:37:45.760 line:83% align:center
+Ah, sí, y llevo casado
+45 años con la mujer en cuestión.
+
+00:41:15.240 --> 00:41:19.680 line:83% align:center
+En 1699, la familia Voboam
+fabricó una guitarra única
+
+00:41:20.320 --> 00:41:22.840 line:91% align:center
+para el círculo de Luis XIV,
+
+00:41:23.080 --> 00:41:26.320 line:83% align:center
+quien, según dicen, era él mismo
+un guitarrista consumado.
+
+00:41:29.240 --> 00:41:33.040 line:83% align:center
+Este increíble instrumento barroco
+ha regresado al Rijksmuseum
+
+00:41:33.240 --> 00:41:34.920 line:83% align:center
+como parte
+de un préstamo a largo plazo,
+
+00:41:35.120 --> 00:41:39.600 line:83% align:center
+y ha sido restaurado para poder
+ser tocado aquí, en el Rijksmuseum.
+
+00:43:03.440 --> 00:43:06.560 line:83% align:center
+Ámsterdam es el tipo de ciudad
+a donde mucha gente viene
+
+00:43:06.760 --> 00:43:09.360 line:83% align:center
+para encontrar
+su propia forma de libertad.
+
+00:43:10.520 --> 00:43:13.320 line:83% align:center
+En mi primera estancia aquí,
+en 1977,
+
+00:43:13.520 --> 00:43:16.440 line:83% align:center
+estaba de gira
+abriendo el show
+
+00:43:16.800 --> 00:43:20.680 line:83% align:center
+en el famoso Paradiso,
+una antigua iglesia,
+
+00:43:20.880 --> 00:43:23.480 line:83% align:center
+a pocos minutos a pie
+del Rijksmuseum.
+
+00:43:24.920 --> 00:43:29.320 line:83% align:center
+Eran los inicios del punk
+y recuerdo que esa noche
+
+00:43:29.520 --> 00:43:33.080 line:83% align:center
+tenía algo de surrealista,
+casi de pesadilla.
+
+00:43:33.600 --> 00:43:36.920 line:83% align:center
+La música, muy fuerte,
+retumbaba en los altavoces.
+
+00:43:37.160 --> 00:43:39.680 line:83% align:center
+La gente bailaba
+como derviches giróvagos,
+
+00:43:39.880 --> 00:43:43.280 line:83% align:center
+mientras otros dormían
+en sus sacos de dormir.
+
+00:43:43.960 --> 00:43:48.080 line:83% align:center
+En esa gira,
+tuve la suerte
+
+00:43:48.280 --> 00:43:52.680 line:83% align:center
+de escribir la canción
+que dio a conocer a mi banda
+
+00:43:53.280 --> 00:43:54.760 line:91% align:center
+al gran público.
+
+00:43:55.160 --> 00:43:56.520 line:91% align:center
+Se titula "Roxanne".
+
+00:46:10.480 --> 00:46:12.240 line:91% align:center
+En el siglo XVII, los Países Bajos
+
+00:46:12.440 --> 00:46:15.120 line:83% align:center
+no eran dominio exclusivo
+de los pintores masculinos.
+
+00:46:15.920 --> 00:46:18.840 line:83% align:center
+Muchas mujeres trabajaban
+como artistas en aquella época.
+
+00:46:19.040 --> 00:46:22.160 line:83% align:center
+Sin embargo, aunque tuvieran
+éxito en vida,
+
+00:46:22.360 --> 00:46:26.040 line:83% align:center
+podían ser rápida
+e injustamente olvidadas.
+
+00:46:27.320 --> 00:46:30.040 line:83% align:center
+El ejemplo más extremo
+de este machismo
+
+00:46:30.400 --> 00:46:32.520 line:91% align:center
+es el de Judith Leyster.
+
+00:46:33.280 --> 00:46:36.480 line:83% align:center
+Era muy valorada
+por sus contemporáneos
+
+00:46:36.680 --> 00:46:39.120 line:83% align:center
+como una brillante pintora
+de escenas de género,
+
+00:46:39.360 --> 00:46:41.240 line:91% align:center
+de retratos y de bodegones.
+
+00:46:42.280 --> 00:46:45.440 line:83% align:center
+Su historia está ligada a la
+de otro famoso pintor
+
+00:46:45.640 --> 00:46:47.960 line:91% align:center
+de Haarlem, Frans Hals.
+
+00:46:49.400 --> 00:46:51.840 line:83% align:center
+En 1635, Leyster
+demandó a Hals ante la justicia
+
+00:46:52.320 --> 00:46:54.440 line:83% align:center
+por haberle quitado
+a uno de sus aprendices,
+
+00:46:54.640 --> 00:46:57.440 line:83% align:center
+lo que le valió a Hals una multa
+impuesta por el gremio.
+
+00:46:57.760 --> 00:47:01.400 line:83% align:center
+Las pinturas de Hals también
+se exhiben en la Galería de Honor,
+
+00:47:02.000 --> 00:47:05.240 line:83% align:center
+y el estilo de Leyster
+es bastante cercano al suyo.
+
+00:47:06.840 --> 00:47:10.760 line:83% align:center
+Esto tuvo como consecuencia que,
+durante siglos tras su muerte,
+
+00:47:10.960 --> 00:47:13.680 line:83% align:center
+sus obras fueran atribuidas
+erróneamente a Hals.
+
+00:47:14.240 --> 00:47:16.880 line:91% align:center
+Hasta que en 1893,
+
+00:47:17.280 --> 00:47:21.000 line:83% align:center
+durante la restauración del cuadro
+"El alegre bebedor" en el Louvre,
+
+00:47:21.400 --> 00:47:24.760 line:83% align:center
+la firma de Leyster apareció,
+clara como el agua.
+
+00:47:25.560 --> 00:47:27.960 line:83% align:center
+Hoy en día,
+en un mundo más ilustrado,
+
+00:47:28.320 --> 00:47:31.200 line:83% align:center
+podemos
+apreciar la maestría de Leyster
+
+00:47:31.400 --> 00:47:34.360 line:83% align:center
+y su dedicación a su arte
+sin ningún prejuicio.
+
+00:49:48.520 --> 00:49:49.600 line:91% align:center
+Gracias.
+
+00:49:57.720 --> 00:50:00.120 line:83% align:center
+Creo que muchos
+de los grandes escritores de este mundo
+
+00:50:00.320 --> 00:50:02.800 line:91% align:center
+aprovecharon un período de exilio.
+
+00:50:03.880 --> 00:50:07.360 line:83% align:center
+Tal vez eso permite entender mejor el propio país
+
+00:50:07.680 --> 00:50:09.720 line:83% align:center
+que las personas
+que siempre han vivido allí.
+
+00:50:10.160 --> 00:50:15.160 line:83% align:center
+También permite ver el lugar
+de donde uno viene con más claridad.
+
+00:53:23.040 --> 00:53:27.440 line:83% align:center
+Johannes Vermeer es un artista
+que nunca dejó su comunidad.
+
+00:53:28.680 --> 00:53:32.320 line:83% align:center
+Nació y vivió
+en el siglo XVII en Delft.
+
+00:53:33.000 --> 00:53:35.520 line:83% align:center
+Durante siglos, se sabía
+tan poco sobre Vermeer
+
+00:53:35.720 --> 00:53:39.800 line:83% align:center
+que los historiadores del arte
+lo apodaron la esfinge de Delft.
+
+00:54:00.000 --> 00:54:04.200 line:83% align:center
+Trabajaba despacio, en parte
+porque era comerciante de arte
+
+00:54:04.680 --> 00:54:06.040 line:91% align:center
+y posadero,
+
+00:54:06.240 --> 00:54:08.160 line:83% align:center
+y tenía diez hijos
+que alimentar.
+
+00:54:08.360 --> 00:54:52.840 line:83% align:center
+Pero también debido a la precisión
+con la que pintaba.
+
+00:54:54.680 --> 00:54:57.640 line:83% align:center
+Vermeer creaba lo que hoy
+llamamos pinturas de género,
+
+00:54:57.960 --> 00:58:01.840 line:83% align:center
+escenas íntimas sutilmente
+dramáticas de la vida cotidiana.
+
+00:58:02.520 --> 00:58:05.880 line:83% align:center
+Estas pinturas son escenas
+nacidas de la imaginación de Vermeer.
+
+00:58:06.080 --> 00:58:10.160 line:83% align:center
+Pero contienen elementos
+reales procedentes de la ciudad de Delft
+
+00:58:10.360 --> 00:58:13.160 line:83% align:center
+o del taller
+y de la casa de Vermeer.
+
+00:58:13.720 --> 00:58:16.200 line:83% align:center
+Lo sabemos porque tras
+la repentina muerte de Vermeer,
+
+00:58:16.400 --> 00:58:19.680 line:83% align:center
+hubo que hacer un inventario del contenido
+de su casa
+
+00:58:20.120 --> 00:58:22.080 line:91% align:center
+para saldar sus deudas.
+
+00:58:23.080 --> 00:58:26.280 line:83% align:center
+En "La carta de amor",
+se ve a una joven
+
+00:58:26.480 --> 00:58:30.600 line:83% align:center
+interrumpida por la llegada de una
+carta mientras toca el laúd.
+
+00:58:31.600 --> 00:58:33.320 line:91% align:center
+Se percibe la anticipación.
+
+00:58:33.680 --> 00:58:35.800 line:91% align:center
+Vermeer coreografió la escena
+
+00:58:36.000 --> 00:58:38.800 line:83% align:center
+de manera que los ojos
+de la joven brille,
+
+00:58:39.000 --> 00:58:41.800 line:83% align:center
+reflejando la luz
+de una ventana invisible.
+
+00:58:19.200 --> 00:58:20.480 line:91% align:center
+Dominic Miller.
+
+00:58:26.200 --> 00:58:27.800 line:91% align:center
+OK. Muy bien.
+
+01:01:59.040 --> 01:02:02.000 line:83% align:center
+Gracias por acompañarme esta noche
+en el Rijksmuseum.
+
+01:02:02.400 --> 01:02:05.520 line:83% align:center
+Ha sido un placer único para mí
+tocar entre estas obras maestras
+
+01:02:06.000 --> 01:02:09.000 line:83% align:center
+y compartir mis canciones
+y mis recuerdos con ustedes.
+
+01:02:09.360 --> 01:02:11.200 line:83% align:center
+Acompáñenme
+a bordo de "The Last Ship".
+
+01:02:11.400 --> 01:02:13.360 line:83% align:center
+Es un viaje
+del que no se arrepentirán
+
+01:02:13.560 --> 01:02:14.680 line:91% align:center
+y que no olvidarán.
+
+01:02:14.880 --> 01:02:17.000 line:91% align:center
+Hasta entonces, buenas noches.
+
+01:06:29.000 --> 01:06:32.000 line:83% align:center
+Versión española: S. Mira-Parent
+para INNERVISION
+
+01:06:32.200 --> 01:06:35.200 line:83% align:center
+Para ARTE:
+Marie-Anne Iacono
