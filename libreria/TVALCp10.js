@@ -78,7 +78,7 @@ TVALC_PELICULAS.push(
     "audioUrl": "https://arte-cmafhls.akamaized.net/am/cmaf/121000/121300/121375-000-A/202609230003A5E2631B370792946EF6E0845F75AB/medias/121375-000-A_aud_VO-ANG_1_43480299_7456295_20260923001450.mp4",
     "subtituloUrl": "https://arte-cmafhls.akamaized.net/am/cmaf/121000/121300/121375-000-A/202609230003A5E2631B370792946EF6E0845F75AB/medias/121375-000-A_st_VO-ESP_43480299_8068644_20260923001454.vtt",
     "reproductor": "VimasAu",
-    "categoria": "Recital, Musical",
+    "categoria": "Recital, Musical, Documental",
     "clasificacion": "ATP",
     "descripcion": "En sus sesenta años de carrera, el ídolo indiscutible del público británico ha desplegado su estilo desenfadado y burlón, junto con su formidable voz ronca, en todos los géneros, desde el hard rock hasta el jazz y el pop. Un retrato de un aristócrata del pop que ha conquistado el corazón de millones de fans en todo el mundo."
 }
