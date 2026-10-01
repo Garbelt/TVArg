@@ -112,7 +112,7 @@ TVALC_PELICULAS.push(
     "poster": "https://image.tmdb.org/t/p/w500/qAdZbSJB9ACUkv6R6oZ99Nv2P02.jpg",
     "url": "https://arte-cmafhls.akamaized.net/am/cmaf/127000/127000/127032-000-A/2026011211BF4A6E9CA11736E739EACE6C43C35190/medias/127032-000-A_v1080.mp4",
     "audioUrl": "https://arte-cmafhls.akamaized.net/am/cmaf/127000/127000/127032-000-A/2026011211BF4A6E9CA11736E739EACE6C43C35190/medias/127032-000-A_aud_VO-ANG_1.mp4",
-    "subtituloUrl": ""https://raw.githubusercontent.com/Garbelt/TVArg/main/libreria/Subtitulos/Bowie_HND_subt-esp.vtt",
+    "subtituloUrl": "https://raw.githubusercontent.com/Garbelt/TVArg/main/libreria/Subtitulos/Bowie_HND_subt-esp.vtt",
     "reproductor": "VimasAu",
     "categoria": "Documental, Musical",
     "clasificacion": "ATP",
