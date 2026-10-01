@@ -1,4 +1,4 @@
-TVALC_PELICULAS.push(
+TVALC_PELICULAS.push( 
 {
     "titulo": "Queen – Live in Budapest 1986",
     "año": "2012",
