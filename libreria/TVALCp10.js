@@ -105,5 +105,17 @@ TVALC_PELICULAS.push(
     "categoria": "Documental, Recital, Musical",
     "clasificacion": "+13",
     "descripcion": "Joe Cocker (1944-2014) se convirtió en una leyenda en vida con éxitos como \"Unchain My Heart\", \"You Are So Beautiful\", \"You can Leave Your Hat On\" o \"Up Where We Belong\". Este documental repasa su conmovedora vida: desde sus salvajes comienzos y su adicción al alcohol hasta sus últimos años con su esposa Pam Baker en Colorado, pasando por su mítica actuación en el festival de Woodstock en 1969."
+},
+{
+    "titulo": "David Bowie – Heroes Never Die",
+    "año": "2026",
+    "poster": "https://image.tmdb.org/t/p/w500/qAdZbSJB9ACUkv6R6oZ99Nv2P02.jpg",
+    "url": "https://arte-cmafhls.akamaized.net/am/cmaf/127000/127000/127032-000-A/2026011211BF4A6E9CA11736E739EACE6C43C35190/medias/127032-000-A_v1080.mp4",
+    "audioUrl": "https://arte-cmafhls.akamaized.net/am/cmaf/127000/127000/127032-000-A/2026011211BF4A6E9CA11736E739EACE6C43C35190/medias/127032-000-A_aud_VO-ANG_1.mp4",
+    "subtituloUrl": ""https://raw.githubusercontent.com/Garbelt/TVArg/main/libreria/Subtitulos/Bowie_HND_subt-esp.txt",
+    "reproductor": "VimasAu",
+    "categoria": "Documental, Musical",
+    "clasificacion": "ATP",
+    "descripcion": "Peter Doherty y Carl Barat, The Molotovs, Anna Calvi con Isobel Waller-Bridge, Jeanne Added, The Divine Comedy... la voz de Bowie resuena a través de 8 interpretaciones con las voces de otros iconos que lo evocan evidenciando la inmensa influencia de su música."
 }
 );
