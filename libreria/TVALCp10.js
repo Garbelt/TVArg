@@ -104,6 +104,6 @@ TVALC_PELICULAS.push(
     "reproductor": "VimasAu",
     "categoria": "Documental, Recital, Musical",
     "clasificacion": "+13",
-    "descripcion": "Joe Cocker (1944-2014) se convirtió en una leyenda en vida con éxitos como "Unchain My Heart", "You Are So Beautiful", "You can Leave Your Hat On" o "Up Where We Belong". Este documental repasa su conmovedora vida: desde sus salvajes comienzos y su adicción al alcohol hasta sus últimos años con su esposa Pam Baker en Colorado, pasando por su mítica actuación en el festival de Woodstock en 1969."
+    "descripcion": "Joe Cocker (1944-2014) se convirtió en una leyenda en vida con éxitos como \"Unchain My Heart\", \"You Are So Beautiful\", \"You can Leave Your Hat On\" o \"Up Where We Belong\". Este documental repasa su conmovedora vida: desde sus salvajes comienzos y su adicción al alcohol hasta sus últimos años con su esposa Pam Baker en Colorado, pasando por su mítica actuación en el festival de Woodstock en 1969."
 }
 );
