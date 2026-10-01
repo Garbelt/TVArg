@@ -90,8 +90,20 @@ TVALC_PELICULAS.push(
     "audioUrl": "https://arte-cmafhls.akamaized.net/am/cmaf/121000/121300/121375-000-A/202609230003A5E2631B370792946EF6E0845F75AB/medias/121375-000-A_aud_VO-ANG_1_43480299_7456295_20260923001450.mp4",
     "subtituloUrl": "https://arte-cmafhls.akamaized.net/am/cmaf/121000/121300/121375-000-A/202609230003A5E2631B370792946EF6E0845F75AB/medias/121375-000-A_st_VO-ESP_43480299_8068644_20260923001454.vtt",
     "reproductor": "VimasAu",
-    "categoria": "Recital, Musical, Documental",
+    "categoria": "Documental, Recital, Musical",
     "clasificacion": "ATP",
     "descripcion": "En sus sesenta años de carrera, el ídolo indiscutible del público británico ha desplegado su estilo desenfadado y burlón, junto con su formidable voz ronca, en todos los géneros, desde el hard rock hasta el jazz y el pop. Un retrato de un aristócrata del pop que ha conquistado el corazón de millones de fans en todo el mundo."
+},
+{
+    "titulo": "Joe Cocker: Mad Dog with Soul",
+    "año": "2017",
+    "poster": "https://image.tmdb.org/t/p/w500/gz9u6ur4o3TiA9kuabhzaKSF81u.jpg",
+    "url": "https://arte-cmafhls.akamaized.net/am/cmaf/064000/064400/064475-000-A/2026071505E74E2BA5A5BAD64A775DD12DA8ADAE96/medias/064475-000-A_v1080_crf_h264.mp4",
+    "audioUrl": "https://arte-cmafhls.akamaized.net/am/cmaf/064000/064400/064475-000-A/2026071505E74E2BA5A5BAD64A775DD12DA8ADAE96/medias/064475-000-A_aud_VO-ANG_2.mp4",
+    "subtituloUrl": "https://arte-cmafhls.akamaized.net/am/cmaf/064000/064400/064475-000-A/2026071505E74E2BA5A5BAD64A775DD12DA8ADAE96/medias/064475-000-A_st_VO-ESP_42768553_7570442.vtt",
+    "reproductor": "VimasAu",
+    "categoria": "Documental, Recital, Musical",
+    "clasificacion": "+13",
+    "descripcion": "Joe Cocker (1944-2014) se convirtió en una leyenda en vida con éxitos como "Unchain My Heart", "You Are So Beautiful", "You can Leave Your Hat On" o "Up Where We Belong". Este documental repasa su conmovedora vida: desde sus salvajes comienzos y su adicción al alcohol hasta sus últimos años con su esposa Pam Baker en Colorado, pasando por su mítica actuación en el festival de Woodstock en 1969."
 }
 );
