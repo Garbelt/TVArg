@@ -1218,7 +1218,7 @@ window.TVALC_SERIES.push({
 
     titulo: "Fechas que hicieron Historia",
     año: "2018",
-    categoria: "Documental",
+    categoria: "Documental, Historia",
     clasificacion: "ATP",
     tipo: "serie",
     poster: "",
@@ -1233,15 +1233,6 @@ window.TVALC_SERIES.push({
 
                 {
                     numero: 1,
-                    titulo: "1492. Un Nuevo Mundo",
-                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-001-A/2025061120A6914B7CE2E856C829D4D185B6B027E1/medias/069117-001-A_v1080.mp4",
-                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-001-A/2025061120A6914B7CE2E856C829D4D185B6B027E1/medias/069117-001-A_aud_VOF-FRA_1.mp4",
-                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-001-A/2025061120A6914B7CE2E856C829D4D185B6B027E1/medias/069117-001-A_st_VO-ESP.vtt",
-                    reproductor: "VimasAu",
-                },
-
-                {
-                    numero: 2,
                     titulo: "3 de abril del 33. La Crucifixión de Jesús",
                     url: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-002-A/2025070216CE297D4F9B3D4642D1971F91C323BE29/medias/069117-002-A_v1080.mp4",
                     audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-002-A/2025070216CE297D4F9B3D4642D1971F91C323BE29/medias/069117-002-A_aud_VOF-FRA_1.mp4",
@@ -1250,11 +1241,83 @@ window.TVALC_SERIES.push({
                 },
 
                 {
+                    numero: 2,
+                    titulo: "24 de septiembre de 622. El Año 1 del Islam",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-006-A/2025061120F174D4EB3123718B61135B958CD05C44/medias/069117-006-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-006-A/2025061120F174D4EB3123718B61135B958CD05C44/medias/069117-006-A_aud_VOF-FRA_1.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-006-A/2025061120F174D4EB3123718B61135B958CD05C44/medias/069117-006-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+
+                {
                     numero: 3,
-                    titulo: "6 de agosto de 1945, Hiroshima",
+                    titulo: "13 de junio de 323 a.C. La muerte de Alejandro Magno",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-010-A/20250710119D138CC18CB2912A4847384AD5CA72A1/medias/069117-010-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-010-A/20250710119D138CC18CB2912A4847384AD5CA72A1/medias/069117-010-A_aud_VOF-FRA_1.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-010-A/20250710119D138CC18CB2912A4847384AD5CA72A1/medias/069117-010-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+
+                {
+                    numero: 4,
+                    titulo: "1492. Un Nuevo Mundo",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-001-A/2025061120A6914B7CE2E856C829D4D185B6B027E1/medias/069117-001-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-001-A/2025061120A6914B7CE2E856C829D4D185B6B027E1/medias/069117-001-A_aud_VOF-FRA_1.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-001-A/2025061120A6914B7CE2E856C829D4D185B6B027E1/medias/069117-001-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+
+                {
+                    numero: 5,
+                    titulo: "20 de junio de 1789. El Juramento del Juego de Pelota",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-007-A/2025061120FF729DAB4F6EA7B856E1510E5C7A862A/medias/069117-007-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-007-A/2025061120FF729DAB4F6EA7B856E1510E5C7A862A/medias/069117-007-A_aud_VOF-FRA_1.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-007-A/2025061120FF729DAB4F6EA7B856E1510E5C7A862A/medias/069117-007-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+
+                {
+                    numero: 6,
+                    titulo: "11 de febrero de 1990. La Liberación de Nelson Mandela",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-008-A/20250208053FD612693E0BF932A85D2E48AB7BD2C6/medias/069117-008-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-008-A/20250208053FD612693E0BF932A85D2E48AB7BD2C6/medias/069117-008-A_aud_VOF-FRA_1.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-008-A/20250208053FD612693E0BF932A85D2E48AB7BD2C6/medias/069117-008-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+
+                {
+                    numero: 7,
+                    titulo: "Un día del año 79. La destrucción de Pompeya",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-009-A/2025061120D80D1AB72266752BDC66FC778887ECF7/medias/069117-009-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-009-A/2025061120D80D1AB72266752BDC66FC778887ECF7/medias/069117-009-A_aud_VOF-FRA_1.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-009-A/2025061120D80D1AB72266752BDC66FC778887ECF7/medias/069117-009-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+
+                {
+                    numero: 8,
+                    titulo: "6 de agosto de 1945. Hiroshima",
                     url: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-003-A/2025061120F845198242A3345FCE328A8C284374CD/medias/069117-003-A_v1080.mp4",
                     audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-003-A/2025061120F845198242A3345FCE328A8C284374CD/medias/069117-003-A_aud_VOF-FRA_1.mp4",
                     subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-003-A/2025061120F845198242A3345FCE328A8C284374CD/medias/069117-003-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+
+                {
+                    numero: 9,
+                    titulo: "1347. La Peste Negra",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-004-A/202506112068BFD78D6BEBD237790D78B8F854AF10/medias/069117-004-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-004-A/202506112068BFD78D6BEBD237790D78B8F854AF10/medias/069117-004-A_aud_VOF-FRA_1.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-004-A/202506112068BFD78D6BEBD237790D78B8F854AF10/medias/069117-004-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+
+                {
+                    numero: 10,
+                    titulo: "1431. La Caída de Angkor",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-005-A/2025071011E7C29AE6289B8504A3995ACAEB7A4C29/medias/069117-005-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-005-A/2025071011E7C29AE6289B8504A3995ACAEB7A4C29/medias/069117-005-A_aud_VOF-FRA_1.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-005-A/2025071011E7C29AE6289B8504A3995ACAEB7A4C29/medias/069117-005-A_st_VO-ESP.vtt",
                     reproductor: "VimasAu",
                 }
 
@@ -1264,5 +1327,3 @@ window.TVALC_SERIES.push({
     ]
 
 });
-
-
