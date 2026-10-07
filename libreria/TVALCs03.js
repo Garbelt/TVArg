@@ -1213,3 +1213,56 @@ window.TVALC_SERIES.push({
     ]
 
 });
+
+window.TVALC_SERIES.push({
+
+    titulo: "Fechas que hicieron Historia",
+    año: "2018",
+    categoria: "Documental",
+    clasificacion: "ATP",
+    tipo: "serie",
+    poster: "",
+    descripcion: "Abarcar un acontecimiento a partir de su reconstitución en la memoria. Patrick Boucheron repasa algunas de las fechas más importantes de la historia en el imaginario colectivo.",
+
+    temporadas: [
+
+        {
+            numero: 1,
+
+            capitulos: [
+
+                {
+                    numero: 1,
+                    titulo: "1492. Un Nuevo Mundo",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-001-A/2025061120A6914B7CE2E856C829D4D185B6B027E1/medias/069117-001-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-001-A/2025061120A6914B7CE2E856C829D4D185B6B027E1/medias/069117-001-A_aud_VOF-FRA_1.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-001-A/2025061120A6914B7CE2E856C829D4D185B6B027E1/medias/069117-001-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+
+                {
+                    numero: 2,
+                    titulo: "3 de abril del 33. La Crucifixión de Jesús",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-002-A/2025070216CE297D4F9B3D4642D1971F91C323BE29/medias/069117-002-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-002-A/2025070216CE297D4F9B3D4642D1971F91C323BE29/medias/069117-002-A_aud_VOF-FRA_1.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-002-A/2025070216CE297D4F9B3D4642D1971F91C323BE29/medias/069117-002-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+
+                {
+                    numero: 3,
+                    titulo: "6 de agosto de 1945, Hiroshima",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-003-A/2025061120F845198242A3345FCE328A8C284374CD/medias/069117-003-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-003-A/2025061120F845198242A3345FCE328A8C284374CD/medias/069117-003-A_aud_VOF-FRA_1.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/069000/069100/069117-003-A/2025061120F845198242A3345FCE328A8C284374CD/medias/069117-003-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                }
+
+            ]
+        }
+
+    ]
+
+});
+
+
