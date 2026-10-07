@@ -1966,8 +1966,6 @@ body.android-app #volverTVArg {
 
 </div>
 
-
-
 <!-- =====================================================
      DATOS
 ===================================================== -->
@@ -4791,6 +4789,7 @@ function abrirSerie(
 
                             reproducir(
                                 {
+                                    ...capitulo,
 
                                     titulo:
                                         serie.titulo +
@@ -4804,11 +4803,7 @@ function abrirSerie(
                                         capitulo.numero,
 
                                     año:
-                                        serie.año,
-
-                                    url:
-                                        capitulo.url
-
+                                        serie.año
                                 }
                             );
 
