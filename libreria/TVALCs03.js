@@ -1221,7 +1221,7 @@ window.TVALC_SERIES.push({
     categoria: "Documental, Historia",
     clasificacion: "ATP",
     tipo: "serie",
-    poster: "",
+    poster: "https://cms.anagrama-ed.es/uploads/media/portadas/0001/29/6a56edeee2a3078b0ef2ae915056ec95f1602f53.jpeg",
     descripcion: "Abarcar un acontecimiento a partir de su reconstitución en la memoria. Patrick Boucheron repasa algunas de las fechas más importantes de la historia en el imaginario colectivo.",
 
     temporadas: [
