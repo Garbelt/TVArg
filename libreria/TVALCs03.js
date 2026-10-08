@@ -1322,8 +1322,62 @@ window.TVALC_SERIES.push({
                 }
 
             ]
+        },
+
+
+
+        {
+            numero: 2,
+
+            capitulos: [
+
+                {
+                    numero: 1,
+                    titulo: "21 de abril de 753 a. C. La fundación de Roma",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-007-A/2025061118D633D7E9D01E08D3F7FD765DD6D7FC8F/medias/086127-007-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-007-A/2025061118D633D7E9D01E08D3F7FD765DD6D7FC8F/medias/086127-007-A_aud_VOF-FRA_2.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-007-A/2025061118D633D7E9D01E08D3F7FD765DD6D7FC8F/medias/086127-007-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+
+                {
+                    numero: 2,
+                    titulo: "399 a. C. El proceso de Sócrates",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-001-A/2025061118FD3C66206031711B75E8A70D98B31791/medias/086127-001-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-001-A/2025061118FD3C66206031711B75E8A70D98B31791/medias/086127-001-A_aud_VOF-FRA_2.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-001-A/2025061118FD3C66206031711B75E8A70D98B31791/medias/086127-001-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+
+                {
+                    numero: 3,
+                    titulo: "315. La donación de Constantino",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-008-A/20250611189887D88ED1EE3C77E0F1B6353B772C48/medias/086127-008-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-008-A/20250611189887D88ED1EE3C77E0F1B6353B772C48/medias/086127-008-A_aud_VOF-FRA_2.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-008-A/20250611189887D88ED1EE3C77E0F1B6353B772C48/medias/086127-008-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+
+                {
+                    numero: 4,
+                    titulo: "751. La batalla de Talas",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-009-A/2025071011AC223E0E00F8583BACA1708E82079A6A/medias/086127-009-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-009-A/2025071011AC223E0E00F8583BACA1708E82079A6A/medias/086127-009-A_aud_VOF-FRA_2.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-009-A/2025071011AC223E0E00F8583BACA1708E82079A6A/medias/086127-009-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+
+                {
+                    numero: 5,
+                    titulo: "25 de agosto de 1270. La muerte de San Luis",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-002-A/2025061118E1C85DF352E835A33F892BE88F354075/medias/086127-002-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-002-A/2025061118E1C85DF352E835A33F892BE88F354075/medias/086127-002-A_aud_VOF-FRA_2.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-002-A/2025061118E1C85DF352E835A33F892BE88F354075/medias/086127-002-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                }
+
+            ]
         }
 
     ]
-
 });
