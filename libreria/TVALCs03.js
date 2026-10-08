@@ -1374,6 +1374,14 @@ window.TVALC_SERIES.push({
                     audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-002-A/2025061118E1C85DF352E835A33F892BE88F354075/medias/086127-002-A_aud_VOF-FRA_2.mp4",
                     subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-002-A/2025061118E1C85DF352E835A33F892BE88F354075/medias/086127-002-A_st_VO-ESP.vtt",
                     reproductor: "VimasAu",
+                },
+                {
+                    numero: 6,
+                    titulo: "29 de mayo de 1453. La toma de Constantinopla",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-006-A/20250611209331F84A6A901AD863A1109CCDC5C6B1/medias/086127-006-A__v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-006-A/20250611209331F84A6A901AD863A1109CCDC5C6B1/medias/086127-006-A_aud_VOF-FRA_2.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-006-A/20250611209331F84A6A901AD863A1109CCDC5C6B1/medias/086127-006-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
                 }
 
             ]
