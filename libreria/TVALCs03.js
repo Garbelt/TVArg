@@ -1382,7 +1382,23 @@ window.TVALC_SERIES.push({
                     audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-006-A/20250611209331F84A6A901AD863A1109CCDC5C6B1/medias/086127-006-A_aud_VOF-FRA_2.mp4",
                     subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-006-A/20250611209331F84A6A901AD863A1109CCDC5C6B1/medias/086127-006-A_st_VO-ESP.vtt",
                     reproductor: "VimasAu",
-                }
+                },
+                {
+                    numero: 7,
+                    titulo: "14 de mayo de 1610. El asesinato de Enrique IV",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-003-A/2025061118F04CE1A9EDD937F1A87EAC2D7AE214FA/medias/086127-003-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-003-A/2025061118F04CE1A9EDD937F1A87EAC2D7AE214FA/medias/086127-003-A_aud_VOF-FRA_2.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-003-A/2025061118F04CE1A9EDD937F1A87EAC2D7AE214FA/medias/086127-003-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+                {
+                    numero: 8,
+                    titulo: "4 de julio de 1776. La declaración de independencia estadounidense",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-005-A/202506111879399AB1F5FE7D735E9D2856FA7B38C4/medias/086127-005-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-005-A/202506111879399AB1F5FE7D735E9D2856FA7B38C4/medias/086127-005-A_aud_VOF-FRA_2.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-005-A/202506111879399AB1F5FE7D735E9D2856FA7B38C4/medias/086127-005-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
 
             ]
         }
