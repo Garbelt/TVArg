@@ -1325,7 +1325,6 @@ window.TVALC_SERIES.push({
         },
 
 
-
         {
             numero: 2,
 
@@ -1417,7 +1416,32 @@ window.TVALC_SERIES.push({
                 }
 
             ]
-        }
+        },
 
+        {
+            numero: 3,
+
+            capitulos: [
+
+                {
+                    numero: 1,
+                    titulo: "18.000 a. C. La cueva de Lascaux",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-013-A/20250611184964DA5D82407C9A5E010714610C0184/medias/086127-013-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-013-A/20250611184964DA5D82407C9A5E010714610C0184/medias/086127-013-A_aud_VOF-FRA_2.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-013-A/20250611184964DA5D82407C9A5E010714610C0184/medias/086127-013-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+                {
+                    numero: 2,
+                    titulo: "1350 a. C. La revolución religiosa de Akenatón",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-016-A/20250611197132C632669B0F139DD7E70B2D871905/medias/086127-016-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-016-A/20250611197132C632669B0F139DD7E70B2D871905/medias/086127-016-A_aud_VOF-FRA_2.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-016-A/20250611197132C632669B0F139DD7E70B2D871905/medias/086127-016-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                }
+
+            ]
+        }
+        
     ]
 });
