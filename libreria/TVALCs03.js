@@ -1399,6 +1399,22 @@ window.TVALC_SERIES.push({
                     subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-005-A/202506111879399AB1F5FE7D735E9D2856FA7B38C4/medias/086127-005-A_st_VO-ESP.vtt",
                     reproductor: "VimasAu",
                 },
+                {
+                    numero: 9,
+                    titulo: "1848. La primavera de los pueblos",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-010-A/2025071012FE6EB050768EE53EE84E209C5C8F73FE/medias/086127-010-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-010-A/2025071012FE6EB050768EE53EE84E209C5C8F73FE/medias/086127-010-A_aud_VOF-FRA_2.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-010-A/2025071012FE6EB050768EE53EE84E209C5C8F73FE/medias/086127-010-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                },
+                {
+                    numero: 10,
+                    titulo: "Octubre de 1860. El saqueo del Palacio de Verano de Pekín",
+                    url: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-004-A/20250611189A9B0F1ACA3E5519316B4994E6428098/medias/086127-004-A_v1080.mp4",
+                    audioUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-004-A/20250611189A9B0F1ACA3E5519316B4994E6428098/medias/086127-004-A_aud_VOF-FRA_2.mp4",
+                    subtituloUrl: "https://arte-cmafhls.akamaized.net/am/cmaf/086000/086100/086127-004-A/20250611189A9B0F1ACA3E5519316B4994E6428098/medias/086127-004-A_st_VO-ESP.vtt",
+                    reproductor: "VimasAu",
+                }
 
             ]
         }
