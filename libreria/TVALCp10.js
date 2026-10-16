@@ -24,7 +24,7 @@ TVALC_PELICULAS.push(
     "url": "http://cineplay.club:2086/movie/Josea/Ph4m56ksRY/366184.mkv",
     "categoria": "Musical, Documental",
     "clasificacion": "ATP",
-    "descripcion": "Grabado en noviembre de 1981 en el Forum de Montreal, este histórico concierto captura a Queen en uno de los momentos más brillantes de su carrera. Freddie Mercury, Brian May, Roger Taylor y John Deacon despliegan toda su energía, talento y potencia musical en una actuación inolvidable. El repertorio reúne grandes clásicos como We Will Rock You, Somebody to Love, Under Pressure, Bohemian Rhapsody y We Are the Champions. Una experiencia musical extraordinaria, restaurada digitalmente en 2024, que revive la fuerza y la magia de Queen en directo.""
+    "descripcion": "Grabado en noviembre de 1981 en el Forum de Montreal, este histórico concierto captura a Queen en uno de los momentos más brillantes de su carrera. Freddie Mercury, Brian May, Roger Taylor y John Deacon despliegan toda su energía, talento y potencia musical en una actuación inolvidable. El repertorio reúne grandes clásicos como We Will Rock You, Somebody to Love, Under Pressure, Bohemian Rhapsody y We Are the Champions. Una experiencia musical extraordinaria, restaurada digitalmente en 2024, que revive la fuerza y la magia de Queen en directo."
 },
 {
     "titulo": "The Beatles: Eight Days a Week - The Touring Years",
