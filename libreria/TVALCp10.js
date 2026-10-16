@@ -9,6 +9,15 @@ TVALC_PELICULAS.push(
     "descripcion": "El 27 de julio de 1986, la banda británica de rock Queen abrió nuevos caminos tocando por primera vez en Hungría, un país que todavía estaba bajo una dictadura comunista detrás del Telón de Acero. El concierto, enmarcado en el \"Magic Tour\", se celebró en el Nepstadion (hoy Estadio Ferenc Puskás) en la ciudad de Budapest ante un público de 80.000 personas. La película muestra imágenes de los eventos previos al concierto y momentos vividos por cada uno de los miembros de la banda en la ciudad de Budapest."
 },
 {
+    "titulo": "King Crimson: Live In Japan",
+    "año": "1995",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/7/4/1/3/3/74133-king-crimson-live-in-japan-0-2000-0-3000-crop.jpg?v=71e9e42c0c",
+    "url": "http://cineplay.club:2086/movie/Josea/Ph4m56ksRY/232063.mkv",
+    "categoria": "Recital, Musical",
+    "clasificacion": "ATP",
+    "descripcion": "Registro en vivo de King Crimson durante su gira japonesa de 1995, en plena etapa del álbum THRAK. La banda despliega su extraordinaria combinación de rock progresivo, experimentación sonora, guitarras incisivas, bajos contundentes y complejos entramados rítmicos. Con la formación Double Trio, integrada por Adrian Belew, Robert Fripp, Tony Levin, Trey Gunn, Bill Bruford y Pat Mastelotto, el concierto recorre piezas emblemáticas como VROOOM, Frame by Frame, Red, Dinosaur, Elephant Talk y Larks' Tongues in Aspic, Part II. Una presentación intensa y virtuosa que refleja la potencia, la creatividad y la búsqueda musical de una de las bandas más innovadoras del rock."
+},
+{
     "titulo": "Queen Rock Montreal",
     "año": "2024",
     "poster": "https://image.tmdb.org/t/p/w500/olLmQnK5Udircx2SuTe6GxjSSbm.jpg",
