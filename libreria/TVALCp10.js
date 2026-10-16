@@ -12,7 +12,7 @@ TVALC_PELICULAS.push(
     "titulo": "King Crimson: Live In Japan",
     "año": "1995",
     "poster": "https://a.ltrbxd.com/resized/film-poster/7/4/1/3/3/74133-king-crimson-live-in-japan-0-2000-0-3000-crop.jpg?v=71e9e42c0c",
-    "url": "http://cineplay.club:2086/movie/Josea/Ph4m56ksRY/232063.mkv",
+    "url": "http://ak-47scan.dyndns.tv:8080/movie/ATPLUSEN/ysN8PGMW9LPe/344081.mkv",
     "categoria": "Recital, Musical",
     "clasificacion": "ATP",
     "descripcion": "Registro en vivo de King Crimson durante su gira japonesa de 1995, en plena etapa del álbum THRAK. La banda despliega su extraordinaria combinación de rock progresivo, experimentación sonora, guitarras incisivas, bajos contundentes y complejos entramados rítmicos. Con la formación Double Trio, integrada por Adrian Belew, Robert Fripp, Tony Levin, Trey Gunn, Bill Bruford y Pat Mastelotto, el concierto recorre piezas emblemáticas como VROOOM, Frame by Frame, Red, Dinosaur, Elephant Talk y Larks' Tongues in Aspic, Part II. Una presentación intensa y virtuosa que refleja la potencia, la creatividad y la búsqueda musical de una de las bandas más innovadoras del rock."
