@@ -9,7 +9,7 @@ TVALC_PELICULAS.push(
     "descripcion": "El 27 de julio de 1986, la banda británica de rock Queen abrió nuevos caminos tocando por primera vez en Hungría, un país que todavía estaba bajo una dictadura comunista detrás del Telón de Acero. El concierto, enmarcado en el \"Magic Tour\", se celebró en el Nepstadion (hoy Estadio Ferenc Puskás) en la ciudad de Budapest ante un público de 80.000 personas. La película muestra imágenes de los eventos previos al concierto y momentos vividos por cada uno de los miembros de la banda en la ciudad de Budapest."
 },
 {
-    "titulo": "Pink Floyd the wall",
+    "titulo": "Pink Floyd: The Wall",
     "año": "1982",
     "poster": "https://image.tmdb.org/t/p/w500/aqiDo8D4NHLrrUxckA7zWcrN6aY.jpg",
     "url": "http://cineplay.club:2086/movie/Josea/Ph4m56ksRY/71886.mkv",
