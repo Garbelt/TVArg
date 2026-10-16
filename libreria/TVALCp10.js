@@ -9,6 +9,15 @@ TVALC_PELICULAS.push(
     "descripcion": "El 27 de julio de 1986, la banda británica de rock Queen abrió nuevos caminos tocando por primera vez en Hungría, un país que todavía estaba bajo una dictadura comunista detrás del Telón de Acero. El concierto, enmarcado en el \"Magic Tour\", se celebró en el Nepstadion (hoy Estadio Ferenc Puskás) en la ciudad de Budapest ante un público de 80.000 personas. La película muestra imágenes de los eventos previos al concierto y momentos vividos por cada uno de los miembros de la banda en la ciudad de Budapest."
 },
 {
+    "titulo": "Queen Rock Montreal",
+    "año": "2024",
+    "poster": "https://image.tmdb.org/t/p/w500/olLmQnK5Udircx2SuTe6GxjSSbm.jpg",
+    "url": "http://cineplay.club:2086/movie/Josea/Ph4m56ksRY/366184.mkv",
+    "categoria": "Musical, Documental",
+    "clasificacion": "ATP",
+    "descripcion": "Grabado en noviembre de 1981 en el Forum de Montreal, este histórico concierto captura a Queen en uno de los momentos más brillantes de su carrera. Freddie Mercury, Brian May, Roger Taylor y John Deacon despliegan toda su energía, talento y potencia musical en una actuación inolvidable. El repertorio reúne grandes clásicos como We Will Rock You, Somebody to Love, Under Pressure, Bohemian Rhapsody y We Are the Champions. Una experiencia musical extraordinaria, restaurada digitalmente en 2024, que revive la fuerza y la magia de Queen en directo.""
+},
+{
     "titulo": "The Beatles: Eight Days a Week - The Touring Years",
     "año": "2016",
     "poster": "https://image.tmdb.org/t/p/w500/A6q7Jy4vXgXXoCoHX4lpCaKvcMV.jpg",
