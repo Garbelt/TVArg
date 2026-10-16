@@ -9,6 +9,15 @@ TVALC_PELICULAS.push(
     "descripcion": "El 27 de julio de 1986, la banda británica de rock Queen abrió nuevos caminos tocando por primera vez en Hungría, un país que todavía estaba bajo una dictadura comunista detrás del Telón de Acero. El concierto, enmarcado en el \"Magic Tour\", se celebró en el Nepstadion (hoy Estadio Ferenc Puskás) en la ciudad de Budapest ante un público de 80.000 personas. La película muestra imágenes de los eventos previos al concierto y momentos vividos por cada uno de los miembros de la banda en la ciudad de Budapest."
 },
 {
+    "titulo": "Pink Floyd the wall",
+    "año": "1982",
+    "poster": "https://image.tmdb.org/t/p/w500/aqiDo8D4NHLrrUxckA7zWcrN6aY.jpg",
+    "url": "http://cineplay.club:2086/movie/Josea/Ph4m56ksRY/71886.mkv",
+    "categoria": "Musical, Drama",
+    "clasificacion": "+18",
+    "descripcion": "Película visualmente evocativa, basada en la música del disco homónimo y las visiones del grupo de rock psicodélico \"Pink Floyd\". Narra la vida de una estrella de rock ficticia: \"Pink\". Una mezcla de relaciones humanas, abuso de drogas, sexo, infancia, la Segunda Guerra Mundial y fascismo se combinan en un relato que alterna cine en vivo  con animación creada por el caricaturista británico Gerald Scarfe."
+},
+{
     "titulo": "Pink Floyd – Delicate Sound of Thunder",
     "año": "1989",
     "poster": "https://image.tmdb.org/t/p/w500/8AR6gmMS3h0uedYr0BAI1yHGaHh.jpg",
