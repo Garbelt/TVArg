@@ -9,6 +9,15 @@ TVALC_PELICULAS.push(
     "descripcion": "El 27 de julio de 1986, la banda británica de rock Queen abrió nuevos caminos tocando por primera vez en Hungría, un país que todavía estaba bajo una dictadura comunista detrás del Telón de Acero. El concierto, enmarcado en el \"Magic Tour\", se celebró en el Nepstadion (hoy Estadio Ferenc Puskás) en la ciudad de Budapest ante un público de 80.000 personas. La película muestra imágenes de los eventos previos al concierto y momentos vividos por cada uno de los miembros de la banda en la ciudad de Budapest."
 },
 {
+    "titulo": "The Beatles: Eight Days a Week - The Touring Years",
+    "año": "2016",
+    "poster": "https://image.tmdb.org/t/p/w500/A6q7Jy4vXgXXoCoHX4lpCaKvcMV.jpg",
+    "url": "http://cineplay.club:2086/movie/Josea/Ph4m56ksRY/73115.mp4",
+    "categoria": "Documental, Musical",
+    "clasificacion": "ATP",
+    "descripcion": "Una recopilación de imágenes con música, entrevistas, y las historias de 250 conciertos de los Beatles, de 1963 a 1966 encontrado."
+},
+{
     "titulo": "Pink Floyd: The Wall",
     "año": "1982",
     "poster": "https://image.tmdb.org/t/p/w500/aqiDo8D4NHLrrUxckA7zWcrN6aY.jpg",
