@@ -11,6 +11,15 @@ TVALC_PELICULAS.push(
     "descripcion": "Bastián Baltasar Bux es un niño de once años que descubre en una antigua librería un libro titulado “La historia interminable”, el cual posee poderes mágicos. Esa magia hace que el mismo Bastián se convierta en un héroe de esa historia que parece no terminarse nunca, en la que se unirá a Atreyu, otro niño, con el objetivo de salvar al mundo de fantasía.Escondido en el desván de su colegio, Bastián devora durante las horas de clase este enigmático libro, que relata la destrucción de todo un mundo lleno de fantasía. Una especie de \"Nada\" misteriosa destruye todo el país y a todas las criaturas que lo habitan. A medida que avanza en su lectura, Bastián se da cuenta de que la salvación de Fantasía depende de él; de que consiga entrar en el libro."
 },
 {
+    "titulo": "Rocketman",
+    "año": "2019",
+    "poster": "https://image.tmdb.org/t/p/w500/lvt3qfH3QlzydjmGNMGQ2tx2O7C.jpg",
+    "url": "http://cineplay.club:2086/movie/Josea/Ph4m56ksRY/81690.mkv",
+    "categoria": "Musical, Drama",
+    "clasificacion": "+16",
+    "descripcion": "'Rocketman' es la historia de Elton John, desde sus años como niño prodigio del piano en la Royal Academy of Music hasta llegar a ser una superestrella de fama mundial gracias a su influyente y duradera asociación con su colaborador y letrista Bernie Taupin."
+},
+{
     "titulo": "Sisu: Camino a la venganza",
     "año": "2025",
     "poster": "https://image.tmdb.org/t/p/w500/qQyc6t9dHS5dlIUt3ccCQnRIAc1.jpg",
