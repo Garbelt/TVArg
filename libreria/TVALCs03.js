@@ -467,6 +467,65 @@ temporadas: [
 
 });
 
+window.TVALC_SERIES.push({
+
+    titulo: "Zootopia+",
+    año: "2022",
+    categoria: "Infantil, Comedia",
+    clasificacion: "ATP",
+    tipo: "serie",
+    poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/inzPPPr2BsE92m4rHhQn3sf2yPk.jpg",
+    descripcion: "Nuevas aventuras y divertidas historias de los singulares habitantes de Zootopia, más allá de la película original.",
+
+    temporadas: [
+
+        {
+            numero: 1,
+
+            capitulos: [
+
+                {
+                    numero: 1,
+                    titulo: "01 - Bebé a bordo",
+                    url: "http://ak-47scan.dyndns.tv:8080/series/moisesgam2/AdyzyNjL8xms/503854.mp4"
+                },
+
+                {
+                    numero: 2,
+                    titulo: "02 - Los roedores reales de Pequeña Rodencia",
+                    url: "http://ak-47scan.dyndns.tv:8080/series/moisesgam2/AdyzyNjL8xms/503855.mp4"
+                },
+
+                {
+                    numero: 3,
+                    titulo: "03 - Duke, el musical",
+                    url: "http://ak-47scan.dyndns.tv:8080/series/moisesgam2/AdyzyNjL8xms/503856.mp4"
+                },
+
+                {
+                    numero: 4,
+                    titulo: "04 - El padrino de la novia",
+                    url: "http://ak-47scan.dyndns.tv:8080/series/moisesgam2/AdyzyNjL8xms/503857.mp4"
+                },
+
+                {
+                    numero: 5,
+                    titulo: "05 - El show de tus sueños",
+                    url: "http://ak-47scan.dyndns.tv:8080/series/moisesgam2/AdyzyNjL8xms/503858.mp4"
+                },
+
+                {
+                    numero: 6,
+                    titulo: "06 - Alboroto en el restaurante",
+                    url: "http://ak-47scan.dyndns.tv:8080/series/moisesgam2/AdyzyNjL8xms/503859.mp4"
+                }
+
+            ]
+        }
+
+    ]
+
+});
 
 window.TVALC_SERIES.push({
 
