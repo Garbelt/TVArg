@@ -12,6 +12,18 @@ window.ULTIMOS_EVENTOS = [
             {
                 nombre: "Señal 2",
                 url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644103.ts"
+            },
+            {
+                nombre: "Señal 3",
+                url: "http://ak-47scan.dyndns.tv:8080/live/DarlynCarri4/rEb75XzwEmfK/644103.ts"
+            },
+            {
+                nombre: "Señal 4",
+                url: "http://ak-47scan.dyndns.tv:8080/live/AbelCristo/pzuQswh9xY9H/644103.ts"
+            },
+            {
+                nombre: "Señal 5",
+                url: "http://ak-47scan.dyndns.tv:8080/live/alfredoamezcua/5h6FqumXhghQ/644103.ts"
             }
         ]
     },
@@ -28,6 +40,18 @@ window.ULTIMOS_EVENTOS = [
             {
                 nombre: "Señal 2",
                 url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644104.ts"
+            },
+            {
+                nombre: "Señal 3",
+                url: "http://ak-47scan.dyndns.tv:8080/live/DarlynCarri4/rEb75XzwEmfK/644104.ts"
+            },
+            {
+                nombre: "Señal 4",
+                url: "http://ak-47scan.dyndns.tv:8080/live/AbelCristo/pzuQswh9xY9H/644104.ts"
+            },
+            {
+                nombre: "Señal 5",
+                url: "http://ak-47scan.dyndns.tv:8080/live/alfredoamezcua/5h6FqumXhghQ/644104.ts"
             }
         ]
     },
@@ -44,6 +68,18 @@ window.ULTIMOS_EVENTOS = [
             {
                 nombre: "Señal 2",
                 url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644105.ts"
+            },
+            {
+                nombre: "Señal 3",
+                url: "http://ak-47scan.dyndns.tv:8080/live/DarlynCarri4/rEb75XzwEmfK/644105.ts"
+            },
+            {
+                nombre: "Señal 4",
+                url: "http://ak-47scan.dyndns.tv:8080/live/AbelCristo/pzuQswh9xY9H/644105.ts"
+            },
+            {
+                nombre: "Señal 5",
+                url: "http://ak-47scan.dyndns.tv:8080/live/alfredoamezcua/5h6FqumXhghQ/644105.ts"
             }
         ]
     },
@@ -60,6 +96,18 @@ window.ULTIMOS_EVENTOS = [
             {
                 nombre: "Señal 2",
                 url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644106.ts"
+            },
+            {
+                nombre: "Señal 3",
+                url: "http://ak-47scan.dyndns.tv:8080/live/DarlynCarri4/rEb75XzwEmfK/644106.ts"
+            },
+            {
+                nombre: "Señal 4",
+                url: "http://ak-47scan.dyndns.tv:8080/live/AbelCristo/pzuQswh9xY9H/644106.ts"
+            },
+            {
+                nombre: "Señal 5",
+                url: "http://ak-47scan.dyndns.tv:8080/live/alfredoamezcua/5h6FqumXhghQ/644106.ts"
             }
         ]
     }
