@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -48,51 +49,54 @@
 
         #listaEventos {
             max-width: 850px;
+            max-height: 55vh;
             margin: auto;
+            overflow-y: auto;
+            overscroll-behavior: contain;
         }
 
-.partido {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: #222;
-    border: 1px solid #383838;
-    border-radius: 5px;
-    padding: 6px 10px;
-    margin-bottom: 5px;
-    min-height: 38px;
-}
+        .partido {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #222;
+            border: 1px solid #383838;
+            border-radius: 5px;
+            padding: 6px 10px;
+            margin-bottom: 5px;
+            min-height: 38px;
+        }
 
-.horario {
-    flex: 0 0 48px;
-    color: #80cbc4;
-    font-size: 14px;
-    font-weight: bold;
-    margin: 0;
-}
+        .horario {
+            flex: 0 0 48px;
+            color: #80cbc4;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0;
+        }
 
-.competencia {
-    flex: 0 0 42px;
-    color: #80cbc4;
-    font-size: 12px;
-    margin: 0;
-}
+        .competencia {
+            flex: 0 0 42px;
+            color: #80cbc4;
+            font-size: 12px;
+            margin: 0;
+        }
 
-.nombrePartido {
-    flex: 1;
-    min-width: 0;
-    font-size: 14px;
-    font-weight: bold;
-    margin: 0;
-}
+        .nombrePartido {
+            flex: 1;
+            min-width: 0;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0;
+        }
 
-.btnVer {
-    flex: 0 0 auto;
-    background: #80cbc4;
-    color: #121212;
-    padding: 5px 12px;
-    font-size: 13px;
-}
+        .btnVer {
+            flex: 0 0 auto;
+            background: #80cbc4;
+            color: #121212;
+            padding: 5px 12px;
+            font-size: 13px;
+        }
 
         button {
             border: none;
@@ -134,17 +138,28 @@
         }
 
         .panelFuentes {
+            display: flex;
+            flex-direction: column;
             width: 100%;
             max-width: 450px;
+            max-height: calc(100vh - 40px);
             background: #222;
             border: 1px solid #555;
             border-radius: 10px;
             padding: 20px;
+            overflow: hidden;
         }
 
         .panelFuentes h2 {
+            flex-shrink: 0;
             font-size: 20px;
             margin-top: 0;
+        }
+
+        #listaFuentes {
+            min-height: 0;
+            overflow-y: auto;
+            overscroll-behavior: contain;
         }
 
         .fuente {
@@ -157,6 +172,7 @@
         }
 
         .btnCerrar {
+            flex-shrink: 0;
             width: 100%;
             margin-top: 12px;
             background: #555;
@@ -170,7 +186,6 @@
     <h1>⚽ LISTA DE EVENTOS</h1>
 
     <div class="filtros">
-
         <label for="filtroCompetencia">
             Competencia
         </label>
@@ -182,7 +197,6 @@
             <option value="Copa Libertadores">Copa Libertadores</option>
             <option value="Copa Argentina">Copa Argentina</option>
         </select>
-
     </div>
 
     <div id="listaEventos"></div>
@@ -198,6 +212,7 @@
     <div id="selectorFuentes">
         <div class="panelFuentes">
             <h2>Seleccionar transmisión</h2>
+
             <div id="listaFuentes"></div>
 
             <button class="btnCerrar" onclick="cerrarFuentes()">
@@ -215,12 +230,16 @@
         const filtroCompetencia =
             document.getElementById("filtroCompetencia");
 
+        const selectorFuentes =
+            document.getElementById("selectorFuentes");
+
         /*
          * Los horarios de ultimoseventos.js deben estar expresados
-         * en la hora local de Argentina: America/Argentina/Buenos_Aires.
+         * en la hora local de Argentina:
+         * America/Argentina/Buenos_Aires.
          *
-         * Formato de fecha: AAAA-MM-DD
-         * Formato de hora: HH:MM
+         * Fecha: AAAA-MM-DD
+         * Hora: HH:MM
          */
 
         function obtenerInicio(evento) {
@@ -237,9 +256,9 @@
                 : inicio;
         }
 
-function eventoVigente(evento) {
-    return true;
-}
+        function eventoVigente(evento) {
+            return true;
+        }
 
         function mostrarEventos() {
             listaEventos.innerHTML = "";
@@ -261,9 +280,16 @@ function eventoVigente(evento) {
                     competenciaSeleccionada === "Todas" ||
                     evento.competencia === competenciaSeleccionada
                 )
-                .sort((a, b) =>
-                    obtenerInicio(a) - obtenerInicio(b)
-                );
+                .sort((a, b) => {
+                    const inicioA = obtenerInicio(a);
+                    const inicioB = obtenerInicio(b);
+
+                    if (!inicioA && !inicioB) return 0;
+                    if (!inicioA) return 1;
+                    if (!inicioB) return -1;
+
+                    return inicioA - inicioB;
+                });
 
             if (vigentes.length === 0) {
                 mensaje.textContent =
@@ -284,7 +310,8 @@ function eventoVigente(evento) {
 
                 const nombre = document.createElement("div");
                 nombre.className = "nombrePartido";
-                nombre.textContent = evento.nombre || "Partido sin nombre";
+                nombre.textContent =
+                    evento.nombre || "Partido sin nombre";
 
                 const horario = document.createElement("div");
                 horario.className = "horario";
@@ -294,7 +321,6 @@ function eventoVigente(evento) {
                 const boton = document.createElement("button");
                 boton.className = "btnVer";
                 boton.textContent = "VER";
-
                 boton.onclick = () => verEvento(evento);
 
                 tarjeta.appendChild(competencia);
@@ -321,7 +347,9 @@ function eventoVigente(evento) {
                 return;
             }
 
-            const contenedor = document.getElementById("listaFuentes");
+            const contenedor =
+                document.getElementById("listaFuentes");
+
             contenedor.innerHTML = "";
 
             fuentes.forEach((fuente, indice) => {
@@ -338,45 +366,108 @@ function eventoVigente(evento) {
                 contenedor.appendChild(boton);
             });
 
-            document.getElementById("selectorFuentes").style.display =
-                "flex";
+            selectorFuentes.style.display = "flex";
         }
 
         function abrirFuente(fuente) {
-            /*
-             * Por ahora abre la URL de la fuente.
-             * La integración con el reproductor nativo de TVArg
-             * se realizará cuando definamos ese mecanismo.
-             */
-
-            if (
-                window.AndroidTVArg &&
-                typeof window.AndroidTVArg.openUrl === "function"
-            ) {
-                window.AndroidTVArg.openUrl(fuente.url);
-            } else {
-                window.open(fuente.url, "_blank");
+            if (!fuente || !fuente.url) {
+                alert("La fuente no tiene una URL válida.");
+                return;
             }
+
+            if (window.AndroidTVArg) {
+                if (
+                    fuente.reproductor === "vlc" &&
+                    typeof AndroidTVArg.playChannelVLC === "function"
+                ) {
+                    AndroidTVArg.playChannelVLC(fuente.url);
+                    return;
+                }
+
+                if (
+                    typeof AndroidTVArg.playChannel === "function"
+                ) {
+                    const headers = fuente.headers || {};
+
+                    AndroidTVArg.playChannel(
+                        fuente.url,
+                        headers.Referer || "",
+                        headers["User-Agent"] || ""
+                    );
+                    return;
+                }
+
+                alert(
+                    "No está disponible el reproductor interno de TVArg."
+                );
+                return;
+            }
+
+            // Fuera de Android, se abre la fuente en el navegador.
+            window.open(fuente.url, "_blank");
         }
 
         function cerrarFuentes() {
-            document.getElementById("selectorFuentes").style.display =
-                "none";
+            selectorFuentes.style.display = "none";
         }
 
-function volver() {
-    window.location.href = "index.html?desdeTVALC=1";
-}
+        function volver() {
+            window.location.href = "index.html?desdeTVALC=1";
+        }
+
+        /*
+         * Atrás en el control remoto:
+         * - Con el selector abierto: cierra el selector.
+         * - En la lista de eventos: vuelve al menú principal.
+         */
+        window.addEventListener("tvback", function () {
+            if (selectorFuentes.style.display === "flex") {
+                cerrarFuentes();
+            } else {
+                volver();
+            }
+        });
+
+        /*
+         * Permite volver también con teclas de retroceso
+         * si el navegador o dispositivo las envía al documento.
+         */
+        window.addEventListener("keydown", function (event) {
+            if (
+                event.key === "Escape" ||
+                event.key === "Backspace" ||
+                event.key === "BrowserBack"
+            ) {
+                event.preventDefault();
+
+                if (selectorFuentes.style.display === "flex") {
+                    cerrarFuentes();
+                } else {
+                    volver();
+                }
+            }
+        });
 
         filtroCompetencia.addEventListener(
             "change",
             mostrarEventos
         );
 
-        // Actualiza la vigencia de los eventos cada 30 segundos.
         mostrarEventos();
+
+        // Actualiza la lista cada 30 segundos.
         setInterval(mostrarEventos, 30000);
+
+        /*
+         * MainActivity llama a esta función al cerrar el reproductor.
+         * Se define para evitar errores si el HTML no tiene otra
+         * rutina de salida específica.
+         */
+        function manejarSalidaCanal() {
+            // No es necesario reconstruir la lista al regresar.
+        }
     </script>
 
 </body>
 </html>
+```
