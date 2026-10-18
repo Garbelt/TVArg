@@ -225,19 +225,16 @@
                 : inicio;
         }
 
-        function eventoVigente(evento) {
-            const inicio = obtenerInicio(evento);
+function eventoVigente(evento) {
+    const inicio = obtenerInicio(evento);
+    if (!inicio) return false;
 
-            if (!inicio) {
-                return false;
-            }
+    const ahora = Date.now();
+    const margen = 24 * 60 * 60 * 1000;
 
-            const ahora = Date.now();
-            const desde = inicio.getTime() - 60 * 60 * 1000;
-            const hasta = inicio.getTime() + 60 * 60 * 1000;
-
-            return ahora >= desde && ahora <= hasta;
-        }
+    return ahora >= inicio - margen &&
+           ahora <= inicio + margen;
+}
 
         function mostrarEventos() {
             listaEventos.innerHTML = "";
