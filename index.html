@@ -185,8 +185,8 @@ body {
 }
 
 .canal-tvalc {
-    flex: 0 0 80%;
-    width: 80%;
+    flex: 0 0 calc(50% - 6px);
+    width: calc(50% - 6px);
 
     padding: 5px 10px;
     font-size: 12px;
@@ -2024,12 +2024,24 @@ if (datos.botones) {
         listaBotones.appendChild(div);
     });
 
+
     // =========================
-    // TV A LA CARTA — AL FINAL
+    // EVENTOS DEL DÍA + TV A LA CARTA
     // =========================
     const separador = document.createElement("div");
     separador.className = "separadorTVALC";
     listaBotones.appendChild(separador);
+
+    const divEventos = document.createElement("div");
+    divEventos.className = "canal canal-tvalc";
+    divEventos.textContent = "📅 EVENTOS DEL DÍA";
+    divEventos.onclick = () => {
+        submenuActual = "eventosDia";
+        dibujarMenu("eventosDia");
+        mostrarMenuSecundario("eventosDia");
+    };
+    listaBotones.appendChild(divEventos);
+
     const divTVALC = document.createElement("div");
     divTVALC.className = "canal canal-tvalc";
     divTVALC.textContent = "📺 TV A LA CARTA";
