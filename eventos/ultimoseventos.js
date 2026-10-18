@@ -14,7 +14,8 @@ window.ULTIMOS_EVENTOS = [
       { nombre: "Señal 07", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731409.ts" },
       { nombre: "Señal 08", tipo: "ts", url: "https://zonacero.lat:443/20marzo/Loquita15/481993" },
       { nombre: "Señal 09", tipo: "ts", url: "https://deluxe-tv.online:443/live/kat684lillo/WsMGuxBFpLZP/1704525.ts" },
-      { nombre: "Señal 10", tipo: "ts", url: "http://smarterstv99.dyndns.tv:8080/live/6141959699/gRMvsAgNs2KY/644103.ts" }
+      { nombre: "Señal 10", tipo: "ts", url: "http://smarterstv99.dyndns.tv:8080/live/6141959699/gRMvsAgNs2KY/644103.ts" },
+      { nombre: "Señal 11", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1731409.ts" }      
     ]
   },
   {
@@ -32,7 +33,8 @@ window.ULTIMOS_EVENTOS = [
       { nombre: "Señal 07", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731457.ts" },
       { nombre: "Señal 08", tipo: "ts", url: "https://zonacero.lat:443/20marzo/Loquita15/482024" },
       { nombre: "Señal 09", tipo: "ts", url: "https://deluxe-tv.online:443/live/kat684lillo/WsMGuxBFpLZP/1704556.ts" },
-      { nombre: "Señal 10", tipo: "ts", url: "http://smarterstv99.dyndns.tv:8080/live/6141959699/gRMvsAgNs2KY/644104.ts" }
+      { nombre: "Señal 10", tipo: "ts", url: "http://smarterstv99.dyndns.tv:8080/live/6141959699/gRMvsAgNs2KY/644104.ts" },
+      { nombre: "Señal 11", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1731457.ts" }
     ]
   },
   {
@@ -50,7 +52,8 @@ window.ULTIMOS_EVENTOS = [
       { nombre: "Señal 07", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731456.ts" },
       { nombre: "Señal 08", tipo: "ts", url: "https://zonacero.lat:443/20marzo/Loquita15/482023" },
       { nombre: "Señal 09", tipo: "ts", url: "https://deluxe-tv.online:443/live/kat684lillo/WsMGuxBFpLZP/1704555.ts" },
-      { nombre: "Señal 10", tipo: "ts", url: "http://smarterstv99.dyndns.tv:8080/live/6141959699/gRMvsAgNs2KY/644105.ts" }
+      { nombre: "Señal 10", tipo: "ts", url: "http://smarterstv99.dyndns.tv:8080/live/6141959699/gRMvsAgNs2KY/644105.ts" },
+      { nombre: "Señal 11", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1731456.ts" }
     ]
   },
   {
@@ -68,7 +71,8 @@ window.ULTIMOS_EVENTOS = [
       { nombre: "Señal 07", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731474.ts" },
       { nombre: "Señal 08", tipo: "ts", url: "https://zonacero.lat:443/20marzo/Loquita15/482041" },
       { nombre: "Señal 09", tipo: "ts", url: "https://deluxe-tv.online:443/live/kat684lillo/WsMGuxBFpLZP/1704573.ts" },
-      { nombre: "Señal 10", tipo: "ts", url: "http://smarterstv99.dyndns.tv:8080/live/6141959699/gRMvsAgNs2KY/644106.ts" }
+      { nombre: "Señal 10", tipo: "ts", url: "http://smarterstv99.dyndns.tv:8080/live/6141959699/gRMvsAgNs2KY/644106.ts" },
+      { nombre: "Señal 11", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1731474.ts" }
     ]
   }
 ];
