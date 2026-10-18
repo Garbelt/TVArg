@@ -1,49 +1,65 @@
 window.ULTIMOS_EVENTOS = [
     {
         competencia: "LPF Argentino",
-        nombre: "Independiente Rivadavia vs Tigre",
+        nombre: "Racing Club vs Independiente",
         fecha: "2026-10-18",
-        hora: "17:30",
+        hora: "14:45",
         fuentes: [
             {
-                nombre: "Señal del evento",
-                url: "http://ak-47scan.dyndns.tv:8080/live/BRASILEBLUE/vqXKFRPWB9nR/643803.ts"
+                nombre: "Señal 1",
+                url: "http://ak-47scan.dyndns.tv:8080/live/moisesgam2/AdyzyNjL8xms/644103.ts"
+            },
+            {
+                nombre: "Señal 2",
+                url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644103.ts"
             }
         ]
     },
     {
         competencia: "LPF Argentino",
-        nombre: "Platense vs. Lanús",
+        nombre: "Estudiantes vs San Lorenzo",
         fecha: "2026-10-18",
-        hora: "17:30",
+        hora: "18:00",
         fuentes: [
             {
-                nombre: "Señal del evento",
-                url: "http://ak-47scan.dyndns.tv:8080/live/BRASILEBLUE/vqXKFRPWB9nR/643804.ts"
+                nombre: "Señal 1",
+                url: "http://ak-47scan.dyndns.tv:8080/live/moisesgam2/AdyzyNjL8xms/644104.ts"
+            },
+            {
+                nombre: "Señal 2",
+                url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644104.ts"
             }
         ]
     },
     {
         competencia: "LPF Argentino",
-        nombre: "Atlético Tucumán vs Rosario Central",
+        nombre: "Estudiantes Río Cuarto vs Aldosivi",
         fecha: "2026-10-18",
-        hora: "20:00",
+        hora: "18:00",
         fuentes: [
             {
-                nombre: "Señal del evento",
-                url: "http://ak-47scan.dyndns.tv:8080/live/BRASILEBLUE/vqXKFRPWB9nR/643805.ts"
+                nombre: "Señal 1",
+                url: "http://ak-47scan.dyndns.tv:8080/live/moisesgam2/AdyzyNjL8xms/644105.ts"
+            },
+            {
+                nombre: "Señal 2",
+                url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644105.ts"
             }
         ]
     },
     {
         competencia: "LPF Argentino",
-        nombre: "Vélez Sarsfield vs Gimnasia Mendoza",
+        nombre: "Belgrano vs River Plate",
         fecha: "2026-10-18",
-        hora: "20:00",
+        hora: "20:15",
         fuentes: [
             {
-                nombre: "Señal del evento",
-                url: "http://ak-47scan.dyndns.tv:8080/live/BRASILEBLUE/vqXKFRPWB9nR/643806.ts"
+                nombre: "Señal 1",
+                url: "http://ak-47scan.dyndns.tv:8080/live/moisesgam2/AdyzyNjL8xms/644106.ts"
+            },
+            {
+                nombre: "Señal 2",
+                url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644106.ts"
             }
         ]
     }
