@@ -2024,7 +2024,6 @@ if (datos.botones) {
         listaBotones.appendChild(div);
     });
 
-
     // =========================
     // EVENTOS DEL DÍA + TV A LA CARTA
     // =========================
@@ -2036,9 +2035,7 @@ if (datos.botones) {
     divEventos.className = "canal canal-tvalc";
     divEventos.textContent = "📅 EVENTOS DEL DÍA";
     divEventos.onclick = () => {
-        submenuActual = "eventosDia";
-        dibujarMenu("eventosDia");
-        mostrarMenuSecundario("eventosDia");
+        window.location.href = "eventosDia.html";
     };
     listaBotones.appendChild(divEventos);
 
