@@ -3,35 +3,382 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventos del día</title>
+
+    <title>Eventos del día - TVArg</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
+            margin: 0;
+            padding: 20px;
             background: #121212;
             color: #ffffff;
             font-family: Arial, sans-serif;
-            padding: 20px;
         }
 
         h1 {
             text-align: center;
+            margin: 10px 0 25px;
         }
 
-        #urlLista {
-            overflow-wrap: anywhere;
-            padding: 15px;
+        .filtros {
+            max-width: 850px;
+            margin: 0 auto 25px;
+        }
+
+        .filtros label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 18px;
+            border: 1px solid #555;
+            border-radius: 6px;
             background: #252525;
+            color: white;
+            font-size: 16px;
+        }
+
+        #listaEventos {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .partido {
+            background: #222;
+            border: 1px solid #383838;
             border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+
+        .competencia {
             color: #80cbc4;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .nombrePartido {
+            font-size: 19px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .horario {
+            color: #ccc;
+            font-size: 14px;
+            margin-bottom: 14px;
+        }
+
+        button {
+            border: none;
+            border-radius: 6px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btnVer {
+            background: #80cbc4;
+            color: #121212;
+        }
+
+        .btnVolver {
+            display: block;
+            width: 100%;
+            max-width: 850px;
+            margin: 25px auto 10px;
+            background: #383838;
+            color: white;
+        }
+
+        #mensaje {
+            max-width: 850px;
+            margin: 25px auto;
+            padding: 16px;
+            background: #222;
+            border-radius: 8px;
+            color: #ccc;
+            text-align: center;
+        }
+
+        #selectorFuentes {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .panelFuentes {
+            width: 100%;
+            max-width: 450px;
+            background: #222;
+            border: 1px solid #555;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .panelFuentes h2 {
+            font-size: 20px;
+            margin-top: 0;
+        }
+
+        .fuente {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            background: #333;
+            color: white;
+            text-align: left;
+        }
+
+        .btnCerrar {
+            width: 100%;
+            margin-top: 12px;
+            background: #555;
+            color: white;
         }
     </style>
 </head>
+
 <body>
 
-    <h1>⚽ EVENTOS DEL DÍA</h1>
+    <h1>⚽ LISTA DE EVENTOS</h1>
 
-    <h3>URL de la lista M3U</h3>
+    <div class="filtros">
 
+        <label for="filtroCompetencia">
+            Competencia
+        </label>
+
+        <select id="filtroCompetencia">
+            <option value="Todas">Todas las competencias</option>
+            <option value="LPF Argentino">LPF Argentino</option>
+            <option value="Copa Sudamericana">Copa Sudamericana</option>
+            <option value="Copa Libertadores">Copa Libertadores</option>
+            <option value="Copa Argentina">Copa Argentina</option>
+        </select>
+
+    </div>
+
+    <div id="listaEventos"></div>
+
+    <div id="mensaje" role="status">
+        Cargando eventos...
+    </div>
+
+    <button class="btnVolver" onclick="volver()">
+        VOLVER
+    </button>
+
+    <div id="selectorFuentes">
+        <div class="panelFuentes">
+            <h2>Seleccionar transmisión</h2>
+            <div id="listaFuentes"></div>
+
+            <button class="btnCerrar" onclick="cerrarFuentes()">
+                CANCELAR
+            </button>
+        </div>
+    </div>
+
+    <!-- Datos de los partidos -->
+    <script src="eventos/ultimoseventos.js"></script>
+
+    <script>
+        const listaEventos = document.getElementById("listaEventos");
+        const mensaje = document.getElementById("mensaje");
+        const filtroCompetencia =
+            document.getElementById("filtroCompetencia");
+
+        /*
+         * Los horarios de ultimoseventos.js deben estar expresados
+         * en la hora local de Argentina: America/Argentina/Buenos_Aires.
+         *
+         * Formato de fecha: AAAA-MM-DD
+         * Formato de hora: HH:MM
+         */
+
+        function obtenerInicio(evento) {
+            if (!evento.fecha || !evento.hora) {
+                return null;
+            }
+
+            const inicio = new Date(
+                evento.fecha + "T" + evento.hora + ":00-03:00"
+            );
+
+            return Number.isNaN(inicio.getTime())
+                ? null
+                : inicio;
+        }
+
+        function eventoVigente(evento) {
+            const inicio = obtenerInicio(evento);
+
+            if (!inicio) {
+                return false;
+            }
+
+            const ahora = Date.now();
+            const desde = inicio.getTime() - 60 * 60 * 1000;
+            const hasta = inicio.getTime() + 60 * 60 * 1000;
+
+            return ahora >= desde && ahora <= hasta;
+        }
+
+        function mostrarEventos() {
+            listaEventos.innerHTML = "";
+
+            const eventos = window.ULTIMOS_EVENTOS;
+
+            if (!Array.isArray(eventos)) {
+                mensaje.textContent =
+                    "No se pudo cargar eventos/ultimoseventos.js.";
+                return;
+            }
+
+            const competenciaSeleccionada =
+                filtroCompetencia.value;
+
+            const vigentes = eventos
+                .filter(evento => eventoVigente(evento))
+                .filter(evento =>
+                    competenciaSeleccionada === "Todas" ||
+                    evento.competencia === competenciaSeleccionada
+                )
+                .sort((a, b) =>
+                    obtenerInicio(a) - obtenerInicio(b)
+                );
+
+            if (vigentes.length === 0) {
+                mensaje.textContent =
+                    "No hay eventos vigentes para esta selección.";
+                return;
+            }
+
+            mensaje.textContent =
+                "Eventos disponibles: " + vigentes.length;
+
+            vigentes.forEach(evento => {
+                const tarjeta = document.createElement("div");
+                tarjeta.className = "partido";
+
+                const competencia = document.createElement("div");
+                competencia.className = "competencia";
+                competencia.textContent = evento.competencia || "";
+
+                const nombre = document.createElement("div");
+                nombre.className = "nombrePartido";
+                nombre.textContent = evento.nombre || "Partido sin nombre";
+
+                const horario = document.createElement("div");
+                horario.className = "horario";
+                horario.textContent =
+                    "Hoy / " + (evento.hora || "");
+
+                const boton = document.createElement("button");
+                boton.className = "btnVer";
+                boton.textContent = "VER";
+
+                boton.onclick = () => verEvento(evento);
+
+                tarjeta.appendChild(competencia);
+                tarjeta.appendChild(nombre);
+                tarjeta.appendChild(horario);
+                tarjeta.appendChild(boton);
+
+                listaEventos.appendChild(tarjeta);
+            });
+        }
+
+        function verEvento(evento) {
+            const fuentes = Array.isArray(evento.fuentes)
+                ? evento.fuentes.filter(f => f && f.url)
+                : [];
+
+            if (fuentes.length === 0) {
+                alert("Este evento no tiene fuentes de transmisión.");
+                return;
+            }
+
+            if (fuentes.length === 1) {
+                abrirFuente(fuentes[0]);
+                return;
+            }
+
+            const contenedor = document.getElementById("listaFuentes");
+            contenedor.innerHTML = "";
+
+            fuentes.forEach((fuente, indice) => {
+                const boton = document.createElement("button");
+                boton.className = "fuente";
+                boton.textContent =
+                    fuente.nombre || ("Fuente " + (indice + 1));
+
+                boton.onclick = () => {
+                    cerrarFuentes();
+                    abrirFuente(fuente);
+                };
+
+                contenedor.appendChild(boton);
+            });
+
+            document.getElementById("selectorFuentes").style.display =
+                "flex";
+        }
+
+        function abrirFuente(fuente) {
+            /*
+             * Por ahora abre la URL de la fuente.
+             * La integración con el reproductor nativo de TVArg
+             * se realizará cuando definamos ese mecanismo.
+             */
+
+            if (
+                window.AndroidTVArg &&
+                typeof window.AndroidTVArg.openUrl === "function"
+            ) {
+                window.AndroidTVArg.openUrl(fuente.url);
+            } else {
+                window.open(fuente.url, "_blank");
+            }
+        }
+
+        function cerrarFuentes() {
+            document.getElementById("selectorFuentes").style.display =
+                "none";
+        }
+
+        function volver() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = "index.html";
+            }
+        }
+
+        filtroCompetencia.addEventListener(
+            "change",
+            mostrarEventos
+        );
+
+        // Actualiza la vigencia de los eventos cada 30 segundos.
+        mostrarEventos();
+        setInterval(mostrarEventos, 30000);
+    </script>
 
 </body>
 </html>
