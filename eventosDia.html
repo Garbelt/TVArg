@@ -226,14 +226,7 @@
         }
 
 function eventoVigente(evento) {
-    const inicio = obtenerInicio(evento);
-    if (!inicio) return false;
-
-    const ahora = Date.now();
-    const margen = 24 * 60 * 60 * 1000;
-
-    return ahora >= inicio - margen &&
-           ahora <= inicio + margen;
+    return true;
 }
 
         function mostrarEventos() {
