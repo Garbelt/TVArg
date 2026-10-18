@@ -11,7 +11,8 @@ window.ULTIMOS_EVENTOS = [
       { nombre: "Señal 4", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/AbelCristo/pzuQswh9xY9H/644103.ts" },
       { nombre: "Señal 5", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/alfredoamezcua/5h6FqumXhghQ/644103.ts" },
       { nombre: "Señal 6", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/ATPLUSEN/ysN8PGMW9LPe/644103.ts" },
-      { nombre: "Señal 7", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731409.ts" }
+      { nombre: "Señal 7", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731409.ts" },
+      { nombre: "Señal 8", tipo: "ts", url: "https://zonacero.lat:443/20marzo/Loquita15/481993" }
     ]
   },
   {
@@ -26,7 +27,8 @@ window.ULTIMOS_EVENTOS = [
       { nombre: "Señal 4", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/AbelCristo/pzuQswh9xY9H/644104.ts" },
       { nombre: "Señal 5", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/alfredoamezcua/5h6FqumXhghQ/644104.ts" },
       { nombre: "Señal 6", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/ATPLUSEN/ysN8PGMW9LPe/644104.ts" },
-      { nombre: "Señal 7", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731457.ts" }
+      { nombre: "Señal 7", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731457.ts" },
+      { nombre: "Señal 8", tipo: "ts", url: "https://zonacero.lat:443/20marzo/Loquita15/482024" }
     ]
   },
   {
@@ -41,7 +43,8 @@ window.ULTIMOS_EVENTOS = [
       { nombre: "Señal 4", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/AbelCristo/pzuQswh9xY9H/644105.ts" },
       { nombre: "Señal 5", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/alfredoamezcua/5h6FqumXhghQ/644105.ts" },
       { nombre: "Señal 6", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/ATPLUSEN/ysN8PGMW9LPe/644105.ts" },
-      { nombre: "Señal 7", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731456.ts" }
+      { nombre: "Señal 7", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731456.ts" },
+      { nombre: "Señal 8", tipo: "ts", url: "https://zonacero.lat:443/20marzo/Loquita15/482023" }
     ]
   },
   {
@@ -56,7 +59,8 @@ window.ULTIMOS_EVENTOS = [
       { nombre: "Señal 4", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/AbelCristo/pzuQswh9xY9H/644106.ts" },
       { nombre: "Señal 5", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/alfredoamezcua/5h6FqumXhghQ/644106.ts" },
       { nombre: "Señal 6", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/ATPLUSEN/ysN8PGMW9LPe/644106.ts" },
-      { nombre: "Señal 7", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731474.ts" }
+      { nombre: "Señal 7", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731474.ts" },
+      { nombre: "Señal 8", tipo: "ts", url: "https://zonacero.lat:443/20marzo/Loquita15/482041" }
     ]
   }
 ];
