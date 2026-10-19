@@ -10,7 +10,13 @@ window.ULTIMOS_EVENTOS = [
       { nombre: "Señal 03", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1705344.ts" },
       { nombre: "Señal 04", tipo: "ts", url: "http://elpapanatas.space:8080/LauraArrieta/L@ura3c/664913" },
       { nombre: "Señal 05", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1731891.ts" },
-      { nombre: "Señal 06", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1731891.ts" }  
+      { nombre: "Señal 06", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1731891.ts" },
+      { nombre: "Señal 07", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/moisesgam2/AdyzyNjL8xms/644207.ts" },
+      { nombre: "Señal 08", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644207.ts" },
+      { nombre: "Señal 09", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/DarlynCarri4/rEb75XzwEmfK/644207.ts" },
+      { nombre: "Señal 10", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/AbelCristo/pzuQswh9xY9H/644207.ts" },
+      { nombre: "Señal 11", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/alfredoamezcua/5h6FqumXhghQ/644207.ts" },
+      { nombre: "Señal 12", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/ATPLUSEN/ysN8PGMW9LPe/644207.ts" } 
     ]
   },
   {
