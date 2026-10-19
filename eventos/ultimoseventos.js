@@ -1,78 +1,116 @@
 window.ULTIMOS_EVENTOS = [
-  {
-    competencia: "LPF Argentino",
-    nombre: "Racing Club vs Independiente",
-    fecha: "2026-10-18",
-    hora: "14:45",
-    fuentes: [
-      { nombre: "Señal 01", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/moisesgam2/AdyzyNjL8xms/644103.ts" },
-      { nombre: "Señal 02", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644103.ts" },
-      { nombre: "Señal 03", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/DarlynCarri4/rEb75XzwEmfK/644103.ts" },
-      { nombre: "Señal 04", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/AbelCristo/pzuQswh9xY9H/644103.ts" },
-      { nombre: "Señal 05", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/alfredoamezcua/5h6FqumXhghQ/644103.ts" },
-      { nombre: "Señal 06", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/ATPLUSEN/ysN8PGMW9LPe/644103.ts" },
-      { nombre: "Señal 07", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731409.ts" },
-      { nombre: "Señal 08", tipo: "ts", url: "https://zonacero.lat:443/20marzo/Loquita15/481993" },
-      { nombre: "Señal 09", tipo: "ts", url: "https://deluxe-tv.online:443/live/kat684lillo/WsMGuxBFpLZP/1704525.ts" },
-      { nombre: "Señal 10", tipo: "ts", url: "http://smarterstv99.dyndns.tv:8080/live/6141959699/gRMvsAgNs2KY/644103.ts" },
-      { nombre: "Señal 11", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1731409.ts" }      
-    ]
-  },
-  {
-    competencia: "LPF Argentino",
-    nombre: "Estudiantes vs San Lorenzo",
-    fecha: "2026-10-18",
-    hora: "18:00",
-    fuentes: [
-      { nombre: "Señal 01", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/moisesgam2/AdyzyNjL8xms/644104.ts" },
-      { nombre: "Señal 02", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644104.ts" },
-      { nombre: "Señal 03", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/DarlynCarri4/rEb75XzwEmfK/644104.ts" },
-      { nombre: "Señal 04", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/AbelCristo/pzuQswh9xY9H/644104.ts" },
-      { nombre: "Señal 05", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/alfredoamezcua/5h6FqumXhghQ/644104.ts" },
-      { nombre: "Señal 06", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/ATPLUSEN/ysN8PGMW9LPe/644104.ts" },
-      { nombre: "Señal 07", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731457.ts" },
-      { nombre: "Señal 08", tipo: "ts", url: "https://zonacero.lat:443/20marzo/Loquita15/482024" },
-      { nombre: "Señal 09", tipo: "ts", url: "https://deluxe-tv.online:443/live/kat684lillo/WsMGuxBFpLZP/1704556.ts" },
-      { nombre: "Señal 10", tipo: "ts", url: "http://smarterstv99.dyndns.tv:8080/live/6141959699/gRMvsAgNs2KY/644104.ts" },
-      { nombre: "Señal 11", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1731457.ts" }
-    ]
-  },
-  {
-    competencia: "LPF Argentino",
-    nombre: "Estudiantes Río Cuarto vs Aldosivi",
-    fecha: "2026-10-18",
-    hora: "18:00",
-    fuentes: [
-      { nombre: "Señal 01", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/moisesgam2/AdyzyNjL8xms/644105.ts" },
-      { nombre: "Señal 02", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644105.ts" },
-      { nombre: "Señal 03", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/DarlynCarri4/rEb75XzwEmfK/644105.ts" },
-      { nombre: "Señal 04", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/AbelCristo/pzuQswh9xY9H/644105.ts" },
-      { nombre: "Señal 05", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/alfredoamezcua/5h6FqumXhghQ/644105.ts" },
-      { nombre: "Señal 06", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/ATPLUSEN/ysN8PGMW9LPe/644105.ts" },
-      { nombre: "Señal 07", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731456.ts" },
-      { nombre: "Señal 08", tipo: "ts", url: "https://zonacero.lat:443/20marzo/Loquita15/482023" },
-      { nombre: "Señal 09", tipo: "ts", url: "https://deluxe-tv.online:443/live/kat684lillo/WsMGuxBFpLZP/1704555.ts" },
-      { nombre: "Señal 10", tipo: "ts", url: "http://smarterstv99.dyndns.tv:8080/live/6141959699/gRMvsAgNs2KY/644105.ts" },
-      { nombre: "Señal 11", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1731456.ts" }
-    ]
-  },
-  {
-    competencia: "LPF Argentino",
-    nombre: "Belgrano vs River Plate",
-    fecha: "2026-10-18",
-    hora: "20:15",
-    fuentes: [
-      { nombre: "Señal 01", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/moisesgam2/AdyzyNjL8xms/644106.ts" },
-      { nombre: "Señal 02", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644106.ts" },
-      { nombre: "Señal 03", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/DarlynCarri4/rEb75XzwEmfK/644106.ts" },
-      { nombre: "Señal 04", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/AbelCristo/pzuQswh9xY9H/644106.ts" },
-      { nombre: "Señal 05", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/alfredoamezcua/5h6FqumXhghQ/644106.ts" },
-      { nombre: "Señal 06", tipo: "ts", url: "http://ak-47scan.dyndns.tv:8080/live/ATPLUSEN/ysN8PGMW9LPe/644106.ts" },
-      { nombre: "Señal 07", tipo: "ts", url: "http://vhdigital.cl/live/Jose2022Ocampo/9G7RZr2Ha9/1731474.ts" },
-      { nombre: "Señal 08", tipo: "ts", url: "https://zonacero.lat:443/20marzo/Loquita15/482041" },
-      { nombre: "Señal 09", tipo: "ts", url: "https://deluxe-tv.online:443/live/kat684lillo/WsMGuxBFpLZP/1704573.ts" },
-      { nombre: "Señal 10", tipo: "ts", url: "http://smarterstv99.dyndns.tv:8080/live/6141959699/gRMvsAgNs2KY/644106.ts" },
-      { nombre: "Señal 11", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1731474.ts" }
-    ]
-  }
+    {
+        nombre: "Newell's Old Boys vs Central Córdoba SdE",
+        competencia: "LPF Argentino",
+        fecha: "2026-10-19",
+        hora: "19:00",
+        fuentes: [
+            {
+                nombre: "AK-47 Scan",
+                url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644207.ts",
+                tipo: "ts"
+            },
+            {
+                nombre: "Zona Cero",
+                url: "https://zonacero.lat:443/JorgeLeon/JorgeLeon/482195",
+                tipo: "ts"
+            },
+            {
+                nombre: "Deluxe TV",
+                url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1705344.ts",
+                tipo: "ts"
+            },
+            {
+                nombre: "El Papanatas",
+                url: "http://elpapanatas.space:8080/LauraArrieta/L@ura3c/664913",
+                tipo: "ts"
+            },
+            {
+                nombre: "Playstreaming",
+                url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1731891.ts",
+                tipo: "ts"
+            },
+            {
+                nombre: "VH Digital",
+                url: "http://vhdigital.cl/live/Francisco87/Francisco87/1731891.ts",
+                tipo: "ts"
+            }
+        ]
+    },
+    {
+        nombre: "Sarmiento vs Barracas Central",
+        competencia: "LPF Argentino",
+        fecha: "2026-10-19",
+        hora: "19:00",
+        fuentes: [
+            {
+                nombre: "AK-47 Scan",
+                url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644208.ts",
+                tipo: "ts"
+            },
+            {
+                nombre: "Zona Cero",
+                url: "https://zonacero.lat:443/JorgeLeon/JorgeLeon/482196",
+                tipo: "ts"
+            },
+            {
+                nombre: "Deluxe TV",
+                url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1705345.ts",
+                tipo: "ts"
+            },
+            {
+                nombre: "El Papanatas",
+                url: "http://elpapanatas.space:8080/LauraArrieta/L@ura3c/664914",
+                tipo: "ts"
+            },
+            {
+                nombre: "Playstreaming",
+                url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1731931.ts",
+                tipo: "ts"
+            },
+            {
+                nombre: "VH Digital",
+                url: "http://vhdigital.cl/live/Francisco87/Francisco87/1731931.ts",
+                tipo: "ts"
+            }
+        ]
+    },
+    {
+        nombre: "Deportivo Riestra vs Unión de Santa Fe",
+        competencia: "LPF Argentino",
+        fecha: "2026-10-19",
+        hora: "21:15",
+        fuentes: [
+            {
+                nombre: "AK-47 Scan",
+                url: "http://ak-47scan.dyndns.tv:8080/live/nanovic10/hDjbYHYnr9yt/644209.ts",
+                tipo: "ts"
+            },
+            {
+                nombre: "Zona Cero",
+                url: "https://zonacero.lat:443/JorgeLeon/JorgeLeon/482208",
+                tipo: "ts"
+            },
+            {
+                nombre: "Deluxe TV",
+                url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1705357.ts",
+                tipo: "ts"
+            },
+            {
+                nombre: "El Papanatas",
+                url: "http://elpapanatas.space:8080/LauraArrieta/L@ura3c/664915",
+                tipo: "ts"
+            },
+            {
+                nombre: "Playstreaming",
+                url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1731903.ts",
+                tipo: "ts"
+            },
+            {
+                nombre: "VH Digital",
+                url: "http://vhdigital.cl/live/Francisco87/Francisco87/1731903.ts",
+                tipo: "ts"
+            }
+        ]
+    }
 ];
