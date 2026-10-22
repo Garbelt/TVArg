@@ -1,93 +1,57 @@
-window.ULTIMOS_EVENTOS = [ 
-  {
-    competencia: "Copa Sudamericana",
-    nombre: "Montevideo City Torque (URU) vs Atlético Mineiro (BRA)",
-    fecha: "2026-10-21",
-    hora: "17:00",
-    fuentes: [
-      { nombre: "Señal 01", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1707627.ts" },
-      { nombre: "Señal 02", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1707627.ts" }
-    ]
-  },
+window.ULTIMOS_EVENTOS = [
   {
     competencia: "Copa Libertadores",
-    nombre: "Palmeiras (BRA) vs Fluminense (BRA)",
-    fecha: "2026-10-21",
-    hora: "18:30",
+    nombre: "Flamengo vs Estudiantes",
+    fecha: "2026-10-22",
+    hora: "21:30",
     fuentes: [
-      { nombre: "Señal 01", tipo: "ts", url: "https://zonacero.lat:443/20marzo/Loquita15/482422" },
-      { nombre: "Señal 02", tipo: "ts", url: "https://zonacero.lat:443/Sarita/Sarita/482422" },
-      { nombre: "Señal 03", tipo: "ts", url: "https://zonacero.lat:443/12121212/12121212/482422" },
-      { nombre: "Señal 04", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1707661.ts" },
-      { nombre: "Señal 05", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1707661.ts" }
+      { nombre: "Señal 01", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1708576.ts" },
+      { nombre: "Señal 02", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1708588.ts" },
+      { nombre: "Señal 03", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1708610.ts" },
+      { nombre: "Señal 04", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1708698.ts" },
+      { nombre: "Señal 05", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1708722.ts" },
+      { nombre: "Señal 06", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1708818.ts" },
+      { nombre: "Señal 07", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1708864.ts" },
+      { nombre: "Señal 08", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1708961.ts" },
+      { nombre: "Señal 09", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1708980.ts" },
+      { nombre: "Señal 10", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1708992.ts" },
+      { nombre: "Señal 11", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1709020.ts" },
+      { nombre: "Señal 12", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1709038.ts" },
+      { nombre: "Señal 13", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1709197.ts" },
+      { nombre: "Señal 14", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1709203.ts" },
+      { nombre: "Señal 15", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1709204.ts" },
+      { nombre: "Señal 16", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1709235.ts" },
+      { nombre: "Señal 17", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1709314.ts" },
+      { nombre: "Señal 18", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1708576.ts" },
+      { nombre: "Señal 19", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1708588.ts" },
+      { nombre: "Señal 20", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1708610.ts" },
+      { nombre: "Señal 21", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1708698.ts" },
+      { nombre: "Señal 22", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1708722.ts" },
+      { nombre: "Señal 23", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1708818.ts" },
+      { nombre: "Señal 24", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1708864.ts" },
+      { nombre: "Señal 25", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1708961.ts" },
+      { nombre: "Señal 26", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1708980.ts" },
+      { nombre: "Señal 27", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1708992.ts" },
+      { nombre: "Señal 28", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1709020.ts" },
+      { nombre: "Señal 29", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1709038.ts" },
+      { nombre: "Señal 30", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1709197.ts" },
+      { nombre: "Señal 31", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1709203.ts" },
+      { nombre: "Señal 32", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1709204.ts" },
+      { nombre: "Señal 33", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1709235.ts" },
+      { nombre: "Señal 34", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1709314.ts" },
+      { nombre: "Señal 35", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1732505.ts" },
+      { nombre: "Señal 36", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1732505.ts" },
+      { nombre: "Señal 37", tipo: "ts", url: "https://zonacero.lat:443/20marzo/Loquita15/482638" },
+      { nombre: "Señal 38", tipo: "ts", url: "https://zonacero.lat:443/Sarita/Sarita/482638" },
+      { nombre: "Señal 39", tipo: "ts", url: "https://zonacero.lat:443/12121212/12121212/482638" },
+      { nombre: "Señal 40", tipo: "ts", url: "https://deluxe-tv.online:443/live/pXKTerpJmKQ5/FrGezF9MnAAW/1709648.ts" },
+      { nombre: "Señal 41", tipo: "ts", url: "https://deluxe-tv.online:443/live/hhagg2dg2gsd2/sdsa3dsf3erffdf/1709648.ts" },
+      { nombre: "Señal 42", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1732527.ts" },
+      { nombre: "Señal 43", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1732527.ts" },
+      { nombre: "Señal 44", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1732528.ts" },
+      { nombre: "Señal 45", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1732529.ts" },
+      { nombre: "Señal 46", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1732528.ts" },
+      { nombre: "Señal 47", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1732529.ts" }
     ]
   },
-  {
-    competencia: "Copa Sudamericana",
-    nombre: "Montevideo City Torque (URU) vs Atlético Mineiro (BRA)",
-    fecha: "2026-10-21",
-    hora: "18:45",
-    fuentes: [
-      { nombre: "Señal 01", tipo: "ts", url: "http://elpapanatas.space:8080/LauraArrieta/L@ura3c/667760" },
-      { nombre: "Señal 02", tipo: "ts", url: "http://elpapanatas.space:8080/LauraArrieta/L@ura3c/667761" },
-      { nombre: "Señal 03", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1732253.ts" },
-      { nombre: "Señal 04", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1732254.ts" },
-      { nombre: "Señal 05", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1732338.ts" },
-      { nombre: "Señal 06", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1732253.ts" },
-      { nombre: "Señal 07", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1732254.ts" },
-      { nombre: "Señal 08", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1732338.ts" }
-    ]
-  },
-  {
-    competencia: "Copa Sudamericana",
-    nombre: "Montevideo City Torque vs Atlético Mineiro",
-    fecha: "2026-10-21",
-    hora: "18:50",
-    fuentes: [
-      { nombre: "Señal 01", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1732339.ts" },
-      { nombre: "Señal 02", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1732340.ts" },
-      { nombre: "Señal 03", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1732339.ts" },
-      { nombre: "Señal 04", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1732340.ts" }
-    ]
-  },
-  {
-    competencia: "Copa Sudamericana",
-    nombre: "Torque vs Atlético Mineiro",
-    fecha: "2026-10-21",
-    hora: "19:00",
-    fuentes: [
-      { nombre: "Señal 01", tipo: "m3u", url: "http://panel.mxtv.lat:8080/live/carlos826/1ee6b6fc1f22dcab/541255.m3u" }
-    ]
-  },
-  {
-    competencia: "Copa Libertadores",
-    nombre: "Palmeiras (BRA) vs Fluminense (BRA)",
-    fecha: "2026-10-21",
-    hora: "21:00",
-    fuentes: [
-      { nombre: "Señal 01", tipo: "ts", url: "http://elpapanatas.space:8080/LauraArrieta/L@ura3c/667800" },
-      { nombre: "Señal 02", tipo: "ts", url: "http://elpapanatas.space:8080/LauraArrieta/L@ura3c/667801" },
-      { nombre: "Señal 03", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1732293.ts" },
-      { nombre: "Señal 04", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1732294.ts" },
-      { nombre: "Señal 05", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1732357.ts" },
-      { nombre: "Señal 06", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1732293.ts" },
-      { nombre: "Señal 07", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1732294.ts" },
-      { nombre: "Señal 08", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1732357.ts" }
-    ]
-  },
-  {
-    competencia: "Copa Libertadores",
-    nombre: "Palmeiras vs Fluminense",
-    fecha: "2026-10-21",
-    hora: "21:20",
-    fuentes: [
-      { nombre: "Señal 01", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1732359.ts" },
-      { nombre: "Señal 02", tipo: "ts", url: "http://playstreaming.net:8080/live/Rene2024castaneda/Castaneda24rene/1732360.ts" },
-      { nombre: "Señal 03", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1732359.ts" },
-      { nombre: "Señal 04", tipo: "ts", url: "http://vhdigital.cl/live/Francisco87/Francisco87/1732360.ts" },
-      { nombre: "Señal 05", tipo: "m3u", url: "http://panel.mxtv.lat:8080/live/carlos826/1ee6b6fc1f22dcab/541248.m3u" },
-      { nombre: "Señal 06", tipo: "m3u", url: "http://panel.mxtv.lat:8080/live/carlos826/1ee6b6fc1f22dcab/541247.m3u" },
-      { nombre: "Señal 07", tipo: "m3u", url: "http://panel.mxtv.lat:8080/live/carlos826/1ee6b6fc1f22dcab/541246.m3u" }
-    ]
-  }
 ];
