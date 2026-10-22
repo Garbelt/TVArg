@@ -1,4 +1,4 @@
-window.ULTIMOS_EVENTOS = [
+window.ULTIMOS_EVENTOS = [ 
   {
     competencia: "Copa Sudamericana",
     nombre: "Montevideo City Torque (URU) vs Atlético Mineiro (BRA)",
