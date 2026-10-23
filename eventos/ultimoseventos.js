@@ -1,4 +1,4 @@
-window.ULTIMOS_EVENTOS = [ 
+window.ULTIMOS_EVENTOS = [
   {
     competencia: "LPF Argentino",
     nombre: "Gimnasia y Esgrima La Plata vs Sarmiento",
