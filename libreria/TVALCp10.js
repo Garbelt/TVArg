@@ -121,7 +121,7 @@ TVALC_PELICULAS.push(
 {
     "titulo": "Rod Stewart, el rebelde del pop inglés",
     "año": "2025",
-    "poster": "",
+    "poster": "https://m.media-amazon.com/images/M/MV5BZjlhMzAwMWQtYmFiNS00ZTlhLTlkYjYtNWFlMmNlOTBiNGQwXkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg",
     "url": "https://arte-cmafhls.akamaized.net/am/cmaf/121000/121300/121375-000-A/202609230003A5E2631B370792946EF6E0845F75AB/medias/121375-000-A_v1080_crf_h265.mp4",
     "audioUrl": "https://arte-cmafhls.akamaized.net/am/cmaf/121000/121300/121375-000-A/202609230003A5E2631B370792946EF6E0845F75AB/medias/121375-000-A_aud_VO-ANG_1_43480299_7456295_20260923001450.mp4",
     "subtituloUrl": "https://arte-cmafhls.akamaized.net/am/cmaf/121000/121300/121375-000-A/202609230003A5E2631B370792946EF6E0845F75AB/medias/121375-000-A_st_VO-ESP_43480299_8068644_20260923001454.vtt",
