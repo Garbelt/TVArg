@@ -63,7 +63,7 @@ window.TVALC_PELICULAS.push(
     {
         "titulo": "The Rolling Stones: Glastonbury Festival",
         "año": "2013",
-        "poster": "https://github.com/Garbelt/TVArg/blob/main/libreria/Posters/TRS_Glastonbury.jpg",
+        "poster": "https://raw.githubusercontent.com/Garbelt/TVArg/main/libreria/Posters/TRS_Glastonbury.jpg",
         "url": "http://myultratv.com:8080/movie/uRK5nJRxFPed/KPc5wXKLJkFS/5483.mp4",
         "categoria": "Recital, Musical",
         "clasificacion": "ATP",
