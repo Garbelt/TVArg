@@ -95,7 +95,7 @@ window.TVALC_PELICULAS.push(
         "año": "2001",
         "poster": "https://image.tmdb.org/t/p/w500/mQFv20ULKXro3sT32Bl8GAp8AFp.jpg",
         "url": "http://myultratv.com:8080/movie/uRK5nJRxFPed/KPc5wXKLJkFS/267811.mp4",
-        "categoria": "Musical",
+        "categoria": "Recital, Musical",
         "clasificacion": "ATP",
         "descripcion": "MTV Unplugged es el nombre del segundo álbum en directo del cantautor español Alejandro Sanz, grabado en el Gusman Center for the Performing Arts de Miami, Florida, Estados Unidos. Fue lanzado al mercado por WEA Latina el 20 de noviembre de 2001, precedido por su primer álbum en directo, Básico, en 1994. Alejandro Sanz hizo historia al convertirse en el primer cantante español en realizar un MTV Unplugged. Este álbum se publicó tanto en CD como en DVD."
     },
@@ -105,7 +105,7 @@ window.TVALC_PELICULAS.push(
         "año": "2013",
         "poster": "https://image.tmdb.org/t/p/w500/niobNGnThoYLyiQ0tycdkIge8zc.jpg",
         "url": "http://myultratv.com:8080/movie/uRK5nJRxFPed/KPc5wXKLJkFS/5423.mp4",
-        "categoria": "Musical",
+        "categoria": "Recital, Musical",
         "clasificacion": "ATP",
         "descripcion": "Aerosmith cierra con broche de oro el festival Monsters Of Rock 2013. Revive la electrizante presentación de los «Chicos Malos de Boston» ante miles de fanáticos en São Paulo, interpretando sus más grandes éxitos con la energía inigualable de Steven Tyler y Joe Perry."
     },
@@ -115,7 +115,7 @@ window.TVALC_PELICULAS.push(
         "año": "2013",
         "poster": "https://image.tmdb.org/t/p/w500/5aZxtRGztWS6RooIZbK7f51hzMD.jpg",
         "url": "http://myultratv.com:8080/movie/uRK5nJRxFPed/KPc5wXKLJkFS/5686.mkv",
-        "categoria": "Musical, Documental",
+        "categoria": "Recital, Musical, Documental",
         "clasificacion": "ATP",
         "descripcion": "El sábado 6 de julio de 2013 será recordado por muchos de los fans de una de las bandas más legendarias de todos los tiempos, The Rolling Stones. Ese día, cuarenta y cuatro años después de su primer concierto en el Hyde Park londinense, The Rolling Stones regresaban para dar un concierto ante más de 200.000 personas. Este filme recoge ese concierto de 2013, en el que Mick Jagger, que cumpliría 70 años unas semanas después, el batería Charlie Watts y los guitarristas Keith Richards y Ron Wood desplegaron todo su talento y recordaron a su compañero Brian Jones, fallecido dos días antes del concierto de 1969."
     },
@@ -125,7 +125,7 @@ window.TVALC_PELICULAS.push(
         "año": "1973",
         "poster": "https://image.tmdb.org/t/p/w500/27LUODpq70OJ6jxclGCy3kFbC58.jpg",
         "url": "http://myultratv.com:8080/movie/uRK5nJRxFPed/KPc5wXKLJkFS/5837.mkv",
-        "categoria": "Musical, Documental",
+        "categoria": "Recital, Musical, Documental",
         "clasificacion": "ATP",
         "descripcion": "Filmación de dos conciertos de los Rolling Stones en Texas durante su gira norteamericana promocional del álbum «Exile on Main Street» de 1972. Incluye 15 canciones, cinco de ellas del álbum «Exile». Mick Jagger, Keith Richards, Mick Taylor, Charlie Watts y Bill Wyman actúan en un escenario con otros tres músicos. Hasta que las luces se encienden cerca del final, vemos a los Stones sobre un fondo negro. La cámara permanece principalmente en Jagger, con algunas tomas de Taylor. Richards aparece en pantalla durante sus dúos y en algunos pasajes de guitarra de las dos últimas canciones. Es música de principio a fin: hard rock («All Down the Line»), blues («Love in Vain» y «Midnight Rambler») y un tributo a Chuck Berry («Bye Bye Johnny»), sin incluir «Satisfaction»."
     }
