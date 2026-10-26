@@ -232,6 +232,10 @@
         const selectorFuentes =
             document.getElementById("selectorFuentes");
 
+        let eventoSeleccionado = null;
+        let fuentesSeleccionadas = [];
+        let metodoSeleccionado = null;
+
         /*
          * Los horarios de ultimoseventos.js deben estar expresados
          * en la hora local de Argentina:
@@ -332,168 +336,143 @@
         }
 
 
-        function verEvento(evento) {
-            const fuentes = Array.isArray(evento.fuentes)
-                ? evento.fuentes.filter(f => f && f.url)
-                : [];
 
-            if (fuentes.length === 0) {
-                alert("Este evento no tiene fuentes de transmisión.");
-                return;
-            }
+function verEvento(evento) {
+    const fuentes = Array.isArray(evento.fuentes)
+        ? evento.fuentes.filter(f => f && f.url)
+        : [];
 
-            const contenedor =
-                document.getElementById("listaFuentes");
+    if (fuentes.length === 0) {
+        alert("Este evento no tiene fuentes de transmisión.");
+        return;
+    }
 
-            contenedor.innerHTML = "";
+    eventoSeleccionado = evento;
+    fuentesSeleccionadas = fuentes;
+    metodoSeleccionado = null;
 
-            document.querySelector(".panelFuentes h2").textContent =
-                "Seleccionar método de reproducción";
-
-            [
-                { texto: "PLAYER", modo: "player" },
-                { texto: "TS", modo: "ts" },
-                { texto: "VLC", modo: "vlc" }
-            ].forEach(opcion => {
-                const boton = document.createElement("button");
-                boton.className = "fuente";
-                boton.textContent = opcion.texto;
-
-                boton.onclick = () => {
-                    cerrarFuentes();
-                    seleccionarFuente(evento, fuentes, opcion.modo);
-                };
-
-                contenedor.appendChild(boton);
-            });
-
-            selectorFuentes.style.display = "flex";
-        }
-
-        function seleccionarFuente(evento, fuentes, modo) {
-            if (fuentes.length === 1) {
-                abrirFuente(fuentes[0], modo);
-                return;
-            }
-
-            const contenedor =
-                document.getElementById("listaFuentes");
-
-            contenedor.innerHTML = "";
-
-            const titulo =
-                document.querySelector(".panelFuentes h2");
-
-            titulo.textContent =
-                "Seleccionar transmisión — " + modo.toUpperCase();
-
-            fuentes.forEach((fuente, indice) => {
-                const boton = document.createElement("button");
-                boton.className = "fuente";
-                boton.textContent =
-                    fuente.nombre || ("Fuente " + (indice + 1));
-
-                boton.onclick = () => {
-                    cerrarFuentes();
-                    abrirFuente(fuente, modo);
-                };
-
-                contenedor.appendChild(boton);
-            });
-
-            selectorFuentes.style.display = "flex";
-        }
+    mostrarMetodos();
+}
 
 
+function mostrarMetodos() {
+    const contenedor =
+        document.getElementById("listaFuentes");
 
-        function abrirFuente(fuente, modo) {
-            if (!fuente || !fuente.url) {
-                alert("La fuente no tiene una URL válida.");
-                return;
-            }
+    const titulo =
+        document.querySelector(".panelFuentes h2");
 
-            if (window.AndroidTVArg) {
-                const headers = fuente.headers || {};
-                const referer = headers.Referer || "";
-                const userAgent = headers["User-Agent"] || "";
+    contenedor.innerHTML = "";
+    titulo.textContent = "Seleccionar método de reproducción";
 
-                if (modo === "vlc") {
-                    if (typeof AndroidTVArg.playChannelVLC === "function") {
-                        AndroidTVArg.playChannelVLC(fuente.url);
-                        return;
-                    }
-                } else if (modo === "ts") {
-                    if (typeof AndroidTVArg.playChannelTS === "function") {
-                        AndroidTVArg.playChannelTS(
-                            fuente.url,
-                            referer,
-                            userAgent
-                        );
-                        return;
-                    }
-                } else if (modo === "player") {
-                    if (typeof AndroidTVArg.playChannelEventos === "function") {
-                        AndroidTVArg.playChannelEventos(
-                            fuente.url,
-                            referer,
-                            userAgent
-                        );
-                        return;
-                    }
-                }
+    [
+        { texto: "PLAYER", modo: "player" },
+        { texto: "TS", modo: "ts" },
+        { texto: "VLC", modo: "vlc" }
+    ].forEach(opcion => {
+        const boton = document.createElement("button");
+        boton.className = "fuente";
+        boton.textContent = opcion.texto;
 
-                alert(
-                    "No está disponible el método de reproducción seleccionado."
-                );
-                return;
-            }
+        boton.onclick = () => {
+            metodoSeleccionado = opcion.modo;
+            seleccionarFuente(
+                eventoSeleccionado,
+                fuentesSeleccionadas,
+                metodoSeleccionado
+            );
+        };
 
-            window.open(fuente.url, "_blank");
-        }
+        contenedor.appendChild(boton);
+    });
 
+    selectorFuentes.style.display = "flex";
+}
 
+function seleccionarFuente(evento, fuentes, modo) {
+    if (fuentes.length === 1) {
+        selectorFuentes.style.display = "none";
+        abrirFuente(fuentes[0], modo);
+        return;
+    }
 
-        function cerrarFuentes() {
+    const contenedor =
+        document.getElementById("listaFuentes");
+
+    const titulo =
+        document.querySelector(".panelFuentes h2");
+
+    contenedor.innerHTML = "";
+
+    titulo.textContent =
+        "Seleccionar transmisión — " + modo.toUpperCase();
+
+    fuentes.forEach((fuente, indice) => {
+        const boton = document.createElement("button");
+        boton.className = "fuente";
+        boton.textContent =
+            fuente.nombre || ("Fuente " + (indice + 1));
+
+        boton.onclick = () => {
             selectorFuentes.style.display = "none";
+            abrirFuente(fuente, modo);
+        };
+
+        contenedor.appendChild(boton);
+    });
+
+    selectorFuentes.style.display = "flex";
+}
+
+function cerrarFuentes() {
+    if (metodoSeleccionado !== null) {
+        mostrarMetodos();
+        return;
+    }
+
+    selectorFuentes.style.display = "none";
+    eventoSeleccionado = null;
+    fuentesSeleccionadas = [];
+}
+
+
+function volver() {
+    window.location.href = "index.html?desdeTVALC=1";
+}
+
+/*
+ * Atrás en el control remoto:
+ * - En la lista de fuentes: vuelve a elegir el método.
+ * - En la selección de método: cierra el selector.
+ * - En la lista de eventos: vuelve al menú principal.
+ */
+window.addEventListener("tvback", function () {
+    if (selectorFuentes.style.display === "flex") {
+        cerrarFuentes();
+    } else {
+        volver();
+    }
+});
+
+/*
+ * Permite volver también con teclas de retroceso
+ * si el navegador o dispositivo las envía al documento.
+ */
+window.addEventListener("keydown", function (event) {
+    if (
+        event.key === "Escape" ||
+        event.key === "Backspace" ||
+        event.key === "BrowserBack"
+    ) {
+        event.preventDefault();
+
+        if (selectorFuentes.style.display === "flex") {
+            cerrarFuentes();
+        } else {
+            volver();
         }
-
-        function volver() {
-            window.location.href = "index.html?desdeTVALC=1";
-        }
-
-        /*
-         * Atrás en el control remoto:
-         * - Con el selector abierto: cierra el selector.
-         * - En la lista de eventos: vuelve al menú principal.
-         */
-        window.addEventListener("tvback", function () {
-            if (selectorFuentes.style.display === "flex") {
-                cerrarFuentes();
-            } else {
-                volver();
-            }
-        });
-
-        /*
-         * Permite volver también con teclas de retroceso
-         * si el navegador o dispositivo las envía al documento.
-         */
-        window.addEventListener("keydown", function (event) {
-            if (
-                event.key === "Escape" ||
-                event.key === "Backspace" ||
-                event.key === "BrowserBack"
-            ) {
-                event.preventDefault();
-
-                if (selectorFuentes.style.display === "flex") {
-                    cerrarFuentes();
-                } else {
-                    volver();
-                }
-            }
-        });
-
+    }
+});
         filtroCompetencia.addEventListener(
             "change",
             mostrarEventos
@@ -509,9 +488,14 @@
          * Se define para evitar errores si el HTML no tiene otra
          * rutina de salida específica.
          */
-        function manejarSalidaCanal() {
-            // No es necesario reconstruir la lista al regresar.
-        }
+
+function manejarSalidaCanal() {
+    if (eventoSeleccionado !== null) {
+        metodoSeleccionado = null;
+        mostrarMetodos();
+    }
+}
+
     </script>
 
 </body>
