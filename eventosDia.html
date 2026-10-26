@@ -424,6 +424,53 @@ function seleccionarFuente(evento, fuentes, modo) {
     selectorFuentes.style.display = "flex";
 }
 
+
+
+function abrirFuente(fuente, modo) {
+    if (!fuente || !fuente.url) {
+        alert("La fuente no tiene una URL válida.");
+        return;
+    }
+
+    if (window.AndroidTVArg) {
+        const headers = fuente.headers || {};
+        const referer = headers.Referer || "";
+        const userAgent = headers["User-Agent"] || "";
+
+        if (modo === "vlc") {
+            if (typeof AndroidTVArg.playChannelVLC === "function") {
+                AndroidTVArg.playChannelVLC(fuente.url);
+                return;
+            }
+        } else if (modo === "ts") {
+            if (typeof AndroidTVArg.playChannelTS === "function") {
+                AndroidTVArg.playChannelTS(
+                    fuente.url,
+                    referer,
+                    userAgent
+                );
+                return;
+            }
+        } else if (modo === "player") {
+            if (typeof AndroidTVArg.playChannelEventos === "function") {
+                AndroidTVArg.playChannelEventos(
+                    fuente.url,
+                    referer,
+                    userAgent
+                );
+                return;
+            }
+        }
+
+        alert("No está disponible el método de reproducción seleccionado.");
+        return;
+    }
+
+    window.open(fuente.url, "_blank");
+}
+
+
+
 function cerrarFuentes() {
     if (metodoSeleccionado !== null) {
         mostrarMetodos();
