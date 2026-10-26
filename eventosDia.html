@@ -331,6 +331,7 @@
             });
         }
 
+
         function verEvento(evento) {
             const fuentes = Array.isArray(evento.fuentes)
                 ? evento.fuentes.filter(f => f && f.url)
@@ -341,8 +342,37 @@
                 return;
             }
 
+            const contenedor =
+                document.getElementById("listaFuentes");
+
+            contenedor.innerHTML = "";
+
+            document.querySelector(".panelFuentes h2").textContent =
+                "Seleccionar método de reproducción";
+
+            [
+                { texto: "PLAYER", modo: "player" },
+                { texto: "TS", modo: "ts" },
+                { texto: "VLC", modo: "vlc" }
+            ].forEach(opcion => {
+                const boton = document.createElement("button");
+                boton.className = "fuente";
+                boton.textContent = opcion.texto;
+
+                boton.onclick = () => {
+                    cerrarFuentes();
+                    seleccionarFuente(evento, fuentes, opcion.modo);
+                };
+
+                contenedor.appendChild(boton);
+            });
+
+            selectorFuentes.style.display = "flex";
+        }
+
+        function seleccionarFuente(evento, fuentes, modo) {
             if (fuentes.length === 1) {
-                abrirFuente(fuentes[0]);
+                abrirFuente(fuentes[0], modo);
                 return;
             }
 
@@ -350,6 +380,12 @@
                 document.getElementById("listaFuentes");
 
             contenedor.innerHTML = "";
+
+            const titulo =
+                document.querySelector(".panelFuentes h2");
+
+            titulo.textContent =
+                "Seleccionar transmisión — " + modo.toUpperCase();
 
             fuentes.forEach((fuente, indice) => {
                 const boton = document.createElement("button");
@@ -359,7 +395,7 @@
 
                 boton.onclick = () => {
                     cerrarFuentes();
-                    abrirFuente(fuente);
+                    abrirFuente(fuente, modo);
                 };
 
                 contenedor.appendChild(boton);
@@ -368,43 +404,54 @@
             selectorFuentes.style.display = "flex";
         }
 
-        function abrirFuente(fuente) {
+
+
+        function abrirFuente(fuente, modo) {
             if (!fuente || !fuente.url) {
                 alert("La fuente no tiene una URL válida.");
                 return;
             }
 
             if (window.AndroidTVArg) {
-                if (
-                    fuente.reproductor === "vlc" &&
-                    typeof AndroidTVArg.playChannelVLC === "function"
-                ) {
-                    AndroidTVArg.playChannelVLC(fuente.url);
-                    return;
-                }
+                const headers = fuente.headers || {};
+                const referer = headers.Referer || "";
+                const userAgent = headers["User-Agent"] || "";
 
-                if (
-                    typeof AndroidTVArg.playChannel === "function"
-                ) {
-                    const headers = fuente.headers || {};
-
-                    AndroidTVArg.playChannel(
-                        fuente.url,
-                        headers.Referer || "",
-                        headers["User-Agent"] || ""
-                    );
-                    return;
+                if (modo === "vlc") {
+                    if (typeof AndroidTVArg.playChannelVLC === "function") {
+                        AndroidTVArg.playChannelVLC(fuente.url);
+                        return;
+                    }
+                } else if (modo === "ts") {
+                    if (typeof AndroidTVArg.playChannelTS === "function") {
+                        AndroidTVArg.playChannelTS(
+                            fuente.url,
+                            referer,
+                            userAgent
+                        );
+                        return;
+                    }
+                } else if (modo === "player") {
+                    if (typeof AndroidTVArg.playChannelEventos === "function") {
+                        AndroidTVArg.playChannelEventos(
+                            fuente.url,
+                            referer,
+                            userAgent
+                        );
+                        return;
+                    }
                 }
 
                 alert(
-                    "No está disponible el reproductor interno de TVArg."
+                    "No está disponible el método de reproducción seleccionado."
                 );
                 return;
             }
 
-            // Fuera de Android, se abre la fuente en el navegador.
             window.open(fuente.url, "_blank");
         }
+
+
 
         function cerrarFuentes() {
             selectorFuentes.style.display = "none";
