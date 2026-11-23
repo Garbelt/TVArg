@@ -9,4 +9,4 @@ window.ULTIMOS_EVENTOS = [
       { nombre: "Señal 02", tipo: "m3u8", url: "https://dalive.site:443/Pepe/1234/497661" }
     ]
   }
-];
+]; 
