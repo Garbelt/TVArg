@@ -1,4 +1,4 @@
-window.ULTIMOS_EVENTOS = [ 
+window.ULTIMOS_EVENTOS = [
   {
     competencia: "LPF Argentino",
     nombre: "Gimnasia y Esgrima de la Plata vs Newell's Old Boys",
